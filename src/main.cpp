@@ -5,6 +5,7 @@
 #include <LittleFS.h>
 #include <ArduinoJson.h>
 
+
 // general variables
 bool statusButton = false;
 bool merker = false;
@@ -13,13 +14,27 @@ bool merker = false;
 String config_lnbitshost = "";
 String config_deviceid = "";
 String config_devicekey = "";
-String config_configpin = "";
+String config_configpin = String(START_PIN);
 
 // defines for the config file
 #define DEVICE_CFG_HOST "lnbitshost"
 #define DEVICE_CFG_ID "deviceid"
 #define DEVICE_CFG_KEY "devicekey"
 #define DEVICE_CFG_PIN "configpin"
+
+
+bool checkPIN(const char *pin)
+{
+  if (pin == NULL)
+  {
+    return false;
+  }
+  if (String(pin).equals(config_configpin))
+  {
+    return true;
+  }
+  return false;
+}
 
 void loadConfig()
 {
