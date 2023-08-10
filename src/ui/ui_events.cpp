@@ -36,8 +36,7 @@ void addToPIN(int digit)
 		{
 			hidePIN += "*";
 		}
-		//lv_label_set_text(ui_LabelPINValue, hidePIN.c_str());
-		lv_label_set_text(ui_LabelPINValue, entered_pin.c_str());
+		lv_label_set_text(ui_LabelPINValue, hidePIN.c_str());
 	}
 }
 
