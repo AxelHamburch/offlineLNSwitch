@@ -12,10 +12,9 @@ String entered_pin = "";
 void ButtonKlick(lv_event_t *e)
 {
 	// Your code here
-	toggleBit();
 }
 
-void ButtonConfigSave(lv_event_t * e)
+void ButtonConfigSaveAndExit(lv_event_t * e)
 {
 	// Your code here
 	const char *lnbitshost = lv_textarea_get_text(ui_TextAreaConfigHost);
@@ -125,4 +124,15 @@ void ButtonPinOKClicked(lv_event_t * e)
 		lv_label_set_text(ui_LabelPINValue, "PIN INCORRECT");
 		entered_pin = "";
 	}
+}
+
+void TestRelayOne(lv_event_t *e)
+{
+	// Your code here
+	toggleBit();
+}
+
+void TestRelayTwo(lv_event_t *e)
+{
+	// Your code here
 }

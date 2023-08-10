@@ -23,7 +23,9 @@ void ButtonPinNineClicked(lv_event_t * e);
 void ButtonPinZeroClicked(lv_event_t * e);
 void ButtonPinCancelClicked(lv_event_t * e);
 void ButtonPinOKClicked(lv_event_t * e);
-void ButtonConfigSave(lv_event_t * e);
+void TestRelayOne(lv_event_t * e);
+void TestRelayTwo(lv_event_t * e);
+void ButtonConfigSaveAndExit(lv_event_t * e);
 
 #ifdef __cplusplus
 } /*extern "C"*/

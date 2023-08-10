@@ -12,24 +12,24 @@ void ui_ScreenPIN_screen_init(void)
     lv_obj_set_style_bg_color(ui_ScreenPIN, lv_color_hex(0x424344), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_ScreenPIN, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_TopScreen3 = lv_obj_create(ui_ScreenPIN);
-    lv_obj_set_width(ui_TopScreen3, lv_pct(100));
-    lv_obj_set_height(ui_TopScreen3, lv_pct(10));
-    lv_obj_set_align(ui_TopScreen3, LV_ALIGN_TOP_MID);
-    lv_obj_clear_flag(ui_TopScreen3, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_set_style_radius(ui_TopScreen3, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_color(ui_TopScreen3, lv_color_hex(0x828284), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ui_TopScreen3, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_border_side(ui_TopScreen3, LV_BORDER_SIDE_NONE, LV_PART_MAIN | LV_STATE_DEFAULT);
+    ui_TopScreenPIN = lv_obj_create(ui_ScreenPIN);
+    lv_obj_set_width(ui_TopScreenPIN, lv_pct(100));
+    lv_obj_set_height(ui_TopScreenPIN, lv_pct(10));
+    lv_obj_set_align(ui_TopScreenPIN, LV_ALIGN_TOP_MID);
+    lv_obj_clear_flag(ui_TopScreenPIN, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_obj_set_style_radius(ui_TopScreenPIN, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(ui_TopScreenPIN, lv_color_hex(0x828284), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_TopScreenPIN, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_side(ui_TopScreenPIN, LV_BORDER_SIDE_NONE, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_LabelTopScreen3 = lv_label_create(ui_TopScreen3);
-    lv_obj_set_width(ui_LabelTopScreen3, LV_SIZE_CONTENT);   /// 1
-    lv_obj_set_height(ui_LabelTopScreen3, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_align(ui_LabelTopScreen3, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_LabelTopScreen3, "ScreenPIN");
-    lv_obj_set_style_text_color(ui_LabelTopScreen3, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_opa(ui_LabelTopScreen3, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_LabelTopScreen3, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
+    ui_LabelTopScreenPIN = lv_label_create(ui_TopScreenPIN);
+    lv_obj_set_width(ui_LabelTopScreenPIN, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_LabelTopScreenPIN, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_LabelTopScreenPIN, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_LabelTopScreenPIN, "ScreenPIN");
+    lv_obj_set_style_text_color(ui_LabelTopScreenPIN, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui_LabelTopScreenPIN, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_LabelTopScreenPIN, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_LabelPINValue = lv_label_create(ui_ScreenPIN);
     lv_obj_set_width(ui_LabelPINValue, LV_SIZE_CONTENT);   /// 1

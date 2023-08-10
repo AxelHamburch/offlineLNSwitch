@@ -18,20 +18,24 @@ extern "C" {
 void ui_ScreenStart_screen_init(void);
 void ui_event_ScreenStart(lv_event_t * e);
 extern lv_obj_t * ui_ScreenStart;
-extern lv_obj_t * ui_TopScreen2;
-extern lv_obj_t * ui_LabelTopScreen2;
+extern lv_obj_t * ui_TopScreenStart;
+extern lv_obj_t * ui_LabelTopScreenStart;
 void ui_event_ButtonGotoScreenPin(lv_event_t * e);
 extern lv_obj_t * ui_ButtonGotoScreenPin;
 extern lv_obj_t * ui_LabelButtonGotoScreenPin;
-void ui_event_ButtonGotoScreenPin1(lv_event_t * e);
-extern lv_obj_t * ui_ButtonGotoScreenPin1;
-extern lv_obj_t * ui_LabelButtonGotoScreenPin1;
+void ui_event_ButtonGotoScreenPinDirekt(lv_event_t * e);
+extern lv_obj_t * ui_ButtonGotoScreenPinDirekt;
+extern lv_obj_t * ui_LabelButtonGotoScreenPinDirekt;
+void ui_event_ButtonGotoScreenQRCode(lv_event_t * e);
+extern lv_obj_t * ui_ButtonGotoScreenQRCode;
+extern lv_obj_t * ui_LabelButtonGotoScreenQRCode;
+extern lv_obj_t * ui_Image1;
 // SCREEN: ui_ScreenPIN
 void ui_ScreenPIN_screen_init(void);
 void ui_event_ScreenPIN(lv_event_t * e);
 extern lv_obj_t * ui_ScreenPIN;
-extern lv_obj_t * ui_TopScreen3;
-extern lv_obj_t * ui_LabelTopScreen3;
+extern lv_obj_t * ui_TopScreenPIN;
+extern lv_obj_t * ui_LabelTopScreenPIN;
 extern lv_obj_t * ui_LabelPINValue;
 void ui_event_ButtonPin1(lv_event_t * e);
 extern lv_obj_t * ui_ButtonPin1;
@@ -73,11 +77,16 @@ extern lv_obj_t * ui_LabelButtonPin12;
 void ui_ScreenConfig_screen_init(void);
 void ui_event_ScreenConfig(lv_event_t * e);
 extern lv_obj_t * ui_ScreenConfig;
-extern lv_obj_t * ui_TopScreen1;
-extern lv_obj_t * ui_LabelTopScreen1;
-void ui_event_Button1(lv_event_t * e);
-extern lv_obj_t * ui_Button1;
+extern lv_obj_t * ui_TopScreenConfig;
+extern lv_obj_t * ui_LabelTopScreenConfig;
 extern lv_obj_t * ui_Label1;
+void ui_event_TestRelay1(lv_event_t * e);
+extern lv_obj_t * ui_TestRelay1;
+extern lv_obj_t * ui_LabelTestRelay1;
+void ui_event_TestRelay2(lv_event_t * e);
+extern lv_obj_t * ui_TestRelay2;
+void ui_event_LabelTestRelay2(lv_event_t * e);
+extern lv_obj_t * ui_LabelTestRelay2;
 void ui_event_TextAreaConfigHost(lv_event_t * e);
 extern lv_obj_t * ui_TextAreaConfigHost;
 extern lv_obj_t * ui_LabelConfigHost;
@@ -90,9 +99,6 @@ extern lv_obj_t * ui_LabelConfigDeviceKey;
 void ui_event_TextAreaConfigPin(lv_event_t * e);
 extern lv_obj_t * ui_TextAreaConfigPin;
 extern lv_obj_t * ui_LabelConfigPin;
-void ui_event_ButtonGotoScreenStart(lv_event_t * e);
-extern lv_obj_t * ui_ButtonGotoScreenStart;
-extern lv_obj_t * ui_LabelButtonGotoScreenStart;
 void ui_event_ButtonConfigSave(lv_event_t * e);
 extern lv_obj_t * ui_ButtonConfigSave;
 extern lv_obj_t * ui_LabelButtonConfigSave;
@@ -100,7 +106,24 @@ void ui_event_KeyboardText(lv_event_t * e);
 extern lv_obj_t * ui_KeyboardText;
 void ui_event_KeyboardNumber(lv_event_t * e);
 extern lv_obj_t * ui_KeyboardNumber;
+extern lv_obj_t * ui_LabelTestFunction;
+// SCREEN: ui_ScreenQRCode
+void ui_ScreenQRCode_screen_init(void);
+void ui_event_ScreenQRCode(lv_event_t * e);
+extern lv_obj_t * ui_ScreenQRCode;
+extern lv_obj_t * ui_TopScreenQRCode;
+extern lv_obj_t * ui_LabelTopScreenQRCode;
+void ui_event_ButtonGotoScreenPin2(lv_event_t * e);
+extern lv_obj_t * ui_ButtonGotoScreenPin2;
+extern lv_obj_t * ui_LabelButtonGotoScreenPin2;
+void ui_event_ButtonGotoScreenStartQRCode(lv_event_t * e);
+extern lv_obj_t * ui_ButtonGotoScreenStartQRCode;
+extern lv_obj_t * ui_LabelButtonGotoScreenPin3;
+extern lv_obj_t * ui_Image2;
 extern lv_obj_t * ui____initial_actions0;
+
+LV_IMG_DECLARE(ui_img_black_hole_small_png);    // assets\black_hole_small.png
+LV_IMG_DECLARE(ui_img_166440904);    // assets\qr-code-slagschaduw-274x274-v2.png
 
 void ui_init(void);
 
