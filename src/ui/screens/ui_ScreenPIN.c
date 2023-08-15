@@ -298,6 +298,5 @@ void ui_ScreenPIN_screen_init(void)
     lv_obj_add_event_cb(ui_ButtonPin10, ui_event_ButtonPin10, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_ButtonPin11, ui_event_ButtonPin11, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_ButtonPin12, ui_event_ButtonPin12, LV_EVENT_ALL, NULL);
-    lv_obj_add_event_cb(ui_ScreenPIN, ui_event_ScreenPIN, LV_EVENT_ALL, NULL);
 
 }

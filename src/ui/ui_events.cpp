@@ -9,130 +9,155 @@
 
 String entered_pin = "";
 
-void ButtonKlick(lv_event_t *e)
-{
-	// Your code here
-}
 
-void ButtonConfigSaveAndExit(lv_event_t * e)
-{
-	// Your code here
-	const char *lnbitshost = lv_textarea_get_text(ui_TextAreaConfigHost);
-	const char *deviceid = lv_textarea_get_text(ui_TextAreaConfigDeviceID);
-	const char *devicekey = lv_textarea_get_text(ui_TextAreaConfigDeviceKey);
-	const char *configpin = lv_textarea_get_text(ui_TextAreaConfigPin);
-	editConfig(lnbitshost, deviceid, devicekey, configpin);
-}
-
-void addToPIN(int digit)
-{
-	if (entered_pin.length() < 6)
+	void ButtonConfigSaveAndExitClicked(lv_event_t * e)
 	{
-		entered_pin += digit;
+		// Your code here
+		const char *lnbitshost = lv_textarea_get_text(ui_TextAreaConfigHost);
+		const char *deviceid = lv_textarea_get_text(ui_TextAreaConfigDeviceID);
+		const char *devicekey = lv_textarea_get_text(ui_TextAreaConfigDeviceKey);
+		const char *configpin = lv_textarea_get_text(ui_TextAreaConfigPin);
+		editConfig(lnbitshost, deviceid, devicekey, configpin);
+	}
 
-		String hidePIN = "";
-		for (int i = 0; (i < entered_pin.length()); i++)
+	void addToPIN(int digit)
+	{
+		if (entered_pin.length() < 6)
 		{
-			hidePIN += "*";
+			entered_pin += digit;
+
+			String hidePIN = "";
+			for (int i = 0; (i < entered_pin.length()); i++)
+			{
+				hidePIN += "*";
+			}
+			lv_label_set_text(ui_LabelPINValue, hidePIN.c_str());
 		}
-		lv_label_set_text(ui_LabelPINValue, hidePIN.c_str());
 	}
-}
 
-void ButtonPinOneClicked(lv_event_t * e)
-{
-	// Your code here
-	addToPIN(1);
-}
-
-void ButtonPinTwoClicked(lv_event_t * e)
-{
-	// Your code here
-	addToPIN(2);
-}
-
-void ButtonPinThreeClicked(lv_event_t * e)
-{
-	// Your code here
-	addToPIN(3);
-}
-
-void ButtonPinFourClicked(lv_event_t * e)
-{
-	// Your code here
-	addToPIN(4);
-}
-
-void ButtonPinFiveClicked(lv_event_t * e)
-{
-	// Your code here
-	addToPIN(5);
-}
-
-void ButtonPinSixClicked(lv_event_t * e)
-{
-	// Your code here
-	addToPIN(6);
-}
-
-void ButtonPinSevenClicked(lv_event_t * e)
-{
-	// Your code here
-	addToPIN(7);
-}
-
-void ButtonPinEightClicked(lv_event_t * e)
-{
-	// Your code here
-	addToPIN(8);
-}
-
-void ButtonPinNineClicked(lv_event_t * e)
-{
-	// Your code here
-	addToPIN(9);
-}
-
-void ButtonPinZeroClicked(lv_event_t * e)
-{
-	// Your code here
-	addToPIN(0);
-}
-
-void ButtonPinCancelClicked(lv_event_t * e)
-{
-	// Your code here
-	if (entered_pin.length() == 0)
+	void ButtonPinOneClicked(lv_event_t * e)
 	{
-		lv_disp_load_scr(ui_ScreenStart);
+		// Your code here
+		addToPIN(1);
 	}
-	entered_pin = "";
-	lv_label_set_text(ui_LabelPINValue, "ENTER PIN");
-}
 
-void ButtonPinOKClicked(lv_event_t * e)
-{
-	// Your code here
-	if (checkPIN(entered_pin.c_str()) == true)
+	void ButtonPinTwoClicked(lv_event_t * e)
 	{
-		lv_disp_load_scr(ui_ScreenConfig);
+		// Your code here
+		addToPIN(2);
+	}
+
+	void ButtonPinThreeClicked(lv_event_t * e)
+	{
+		// Your code here
+		addToPIN(3);
+	}
+
+	void ButtonPinFourClicked(lv_event_t * e)
+	{
+		// Your code here
+		addToPIN(4);
+	}
+
+	void ButtonPinFiveClicked(lv_event_t * e)
+	{
+		// Your code here
+		addToPIN(5);
+	}
+
+	void ButtonPinSixClicked(lv_event_t * e)
+	{
+		// Your code here
+		addToPIN(6);
+	}
+
+	void ButtonPinSevenClicked(lv_event_t * e)
+	{
+		// Your code here
+		addToPIN(7);
+	}
+
+	void ButtonPinEightClicked(lv_event_t * e)
+	{
+		// Your code here
+		addToPIN(8);
+	}
+
+	void ButtonPinNineClicked(lv_event_t * e)
+	{
+		// Your code here
+		addToPIN(9);
+	}
+
+	void ButtonPinZeroClicked(lv_event_t * e)
+	{
+		// Your code here
+		addToPIN(0);
+	}
+
+	void ButtonPinCancelClicked(lv_event_t * e)
+	{
+		// Your code here
+		if (entered_pin.length() == 0)
+		{
+			lv_disp_load_scr(ui_ScreenStart);
+		}
+		entered_pin = "";
 		lv_label_set_text(ui_LabelPINValue, "ENTER PIN");
-		entered_pin = "";
 	}
-	else
+
+	void ButtonPinOKClicked(lv_event_t * e)
 	{
-		lv_label_set_text(ui_LabelPINValue, "PIN INCORRECT");
-		entered_pin = "";
+		// Your code here
+		if (checkPIN(entered_pin.c_str()) == true)
+		{
+			lv_disp_load_scr(ui_ScreenConfig);
+			lv_label_set_text(ui_LabelPINValue, "ENTER PIN");
+			entered_pin = "";
+		}
+		else
+		{
+			lv_label_set_text(ui_LabelPINValue, "PIN INCORRECT");
+			entered_pin = "";
+		}
 	}
-}
 
-void TestRelayOne(lv_event_t *e)
-{
-	// Your code here
-	toggleBit();
-}
+	void ButtonTestRelay1Clicked(lv_event_t * e)
+	{
+		const char *gpio = "Relay1";
+		toggleGPIO(gpio);
+	}
 
-void TestRelayTwo(lv_event_t *e)
-{
-	// Your code here
-}
+	void ButtonTestRelay2Clicked(lv_event_t * e)
+	{
+		const char *gpio = "Relay2";
+		toggleGPIO(gpio);
+	}
+
+	void ButtonLEDredClicked(lv_event_t *e)
+	{
+		const char *gpio = "LEDred";
+		toggleGPIO(gpio);
+	}
+
+	void ButtonLEDgreenClicked(lv_event_t * e)
+	{
+		const char *gpio = "LEDgreen";
+		toggleGPIO(gpio);
+	}
+
+	void ButtonLEDblueClicked(lv_event_t * e)
+	{
+		const char *gpio = "LEDblue";
+		toggleGPIO(gpio);
+	}
+
+	void ButtonPayNowClick(lv_event_t *e)
+	{
+		payNow(1);
+	}
+
+	void ButtonPayNow0Click(lv_event_t *e)
+	{
+		payNow(0);
+	}

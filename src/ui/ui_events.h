@@ -10,7 +10,8 @@
 extern "C" {
 #endif
 
-void ButtonKlick(lv_event_t * e);
+void ButtonPayNowClick(lv_event_t * e);
+void ButtonPayNow0Click(lv_event_t * e);
 void ButtonPinOneClicked(lv_event_t * e);
 void ButtonPinTwoClicked(lv_event_t * e);
 void ButtonPinThreeClicked(lv_event_t * e);
@@ -23,9 +24,12 @@ void ButtonPinNineClicked(lv_event_t * e);
 void ButtonPinZeroClicked(lv_event_t * e);
 void ButtonPinCancelClicked(lv_event_t * e);
 void ButtonPinOKClicked(lv_event_t * e);
-void TestRelayOne(lv_event_t * e);
-void TestRelayTwo(lv_event_t * e);
-void ButtonConfigSaveAndExit(lv_event_t * e);
+void ButtonConfigSaveAndExitClicked(lv_event_t * e);
+void ButtonTestRelay1Clicked(lv_event_t * e);
+void ButtonTestRelay2Clicked(lv_event_t * e);
+void ButtonLEDgreenClicked(lv_event_t * e);
+void ButtonLEDblueClicked(lv_event_t * e);
+void ButtonLEDredClicked(lv_event_t * e);
 
 #ifdef __cplusplus
 } /*extern "C"*/

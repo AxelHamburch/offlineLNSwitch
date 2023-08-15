@@ -69,37 +69,95 @@ void ui_ScreenStart_screen_init(void)
     lv_label_set_text(ui_LabelButtonGotoScreenPinDirekt, "direkt");
     lv_obj_set_style_text_font(ui_LabelButtonGotoScreenPinDirekt, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_ButtonGotoScreenQRCode = lv_btn_create(ui_ScreenStart);
-    lv_obj_set_width(ui_ButtonGotoScreenQRCode, 100);
-    lv_obj_set_height(ui_ButtonGotoScreenQRCode, 50);
-    lv_obj_set_x(ui_ButtonGotoScreenQRCode, 107);
-    lv_obj_set_y(ui_ButtonGotoScreenQRCode, 205);
-    lv_obj_set_align(ui_ButtonGotoScreenQRCode, LV_ALIGN_CENTER);
-    lv_obj_add_flag(ui_ButtonGotoScreenQRCode, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
-    lv_obj_clear_flag(ui_ButtonGotoScreenQRCode, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_set_style_bg_color(ui_ButtonGotoScreenQRCode, lv_color_hex(0x386E41), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ui_ButtonGotoScreenQRCode, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_ButtonGotoScreenQRCode, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
+    ui_ButtonGotoScreenScan = lv_btn_create(ui_ScreenStart);
+    lv_obj_set_width(ui_ButtonGotoScreenScan, 100);
+    lv_obj_set_height(ui_ButtonGotoScreenScan, 50);
+    lv_obj_set_x(ui_ButtonGotoScreenScan, 107);
+    lv_obj_set_y(ui_ButtonGotoScreenScan, 205);
+    lv_obj_set_align(ui_ButtonGotoScreenScan, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_ButtonGotoScreenScan, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
+    lv_obj_clear_flag(ui_ButtonGotoScreenScan, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_obj_set_style_bg_color(ui_ButtonGotoScreenScan, lv_color_hex(0x386E41), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_ButtonGotoScreenScan, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_ButtonGotoScreenScan, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_LabelButtonGotoScreenQRCode = lv_label_create(ui_ButtonGotoScreenQRCode);
-    lv_obj_set_width(ui_LabelButtonGotoScreenQRCode, LV_SIZE_CONTENT);   /// 1
-    lv_obj_set_height(ui_LabelButtonGotoScreenQRCode, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_align(ui_LabelButtonGotoScreenQRCode, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_LabelButtonGotoScreenQRCode, "QRCode");
-    lv_obj_set_style_text_font(ui_LabelButtonGotoScreenQRCode, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
+    ui_LabelButtonGotoScreenScan = lv_label_create(ui_ButtonGotoScreenScan);
+    lv_obj_set_width(ui_LabelButtonGotoScreenScan, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_LabelButtonGotoScreenScan, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_LabelButtonGotoScreenScan, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_LabelButtonGotoScreenScan, "Scan");
+    lv_obj_set_style_text_font(ui_LabelButtonGotoScreenScan, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_Image1 = lv_img_create(ui_ScreenStart);
-    lv_img_set_src(ui_Image1, &ui_img_black_hole_small_png);
-    lv_obj_set_width(ui_Image1, LV_SIZE_CONTENT);   /// 128
-    lv_obj_set_height(ui_Image1, LV_SIZE_CONTENT);    /// 128
-    lv_obj_set_align(ui_Image1, LV_ALIGN_CENTER);
-    lv_obj_add_flag(ui_Image1, LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
-    lv_obj_clear_flag(ui_Image1, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_img_set_zoom(ui_Image1, 400);
+    ui_ImageBlackHole = lv_img_create(ui_ScreenStart);
+    lv_img_set_src(ui_ImageBlackHole, &ui_img_black_hole_small_256_schlagschatten_png);
+    lv_obj_set_width(ui_ImageBlackHole, LV_SIZE_CONTENT);   /// 256
+    lv_obj_set_height(ui_ImageBlackHole, LV_SIZE_CONTENT);    /// 256
+    lv_obj_set_align(ui_ImageBlackHole, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_ImageBlackHole, LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
+    lv_obj_clear_flag(ui_ImageBlackHole, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+
+    ui_ButtonGotoScreenPlayground = lv_btn_create(ui_ScreenStart);
+    lv_obj_set_width(ui_ButtonGotoScreenPlayground, 100);
+    lv_obj_set_height(ui_ButtonGotoScreenPlayground, 50);
+    lv_obj_set_x(ui_ButtonGotoScreenPlayground, -101);
+    lv_obj_set_y(ui_ButtonGotoScreenPlayground, 148);
+    lv_obj_set_align(ui_ButtonGotoScreenPlayground, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_ButtonGotoScreenPlayground, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
+    lv_obj_clear_flag(ui_ButtonGotoScreenPlayground, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_obj_set_style_bg_color(ui_ButtonGotoScreenPlayground, lv_color_hex(0x386E41), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_ButtonGotoScreenPlayground, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_ButtonGotoScreenPlayground, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_LabelButtonGotoScreenPlayground = lv_label_create(ui_ButtonGotoScreenPlayground);
+    lv_obj_set_width(ui_LabelButtonGotoScreenPlayground, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_LabelButtonGotoScreenPlayground, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_LabelButtonGotoScreenPlayground, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_LabelButtonGotoScreenPlayground, "Playgr.");
+    lv_obj_set_style_text_font(ui_LabelButtonGotoScreenPlayground, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_ButtonPayNow = lv_btn_create(ui_ScreenStart);
+    lv_obj_set_width(ui_ButtonPayNow, 100);
+    lv_obj_set_height(ui_ButtonPayNow, 50);
+    lv_obj_set_x(ui_ButtonPayNow, 3);
+    lv_obj_set_y(ui_ButtonPayNow, 149);
+    lv_obj_set_align(ui_ButtonPayNow, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_ButtonPayNow, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
+    lv_obj_clear_flag(ui_ButtonPayNow, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_obj_set_style_bg_color(ui_ButtonPayNow, lv_color_hex(0x386E41), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_ButtonPayNow, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_ButtonPayNow, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_LabelButtonPayNowClick = lv_label_create(ui_ButtonPayNow);
+    lv_obj_set_width(ui_LabelButtonPayNowClick, LV_SIZE_CONTENT);   /// -714
+    lv_obj_set_height(ui_LabelButtonPayNowClick, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_LabelButtonPayNowClick, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_LabelButtonPayNowClick, "Pay");
+    lv_obj_set_style_text_font(ui_LabelButtonPayNowClick, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_ButtonPayNow0 = lv_btn_create(ui_ScreenStart);
+    lv_obj_set_width(ui_ButtonPayNow0, 100);
+    lv_obj_set_height(ui_ButtonPayNow0, 50);
+    lv_obj_set_x(ui_ButtonPayNow0, 106);
+    lv_obj_set_y(ui_ButtonPayNow0, 149);
+    lv_obj_set_align(ui_ButtonPayNow0, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_ButtonPayNow0, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
+    lv_obj_clear_flag(ui_ButtonPayNow0, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_obj_set_style_bg_color(ui_ButtonPayNow0, lv_color_hex(0x386E41), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_ButtonPayNow0, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_ButtonPayNow0, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_LabelButtonPayNow0Click = lv_label_create(ui_ButtonPayNow0);
+    lv_obj_set_width(ui_LabelButtonPayNow0Click, LV_SIZE_CONTENT);   /// -714
+    lv_obj_set_height(ui_LabelButtonPayNow0Click, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_LabelButtonPayNow0Click, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_LabelButtonPayNow0Click, "Pay0");
+    lv_obj_set_style_text_font(ui_LabelButtonPayNow0Click, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     lv_obj_add_event_cb(ui_ButtonGotoScreenPin, ui_event_ButtonGotoScreenPin, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_ButtonGotoScreenPinDirekt, ui_event_ButtonGotoScreenPinDirekt, LV_EVENT_ALL, NULL);
-    lv_obj_add_event_cb(ui_ButtonGotoScreenQRCode, ui_event_ButtonGotoScreenQRCode, LV_EVENT_ALL, NULL);
-    lv_obj_add_event_cb(ui_ScreenStart, ui_event_ScreenStart, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_ButtonGotoScreenScan, ui_event_ButtonGotoScreenScan, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_ButtonGotoScreenPlayground, ui_event_ButtonGotoScreenPlayground, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_ButtonPayNow, ui_event_ButtonPayNow, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_ButtonPayNow0, ui_event_ButtonPayNow0, LV_EVENT_ALL, NULL);
 
 }
