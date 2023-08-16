@@ -4,7 +4,8 @@
 #include "globals.h"
 #include <LittleFS.h>
 #include <ArduinoJson.h>
-
+#include <Bitcoin.h>
+#include <Hash.h>
 
 // general variables
 int gpioOut1 = 21;
@@ -245,47 +246,11 @@ void payNow(int item)
 
 }
 
-/*
-
 void qrShowCode()
 {
   Serial.println("qrShowCode()");
   qrData.toUpperCase();
   const char *lnurlChar = qrData.c_str();
-  QRCode qrcode;
-  uint8_t qrcodeData[qrcode_getBufferSize(20)];
-  qrcode_initText(&qrcode, qrcodeData, 6, 0, lnurlChar);
-
-
-  tft.println("PAY AND ENTER PIN FROM RECEIPT ");
-}
-
-void makeLNURL()
-{
-  randomPin = random(1000, 9999);
-  byte nonce[8];
-  for (int i = 0; i < 8; i++)
-  {
-    nonce[i] = random(256);
-  }
-  byte payload[51]; // 51 bytes is max one can get with xor-encryption
-
-  size_t payload_len = xor_encrypt(payload, sizeof(payload), (uint8_t *)secretvend.c_str(), secretvend.length(), nonce, sizeof(nonce), randomPin, amount);
-  preparedURL = baseURLvend + "?p=";
-  preparedURL += toBase64(payload, payload_len, BASE64_URLSAFE | BASE64_NOPADDING);
-
-  Serial.println("LNURL link: " + preparedURL);
-  char Buf[200];
-  preparedURL.toCharArray(Buf, 200);
-  char *url = Buf;
-  byte *data = (byte *)calloc(strlen(url) * 2, sizeof(byte));
-  size_t len = 0;
-  int res = convert_bits(data, &len, 5, (byte *)url, strlen(url), 8, 1);
-  char *charLnurl = (char *)calloc(strlen(url) * 2, sizeof(byte));
-  bech32_encode(charLnurl, "lnurl", data, len);
-  to_upper(charLnurl);
-  qrData = charLnurl;
-  Serial.println(qrData);
 }
 
 int xor_encrypt(uint8_t *output, size_t outlen, uint8_t *key, size_t keylen, uint8_t *nonce, size_t nonce_len, uint64_t pin, uint64_t amount_in_cents)
@@ -334,7 +299,35 @@ int xor_encrypt(uint8_t *output, size_t outlen, uint8_t *key, size_t keylen, uin
   return cur;
 }
 
-*/
+void makeLNURL()
+{
+  randomPin = random(1000, 9999);
+  byte nonce[8];
+  for (int i = 0; i < 8; i++)
+  {
+    nonce[i] = random(256);
+  }
+  byte payload[51]; // 51 bytes is max one can get with xor-encryption
+
+  size_t payload_len = xor_encrypt(payload, sizeof(payload), (uint8_t *)secretvend.c_str(), secretvend.length(), nonce, sizeof(nonce), randomPin, amount);
+  preparedURL = baseURLvend + "?p=";
+  preparedURL += toBase64(payload, payload_len, BASE64_URLSAFE | BASE64_NOPADDING);
+
+  Serial.println("LNURL link: " + preparedURL);
+  char Buf[200];
+  preparedURL.toCharArray(Buf, 200);
+  char *url = Buf;
+  byte *data = (byte *)calloc(strlen(url) * 2, sizeof(byte));
+  size_t len = 0;
+  int res = convert_bits(data, &len, 5, (byte *)url, strlen(url), 8, 1);
+  char *charLnurl = (char *)calloc(strlen(url) * 2, sizeof(byte));
+  bech32_encode(charLnurl, "lnurl", data, len);
+  qrData = charLnurl;
+  Serial.println(qrData);
+}
+
+
+
 
 void setup()
 {
