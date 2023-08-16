@@ -23,6 +23,12 @@ String config_lnbitshost = "";
 String config_deviceid = "";
 String config_devicekey = "";
 String config_configpin = String(START_PIN);
+String config_switchname1 = "";
+String config_switchtime1 = "";
+String config_switchgpio1 = String(21);
+String config_switchname2 = "";
+String config_switchtime2 = "";
+String config_switchgpio2 = "";
 
 // LNURL variables
 int randomPin;
@@ -43,6 +49,12 @@ String qrData;
 #define DEVICE_CFG_ID "deviceid"
 #define DEVICE_CFG_KEY "devicekey"
 #define DEVICE_CFG_PIN "configpin"
+#define DEVICE_SWITCH_NAME_1 "switchname1"
+#define DEVICE_SWITCH_TIME_1 "switchtime1"
+#define DEVICE_SWITCH_GPIO_1 "switchgpio1"
+#define DEVICE_SWITCH_NAME_2 "switchname2"
+#define DEVICE_SWITCH_TIME_2 "switchtime2"
+#define DEVICE_SWITCH_GPIO_2 "switchgpio2"
 
 // create QR code object
 lv_obj_t *ui_QrcodeLnurl = NULL;
@@ -94,6 +106,7 @@ void toggleGPIO(const char *gpio)
 
 void loadConfig()
 {
+   Serial.println("loadConfig");
   File file = LittleFS.open("/config.json", "r");
   if (file)
   {
@@ -129,24 +142,54 @@ void loadConfig()
         {
           config_configpin = String(value);
         }
+        else if (name == DEVICE_SWITCH_NAME_1)
+        {
+          config_switchname1 = String(value);
+        }
+        else if (name == DEVICE_SWITCH_TIME_1)
+        {
+          config_switchtime1 = String(value);
+        }
+        else if (name == DEVICE_SWITCH_GPIO_1)
+        {
+          config_switchgpio1 = String(value);
+        }
+        else if (name == DEVICE_SWITCH_NAME_2)
+        {
+          config_switchname2 = String(value);
+        }
+        else if (name == DEVICE_SWITCH_TIME_2)
+        {
+          config_switchtime2 = String(value);
+        }
+        else if (name == DEVICE_SWITCH_GPIO_2)
+        {
+          config_switchgpio2 = String(value);
+        }
       }
     }
   }
 }
 
-void editConfig(const char *lnbitshost, const char *deviceid, const char *devicekey, const char *configpin)
+void editConfig(const char *lnbitshost, const char *deviceid, const char *devicekey, const char *configpin, const char *switchname1, const char *switchtime1, const char *switchgpio1, const char *switchname2, const char *switchtime2, const char *switchgpio2)
 {
-
+  Serial.println("editConfig");
   config_lnbitshost = String(lnbitshost);
   config_deviceid = String(deviceid);
   config_devicekey = String(devicekey);
   config_configpin = String(configpin);
-
+  config_switchname1 = String(switchname1);
+  config_switchtime1 = String(switchtime1);
+  config_switchgpio1 = String(switchgpio1);
+  config_switchname2 = String(switchname2);
+  config_switchtime2 = String(switchtime2);
+  config_switchgpio2 = String(switchgpio2);
   saveConfig();
 }
 
 void saveConfig()
 {
+  Serial.println("saveConfig");
   File file = LittleFS.open("/config.json", "w");
   if (!file)
   {
@@ -164,6 +207,18 @@ void saveConfig()
   doc[2]["value"] = config_devicekey;
   doc[3]["name"] = DEVICE_CFG_PIN;
   doc[3]["value"] = config_configpin;
+  doc[4]["name"] = DEVICE_SWITCH_NAME_1;
+  doc[4]["value"] = config_switchname1;
+  doc[5]["name"] = DEVICE_SWITCH_TIME_1;
+  doc[5]["value"] = config_switchtime1;
+  doc[6]["name"] = DEVICE_SWITCH_GPIO_1;
+  doc[6]["value"] = config_switchgpio1;
+  doc[7]["name"] = DEVICE_SWITCH_NAME_2;
+  doc[7]["value"] = config_switchname2;
+  doc[8]["name"] = DEVICE_SWITCH_TIME_2;
+  doc[8]["value"] = config_switchtime2;
+  doc[9]["name"] = DEVICE_SWITCH_GPIO_2;
+  doc[9]["value"] = config_switchgpio2;
 
   String output = "";
   serializeJson(doc, output);
@@ -173,18 +228,20 @@ void saveConfig()
 
 void payNow(int item)
 {
+  Serial.println("payNow QRCode");
   if (item == 0)
   {
     lv_disp_load_scr(ui_ScreenPlayground);
     return;
   }
-  const char *data = "LNURL1DP68GURN8GHJ7MRWVF5HGUEWV4EX26T8DE5HX6R0WF5H5MMWWSH8S7T69AMKJARGV3EXZAE0V9CXJTMKXYHKCMN4WFKZ7KZEFF656E6XD4MK5CJWGEGY2C2JGAVH5KNYY5NS2W";
+  const char *data = "https://ereignishorizont.xyz/";
   lv_qrcode_update(ui_QrcodeLnurl, data, strlen(data)); // Das QRCode Objekt mit den Daten unter Angabe der Datenlänge füllen
   lv_disp_load_scr(ui_ScreenScan);
 
   char buffer[20];                              // Hier verwenden wir einen Puffer, um die Zeichenfolge zu erstellen
   snprintf(buffer, sizeof(buffer), "Product: %d", item); // Wandelt den Integer in eine Zeichenfolge um
   lv_label_set_text(ui_LabelProduct, buffer);   // Setzt die Textzeile im Label
+  Serial.println(buffer);
 
 }
 
@@ -282,6 +339,7 @@ int xor_encrypt(uint8_t *output, size_t outlen, uint8_t *key, size_t keylen, uin
 void setup()
 {
   Serial.begin(115200);
+  Serial.println("booting..");
 
   LittleFS.begin(true);
 
@@ -291,14 +349,22 @@ void setup()
   // set UI components from config
   loadConfig();
 
-  // set config
+  // set config to display
   lv_textarea_set_text(ui_TextAreaConfigHost, config_lnbitshost.c_str());
   lv_textarea_set_text(ui_TextAreaConfigDeviceID, config_deviceid.c_str());
   lv_textarea_set_text(ui_TextAreaConfigDeviceKey, config_devicekey.c_str());
   lv_textarea_set_text(ui_TextAreaConfigPin, config_configpin.c_str());
+  lv_textarea_set_text(ui_TextAreaSwitchName1, config_switchname1.c_str());
+  lv_textarea_set_text(ui_TextAreaSwitchTime1, config_switchname1.c_str());
+  lv_textarea_set_text(ui_TextAreaSwitchRelay1, config_switchgpio1.c_str());
+  lv_textarea_set_text(ui_TextAreaSwitchName2, config_switchname1.c_str());
+  lv_textarea_set_text(ui_TextAreaSwitchTime2, config_switchname1.c_str());
+  lv_textarea_set_text(ui_TextAreaSwitchRelay2, config_switchgpio1.c_str());
+
   // set firmware version
   lv_label_set_text(ui_LabelFWVersion, String(FIRMWARE_VERSION).c_str());
 
+  // set GPIOs
   pinMode(gpioOut1, OUTPUT);
   pinMode(gpioOut2, OUTPUT);
   pinMode(gpioLEDr, OUTPUT);

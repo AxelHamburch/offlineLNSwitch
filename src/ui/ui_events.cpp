@@ -17,7 +17,13 @@ String entered_pin = "";
 		const char *deviceid = lv_textarea_get_text(ui_TextAreaConfigDeviceID);
 		const char *devicekey = lv_textarea_get_text(ui_TextAreaConfigDeviceKey);
 		const char *configpin = lv_textarea_get_text(ui_TextAreaConfigPin);
-		editConfig(lnbitshost, deviceid, devicekey, configpin);
+		const char *switchname1 = lv_textarea_get_text(ui_TextAreaSwitchName1);
+		const char *switchtime1 = lv_textarea_get_text(ui_TextAreaSwitchTime1);
+		const char *switchgpio1 = lv_textarea_get_text(ui_TextAreaSwitchRelay1);
+		const char *switchname2 = lv_textarea_get_text(ui_TextAreaSwitchName2);
+		const char *switchtime2 = lv_textarea_get_text(ui_TextAreaSwitchTime2);
+		const char *switchgpio2 = lv_textarea_get_text(ui_TextAreaSwitchRelay2);
+		editConfig(lnbitshost, deviceid, devicekey, configpin, switchname1, switchtime1, switchgpio1, switchname2, switchtime2, switchgpio2);
 	}
 
 	void addToPIN(int digit)
