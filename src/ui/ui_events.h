@@ -10,8 +10,8 @@
 extern "C" {
 #endif
 
-void ButtonPayNowClick(lv_event_t * e);
-void ButtonPayNow0Click(lv_event_t * e);
+void ButtonPayNow1Click(lv_event_t * e);
+void ButtonPayNow2Click(lv_event_t * e);
 void ButtonPinOneClicked(lv_event_t * e);
 void ButtonPinTwoClicked(lv_event_t * e);
 void ButtonPinThreeClicked(lv_event_t * e);

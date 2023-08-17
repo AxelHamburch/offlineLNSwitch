@@ -147,12 +147,6 @@ void ui_ScreenPlayground_screen_init(void)
     lv_obj_set_style_text_opa(ui_ButtonButtonGotoScreenPlay2, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_ButtonButtonGotoScreenPlay2, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_Panel1 = lv_obj_create(ui_ScreenPlayground);
-    lv_obj_set_width(ui_Panel1, 111);
-    lv_obj_set_height(ui_Panel1, 108);
-    lv_obj_set_align(ui_Panel1, LV_ALIGN_CENTER);
-    lv_obj_clear_flag(ui_Panel1, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-
     lv_obj_add_event_cb(ui_ButtonGotoScreenPlay1, ui_event_ButtonGotoScreenPlay1, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_ButtonLEDgreen, ui_event_ButtonLEDgreen, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_ButtonLEDblue, ui_event_ButtonLEDblue, LV_EVENT_ALL, NULL);

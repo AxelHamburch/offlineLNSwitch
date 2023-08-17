@@ -58,11 +58,14 @@ String selection;
 #define DEVICE_CFG_HOST "lnbitshost"
 #define DEVICE_CFG_ID "deviceid"
 #define DEVICE_CFG_KEY "devicekey"
+#define DEVICE_CFG_CUR "devicecurrency"
 #define DEVICE_CFG_PIN "configpin"
 #define DEVICE_SWITCH_NAME_1 "switchname1"
+#define DEVICE_SWITCH_PRICE_1 "switchprice1"
 #define DEVICE_SWITCH_TIME_1 "switchtime1"
 #define DEVICE_SWITCH_GPIO_1 "switchgpio1"
 #define DEVICE_SWITCH_NAME_2 "switchname2"
+#define DEVICE_SWITCH_PRICE_2 "switchprice2"
 #define DEVICE_SWITCH_TIME_2 "switchtime2"
 #define DEVICE_SWITCH_GPIO_2 "switchgpio2"
 
@@ -148,6 +151,10 @@ void loadConfig()
         {
           config_devicekey = String(value);
         }
+        else if (name == DEVICE_CFG_CUR)
+        {
+          config_devicecurrency = String(value);
+        }
         else if (name == DEVICE_CFG_PIN)
         {
           config_configpin = String(value);
@@ -155,6 +162,10 @@ void loadConfig()
         else if (name == DEVICE_SWITCH_NAME_1)
         {
           config_switchname1 = String(value);
+        }
+        else if (name == DEVICE_SWITCH_PRICE_1)
+        {
+          config_switchprice1 = String(value);
         }
         else if (name == DEVICE_SWITCH_TIME_1)
         {
@@ -167,6 +178,10 @@ void loadConfig()
         else if (name == DEVICE_SWITCH_NAME_2)
         {
           config_switchname2 = String(value);
+        }
+        else if (name == DEVICE_SWITCH_PRICE_2)
+        {
+          config_switchprice2 = String(value);
         }
         else if (name == DEVICE_SWITCH_TIME_2)
         {
@@ -181,17 +196,20 @@ void loadConfig()
   }
 }
 
-void editConfig(const char *lnbitshost, const char *deviceid, const char *devicekey, const char *configpin, const char *switchname1, const char *switchtime1, const char *switchgpio1, const char *switchname2, const char *switchtime2, const char *switchgpio2)
+void editConfig(const char *lnbitshost, const char *deviceid, const char *devicekey, const char *devicecurrency, const char *configpin, const char *switchname1, const char *switchprice1, const char *switchtime1, const char *switchgpio1, const char *switchname2, const char *switchprice2, const char *switchtime2, const char *switchgpio2)
 {
   Serial.println("editConfig");
   config_lnbitshost = String(lnbitshost);
   config_deviceid = String(deviceid);
   config_devicekey = String(devicekey);
+  config_devicecurrency = String(devicecurrency);
   config_configpin = String(configpin);
   config_switchname1 = String(switchname1);
+  config_switchprice1 = String(switchprice1);
   config_switchtime1 = String(switchtime1);
   config_switchgpio1 = String(switchgpio1);
   config_switchname2 = String(switchname2);
+  config_switchprice2 = String(switchprice2);
   config_switchtime2 = String(switchtime2);
   config_switchgpio2 = String(switchgpio2);
   saveConfig();
@@ -215,16 +233,22 @@ void saveConfig()
   doc[1]["value"] = config_deviceid;
   doc[2]["name"] = DEVICE_CFG_KEY;
   doc[2]["value"] = config_devicekey;
+  doc[2]["name"] = DEVICE_CFG_CUR;
+  doc[2]["value"] = config_devicecurrency;
   doc[3]["name"] = DEVICE_CFG_PIN;
   doc[3]["value"] = config_configpin;
   doc[4]["name"] = DEVICE_SWITCH_NAME_1;
   doc[4]["value"] = config_switchname1;
+  doc[5]["name"] = DEVICE_SWITCH_PRICE_1;
+  doc[5]["value"] = config_switchprice1;
   doc[5]["name"] = DEVICE_SWITCH_TIME_1;
   doc[5]["value"] = config_switchtime1;
   doc[6]["name"] = DEVICE_SWITCH_GPIO_1;
   doc[6]["value"] = config_switchgpio1;
   doc[7]["name"] = DEVICE_SWITCH_NAME_2;
   doc[7]["value"] = config_switchname2;
+  doc[8]["name"] = DEVICE_SWITCH_PRICE_2;
+  doc[8]["value"] = config_switchprice2;
   doc[8]["name"] = DEVICE_SWITCH_TIME_2;
   doc[8]["value"] = config_switchtime2;
   doc[9]["name"] = DEVICE_SWITCH_GPIO_2;
@@ -329,6 +353,8 @@ void qrShowCode()
   lv_label_set_text(ui_LabelProduct, selection.c_str());   // Setzt die Textzeile im Label
   //Serial.println("Selection: " + selection.c_str());
   //Serial.println(std::string("Selection: ") + selection);
+  //std::string totalText = config_switchprice1 + " " + config_devicecurrency;
+  lv_label_set_text(ui_LabelPriceAndCurrency, config_switchprice1.c_str()); 
   Serial.println(String("Selection: ") + selection);
 
 }

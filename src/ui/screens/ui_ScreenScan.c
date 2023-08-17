@@ -32,10 +32,10 @@ void ui_ScreenScan_screen_init(void)
     lv_obj_set_style_text_font(ui_LabelTopScreenScan, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_ButtonGotoScreenPin2 = lv_btn_create(ui_ScreenScan);
-    lv_obj_set_width(ui_ButtonGotoScreenPin2, 100);
+    lv_obj_set_width(ui_ButtonGotoScreenPin2, 176);
     lv_obj_set_height(ui_ButtonGotoScreenPin2, 50);
-    lv_obj_set_x(ui_ButtonGotoScreenPin2, 59);
-    lv_obj_set_y(ui_ButtonGotoScreenPin2, 205);
+    lv_obj_set_x(ui_ButtonGotoScreenPin2, 49);
+    lv_obj_set_y(ui_ButtonGotoScreenPin2, 201);
     lv_obj_set_align(ui_ButtonGotoScreenPin2, LV_ALIGN_CENTER);
     lv_obj_add_flag(ui_ButtonGotoScreenPin2, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
     lv_obj_clear_flag(ui_ButtonGotoScreenPin2, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
@@ -47,16 +47,16 @@ void ui_ScreenScan_screen_init(void)
     lv_obj_set_width(ui_LabelButtonGotoScreenPin2, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_LabelButtonGotoScreenPin2, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_LabelButtonGotoScreenPin2, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_LabelButtonGotoScreenPin2, "Back");
+    lv_label_set_text(ui_LabelButtonGotoScreenPin2, "Enter SECRET");
     lv_obj_set_style_text_color(ui_LabelButtonGotoScreenPin2, lv_color_hex(0xCFCFD7), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_LabelButtonGotoScreenPin2, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_LabelButtonGotoScreenPin2, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_ButtonGotoScreenStart1 = lv_btn_create(ui_ScreenScan);
-    lv_obj_set_width(ui_ButtonGotoScreenStart1, 100);
-    lv_obj_set_height(ui_ButtonGotoScreenStart1, 50);
-    lv_obj_set_x(ui_ButtonGotoScreenStart1, -61);
-    lv_obj_set_y(ui_ButtonGotoScreenStart1, 206);
+    lv_obj_set_width(ui_ButtonGotoScreenStart1, 81);
+    lv_obj_set_height(ui_ButtonGotoScreenStart1, 37);
+    lv_obj_set_x(ui_ButtonGotoScreenStart1, -90);
+    lv_obj_set_y(ui_ButtonGotoScreenStart1, 207);
     lv_obj_set_align(ui_ButtonGotoScreenStart1, LV_ALIGN_CENTER);
     lv_obj_add_flag(ui_ButtonGotoScreenStart1, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
     lv_obj_clear_flag(ui_ButtonGotoScreenStart1, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
@@ -68,10 +68,10 @@ void ui_ScreenScan_screen_init(void)
     lv_obj_set_width(ui_LabelButtonGotoScreenPin3, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_LabelButtonGotoScreenPin3, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_LabelButtonGotoScreenPin3, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_LabelButtonGotoScreenPin3, "Back");
+    lv_label_set_text(ui_LabelButtonGotoScreenPin3, "Cancel");
     lv_obj_set_style_text_color(ui_LabelButtonGotoScreenPin3, lv_color_hex(0x424344), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_LabelButtonGotoScreenPin3, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_LabelButtonGotoScreenPin3, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_LabelButtonGotoScreenPin3, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_ImageScanQRCodeBorder = lv_img_create(ui_ScreenScan);
     lv_img_set_src(ui_ImageScanQRCodeBorder, &ui_img_166440904);
@@ -87,14 +87,99 @@ void ui_ScreenScan_screen_init(void)
     lv_obj_set_width(ui_LabelProduct, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_LabelProduct, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_x(ui_LabelProduct, -3);
-    lv_obj_set_y(ui_LabelProduct, -161);
+    lv_obj_set_y(ui_LabelProduct, -173);
     lv_obj_set_align(ui_LabelProduct, LV_ALIGN_CENTER);
     lv_label_set_text(ui_LabelProduct, "-Product-");
     lv_obj_set_style_text_color(ui_LabelProduct, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_LabelProduct, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_LabelProduct, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
 
+    ui_LabelPriceAndCurrency = lv_label_create(ui_ScreenScan);
+    lv_obj_set_width(ui_LabelPriceAndCurrency, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_LabelPriceAndCurrency, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_LabelPriceAndCurrency, 0);
+    lv_obj_set_y(ui_LabelPriceAndCurrency, -149);
+    lv_obj_set_align(ui_LabelPriceAndCurrency, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_LabelPriceAndCurrency, "-PriceAndCurreny-");
+    lv_obj_set_style_text_color(ui_LabelPriceAndCurrency, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui_LabelPriceAndCurrency, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_LabelPriceAndCurrency, &lv_font_montserrat_18, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_Label2 = lv_label_create(ui_ScreenScan);
+    lv_obj_set_width(ui_Label2, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_Label2, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_Label2, -3);
+    lv_obj_set_y(ui_Label2, 148);
+    lv_obj_set_align(ui_Label2, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_Label2, "Scan, pay and check SECRET");
+    lv_obj_set_style_text_color(ui_Label2, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui_Label2, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_PanelCancel = lv_obj_create(ui_ScreenScan);
+    lv_obj_set_width(ui_PanelCancel, 301);
+    lv_obj_set_height(ui_PanelCancel, 200);
+    lv_obj_set_align(ui_PanelCancel, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_PanelCancel, LV_OBJ_FLAG_HIDDEN);     /// Flags
+    lv_obj_clear_flag(ui_PanelCancel, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_obj_set_style_bg_color(ui_PanelCancel, lv_color_hex(0xFB4B4B), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_PanelCancel, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_LabelPanelCancel = lv_label_create(ui_PanelCancel);
+    lv_obj_set_width(ui_LabelPanelCancel, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_LabelPanelCancel, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_LabelPanelCancel, 0);
+    lv_obj_set_y(ui_LabelPanelCancel, -36);
+    lv_obj_set_align(ui_LabelPanelCancel, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_LabelPanelCancel, "Are you sure?\nIf you have already paid\nyou will lose the money?");
+    lv_obj_set_style_text_align(ui_LabelPanelCancel, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_LabelPanelCancel, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_ButtonYES = lv_btn_create(ui_PanelCancel);
+    lv_obj_set_width(ui_ButtonYES, 66);
+    lv_obj_set_height(ui_ButtonYES, 34);
+    lv_obj_set_x(ui_ButtonYES, -88);
+    lv_obj_set_y(ui_ButtonYES, 48);
+    lv_obj_set_align(ui_ButtonYES, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_ButtonYES, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
+    lv_obj_clear_flag(ui_ButtonYES, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_obj_set_style_bg_color(ui_ButtonYES, lv_color_hex(0xCFCFD7), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_ButtonYES, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_LabelYES = lv_label_create(ui_ButtonYES);
+    lv_obj_set_width(ui_LabelYES, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_LabelYES, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_LabelYES, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_LabelYES, "YES");
+    lv_obj_set_style_text_color(ui_LabelYES, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui_LabelYES, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_LabelYES, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_ButtonNO = lv_btn_create(ui_PanelCancel);
+    lv_obj_set_width(ui_ButtonNO, 161);
+    lv_obj_set_height(ui_ButtonNO, 62);
+    lv_obj_set_x(ui_ButtonNO, 42);
+    lv_obj_set_y(ui_ButtonNO, 46);
+    lv_obj_set_align(ui_ButtonNO, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_ButtonNO, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
+    lv_obj_clear_flag(ui_ButtonNO, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_obj_set_style_bg_color(ui_ButtonNO, lv_color_hex(0xCFCFD7), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_ButtonNO, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_LabelNO = lv_label_create(ui_ButtonNO);
+    lv_obj_set_width(ui_LabelNO, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_LabelNO, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_LabelNO, -2);
+    lv_obj_set_y(ui_LabelNO, 2);
+    lv_obj_set_align(ui_LabelNO, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_LabelNO, "NO\ntake me back");
+    lv_obj_set_style_text_color(ui_LabelNO, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui_LabelNO, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_align(ui_LabelNO, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_LabelNO, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
+
     lv_obj_add_event_cb(ui_ButtonGotoScreenPin2, ui_event_ButtonGotoScreenPin2, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_ButtonGotoScreenStart1, ui_event_ButtonGotoScreenStart1, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_ButtonYES, ui_event_ButtonYES, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_ButtonNO, ui_event_ButtonNO, LV_EVENT_ALL, NULL);
 
 }
