@@ -1,3 +1,7 @@
+// INFO
+// baseURLvend , secretvend , currencyvend
+// https://lnbits.ereignishorizont.xyz/lnurldevice/api/v1/lnurl/walletid , secret , sat
+
 #include <Arduino.h>
 #include <esp32_smartdisplay.h>
 #include <../src/ui/ui.h>
@@ -20,29 +24,34 @@ bool statusGPIOLEDg = true; // Ground switching
 bool statusGPIOLEDb = true; // Ground switching
 
 // config variables
-String config_lnbitshost = "";
-String config_deviceid = "";
-String config_devicekey = "";
+String config_lnbitshost = String("lnbits.ereignishorizont.xyz");
+String config_deviceid = String("DZqRv");
+String config_devicekey = String("TyktQDUDLkWWGUoJh2GwQQ");
+String config_devicecurrency = String("sat");
 String config_configpin = String(START_PIN);
-String config_switchname1 = "";
+String config_switchname1 = String("Jamjam");
+String config_switchprice1 = String(2);
 String config_switchtime1 = "";
 String config_switchgpio1 = String(21);
 String config_switchname2 = "";
+String config_switchprice2 = "";
 String config_switchtime2 = "";
-String config_switchgpio2 = "";
+String config_switchgpio2 = String(22);
 
 // LNURL variables
 int randomPin;
 int amount = 0; // Preis x100, ohne Dezimalstellen
-String lnurlVendProdNames = "";
-String lnurlVendProdAmounts = ""; // Preis mit zwei Dezimalstellen und Punkt als Trennzeichen
-String lnurlVendProdPins = "";
-String virtkey; // Der virtuelle Schlüssel
-String baseURLvend;
-String secretvend;
-String currencyvend;
+int factor = 0;
+//String lnurlVendProdNames = "";
+//String lnurlVendProdAmounts = ""; // Preis mit zwei Dezimalstellen und Punkt als Trennzeichen
+//String lnurlVendProdPins = "";
+//String baseURLvend;
+//String secretvend;
+//String currencyvend;
 String preparedURL;
 String qrData;
+String selection;
+
 
 
 // defines for the config file
@@ -227,37 +236,13 @@ void saveConfig()
   file.close();
 }
 
-void payNow(int item)
+
+int xor_encrypt(uint8_t *output, size_t outlen, uint8_t *key, size_t keylen, uint8_t *nonce, size_t nonce_len, uint64_t rpin, uint64_t amount_in_cents)
 {
-  Serial.println("payNow QRCode");
-  if (item == 0)
-  {
-    lv_disp_load_scr(ui_ScreenPlayground);
-    return;
-  }
-  const char *data = "https://ereignishorizont.xyz/";
-  lv_qrcode_update(ui_QrcodeLnurl, data, strlen(data)); // Das QRCode Objekt mit den Daten unter Angabe der Datenlänge füllen
-  lv_disp_load_scr(ui_ScreenScan);
-
-  char buffer[20];                              // Hier verwenden wir einen Puffer, um die Zeichenfolge zu erstellen
-  snprintf(buffer, sizeof(buffer), "Product: %d", item); // Wandelt den Integer in eine Zeichenfolge um
-  lv_label_set_text(ui_LabelProduct, buffer);   // Setzt die Textzeile im Label
-  Serial.println(buffer);
-
-}
-
-void qrShowCode()
-{
-  Serial.println("qrShowCode()");
-  qrData.toUpperCase();
-  const char *lnurlChar = qrData.c_str();
-}
-
-int xor_encrypt(uint8_t *output, size_t outlen, uint8_t *key, size_t keylen, uint8_t *nonce, size_t nonce_len, uint64_t pin, uint64_t amount_in_cents)
-{
+  Serial.println("xor_encrypt(.)");
   // check we have space for all the data:
-  // <variant_byte><len|nonce><len|payload:{pin}{amount}><hmac>
-  if (outlen < 2 + nonce_len + 1 + lenVarInt(pin) + 1 + lenVarInt(amount_in_cents) + 8)
+  // <variant_byte><len|nonce><len|payload:{rpin}{amount}><hmac>
+  if (outlen < 2 + nonce_len + 1 + lenVarInt(rpin) + 1 + lenVarInt(amount_in_cents) + 8)
   {
     return 0;
   }
@@ -269,12 +254,12 @@ int xor_encrypt(uint8_t *output, size_t outlen, uint8_t *key, size_t keylen, uin
   cur++;
   memcpy(output + cur, nonce, nonce_len);
   cur += nonce_len;
-  // payload, unxored first - <pin><currency byte><amount>
-  int payload_len = lenVarInt(pin) + 1 + lenVarInt(amount_in_cents);
+  // payload, unxored first - <rpin><currency byte><amount>
+  int payload_len = lenVarInt(rpin) + 1 + lenVarInt(amount_in_cents);
   output[cur] = (uint8_t)payload_len;
   cur++;
   uint8_t *payload = output + cur;                                 // pointer to the start of the payload
-  cur += writeVarInt(pin, output + cur, outlen - cur);             // pin code
+  cur += writeVarInt(rpin, output + cur, outlen - cur);             // rpin code
   cur += writeVarInt(amount_in_cents, output + cur, outlen - cur); // amount
   cur++;
   // xor it with round key
@@ -301,6 +286,7 @@ int xor_encrypt(uint8_t *output, size_t outlen, uint8_t *key, size_t keylen, uin
 
 void makeLNURL()
 {
+  Serial.println("makeLNURL()");
   randomPin = random(1000, 9999);
   byte nonce[8];
   for (int i = 0; i < 8; i++)
@@ -309,8 +295,8 @@ void makeLNURL()
   }
   byte payload[51]; // 51 bytes is max one can get with xor-encryption
 
-  size_t payload_len = xor_encrypt(payload, sizeof(payload), (uint8_t *)secretvend.c_str(), secretvend.length(), nonce, sizeof(nonce), randomPin, amount);
-  preparedURL = baseURLvend + "?p=";
+  size_t payload_len = xor_encrypt(payload, sizeof(payload), (uint8_t *)config_devicekey.c_str(), config_devicekey.length(), nonce, sizeof(nonce), randomPin, amount);
+  preparedURL = "https://" + config_lnbitshost + "/lnurldevice/api/v1/lnurl/" + config_deviceid + "/?p=";
   preparedURL += toBase64(payload, payload_len, BASE64_URLSAFE | BASE64_NOPADDING);
 
   Serial.println("LNURL link: " + preparedURL);
@@ -326,8 +312,54 @@ void makeLNURL()
   Serial.println(qrData);
 }
 
+void qrShowCode()
+{
+  Serial.println("qrShowCode()");
+
+  makeLNURL(); 
+
+  qrData.toUpperCase();
+
+  const char *data = qrData.c_str();
+  lv_qrcode_update(ui_QrcodeLnurl, data, strlen(data)); // Das QRCode Objekt mit den Daten unter Angabe der Datenlänge füllen
+  lv_disp_load_scr(ui_ScreenScan);
+
+  //char buffer[20];                              // Hier verwenden wir einen Puffer, um die Zeichenfolge zu erstellen
+  //snprintf(buffer, sizeof(buffer), "Product: %d", selection); // Wandelt den Integer in eine Zeichenfolge um
+  lv_label_set_text(ui_LabelProduct, selection.c_str());   // Setzt die Textzeile im Label
+  //Serial.println("Selection: " + selection.c_str());
+  //Serial.println(std::string("Selection: ") + selection);
+  Serial.println(String("Selection: ") + selection);
+
+}
 
 
+void payNow(int item)
+{
+  Serial.println("payNow()");
+
+  if (config_devicecurrency == "sat") {
+    factor = 1;
+  } else {
+    factor = 100;
+  }
+
+  if (item == 1)
+  {
+    selection = config_switchname1;
+    amount = config_switchprice1.toFloat() * factor;
+    qrShowCode();
+    return;
+  }
+  else if (item == 2)
+  {
+    selection = config_switchname2;
+    amount = config_switchprice2.toFloat() *factor;
+    qrShowCode();
+    return;
+  }
+
+}
 
 void setup()
 {
@@ -340,7 +372,8 @@ void setup()
   ui_init();
 
   // set UI components from config
-  loadConfig();
+  // ################## loadConfig(); ####################
+  //######################################################
 
   // set config to display
   lv_textarea_set_text(ui_TextAreaConfigHost, config_lnbitshost.c_str());
@@ -373,30 +406,25 @@ void setup()
   lv_obj_set_style_border_width(ui_QrcodeLnurl, 0, 0);
   //  lv_obj_add_flag(ui_QrcodeLnurl, LV_OBJ_FLAG_HIDDEN);
 
-  /*
+  
 
     // baseURLvend , secretvend , currencyvend
     // https://lnbits.ereignishorizont.xyz/lnurldevice/api/v1/lnurl/walletid , secret , sat
 
-    const JsonObject lnurlVRoot = doc[1];
-    const char *lnurlvendChar = lnurlVRoot["value"];
-    String lnurlvend = lnurlvendChar;
-    baseURLvend = getValue(lnurlvend, ',', 0);
-    secretvend = getValue(lnurlvend, ',', 1);
-    currencyvend = getValue(lnurlvend, ',', 2);
+    //const JsonObject lnurlVRoot = doc[1];
+    //const char *lnurlvendChar = lnurlVRoot["value"];
+    //String lnurlvend = lnurlvendChar;
+    //baseURLvend = getValue(lnurlvend, ',', 0);
+    // secretvend = config_devicekey
+    //currencyvend = getValue(lnurlvend, ',', 2);
 
-    const JsonObject lnurlVTime = doc[2];
-    const char *lnurlvendCharTime = lnurlVTime["value"];
-    lnurlVendTime = String(lnurlvendCharTime).toInt();
- 
-
-  */
-}
+    //const JsonObject lnurlVTime = doc[2];
+    //const char *lnurlvendCharTime = lnurlVTime["value"];
+    //lnurlVendTime = String(lnurlvendCharTime).toInt();
+ }
 
   void loop()
   {
-
-    // amount = lnurlVendProdAmounts[i].toFloat() * 100;
 
     lv_timer_handler();
 
