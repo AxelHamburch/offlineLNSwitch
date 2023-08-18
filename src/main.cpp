@@ -24,13 +24,13 @@ bool statusGPIOLEDg = true; // Ground switching
 bool statusGPIOLEDb = true; // Ground switching
 
 // config variables
-String config_lnbitshost = String("lnbits.ereignishorizont.xyz");
-String config_deviceid = String("DZqRv");
-String config_devicekey = String("TyktQDUDLkWWGUoJh2GwQQ");
-String config_devicecurrency = String("sat");
+String config_lnbitshost = "";
+String config_deviceid = "";
+String config_devicekey = "";
+String config_devicecurrency = "";
 String config_configpin = String(START_PIN);
-String config_switchname1 = String("Jamjam");
-String config_switchprice1 = String(2);
+String config_switchname1 = String("");
+String config_switchprice1 = "";
 String config_switchtime1 = "";
 String config_switchgpio1 = String(21);
 String config_switchname2 = "";
@@ -64,10 +64,12 @@ String selection;
 #define DEVICE_SWITCH_PRICE_1 "switchprice1"
 #define DEVICE_SWITCH_TIME_1 "switchtime1"
 #define DEVICE_SWITCH_GPIO_1 "switchgpio1"
+/*
 #define DEVICE_SWITCH_NAME_2 "switchname2"
 #define DEVICE_SWITCH_PRICE_2 "switchprice2"
 #define DEVICE_SWITCH_TIME_2 "switchtime2"
 #define DEVICE_SWITCH_GPIO_2 "switchgpio2"
+*/
 
 // create QR code object
 lv_obj_t *ui_QrcodeLnurl = NULL;
@@ -159,6 +161,7 @@ void loadConfig()
         {
           config_configpin = String(value);
         }
+        /*
         else if (name == DEVICE_SWITCH_NAME_1)
         {
           config_switchname1 = String(value);
@@ -175,6 +178,7 @@ void loadConfig()
         {
           config_switchgpio1 = String(value);
         }
+        
         else if (name == DEVICE_SWITCH_NAME_2)
         {
           config_switchname2 = String(value);
@@ -191,6 +195,7 @@ void loadConfig()
         {
           config_switchgpio2 = String(value);
         }
+        */
       }
     }
   }
@@ -233,26 +238,29 @@ void saveConfig()
   doc[1]["value"] = config_deviceid;
   doc[2]["name"] = DEVICE_CFG_KEY;
   doc[2]["value"] = config_devicekey;
-  doc[2]["name"] = DEVICE_CFG_CUR;
-  doc[2]["value"] = config_devicecurrency;
-  doc[3]["name"] = DEVICE_CFG_PIN;
-  doc[3]["value"] = config_configpin;
-  doc[4]["name"] = DEVICE_SWITCH_NAME_1;
-  doc[4]["value"] = config_switchname1;
-  doc[5]["name"] = DEVICE_SWITCH_PRICE_1;
-  doc[5]["value"] = config_switchprice1;
-  doc[5]["name"] = DEVICE_SWITCH_TIME_1;
-  doc[5]["value"] = config_switchtime1;
-  doc[6]["name"] = DEVICE_SWITCH_GPIO_1;
-  doc[6]["value"] = config_switchgpio1;
-  doc[7]["name"] = DEVICE_SWITCH_NAME_2;
-  doc[7]["value"] = config_switchname2;
-  doc[8]["name"] = DEVICE_SWITCH_PRICE_2;
-  doc[8]["value"] = config_switchprice2;
-  doc[8]["name"] = DEVICE_SWITCH_TIME_2;
-  doc[8]["value"] = config_switchtime2;
-  doc[9]["name"] = DEVICE_SWITCH_GPIO_2;
-  doc[9]["value"] = config_switchgpio2;
+  doc[3]["name"] = DEVICE_CFG_CUR;
+  doc[3]["value"] = config_devicecurrency;
+  doc[4]["name"] = DEVICE_CFG_PIN;
+  doc[4]["value"] = config_configpin;
+  /*
+  doc[5]["name"] = DEVICE_SWITCH_NAME_1;
+  doc[5]["value"] = config_switchname1;
+  doc[6]["name"] = DEVICE_SWITCH_PRICE_1;
+  doc[6]["value"] = config_switchprice1;
+  doc[7]["name"] = DEVICE_SWITCH_TIME_1;
+  doc[7]["value"] = config_switchtime1;
+  doc[8]["name"] = DEVICE_SWITCH_GPIO_1;
+  doc[8]["value"] = config_switchgpio1;
+  
+  doc[9]["name"] = DEVICE_SWITCH_NAME_2;
+  doc[9]["value"] = config_switchname2;
+  doc[10]["name"] = DEVICE_SWITCH_PRICE_2;
+  doc[10]["value"] = config_switchprice2;
+  doc[11]["name"] = DEVICE_SWITCH_TIME_2;
+  doc[11]["value"] = config_switchtime2;
+  doc[12]["name"] = DEVICE_SWITCH_GPIO_2;
+  doc[12]["value"] = config_switchgpio2;
+  */
 
   String output = "";
   serializeJson(doc, output);
@@ -398,19 +406,21 @@ void setup()
   ui_init();
 
   // set UI components from config
-  // ################## loadConfig(); ####################
-  //######################################################
+  loadConfig(); 
 
   // set config to display
   lv_textarea_set_text(ui_TextAreaConfigHost, config_lnbitshost.c_str());
   lv_textarea_set_text(ui_TextAreaConfigDeviceID, config_deviceid.c_str());
   lv_textarea_set_text(ui_TextAreaConfigDeviceKey, config_devicekey.c_str());
+  lv_textarea_set_text(ui_TextAreaConfigCurrency, config_devicecurrency.c_str());
   lv_textarea_set_text(ui_TextAreaConfigPin, config_configpin.c_str());
   lv_textarea_set_text(ui_TextAreaSwitchName1, config_switchname1.c_str());
-  lv_textarea_set_text(ui_TextAreaSwitchTime1, config_switchname1.c_str());
+  lv_textarea_set_text(ui_TextAreaSwitchTime1, config_switchprice1.c_str());
+  lv_textarea_set_text(ui_TextAreaSwitchTime1, config_switchtime1.c_str());
   lv_textarea_set_text(ui_TextAreaSwitchRelay1, config_switchgpio1.c_str());
   lv_textarea_set_text(ui_TextAreaSwitchName2, config_switchname1.c_str());
-  lv_textarea_set_text(ui_TextAreaSwitchTime2, config_switchname1.c_str());
+  lv_textarea_set_text(ui_TextAreaSwitchTime2, config_switchprice1.c_str());
+  lv_textarea_set_text(ui_TextAreaSwitchTime2, config_switchtime1.c_str());
   lv_textarea_set_text(ui_TextAreaSwitchRelay2, config_switchgpio1.c_str());
 
   // set firmware version

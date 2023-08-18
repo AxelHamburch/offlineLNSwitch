@@ -8,7 +8,6 @@ SET(SOURCES screens/ui_ScreenStart.c
     ui.c
     components/ui_comp_hook.c
     ui_helpers.c
-    ui_events.c
     images/ui_img_black_hole_small_256_schlagschatten_png.c
     images/ui_img_166440904.c)
 
