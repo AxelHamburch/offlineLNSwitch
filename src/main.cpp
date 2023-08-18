@@ -38,7 +38,7 @@ String config_switchprice2 = "";
 String config_switchtime2 = "";
 String config_switchgpio2 = String(22);
 
-// LNURL variables
+// LNURL, pay und QR-Code variables
 int randomPin;
 int amount = 0; // Preis x100, ohne Dezimalstellen
 int factor = 0;
@@ -51,6 +51,8 @@ int factor = 0;
 String preparedURL;
 String qrData;
 String selection;
+bool bDisplayQRCode = true;
+// String totalText = "";
 
 
 
@@ -70,7 +72,7 @@ String selection;
 #define DEVICE_SWITCH_TIME_2 "switchtime2"
 #define DEVICE_SWITCH_GPIO_2 "switchgpio2"
 */
-
+;
 // create QR code object
 lv_obj_t *ui_QrcodeLnurl = NULL;
 
@@ -161,7 +163,7 @@ void loadConfig()
         {
           config_configpin = String(value);
         }
-        /*
+        
         else if (name == DEVICE_SWITCH_NAME_1)
         {
           config_switchname1 = String(value);
@@ -178,7 +180,7 @@ void loadConfig()
         {
           config_switchgpio1 = String(value);
         }
-        
+        /*
         else if (name == DEVICE_SWITCH_NAME_2)
         {
           config_switchname2 = String(value);
@@ -201,7 +203,7 @@ void loadConfig()
   }
 }
 
-void editConfig(const char *lnbitshost, const char *deviceid, const char *devicekey, const char *devicecurrency, const char *configpin, const char *switchname1, const char *switchprice1, const char *switchtime1, const char *switchgpio1, const char *switchname2, const char *switchprice2, const char *switchtime2, const char *switchgpio2)
+void editConfig(const char *lnbitshost, const char *deviceid, const char *devicekey, const char *devicecurrency, const char *configpin, const char *switchname1, const char *switchprice1, const char *switchtime1, const char *switchgpio1)
 {
   Serial.println("editConfig");
   config_lnbitshost = String(lnbitshost);
@@ -213,10 +215,12 @@ void editConfig(const char *lnbitshost, const char *deviceid, const char *device
   config_switchprice1 = String(switchprice1);
   config_switchtime1 = String(switchtime1);
   config_switchgpio1 = String(switchgpio1);
+  /*
   config_switchname2 = String(switchname2);
   config_switchprice2 = String(switchprice2);
   config_switchtime2 = String(switchtime2);
   config_switchgpio2 = String(switchgpio2);
+  */
   saveConfig();
 }
 
@@ -242,7 +246,6 @@ void saveConfig()
   doc[3]["value"] = config_devicecurrency;
   doc[4]["name"] = DEVICE_CFG_PIN;
   doc[4]["value"] = config_configpin;
-  /*
   doc[5]["name"] = DEVICE_SWITCH_NAME_1;
   doc[5]["value"] = config_switchname1;
   doc[6]["name"] = DEVICE_SWITCH_PRICE_1;
@@ -251,7 +254,7 @@ void saveConfig()
   doc[7]["value"] = config_switchtime1;
   doc[8]["name"] = DEVICE_SWITCH_GPIO_1;
   doc[8]["value"] = config_switchgpio1;
-  
+  /*
   doc[9]["name"] = DEVICE_SWITCH_NAME_2;
   doc[9]["value"] = config_switchname2;
   doc[10]["name"] = DEVICE_SWITCH_PRICE_2;
@@ -361,12 +364,13 @@ void qrShowCode()
   lv_label_set_text(ui_LabelProduct, selection.c_str());   // Setzt die Textzeile im Label
   //Serial.println("Selection: " + selection.c_str());
   //Serial.println(std::string("Selection: ") + selection);
-  //std::string totalText = config_switchprice1 + " " + config_devicecurrency;
-  lv_label_set_text(ui_LabelPriceAndCurrency, config_switchprice1.c_str()); 
+  //std::string totalText = String(config_switchprice1) + String(config_devicecurrency);
+  //std::string totalText = config_switchprice1 + config_devicecurrency;
+  String totalText = "Price: " + config_switchprice1 + " " + config_devicecurrency;
+  lv_label_set_text(ui_LabelPriceAndCurrency, totalText.c_str()); 
   Serial.println(String("Selection: ") + selection);
 
 }
-
 
 void payNow(int item)
 {
@@ -395,6 +399,17 @@ void payNow(int item)
 
 }
 
+void hideQRCode()
+{
+  lv_obj_add_flag(ui_QrcodeLnurl,LV_OBJ_FLAG_HIDDEN);
+  //_ui_flag_modify(ui_QrcodeLnurl, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
+}
+
+void addQRCode()
+{
+  lv_obj_clear_flag(ui_QrcodeLnurl,LV_OBJ_FLAG_HIDDEN);
+}
+
 void setup()
 {
   Serial.begin(115200);
@@ -415,13 +430,15 @@ void setup()
   lv_textarea_set_text(ui_TextAreaConfigCurrency, config_devicecurrency.c_str());
   lv_textarea_set_text(ui_TextAreaConfigPin, config_configpin.c_str());
   lv_textarea_set_text(ui_TextAreaSwitchName1, config_switchname1.c_str());
-  lv_textarea_set_text(ui_TextAreaSwitchTime1, config_switchprice1.c_str());
+  lv_textarea_set_text(ui_TextAreaSwitchPrice1, config_switchprice1.c_str());
   lv_textarea_set_text(ui_TextAreaSwitchTime1, config_switchtime1.c_str());
   lv_textarea_set_text(ui_TextAreaSwitchRelay1, config_switchgpio1.c_str());
+  /*
   lv_textarea_set_text(ui_TextAreaSwitchName2, config_switchname1.c_str());
   lv_textarea_set_text(ui_TextAreaSwitchTime2, config_switchprice1.c_str());
   lv_textarea_set_text(ui_TextAreaSwitchTime2, config_switchtime1.c_str());
   lv_textarea_set_text(ui_TextAreaSwitchRelay2, config_switchgpio1.c_str());
+  */
 
   // set firmware version
   lv_label_set_text(ui_LabelFWVersion, String(FIRMWARE_VERSION).c_str());
@@ -447,12 +464,6 @@ void setup()
     // baseURLvend , secretvend , currencyvend
     // https://lnbits.ereignishorizont.xyz/lnurldevice/api/v1/lnurl/walletid , secret , sat
 
-    //const JsonObject lnurlVRoot = doc[1];
-    //const char *lnurlvendChar = lnurlVRoot["value"];
-    //String lnurlvend = lnurlvendChar;
-    //baseURLvend = getValue(lnurlvend, ',', 0);
-    // secretvend = config_devicekey
-    //currencyvend = getValue(lnurlvend, ',', 2);
 
     //const JsonObject lnurlVTime = doc[2];
     //const char *lnurlvendCharTime = lnurlVTime["value"];
@@ -469,6 +480,15 @@ void setup()
     digitalWrite(gpioLEDr, statusGPIOLEDr);
     digitalWrite(gpioLEDg, statusGPIOLEDg);
     digitalWrite(gpioLEDb, statusGPIOLEDb);
+
+/*
+  if ( bDisplayQRCode ) {
+    lv_obj_clear_flag(ui_QrcodeLnurl,LV_OBJ_FLAG_HIDDEN);
+  } else {
+    lv_obj_add_flag(ui_QrcodeLnurl,LV_OBJ_FLAG_HIDDEN);
+    //_ui_flag_modify(ui_QrcodeLnurl, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
+  }
+*/
  
   /*
   if ((digitalRead(gpio21) == HIGH) != merker)

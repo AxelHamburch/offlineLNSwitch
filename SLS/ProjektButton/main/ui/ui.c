@@ -184,8 +184,8 @@ void ui_event_ButtonLEDred(lv_event_t * e);
 lv_obj_t * ui_ButtonLEDred;
 lv_obj_t * ui_LabelButtonLEDred;
 lv_obj_t * ui____initial_actions0;
-const lv_img_dsc_t * ui_imgset_1355287214[1] = {&ui_img_166440904};
 const lv_img_dsc_t * ui_imgset_bsapp[1] = {&ui_img_bsapp256_png};
+const lv_img_dsc_t * ui_imgset_1355287214[1] = {&ui_img_166440904};
 
 ///////////////////// TEST LVGL SETTINGS ////////////////////
 #if LV_COLOR_DEPTH != 16
