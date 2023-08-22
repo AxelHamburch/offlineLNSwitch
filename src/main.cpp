@@ -11,6 +11,11 @@
 #include <Bitcoin.h>
 #include <Hash.h>
 
+// Verzögerung
+#include <iostream>
+#include <thread>
+#include <chrono>
+
 // general variables
 int gpioOut1 = 21;
 int gpioOut2 = 22;
@@ -29,7 +34,7 @@ String config_deviceid = "";
 String config_devicekey = "";
 String config_devicecurrency = "";
 String config_configpin = String(START_PIN);
-String config_switchname1 = String("");
+String config_switchname1 = "";
 String config_switchprice1 = "";
 String config_switchtime1 = "";
 String config_switchgpio1 = String(21);
@@ -115,6 +120,20 @@ void toggleGPIO(const char *gpio)
     return false;
   }
   if (String(pin).equals(config_configpin))
+  {
+    return true;
+  }
+  return false;
+}
+
+
+    bool checkSECRETPin(const char *SECRETpin)
+{
+  if (SECRETpin == NULL)
+  {
+    return false;
+  }
+  if (String(SECRETpin).equals(String(randomPin)))
   {
     return true;
   }
@@ -323,6 +342,7 @@ void makeLNURL()
 {
   Serial.println("makeLNURL()");
   randomPin = random(1000, 9999);
+  Serial.println("randomPin: " + String(randomPin));
   byte nonce[8];
   for (int i = 0; i < 8; i++)
   {
@@ -480,6 +500,29 @@ void setup()
     digitalWrite(gpioLEDr, statusGPIOLEDr);
     digitalWrite(gpioLEDg, statusGPIOLEDg);
     digitalWrite(gpioLEDb, statusGPIOLEDb);
+
+
+
+
+  // Thank You Flag zurücksetzten
+  bool isFlag1NotSet = !lv_obj_has_flag(ui_PanelThankYou, LV_OBJ_FLAG_HIDDEN);
+  if (isFlag1NotSet) {
+      std::this_thread::sleep_for(std::chrono::milliseconds(4000)); 
+      lv_obj_add_flag(ui_PanelThankYou,LV_OBJ_FLAG_HIDDEN);
+      lv_disp_load_scr(ui_ScreenStart);
+      Serial.println("Thank You zurückgesetzt");
+  } else {
+  }
+
+
+  // Wrong Pin Flag zurücksetzten
+  bool isFlag2NotSet = !lv_obj_has_flag(ui_PanelWrongPin, LV_OBJ_FLAG_HIDDEN);
+  if (isFlag2NotSet) {
+      std::this_thread::sleep_for(std::chrono::milliseconds(2000)); 
+      lv_obj_add_flag(ui_PanelWrongPin,LV_OBJ_FLAG_HIDDEN);
+      Serial.println("Wrong pin zurückgesetzt");
+  } else {
+  }
 
 /*
   if ( bDisplayQRCode ) {

@@ -78,3 +78,7 @@ def HideQRCode(event_struct):
 def AddQRCode(event_struct):
     return
 
+
+def CheckSECRETPin(event_struct):
+    return
+

@@ -15,6 +15,7 @@ extern "C"
     void payNow(int item);
     void hideQRCode();
     void addQRCode();
+    bool checkSECRETPin(const char *SECRETpin);
 
 #ifdef __cplusplus
 }

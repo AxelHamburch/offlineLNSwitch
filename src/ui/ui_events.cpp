@@ -7,6 +7,8 @@
 #include "globals.h"
 #include <WString.h>
 
+
+
 String entered_pin = "";
 
 
@@ -181,4 +183,19 @@ String entered_pin = "";
 	void AddQRCode(lv_event_t * e)
 	{
 		addQRCode();
+	}
+
+	void CheckSECRETPin(lv_event_t * e)
+	{
+		const char *SECRETpin = lv_textarea_get_text(ui_TextAreaSECRETpin);
+		if (checkSECRETPin(SECRETpin) == true)
+		{
+			lv_obj_clear_flag(ui_PanelThankYou,LV_OBJ_FLAG_HIDDEN);
+			SECRETpin = "";
+			lv_textarea_set_text(ui_TextAreaSECRETpin, SECRETpin);
+		}
+		else
+		{
+			lv_obj_clear_flag(ui_PanelWrongPin,LV_OBJ_FLAG_HIDDEN);
+		}
 	}

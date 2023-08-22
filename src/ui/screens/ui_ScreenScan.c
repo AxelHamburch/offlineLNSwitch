@@ -182,10 +182,7 @@ void ui_ScreenScan_screen_init(void)
     ui_PanelSECRET = lv_obj_create(ui_ScreenScan);
     lv_obj_set_width(ui_PanelSECRET, 237);
     lv_obj_set_height(ui_PanelSECRET, 232);
-    lv_obj_set_x(ui_PanelSECRET, -2);
-    lv_obj_set_y(ui_PanelSECRET, -1);
     lv_obj_set_align(ui_PanelSECRET, LV_ALIGN_CENTER);
-    lv_obj_add_flag(ui_PanelSECRET, LV_OBJ_FLAG_HIDDEN);     /// Flags
     lv_obj_clear_flag(ui_PanelSECRET, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
     lv_obj_set_style_bg_color(ui_PanelSECRET, lv_color_hex(0xFFF56A), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_PanelSECRET, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -200,10 +197,10 @@ void ui_ScreenScan_screen_init(void)
     lv_obj_set_style_text_font(ui_LabelSECRETpin, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_ButtonCheckSECRET = lv_btn_create(ui_PanelSECRET);
-    lv_obj_set_width(ui_ButtonCheckSECRET, 119);
+    lv_obj_set_width(ui_ButtonCheckSECRET, 120);
     lv_obj_set_height(ui_ButtonCheckSECRET, 50);
-    lv_obj_set_x(ui_ButtonCheckSECRET, 1);
-    lv_obj_set_y(ui_ButtonCheckSECRET, 27);
+    lv_obj_set_x(ui_ButtonCheckSECRET, 49);
+    lv_obj_set_y(ui_ButtonCheckSECRET, 25);
     lv_obj_set_align(ui_ButtonCheckSECRET, LV_ALIGN_CENTER);
     lv_obj_add_flag(ui_ButtonCheckSECRET, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
     lv_obj_clear_flag(ui_ButtonCheckSECRET, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
@@ -222,7 +219,7 @@ void ui_ScreenScan_screen_init(void)
     ui_TextAreaSECRETpin = lv_textarea_create(ui_PanelSECRET);
     lv_obj_set_width(ui_TextAreaSECRETpin, 150);
     lv_obj_set_height(ui_TextAreaSECRETpin, LV_SIZE_CONTENT);    /// 43
-    lv_obj_set_x(ui_TextAreaSECRETpin, 1);
+    lv_obj_set_x(ui_TextAreaSECRETpin, 0);
     lv_obj_set_y(ui_TextAreaSECRETpin, -33);
     lv_obj_set_align(ui_TextAreaSECRETpin, LV_ALIGN_CENTER);
     lv_textarea_set_max_length(ui_TextAreaSECRETpin, 4);
@@ -230,6 +227,62 @@ void ui_ScreenScan_screen_init(void)
     lv_textarea_set_one_line(ui_TextAreaSECRETpin, true);
     lv_obj_set_style_text_align(ui_TextAreaSECRETpin, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_TextAreaSECRETpin, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_ButtonCheckSECRETCancel = lv_btn_create(ui_PanelSECRET);
+    lv_obj_set_width(ui_ButtonCheckSECRETCancel, 90);
+    lv_obj_set_height(ui_ButtonCheckSECRETCancel, 50);
+    lv_obj_set_x(ui_ButtonCheckSECRETCancel, -63);
+    lv_obj_set_y(ui_ButtonCheckSECRETCancel, 25);
+    lv_obj_set_align(ui_ButtonCheckSECRETCancel, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_ButtonCheckSECRETCancel, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
+    lv_obj_clear_flag(ui_ButtonCheckSECRETCancel, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_obj_set_style_bg_color(ui_ButtonCheckSECRETCancel, lv_color_hex(0xCFCFD7), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_ButtonCheckSECRETCancel, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_LabelCheckSECRETCancel = lv_label_create(ui_ButtonCheckSECRETCancel);
+    lv_obj_set_width(ui_LabelCheckSECRETCancel, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_LabelCheckSECRETCancel, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_LabelCheckSECRETCancel, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_LabelCheckSECRETCancel, "Cancel");
+    lv_obj_set_style_text_color(ui_LabelCheckSECRETCancel, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui_LabelCheckSECRETCancel, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_LabelCheckSECRETCancel, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_PanelWrongPin = lv_obj_create(ui_PanelSECRET);
+    lv_obj_set_width(ui_PanelWrongPin, 150);
+    lv_obj_set_height(ui_PanelWrongPin, 43);
+    lv_obj_set_x(ui_PanelWrongPin, 0);
+    lv_obj_set_y(ui_PanelWrongPin, -33);
+    lv_obj_set_align(ui_PanelWrongPin, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_PanelWrongPin, LV_OBJ_FLAG_HIDDEN);     /// Flags
+    lv_obj_clear_flag(ui_PanelWrongPin, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_obj_set_style_bg_color(ui_PanelWrongPin, lv_color_hex(0xFF0000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_PanelWrongPin, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_LabelWrongPin = lv_label_create(ui_PanelWrongPin);
+    lv_obj_set_width(ui_LabelWrongPin, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_LabelWrongPin, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_LabelWrongPin, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_LabelWrongPin, "Wrong pin");
+    lv_obj_set_style_text_font(ui_LabelWrongPin, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_PanelThankYou = lv_obj_create(ui_PanelSECRET);
+    lv_obj_set_width(ui_PanelThankYou, 220);
+    lv_obj_set_height(ui_PanelThankYou, 86);
+    lv_obj_set_x(ui_PanelThankYou, 0);
+    lv_obj_set_y(ui_PanelThankYou, -55);
+    lv_obj_set_align(ui_PanelThankYou, LV_ALIGN_CENTER);
+    lv_obj_clear_flag(ui_PanelThankYou, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_obj_set_style_bg_color(ui_PanelThankYou, lv_color_hex(0x00FF00), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_PanelThankYou, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_LabelThankYou = lv_label_create(ui_PanelThankYou);
+    lv_obj_set_width(ui_LabelThankYou, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_LabelThankYou, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_LabelThankYou, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_LabelThankYou, "Thank you\nHave a nice day");
+    lv_obj_set_style_text_align(ui_LabelThankYou, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_LabelThankYou, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_KeyboardCheckSECRET = lv_keyboard_create(ui_ScreenScan);
     lv_keyboard_set_mode(ui_KeyboardCheckSECRET, LV_KEYBOARD_MODE_NUMBER);
@@ -244,6 +297,7 @@ void ui_ScreenScan_screen_init(void)
     lv_obj_add_event_cb(ui_ButtonNO, ui_event_ButtonNO, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_ButtonCheckSECRET, ui_event_ButtonCheckSECRET, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_TextAreaSECRETpin, ui_event_TextAreaSECRETpin, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_ButtonCheckSECRETCancel, ui_event_ButtonCheckSECRETCancel, LV_EVENT_ALL, NULL);
     lv_keyboard_set_textarea(ui_KeyboardCheckSECRET, ui_TextAreaSECRETpin);
 
 }

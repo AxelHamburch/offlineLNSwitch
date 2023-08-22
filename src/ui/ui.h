@@ -165,6 +165,13 @@ extern lv_obj_t * ui_ButtonCheckSECRET;
 extern lv_obj_t * ui_LabelCheckSECRET;
 void ui_event_TextAreaSECRETpin(lv_event_t * e);
 extern lv_obj_t * ui_TextAreaSECRETpin;
+void ui_event_ButtonCheckSECRETCancel(lv_event_t * e);
+extern lv_obj_t * ui_ButtonCheckSECRETCancel;
+extern lv_obj_t * ui_LabelCheckSECRETCancel;
+extern lv_obj_t * ui_PanelWrongPin;
+extern lv_obj_t * ui_LabelWrongPin;
+extern lv_obj_t * ui_PanelThankYou;
+extern lv_obj_t * ui_LabelThankYou;
 extern lv_obj_t * ui_KeyboardCheckSECRET;
 // SCREEN: ui_ScreenPlayground
 void ui_ScreenPlayground_screen_init(void);
