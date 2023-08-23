@@ -35,6 +35,16 @@ String entered_pin = "";
 
 	void addToPIN(int digit)
 	{
+		if (entered_pin.length() < 4)
+		{
+			entered_pin += digit;
+			lv_label_set_text(ui_LabelPINValue, entered_pin.c_str());
+		}
+	}
+
+	/*
+	void addToPIN(int digit)
+	{
 		if (entered_pin.length() < 6)
 		{
 			entered_pin += digit;
@@ -47,6 +57,7 @@ String entered_pin = "";
 			lv_label_set_text(ui_LabelPINValue, hidePIN.c_str());
 		}
 	}
+	*/
 
 	void ButtonPinOneClicked(lv_event_t * e)
 	{
@@ -122,6 +133,25 @@ String entered_pin = "";
 	void ButtonPinOKClicked(lv_event_t * e)
 	{
 		// Your code here
+		if (checkSECRETPin(entered_pin.c_str()) == true)
+		{
+			//lv_disp_load_scr(ui_ScreenConfig);
+			lv_obj_clear_flag(ui_PanelThankYou,LV_OBJ_FLAG_HIDDEN);
+			lv_label_set_text(ui_LabelPINValue, "PIN CORRECT");
+			entered_pin = "";
+		}
+		else
+		{
+			lv_label_set_text(ui_LabelPINValue, "PIN INCORRECT");
+			//entered_pin = "";
+		}
+	}
+
+
+	/*
+	void ButtonPinOKClicked(lv_event_t * e)
+	{
+		// Your code here
 		if (checkPIN(entered_pin.c_str()) == true)
 		{
 			lv_disp_load_scr(ui_ScreenConfig);
@@ -134,6 +164,7 @@ String entered_pin = "";
 			entered_pin = "";
 		}
 	}
+    */
 
 	void ButtonTestRelay1Clicked(lv_event_t * e)
 	{

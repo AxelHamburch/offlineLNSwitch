@@ -56,9 +56,6 @@ int factor = 0;
 String preparedURL;
 String qrData;
 String selection;
-bool bDisplayQRCode = true;
-// String totalText = "";
-
 
 
 // defines for the config file
@@ -507,9 +504,12 @@ void setup()
   // Thank You Flag zurücksetzten
   bool isFlag1NotSet = !lv_obj_has_flag(ui_PanelThankYou, LV_OBJ_FLAG_HIDDEN);
   if (isFlag1NotSet) {
-      std::this_thread::sleep_for(std::chrono::milliseconds(4000)); 
+      std::this_thread::sleep_for(std::chrono::milliseconds(2000)); 
+      lv_label_set_text(ui_LabelPINValue, "THANK YOU");
+      std::this_thread::sleep_for(std::chrono::milliseconds(2000)); 
       lv_obj_add_flag(ui_PanelThankYou,LV_OBJ_FLAG_HIDDEN);
       lv_disp_load_scr(ui_ScreenStart);
+      lv_label_set_text(ui_LabelPINValue, "ENTER PIN");
       Serial.println("Thank You zurückgesetzt");
   } else {
   }

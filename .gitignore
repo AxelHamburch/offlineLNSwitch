@@ -3,6 +3,7 @@
 lib
 backup
 SLS/ProjektButton
+SLS/cache
 SLS/autosave
 SLS/backup
 todo.nfo

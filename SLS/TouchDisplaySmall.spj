@@ -4767,6 +4767,7 @@
               },
               {
                 "nid": -986370383,
+                "flags": 1048576,
                 "strtype": "LABEL/Label",
                 "InheritedType": 1
               },
@@ -21799,8 +21800,8 @@
                 "flags": 17,
                 "strtype": "OBJECT/Position",
                 "intarray": [
-                  -75,
-                  135
+                  -87,
+                  143
                 ],
                 "InheritedType": 7
               },
@@ -22651,9 +22652,9 @@
                         "nid": 101897766,
                         "strtype": "_style/Bg_Color",
                         "intarray": [
-                          229,
-                          254,
-                          92,
+                          255,
+                          186,
+                          0,
                           255
                         ],
                         "InheritedType": 7
@@ -35266,7 +35267,7 @@
                   {
                     "disabled": false,
                     "nid": -170131011,
-                    "strtype": "BUTTON/EventHandler",
+                    "strtype": "_event/EventHandler",
                     "strval": "CLICKED",
                     "childs": [
                       {
@@ -35289,7 +35290,7 @@
                       },
                       {
                         "nid": -1603598704,
-                        "strtype": "_custom/action",
+                        "strtype": "_event/action",
                         "strval": "MODIFY FLAG",
                         "childs": [
                           {
@@ -35333,7 +35334,7 @@
                       },
                       {
                         "nid": 318716980,
-                        "strtype": "_custom/action",
+                        "strtype": "_event/action",
                         "strval": "CALL FUNCTION",
                         "childs": [
                           {
@@ -35371,7 +35372,7 @@
                       },
                       {
                         "nid": -323834511,
-                        "strtype": "_custom/action",
+                        "strtype": "_event/action",
                         "strval": "MODIFY FLAG",
                         "childs": [
                           {
@@ -35485,7 +35486,7 @@
               {
                 "nid": -1935604734,
                 "strtype": "OBJECT/Hidden",
-                "strval": "False",
+                "strval": "True",
                 "InheritedType": 2
               },
               {
@@ -35681,8 +35682,8 @@
                         "strtype": "_style/Bg_Color",
                         "intarray": [
                           255,
-                          245,
-                          106,
+                          186,
+                          0,
                           255
                         ],
                         "InheritedType": 7
@@ -36099,14 +36100,13 @@
               },
               {
                 "nid": -1611826015,
-                "flags": 1048576,
                 "strtype": "OBJECT/Flags",
                 "InheritedType": 1
               },
               {
                 "nid": 15733365,
                 "strtype": "OBJECT/Hidden",
-                "strval": "False",
+                "strval": "True",
                 "InheritedType": 2
               },
               {
@@ -40751,9 +40751,9 @@
     "theme_dark": false,
     "theme_color1": 5,
     "theme_color2": 0,
-    "exportFolderPath": "F:\\PlatformIO\\TestTouchDisplay\\SLS\\ProjektButton\\./main/ui",
-    "projectExportFolderPath": "F:\\PlatformIO\\TestTouchDisplay\\SLS\\ProjektButton",
-    "backup_cnt": 302,
+    "exportFolderPath": "C:\\Users\\axels\\OneDrive\\Dokumente\\VSCode\\TestTouchDisplay\\SLS\\ProjektButton\\./main/ui",
+    "projectExportFolderPath": "C:\\Users\\axels\\OneDrive\\Dokumente\\VSCode\\TestTouchDisplay\\SLS\\ProjektButton",
+    "backup_cnt": 308,
     "autosave_cnt": 0,
     "lvgl_version": "8.3.6",
     "callfuncsexport": null,
