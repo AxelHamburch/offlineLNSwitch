@@ -1,0 +1,24 @@
+
+TestTouchDisplay
+Retrieving maximum program size .pio\build\esp32dev\firmware.elf
+Checking size .pio\build\esp32dev\firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [===       ]  26.8% (used 87776 bytes from 327680 bytes)
+Error: The program size (1340717 bytes) is greater than maximum allowed (1310720 bytes)
+Flash: [====*** [checkprogsize] Explicit exit, status 1
+======]  102.3% (used 1340717 bytes from 1310720 bytes)
+=================================================== [FAILED] Took 8.31 seconds =
+
+
+BlisemBier
+
+Retrieving maximum program size .pio\build\ESP32_3248S035R\firmware.elf
+Checking size .pio\build\ESP32_3248S035R\firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [===       ]  31.9% (used 104664 bytes from 327680 bytes)
+Flash: [======    ]  59.1% (used 1859617 bytes from 3145728 bytes)
+Configuring upload protocol...
+
+Compressed 1865360 bytes to 939162...
+Wrote 1865360 bytes (939162 compressed) at 0x00010000 in 24.4 seconds (effective 612.5 kbit/s)...
+Hash of data verified.
