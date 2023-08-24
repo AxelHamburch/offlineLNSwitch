@@ -10,6 +10,7 @@
 
 
 String entered_pin = "";
+int pinAttempts = 0;
 
 
 	void ButtonConfigSaveAndExitClicked(lv_event_t * e)
@@ -124,7 +125,7 @@ String entered_pin = "";
 		// Your code here
 		if (entered_pin.length() == 0)
 		{
-			lv_disp_load_scr(ui_ScreenStart);
+			lv_disp_load_scr(ui_ScreenScan);
 		}
 		entered_pin = "";
 		lv_label_set_text(ui_LabelPINValue, "ENTER PIN");
@@ -132,18 +133,29 @@ String entered_pin = "";
 
 	void ButtonPinOKClicked(lv_event_t * e)
 	{
-		// Your code here
-		if (checkSECRETPin(entered_pin.c_str()) == true)
+		if (pinAttempts < 5)
 		{
-			//lv_disp_load_scr(ui_ScreenConfig);
-			lv_obj_clear_flag(ui_PanelThankYou,LV_OBJ_FLAG_HIDDEN);
-			lv_label_set_text(ui_LabelPINValue, "PIN CORRECT");
-			entered_pin = "";
+			pinAttempts += 1;
+
+			if (checkSECRETPin(entered_pin.c_str()) == true)
+			{
+				lv_label_set_text(ui_LabelPINValue, "THANK YOU");
+				thankYou();
+				entered_pin = "";
+				pinAttempts = 0;
+			}
+			else
+			{
+				lv_label_set_text(ui_LabelPINValue, "PIN INCORRECT");
+				entered_pin = "";
+			}
 		}
 		else
 		{
-			lv_label_set_text(ui_LabelPINValue, "PIN INCORRECT");
-			//entered_pin = "";
+			lv_label_set_text(ui_LabelPINValue, "5x FAILED");
+			toManyAttempts();
+			entered_pin = "";
+			pinAttempts = 0;
 		}
 	}
 
@@ -216,12 +228,13 @@ String entered_pin = "";
 		addQRCode();
 	}
 
+
 	void CheckSECRETPin(lv_event_t * e)
 	{
 		const char *SECRETpin = lv_textarea_get_text(ui_TextAreaSECRETpin);
 		if (checkSECRETPin(SECRETpin) == true)
 		{
-			lv_obj_clear_flag(ui_PanelThankYou,LV_OBJ_FLAG_HIDDEN);
+			//lv_obj_clear_flag(ui_PanelThankYou,LV_OBJ_FLAG_HIDDEN);
 			SECRETpin = "";
 			lv_textarea_set_text(ui_TextAreaSECRETpin, SECRETpin);
 		}
@@ -230,3 +243,5 @@ String entered_pin = "";
 			lv_obj_clear_flag(ui_PanelWrongPin,LV_OBJ_FLAG_HIDDEN);
 		}
 	}
+
+	

@@ -56,6 +56,10 @@ int factor = 0;
 String preparedURL;
 String qrData;
 String selection;
+bool bThankYou = false;
+bool bToManyAttempts = false;
+int itemtopay = 0;
+
 
 
 // defines for the config file
@@ -84,7 +88,6 @@ void toggleGPIO(const char *gpio)
   Serial.print(gpio);
   if (strcmp(gpio, "Relay1") == 0)
     {
-      Serial.printf(" vorher %d to %d\n", gpioOut1, statusGPIOOut1);
       statusGPIOOut1 = !statusGPIOOut1; // Toggle the value
       Serial.printf(" toggle GPIO %d to %d\n", gpioOut1, statusGPIOOut1);
     }
@@ -375,23 +378,17 @@ void qrShowCode()
   const char *data = qrData.c_str();
   lv_qrcode_update(ui_QrcodeLnurl, data, strlen(data)); // Das QRCode Objekt mit den Daten unter Angabe der Datenlänge füllen
   lv_disp_load_scr(ui_ScreenScan);
-
-  //char buffer[20];                              // Hier verwenden wir einen Puffer, um die Zeichenfolge zu erstellen
-  //snprintf(buffer, sizeof(buffer), "Product: %d", selection); // Wandelt den Integer in eine Zeichenfolge um
   lv_label_set_text(ui_LabelProduct, selection.c_str());   // Setzt die Textzeile im Label
-  //Serial.println("Selection: " + selection.c_str());
-  //Serial.println(std::string("Selection: ") + selection);
-  //std::string totalText = String(config_switchprice1) + String(config_devicecurrency);
-  //std::string totalText = config_switchprice1 + config_devicecurrency;
   String totalText = "Price: " + config_switchprice1 + " " + config_devicecurrency;
   lv_label_set_text(ui_LabelPriceAndCurrency, totalText.c_str()); 
-  Serial.println(String("Selection: ") + selection);
+  Serial.println(String("Selection: ") + String(itemtopay) + ". " + selection);
 
 }
 
 void payNow(int item)
 {
   Serial.println("payNow()");
+  itemtopay = item;
 
   if (config_devicecurrency == "sat") {
     factor = 1;
@@ -399,14 +396,14 @@ void payNow(int item)
     factor = 100;
   }
 
-  if (item == 1)
+  if (itemtopay == 1)
   {
     selection = config_switchname1;
     amount = config_switchprice1.toFloat() * factor;
     qrShowCode();
     return;
   }
-  else if (item == 2)
+  else if (itemtopay == 2)
   {
     selection = config_switchname2;
     amount = config_switchprice2.toFloat() *factor;
@@ -419,7 +416,6 @@ void payNow(int item)
 void hideQRCode()
 {
   lv_obj_add_flag(ui_QrcodeLnurl,LV_OBJ_FLAG_HIDDEN);
-  //_ui_flag_modify(ui_QrcodeLnurl, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
 }
 
 void addQRCode()
@@ -427,9 +423,20 @@ void addQRCode()
   lv_obj_clear_flag(ui_QrcodeLnurl,LV_OBJ_FLAG_HIDDEN);
 }
 
+void thankYou()
+{
+  bThankYou = true;
+}
+
+void toManyAttempts()
+{
+  bToManyAttempts = true;
+}
+
 void setup()
 {
   Serial.begin(115200);
+  delay(2000);
   Serial.println("booting..");
 
   LittleFS.begin(true);
@@ -501,30 +508,51 @@ void setup()
 
 
 
-  // Thank You Flag zurücksetzten
-  bool isFlag1NotSet = !lv_obj_has_flag(ui_PanelThankYou, LV_OBJ_FLAG_HIDDEN);
-  if (isFlag1NotSet) {
-      std::this_thread::sleep_for(std::chrono::milliseconds(2000)); 
-      lv_label_set_text(ui_LabelPINValue, "THANK YOU");
-      std::this_thread::sleep_for(std::chrono::milliseconds(2000)); 
-      lv_obj_add_flag(ui_PanelThankYou,LV_OBJ_FLAG_HIDDEN);
-      lv_disp_load_scr(ui_ScreenStart);
-      lv_label_set_text(ui_LabelPINValue, "ENTER PIN");
-      Serial.println("Thank You zurückgesetzt");
+  // Thank You zurücksetzten
+  if (bThankYou) {
+    if (itemtopay == 1) {
+      int gpioOut1 = config_switchgpio1.toInt(); 
+      Serial.printf("Serve product on GPIO: %d for %d ms\n", gpioOut1, config_switchtime1.toInt());
+      digitalWrite(gpioOut1, true);
+      delay(config_switchtime1.toInt());
+      digitalWrite(gpioOut1, false);
+
+      //int delayTime = config_switchtime1.toInt(); // Annahme: config_switchtime1 ist eine Integer-Variable oder ähnliches
+      //std::this_thread::sleep_for(std::chrono::milliseconds(delayTime));
+      //std::cout << "Delay completed" << std::endl;
+      
+
+      //lv_timer_t *timer = lv_timer_create(backToAbout, 3000, NULL);
+      //lv_obj_add_flag(ui_BarBierProgress,LV_OBJ_FLAG_HIDDEN);
+      //lv_timer_set_repeat_count(timer,1);
+    }
+    if (itemtopay == 2) {
+      int gpioOut2 = config_switchgpio2.toInt(); 
+      Serial.printf("Serve product on GPIO: %d for %d ms\n", gpioOut2, config_switchtime2.toInt());
+      digitalWrite(gpioOut2, true);
+      delay(config_switchtime2.toInt());
+      digitalWrite(gpioOut2, false);
+    } else {
+    }
+    //std::this_thread::sleep_for(std::chrono::milliseconds(2000)); 
+    lv_disp_load_scr(ui_ScreenStart);
+    lv_label_set_text(ui_LabelPINValue, "ENTER PIN");
+    Serial.println("Thank You zurückgesetzt");
+    bThankYou = false;
   } else {
   }
 
-
-  // Wrong Pin Flag zurücksetzten
-  bool isFlag2NotSet = !lv_obj_has_flag(ui_PanelWrongPin, LV_OBJ_FLAG_HIDDEN);
-  if (isFlag2NotSet) {
-      std::this_thread::sleep_for(std::chrono::milliseconds(2000)); 
-      lv_obj_add_flag(ui_PanelWrongPin,LV_OBJ_FLAG_HIDDEN);
-      Serial.println("Wrong pin zurückgesetzt");
+  // To Many Attempts zurücksetzten
+  if (bToManyAttempts) {
+    std::this_thread::sleep_for(std::chrono::milliseconds(3000)); 
+    lv_disp_load_scr(ui_ScreenStart);
+    lv_label_set_text(ui_LabelPINValue, "ENTER PIN");
+    Serial.println("To Many Attempts zurückgesetzt");
+    bToManyAttempts = false;
   } else {
   }
-
 /*
+
   if ( bDisplayQRCode ) {
     lv_obj_clear_flag(ui_QrcodeLnurl,LV_OBJ_FLAG_HIDDEN);
   } else {

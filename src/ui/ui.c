@@ -168,8 +168,6 @@ lv_obj_t * ui_ButtonCheckSECRETCancel;
 lv_obj_t * ui_LabelCheckSECRETCancel;
 lv_obj_t * ui_PanelWrongPin;
 lv_obj_t * ui_LabelWrongPin;
-lv_obj_t * ui_PanelThankYou;
-lv_obj_t * ui_LabelThankYou;
 lv_obj_t * ui_KeyboardCheckSECRET;
 
 // SCREEN: ui_ScreenPlayground
@@ -505,9 +503,7 @@ void ui_event_ButtonGotoScreenPin2(lv_event_t * e)
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
     if(event_code == LV_EVENT_CLICKED) {
-        _ui_flag_modify(ui_PanelSECRET, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
-        HideQRCode(e);
-        _ui_flag_modify(ui_PanelCancel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
+        _ui_screen_change(&ui_ScreenPIN, LV_SCR_LOAD_ANIM_NONE, 500, 0, &ui_ScreenPIN_screen_init);
     }
 }
 void ui_event_ButtonCallPanelCancel(lv_event_t * e)
@@ -543,7 +539,7 @@ void ui_event_ButtonCheckSECRET(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
-    if(event_code == LV_EVENT_PRESSED) {
+    if(event_code == LV_EVENT_CLICKED) {
         CheckSECRETPin(e);
     }
 }

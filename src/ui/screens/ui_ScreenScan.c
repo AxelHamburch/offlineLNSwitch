@@ -183,8 +183,9 @@ void ui_ScreenScan_screen_init(void)
     lv_obj_set_width(ui_PanelSECRET, 237);
     lv_obj_set_height(ui_PanelSECRET, 232);
     lv_obj_set_align(ui_PanelSECRET, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_PanelSECRET, LV_OBJ_FLAG_HIDDEN);     /// Flags
     lv_obj_clear_flag(ui_PanelSECRET, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_set_style_bg_color(ui_PanelSECRET, lv_color_hex(0xFFF56A), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(ui_PanelSECRET, lv_color_hex(0xFFBA00), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_PanelSECRET, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_LabelSECRETpin = lv_label_create(ui_PanelSECRET);
@@ -248,7 +249,7 @@ void ui_ScreenScan_screen_init(void)
     lv_obj_set_style_text_opa(ui_LabelCheckSECRETCancel, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_LabelCheckSECRETCancel, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_PanelWrongPin = lv_obj_create(ui_PanelSECRET);
+    ui_PanelWrongPin = lv_obj_create(ui_ScreenScan);
     lv_obj_set_width(ui_PanelWrongPin, 150);
     lv_obj_set_height(ui_PanelWrongPin, 43);
     lv_obj_set_x(ui_PanelWrongPin, 0);
@@ -265,24 +266,6 @@ void ui_ScreenScan_screen_init(void)
     lv_obj_set_align(ui_LabelWrongPin, LV_ALIGN_CENTER);
     lv_label_set_text(ui_LabelWrongPin, "Wrong pin");
     lv_obj_set_style_text_font(ui_LabelWrongPin, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
-
-    ui_PanelThankYou = lv_obj_create(ui_PanelSECRET);
-    lv_obj_set_width(ui_PanelThankYou, 220);
-    lv_obj_set_height(ui_PanelThankYou, 86);
-    lv_obj_set_x(ui_PanelThankYou, 0);
-    lv_obj_set_y(ui_PanelThankYou, -55);
-    lv_obj_set_align(ui_PanelThankYou, LV_ALIGN_CENTER);
-    lv_obj_clear_flag(ui_PanelThankYou, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_set_style_bg_color(ui_PanelThankYou, lv_color_hex(0x00FF00), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ui_PanelThankYou, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-
-    ui_LabelThankYou = lv_label_create(ui_PanelThankYou);
-    lv_obj_set_width(ui_LabelThankYou, LV_SIZE_CONTENT);   /// 1
-    lv_obj_set_height(ui_LabelThankYou, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_align(ui_LabelThankYou, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_LabelThankYou, "Thank you\nHave a nice day");
-    lv_obj_set_style_text_align(ui_LabelThankYou, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_LabelThankYou, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_KeyboardCheckSECRET = lv_keyboard_create(ui_ScreenScan);
     lv_keyboard_set_mode(ui_KeyboardCheckSECRET, LV_KEYBOARD_MODE_NUMBER);

@@ -46,8 +46,8 @@ void ui_ScreenSwitch1_screen_init(void)
     ui_LabelTestFunction1 = lv_label_create(ui_ScreenSwitch1);
     lv_obj_set_width(ui_LabelTestFunction1, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_LabelTestFunction1, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(ui_LabelTestFunction1, -75);
-    lv_obj_set_y(ui_LabelTestFunction1, 135);
+    lv_obj_set_x(ui_LabelTestFunction1, -87);
+    lv_obj_set_y(ui_LabelTestFunction1, 143);
     lv_obj_set_align(ui_LabelTestFunction1, LV_ALIGN_CENTER);
     lv_label_set_text(ui_LabelTestFunction1, "Test function:");
     lv_obj_set_style_text_color(ui_LabelTestFunction1, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -62,7 +62,7 @@ void ui_ScreenSwitch1_screen_init(void)
     lv_obj_set_align(ui_ButtonTestRelay1, LV_ALIGN_CENTER);
     lv_obj_add_flag(ui_ButtonTestRelay1, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
     lv_obj_clear_flag(ui_ButtonTestRelay1, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_set_style_bg_color(ui_ButtonTestRelay1, lv_color_hex(0xE5FE5C), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(ui_ButtonTestRelay1, lv_color_hex(0xCFCFD7), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_ButtonTestRelay1, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui_ButtonTestRelay1, lv_color_hex(0xF5FD00), LV_PART_MAIN | LV_STATE_PRESSED);
     lv_obj_set_style_bg_opa(ui_ButtonTestRelay1, 255, LV_PART_MAIN | LV_STATE_PRESSED);
