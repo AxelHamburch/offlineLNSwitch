@@ -118,15 +118,15 @@ void ui_ScreenStart_screen_init(void)
     lv_obj_set_style_text_opa(ui_LabelButtonPayNowClick, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_LabelButtonPayNowClick, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_Image2 = lv_img_create(ui_ScreenStart);
-    lv_img_set_src(ui_Image2, &ui_img_bsapp256_png);
-    lv_obj_set_width(ui_Image2, LV_SIZE_CONTENT);   /// 256
-    lv_obj_set_height(ui_Image2, LV_SIZE_CONTENT);    /// 256
-    lv_obj_set_x(ui_Image2, 2);
-    lv_obj_set_y(ui_Image2, -34);
-    lv_obj_set_align(ui_Image2, LV_ALIGN_CENTER);
-    lv_obj_add_flag(ui_Image2, LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
-    lv_obj_clear_flag(ui_Image2, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    ui_Image1 = lv_img_create(ui_ScreenStart);
+    lv_img_set_src(ui_Image1, &ui_img_offlinebitcoinswitch_svg_2023_08_24_14_52_14_0_png);
+    lv_obj_set_width(ui_Image1, LV_SIZE_CONTENT);   /// 276
+    lv_obj_set_height(ui_Image1, LV_SIZE_CONTENT);    /// 300
+    lv_obj_set_x(ui_Image1, 9);
+    lv_obj_set_y(ui_Image1, -27);
+    lv_obj_set_align(ui_Image1, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_Image1, LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
+    lv_obj_clear_flag(ui_Image1, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
 
     lv_obj_add_event_cb(ui_ButtonGotoScreenPin, ui_event_ButtonGotoScreenPin, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_ButtonGotoScreenPinDirekt, ui_event_ButtonGotoScreenPinDirekt, LV_EVENT_ALL, NULL);

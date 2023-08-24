@@ -31,7 +31,7 @@ extern lv_obj_t * ui_LabelButtonGotoScreenPlayground;
 void ui_event_ButtonPayNow(lv_event_t * e);
 extern lv_obj_t * ui_ButtonPayNow;
 extern lv_obj_t * ui_LabelButtonPayNowClick;
-extern lv_obj_t * ui_Image2;
+extern lv_obj_t * ui_Image1;
 // SCREEN: ui_ScreenPIN
 void ui_ScreenPIN_screen_init(void);
 extern lv_obj_t * ui_ScreenPIN;
@@ -191,7 +191,8 @@ extern lv_obj_t * ui_ButtonLEDred;
 extern lv_obj_t * ui_LabelButtonLEDred;
 extern lv_obj_t * ui____initial_actions0;
 
-LV_IMG_DECLARE(ui_img_bsapp256_png);    // assets\bSapp256.png
+LV_IMG_DECLARE(
+    ui_img_offlinebitcoinswitch_svg_2023_08_24_14_52_14_0_png);    // assets\offlineBitcoinSwitch.svg.2023_08_24_14_52_14.0.png
 LV_IMG_DECLARE(ui_img_166440904);    // assets\qr-code-slagschaduw-274x274-v2.png
 
 void ui_init(void);

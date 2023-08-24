@@ -25,7 +25,7 @@ lv_obj_t * ui_LabelButtonGotoScreenPlayground;
 void ui_event_ButtonPayNow(lv_event_t * e);
 lv_obj_t * ui_ButtonPayNow;
 lv_obj_t * ui_LabelButtonPayNowClick;
-lv_obj_t * ui_Image2;
+lv_obj_t * ui_Image1;
 
 // SCREEN: ui_ScreenPIN
 void ui_ScreenPIN_screen_init(void);
@@ -189,7 +189,7 @@ void ui_event_ButtonLEDred(lv_event_t * e);
 lv_obj_t * ui_ButtonLEDred;
 lv_obj_t * ui_LabelButtonLEDred;
 lv_obj_t * ui____initial_actions0;
-const lv_img_dsc_t * ui_imgset_bsapp[1] = {&ui_img_bsapp256_png};
+const lv_img_dsc_t * ui_imgset_offlinebitcoinswitch_svg_2023_08_24__52__0[1] = {&ui_img_offlinebitcoinswitch_svg_2023_08_24_14_52_14_0_png};
 const lv_img_dsc_t * ui_imgset_1355287214[1] = {&ui_img_166440904};
 
 ///////////////////// TEST LVGL SETTINGS ////////////////////
