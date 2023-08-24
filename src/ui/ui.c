@@ -13,19 +13,13 @@ void ui_ScreenStart_screen_init(void);
 lv_obj_t * ui_ScreenStart;
 lv_obj_t * ui_TopScreenStart;
 lv_obj_t * ui_LabelTopScreenStart;
-void ui_event_ButtonGotoScreenPin(lv_event_t * e);
-lv_obj_t * ui_ButtonGotoScreenPin;
-lv_obj_t * ui_LabelButtonGotoScreenPin;
-void ui_event_ButtonGotoScreenPinDirekt(lv_event_t * e);
-lv_obj_t * ui_ButtonGotoScreenPinDirekt;
-lv_obj_t * ui_LabelButtonGotoScreenPinDirekt;
-void ui_event_ButtonGotoScreenPlayground(lv_event_t * e);
-lv_obj_t * ui_ButtonGotoScreenPlayground;
-lv_obj_t * ui_LabelButtonGotoScreenPlayground;
-void ui_event_ButtonPayNow(lv_event_t * e);
-lv_obj_t * ui_ButtonPayNow;
-lv_obj_t * ui_LabelButtonPayNowClick;
-lv_obj_t * ui_Image1;
+void ui_event_ImageBitcoinSwitchOrange(lv_event_t * e);
+lv_obj_t * ui_ImageBitcoinSwitchOrange;
+lv_obj_t * ui_ImageBitcoinSwitchGreen;
+void ui_event_Image9(lv_event_t * e);
+lv_obj_t * ui_Image9;
+void ui_event_Image10(lv_event_t * e);
+lv_obj_t * ui_Image10;
 
 // SCREEN: ui_ScreenPIN
 void ui_ScreenPIN_screen_init(void);
@@ -189,8 +183,9 @@ void ui_event_ButtonLEDred(lv_event_t * e);
 lv_obj_t * ui_ButtonLEDred;
 lv_obj_t * ui_LabelButtonLEDred;
 lv_obj_t * ui____initial_actions0;
-const lv_img_dsc_t * ui_imgset_offlinebitcoinswitch_svg_2023_08_24__52__0[1] = {&ui_img_offlinebitcoinswitch_svg_2023_08_24_14_52_14_0_png};
 const lv_img_dsc_t * ui_imgset_1355287214[1] = {&ui_img_166440904};
+const lv_img_dsc_t * ui_imgset_info_[1] = {&ui_img_info_2_png};
+const lv_img_dsc_t * ui_imgset_image[1] = {&ui_img_image3163_png};
 
 ///////////////////// TEST LVGL SETTINGS ////////////////////
 #if LV_COLOR_DEPTH != 16
@@ -203,36 +198,28 @@ const lv_img_dsc_t * ui_imgset_1355287214[1] = {&ui_img_166440904};
 ///////////////////// ANIMATIONS ////////////////////
 
 ///////////////////// FUNCTIONS ////////////////////
-void ui_event_ButtonGotoScreenPin(lv_event_t * e)
-{
-    lv_event_code_t event_code = lv_event_get_code(e);
-    lv_obj_t * target = lv_event_get_target(e);
-    if(event_code == LV_EVENT_CLICKED) {
-        _ui_screen_change(&ui_ScreenPIN, LV_SCR_LOAD_ANIM_NONE, 20, 2, &ui_ScreenPIN_screen_init);
-    }
-}
-void ui_event_ButtonGotoScreenPinDirekt(lv_event_t * e)
-{
-    lv_event_code_t event_code = lv_event_get_code(e);
-    lv_obj_t * target = lv_event_get_target(e);
-    if(event_code == LV_EVENT_CLICKED) {
-        _ui_screen_change(&ui_ScreenConfig, LV_SCR_LOAD_ANIM_NONE, 1, 100, &ui_ScreenConfig_screen_init);
-    }
-}
-void ui_event_ButtonGotoScreenPlayground(lv_event_t * e)
-{
-    lv_event_code_t event_code = lv_event_get_code(e);
-    lv_obj_t * target = lv_event_get_target(e);
-    if(event_code == LV_EVENT_CLICKED) {
-        _ui_screen_change(&ui_ScreenPlayground, LV_SCR_LOAD_ANIM_NONE, 100, 100, &ui_ScreenPlayground_screen_init);
-    }
-}
-void ui_event_ButtonPayNow(lv_event_t * e)
+void ui_event_ImageBitcoinSwitchOrange(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
     if(event_code == LV_EVENT_CLICKED) {
         ButtonPayNow1Click(e);
+    }
+}
+void ui_event_Image9(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        _ui_screen_change(&ui_ScreenConfig, LV_SCR_LOAD_ANIM_NONE, 500, 0, &ui_ScreenConfig_screen_init);
+    }
+}
+void ui_event_Image10(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        _ui_screen_change(&ui_ScreenPlayground, LV_SCR_LOAD_ANIM_NONE, 500, 0, &ui_ScreenPlayground_screen_init);
     }
 }
 void ui_event_ButtonPin1(lv_event_t * e)

@@ -31,106 +31,50 @@ void ui_ScreenStart_screen_init(void)
     lv_obj_set_style_text_opa(ui_LabelTopScreenStart, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_LabelTopScreenStart, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_ButtonGotoScreenPin = lv_btn_create(ui_ScreenStart);
-    lv_obj_set_width(ui_ButtonGotoScreenPin, 100);
-    lv_obj_set_height(ui_ButtonGotoScreenPin, 50);
-    lv_obj_set_x(ui_ButtonGotoScreenPin, -103);
-    lv_obj_set_y(ui_ButtonGotoScreenPin, 205);
-    lv_obj_set_align(ui_ButtonGotoScreenPin, LV_ALIGN_CENTER);
-    lv_obj_add_flag(ui_ButtonGotoScreenPin, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
-    lv_obj_clear_flag(ui_ButtonGotoScreenPin, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_set_style_bg_color(ui_ButtonGotoScreenPin, lv_color_hex(0xCFCFD7), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ui_ButtonGotoScreenPin, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_ButtonGotoScreenPin, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
+    ui_ImageBitcoinSwitchOrange = lv_img_create(ui_ScreenStart);
+    lv_img_set_src(ui_ImageBitcoinSwitchOrange, &ui_img_1304959654);
+    lv_obj_set_width(ui_ImageBitcoinSwitchOrange, LV_SIZE_CONTENT);   /// 236
+    lv_obj_set_height(ui_ImageBitcoinSwitchOrange, LV_SIZE_CONTENT);    /// 300
+    lv_obj_set_x(ui_ImageBitcoinSwitchOrange, 0);
+    lv_obj_set_y(ui_ImageBitcoinSwitchOrange, -5);
+    lv_obj_set_align(ui_ImageBitcoinSwitchOrange, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_ImageBitcoinSwitchOrange, LV_OBJ_FLAG_CLICKABLE | LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
+    lv_obj_clear_flag(ui_ImageBitcoinSwitchOrange, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
 
-    ui_LabelButtonGotoScreenPin = lv_label_create(ui_ButtonGotoScreenPin);
-    lv_obj_set_width(ui_LabelButtonGotoScreenPin, LV_SIZE_CONTENT);   /// 1
-    lv_obj_set_height(ui_LabelButtonGotoScreenPin, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_align(ui_LabelButtonGotoScreenPin, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_LabelButtonGotoScreenPin, "Config");
-    lv_obj_set_style_text_color(ui_LabelButtonGotoScreenPin, lv_color_hex(0x2C2D2D), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_opa(ui_LabelButtonGotoScreenPin, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_LabelButtonGotoScreenPin, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
+    ui_ImageBitcoinSwitchGreen = lv_img_create(ui_ScreenStart);
+    lv_img_set_src(ui_ImageBitcoinSwitchGreen, &ui_img_659722341);
+    lv_obj_set_width(ui_ImageBitcoinSwitchGreen, LV_SIZE_CONTENT);   /// 236
+    lv_obj_set_height(ui_ImageBitcoinSwitchGreen, LV_SIZE_CONTENT);    /// 300
+    lv_obj_set_x(ui_ImageBitcoinSwitchGreen, 0);
+    lv_obj_set_y(ui_ImageBitcoinSwitchGreen, -5);
+    lv_obj_set_align(ui_ImageBitcoinSwitchGreen, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_ImageBitcoinSwitchGreen, LV_OBJ_FLAG_HIDDEN | LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
+    lv_obj_clear_flag(ui_ImageBitcoinSwitchGreen, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
 
-    ui_ButtonGotoScreenPinDirekt = lv_btn_create(ui_ScreenStart);
-    lv_obj_set_width(ui_ButtonGotoScreenPinDirekt, 100);
-    lv_obj_set_height(ui_ButtonGotoScreenPinDirekt, 50);
-    lv_obj_set_x(ui_ButtonGotoScreenPinDirekt, 1);
-    lv_obj_set_y(ui_ButtonGotoScreenPinDirekt, 206);
-    lv_obj_set_align(ui_ButtonGotoScreenPinDirekt, LV_ALIGN_CENTER);
-    lv_obj_add_flag(ui_ButtonGotoScreenPinDirekt, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
-    lv_obj_clear_flag(ui_ButtonGotoScreenPinDirekt, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_set_style_bg_color(ui_ButtonGotoScreenPinDirekt, lv_color_hex(0xCFCFD7), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ui_ButtonGotoScreenPinDirekt, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_ButtonGotoScreenPinDirekt, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
+    ui_Image9 = lv_img_create(ui_ScreenStart);
+    lv_img_set_src(ui_Image9, &ui_img_gear_wheel_100pix_gray_png);
+    lv_obj_set_width(ui_Image9, LV_SIZE_CONTENT);   /// 100
+    lv_obj_set_height(ui_Image9, LV_SIZE_CONTENT);    /// 101
+    lv_obj_set_x(ui_Image9, -123);
+    lv_obj_set_y(ui_Image9, 205);
+    lv_obj_set_align(ui_Image9, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_Image9, LV_OBJ_FLAG_CLICKABLE | LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
+    lv_obj_clear_flag(ui_Image9, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_img_set_zoom(ui_Image9, 121);
 
-    ui_LabelButtonGotoScreenPinDirekt = lv_label_create(ui_ButtonGotoScreenPinDirekt);
-    lv_obj_set_width(ui_LabelButtonGotoScreenPinDirekt, LV_SIZE_CONTENT);   /// 1
-    lv_obj_set_height(ui_LabelButtonGotoScreenPinDirekt, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_align(ui_LabelButtonGotoScreenPinDirekt, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_LabelButtonGotoScreenPinDirekt, "direkt");
-    lv_obj_set_style_text_color(ui_LabelButtonGotoScreenPinDirekt, lv_color_hex(0x2C2D2D), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_opa(ui_LabelButtonGotoScreenPinDirekt, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_LabelButtonGotoScreenPinDirekt, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
+    ui_Image10 = lv_img_create(ui_ScreenStart);
+    lv_img_set_src(ui_Image10, &ui_img_info_100pix_gray_png);
+    lv_obj_set_width(ui_Image10, LV_SIZE_CONTENT);   /// 100
+    lv_obj_set_height(ui_Image10, LV_SIZE_CONTENT);    /// 100
+    lv_obj_set_x(ui_Image10, 123);
+    lv_obj_set_y(ui_Image10, 205);
+    lv_obj_set_align(ui_Image10, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_Image10, LV_OBJ_FLAG_CLICKABLE | LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
+    lv_obj_clear_flag(ui_Image10, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_img_set_zoom(ui_Image10, 121);
 
-    ui_ButtonGotoScreenPlayground = lv_btn_create(ui_ScreenStart);
-    lv_obj_set_width(ui_ButtonGotoScreenPlayground, 100);
-    lv_obj_set_height(ui_ButtonGotoScreenPlayground, 50);
-    lv_obj_set_x(ui_ButtonGotoScreenPlayground, 106);
-    lv_obj_set_y(ui_ButtonGotoScreenPlayground, 206);
-    lv_obj_set_align(ui_ButtonGotoScreenPlayground, LV_ALIGN_CENTER);
-    lv_obj_add_flag(ui_ButtonGotoScreenPlayground, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
-    lv_obj_clear_flag(ui_ButtonGotoScreenPlayground, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_set_style_bg_color(ui_ButtonGotoScreenPlayground, lv_color_hex(0xCFCFD7), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ui_ButtonGotoScreenPlayground, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_color(ui_ButtonGotoScreenPlayground, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_opa(ui_ButtonGotoScreenPlayground, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_ButtonGotoScreenPlayground, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
-
-    ui_LabelButtonGotoScreenPlayground = lv_label_create(ui_ButtonGotoScreenPlayground);
-    lv_obj_set_width(ui_LabelButtonGotoScreenPlayground, LV_SIZE_CONTENT);   /// 1
-    lv_obj_set_height(ui_LabelButtonGotoScreenPlayground, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_align(ui_LabelButtonGotoScreenPlayground, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_LabelButtonGotoScreenPlayground, "Playgr.");
-    lv_obj_set_style_text_color(ui_LabelButtonGotoScreenPlayground, lv_color_hex(0x2C2D2D),
-                                LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_opa(ui_LabelButtonGotoScreenPlayground, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_LabelButtonGotoScreenPlayground, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
-
-    ui_ButtonPayNow = lv_btn_create(ui_ScreenStart);
-    lv_obj_set_width(ui_ButtonPayNow, 299);
-    lv_obj_set_height(ui_ButtonPayNow, 50);
-    lv_obj_set_x(ui_ButtonPayNow, 1);
-    lv_obj_set_y(ui_ButtonPayNow, 146);
-    lv_obj_set_align(ui_ButtonPayNow, LV_ALIGN_CENTER);
-    lv_obj_add_flag(ui_ButtonPayNow, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
-    lv_obj_clear_flag(ui_ButtonPayNow, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_set_style_bg_color(ui_ButtonPayNow, lv_color_hex(0xFFBA00), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ui_ButtonPayNow, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_ButtonPayNow, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
-
-    ui_LabelButtonPayNowClick = lv_label_create(ui_ButtonPayNow);
-    lv_obj_set_width(ui_LabelButtonPayNowClick, LV_SIZE_CONTENT);   /// -714
-    lv_obj_set_height(ui_LabelButtonPayNowClick, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_align(ui_LabelButtonPayNowClick, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_LabelButtonPayNowClick, "Start bitcoinSwitch");
-    lv_obj_set_style_text_color(ui_LabelButtonPayNowClick, lv_color_hex(0x2C2D2D), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_opa(ui_LabelButtonPayNowClick, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_LabelButtonPayNowClick, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
-
-    ui_Image1 = lv_img_create(ui_ScreenStart);
-    lv_img_set_src(ui_Image1, &ui_img_offlinebitcoinswitch_svg_2023_08_24_14_52_14_0_png);
-    lv_obj_set_width(ui_Image1, LV_SIZE_CONTENT);   /// 276
-    lv_obj_set_height(ui_Image1, LV_SIZE_CONTENT);    /// 300
-    lv_obj_set_x(ui_Image1, 9);
-    lv_obj_set_y(ui_Image1, -27);
-    lv_obj_set_align(ui_Image1, LV_ALIGN_CENTER);
-    lv_obj_add_flag(ui_Image1, LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
-    lv_obj_clear_flag(ui_Image1, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-
-    lv_obj_add_event_cb(ui_ButtonGotoScreenPin, ui_event_ButtonGotoScreenPin, LV_EVENT_ALL, NULL);
-    lv_obj_add_event_cb(ui_ButtonGotoScreenPinDirekt, ui_event_ButtonGotoScreenPinDirekt, LV_EVENT_ALL, NULL);
-    lv_obj_add_event_cb(ui_ButtonGotoScreenPlayground, ui_event_ButtonGotoScreenPlayground, LV_EVENT_ALL, NULL);
-    lv_obj_add_event_cb(ui_ButtonPayNow, ui_event_ButtonPayNow, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_ImageBitcoinSwitchOrange, ui_event_ImageBitcoinSwitchOrange, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_Image9, ui_event_Image9, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_Image10, ui_event_Image10, LV_EVENT_ALL, NULL);
 
 }

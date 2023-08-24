@@ -139,7 +139,10 @@ int pinAttempts = 0;
 
 			if (checkSECRETPin(entered_pin.c_str()) == true)
 			{
-				lv_label_set_text(ui_LabelPINValue, "THANK YOU");
+				//lv_label_set_text(ui_LabelPINValue, "THANK YOU");
+				lv_disp_load_scr(ui_ScreenStart);
+    			lv_obj_add_flag(ui_ImageBitcoinSwitchOrange,LV_OBJ_FLAG_HIDDEN);
+    			lv_obj_clear_flag(ui_ImageBitcoinSwitchGreen,LV_OBJ_FLAG_HIDDEN);
 				thankYou();
 				entered_pin = "";
 				pinAttempts = 0;

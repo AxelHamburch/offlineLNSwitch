@@ -510,18 +510,16 @@ void setup()
 
   // Thank You zurücksetzten
   if (bThankYou) {
+    //std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+    //lv_disp_load_scr(ui_ScreenStart);
+    //lv_obj_add_flag(ui_ImageBitcoinSwitchOrange,LV_OBJ_FLAG_HIDDEN);
+    //lv_obj_clear_flag(ui_ImageBitcoinSwitchGreen,LV_OBJ_FLAG_HIDDEN);
     if (itemtopay == 1) {
       int gpioOut1 = config_switchgpio1.toInt(); 
       Serial.printf("Serve product on GPIO: %d for %d ms\n", gpioOut1, config_switchtime1.toInt());
       digitalWrite(gpioOut1, true);
       delay(config_switchtime1.toInt());
       digitalWrite(gpioOut1, false);
-
-      //int delayTime = config_switchtime1.toInt(); // Annahme: config_switchtime1 ist eine Integer-Variable oder ähnliches
-      //std::this_thread::sleep_for(std::chrono::milliseconds(delayTime));
-      //std::cout << "Delay completed" << std::endl;
-      
-
       //lv_timer_t *timer = lv_timer_create(backToAbout, 3000, NULL);
       //lv_obj_add_flag(ui_BarBierProgress,LV_OBJ_FLAG_HIDDEN);
       //lv_timer_set_repeat_count(timer,1);
@@ -535,7 +533,9 @@ void setup()
     } else {
     }
     //std::this_thread::sleep_for(std::chrono::milliseconds(2000)); 
-    lv_disp_load_scr(ui_ScreenStart);
+    lv_obj_add_flag(ui_ImageBitcoinSwitchGreen,LV_OBJ_FLAG_HIDDEN);
+    lv_obj_clear_flag(ui_ImageBitcoinSwitchOrange,LV_OBJ_FLAG_HIDDEN);
+    
     lv_label_set_text(ui_LabelPINValue, "ENTER PIN");
     Serial.println("Thank You zurückgesetzt");
     bThankYou = false;

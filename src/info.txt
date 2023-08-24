@@ -1,5 +1,21 @@
 
-TestTouchDisplay
+
+
+TestTouchDisplay TouchWork nach platformio.ini: board_build.partitions = huge_app.csv
+Checking size .pio\build\esp32dev\firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [===       ]  26.8% (used 87776 bytes from 327680 bytes)
+Flash: [====      ]  42.6% (used 1340717 bytes from 3145728 bytes)
+Configuring upload protocol...
+
+
+TestTouchDisplay Main
+Checking size .pio\build\esp32dev\firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [==        ]  24.6% (used 80680 bytes from 327680 bytes)
+Flash: [========  ]  76.1% (used 996829 bytes from 1310720 bytes)
+
+TestTouchDisplay TouchWork
 Retrieving maximum program size .pio\build\esp32dev\firmware.elf
 Checking size .pio\build\esp32dev\firmware.elf
 Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"

@@ -19,19 +19,13 @@ void ui_ScreenStart_screen_init(void);
 extern lv_obj_t * ui_ScreenStart;
 extern lv_obj_t * ui_TopScreenStart;
 extern lv_obj_t * ui_LabelTopScreenStart;
-void ui_event_ButtonGotoScreenPin(lv_event_t * e);
-extern lv_obj_t * ui_ButtonGotoScreenPin;
-extern lv_obj_t * ui_LabelButtonGotoScreenPin;
-void ui_event_ButtonGotoScreenPinDirekt(lv_event_t * e);
-extern lv_obj_t * ui_ButtonGotoScreenPinDirekt;
-extern lv_obj_t * ui_LabelButtonGotoScreenPinDirekt;
-void ui_event_ButtonGotoScreenPlayground(lv_event_t * e);
-extern lv_obj_t * ui_ButtonGotoScreenPlayground;
-extern lv_obj_t * ui_LabelButtonGotoScreenPlayground;
-void ui_event_ButtonPayNow(lv_event_t * e);
-extern lv_obj_t * ui_ButtonPayNow;
-extern lv_obj_t * ui_LabelButtonPayNowClick;
-extern lv_obj_t * ui_Image1;
+void ui_event_ImageBitcoinSwitchOrange(lv_event_t * e);
+extern lv_obj_t * ui_ImageBitcoinSwitchOrange;
+extern lv_obj_t * ui_ImageBitcoinSwitchGreen;
+void ui_event_Image9(lv_event_t * e);
+extern lv_obj_t * ui_Image9;
+void ui_event_Image10(lv_event_t * e);
+extern lv_obj_t * ui_Image10;
 // SCREEN: ui_ScreenPIN
 void ui_ScreenPIN_screen_init(void);
 extern lv_obj_t * ui_ScreenPIN;
@@ -191,9 +185,13 @@ extern lv_obj_t * ui_ButtonLEDred;
 extern lv_obj_t * ui_LabelButtonLEDred;
 extern lv_obj_t * ui____initial_actions0;
 
-LV_IMG_DECLARE(
-    ui_img_offlinebitcoinswitch_svg_2023_08_24_14_52_14_0_png);    // assets\offlineBitcoinSwitch.svg.2023_08_24_14_52_14.0.png
+LV_IMG_DECLARE(ui_img_1304959654);    // assets\offlineBitcoinSwitch-orange.png
+LV_IMG_DECLARE(ui_img_659722341);    // assets\offlineBitcoinSwitch-gruen.png
+LV_IMG_DECLARE(ui_img_gear_wheel_100pix_gray_png);    // assets\gear wheel 100pix gray.png
+LV_IMG_DECLARE(ui_img_info_100pix_gray_png);    // assets\info 100pix gray.png
 LV_IMG_DECLARE(ui_img_166440904);    // assets\qr-code-slagschaduw-274x274-v2.png
+LV_IMG_DECLARE(ui_img_info_2_png);    // assets\info 2.png
+LV_IMG_DECLARE(ui_img_image3163_png);    // assets\image3163.png
 
 void ui_init(void);
 
