@@ -20,6 +20,13 @@ void ui_event_Image9(lv_event_t * e);
 lv_obj_t * ui_Image9;
 void ui_event_Image10(lv_event_t * e);
 lv_obj_t * ui_Image10;
+lv_obj_t * ui_PanelPINConfig;
+lv_obj_t * ui_LabelEnterConfigPin;
+lv_obj_t * ui_TextAreaPINConfig;
+void ui_event_ButtonCancelPIN(lv_event_t * e);
+lv_obj_t * ui_ButtonCancelPIN;
+lv_obj_t * ui_LabelCancelPIN;
+lv_obj_t * ui_KeyboardPINConfig;
 
 // SCREEN: ui_ScreenPIN
 void ui_ScreenPIN_screen_init(void);
@@ -184,8 +191,6 @@ lv_obj_t * ui_ButtonLEDred;
 lv_obj_t * ui_LabelButtonLEDred;
 lv_obj_t * ui____initial_actions0;
 const lv_img_dsc_t * ui_imgset_1355287214[1] = {&ui_img_166440904};
-const lv_img_dsc_t * ui_imgset_info_[1] = {&ui_img_info_2_png};
-const lv_img_dsc_t * ui_imgset_image[1] = {&ui_img_image3163_png};
 
 ///////////////////// TEST LVGL SETTINGS ////////////////////
 #if LV_COLOR_DEPTH != 16
@@ -211,7 +216,8 @@ void ui_event_Image9(lv_event_t * e)
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
     if(event_code == LV_EVENT_CLICKED) {
-        _ui_screen_change(&ui_ScreenConfig, LV_SCR_LOAD_ANIM_NONE, 500, 0, &ui_ScreenConfig_screen_init);
+        _ui_flag_modify(ui_PanelPINConfig, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
+        _ui_flag_modify(ui_KeyboardPINConfig, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
     }
 }
 void ui_event_Image10(lv_event_t * e)
@@ -220,6 +226,15 @@ void ui_event_Image10(lv_event_t * e)
     lv_obj_t * target = lv_event_get_target(e);
     if(event_code == LV_EVENT_CLICKED) {
         _ui_screen_change(&ui_ScreenPlayground, LV_SCR_LOAD_ANIM_NONE, 500, 0, &ui_ScreenPlayground_screen_init);
+    }
+}
+void ui_event_ButtonCancelPIN(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        _ui_flag_modify(ui_KeyboardPINConfig, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
+        _ui_flag_modify(ui_PanelPINConfig, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
     }
 }
 void ui_event_ButtonPin1(lv_event_t * e)

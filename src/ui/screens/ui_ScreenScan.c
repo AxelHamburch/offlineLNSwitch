@@ -182,8 +182,8 @@ void ui_ScreenScan_screen_init(void)
     ui_PanelSECRET = lv_obj_create(ui_ScreenScan);
     lv_obj_set_width(ui_PanelSECRET, 237);
     lv_obj_set_height(ui_PanelSECRET, 232);
-    lv_obj_set_x(ui_PanelSECRET, -1);
-    lv_obj_set_y(ui_PanelSECRET, -1);
+    lv_obj_set_x(ui_PanelSECRET, -3);
+    lv_obj_set_y(ui_PanelSECRET, 2);
     lv_obj_set_align(ui_PanelSECRET, LV_ALIGN_CENTER);
     lv_obj_clear_flag(ui_PanelSECRET, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
     lv_obj_set_style_bg_color(ui_PanelSECRET, lv_color_hex(0xFFBA00), LV_PART_MAIN | LV_STATE_DEFAULT);

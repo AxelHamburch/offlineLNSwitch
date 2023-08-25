@@ -506,6 +506,27 @@ void setup()
     digitalWrite(gpioLEDb, statusGPIOLEDb);
 
 
+		if (strlen(lv_textarea_get_text(ui_TextAreaPINConfig)) == 6)
+		{
+      if (checkPIN(lv_textarea_get_text(ui_TextAreaPINConfig)) == true)
+		  {
+			  lv_disp_load_scr(ui_ScreenConfig);
+			  lv_textarea_set_text(ui_TextAreaPINConfig, "");
+		  }
+		  else
+		  {
+			  //lv_obj_clear_flag(ui_PanelPINConfigWrong,LV_OBJ_FLAG_HIDDEN);
+
+        lv_label_set_text(ui_LabelEnterConfigPin, "Wrong Config PIN");
+			  lv_textarea_set_text(ui_TextAreaPINConfig, "");
+		  }
+		}
+
+    if (strlen(lv_textarea_get_text(ui_TextAreaPINConfig)) != 0)
+    {
+      //lv_obj_add_flag(ui_PanelPINConfigWrong,LV_OBJ_FLAG_HIDDEN);
+      lv_label_set_text(ui_LabelEnterConfigPin, "Enter Config PIN");
+    }
 
 
   // Thank You zurücksetzten

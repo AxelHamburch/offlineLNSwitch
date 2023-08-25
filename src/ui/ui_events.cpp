@@ -234,12 +234,12 @@ int pinAttempts = 0;
 
 	void CheckSECRETPin(lv_event_t * e)
 	{
-		const char *SECRETpin = lv_textarea_get_text(ui_TextAreaSECRETpin);
+		const char *SECRETpin = lv_textarea_get_text(ui_TextAreaPINConfig);
 		if (checkSECRETPin(SECRETpin) == true)
 		{
 			//lv_obj_clear_flag(ui_PanelThankYou,LV_OBJ_FLAG_HIDDEN);
 			SECRETpin = "";
-			lv_textarea_set_text(ui_TextAreaSECRETpin, SECRETpin);
+			lv_textarea_set_text(ui_TextAreaPINConfig, SECRETpin);
 		}
 		else
 		{

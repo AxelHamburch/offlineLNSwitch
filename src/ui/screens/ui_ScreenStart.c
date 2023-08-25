@@ -73,8 +73,67 @@ void ui_ScreenStart_screen_init(void)
     lv_obj_clear_flag(ui_Image10, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
     lv_img_set_zoom(ui_Image10, 121);
 
+    ui_PanelPINConfig = lv_obj_create(ui_ScreenStart);
+    lv_obj_set_width(ui_PanelPINConfig, 279);
+    lv_obj_set_height(ui_PanelPINConfig, 164);
+    lv_obj_set_x(ui_PanelPINConfig, -2);
+    lv_obj_set_y(ui_PanelPINConfig, -8);
+    lv_obj_set_align(ui_PanelPINConfig, LV_ALIGN_CENTER);
+    lv_obj_clear_flag(ui_PanelPINConfig, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_obj_set_style_bg_color(ui_PanelPINConfig, lv_color_hex(0xFFBA00), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_PanelPINConfig, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_LabelEnterConfigPin = lv_label_create(ui_PanelPINConfig);
+    lv_obj_set_width(ui_LabelEnterConfigPin, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_LabelEnterConfigPin, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_LabelEnterConfigPin, 0);
+    lv_obj_set_y(ui_LabelEnterConfigPin, -53);
+    lv_obj_set_align(ui_LabelEnterConfigPin, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_LabelEnterConfigPin, "Enter Config PIN");
+    lv_obj_set_style_text_font(ui_LabelEnterConfigPin, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_TextAreaPINConfig = lv_textarea_create(ui_PanelPINConfig);
+    lv_obj_set_width(ui_TextAreaPINConfig, 150);
+    lv_obj_set_height(ui_TextAreaPINConfig, LV_SIZE_CONTENT);    /// 70
+    lv_obj_set_x(ui_TextAreaPINConfig, 0);
+    lv_obj_set_y(ui_TextAreaPINConfig, -6);
+    lv_obj_set_align(ui_TextAreaPINConfig, LV_ALIGN_CENTER);
+    lv_textarea_set_max_length(ui_TextAreaPINConfig, 6);
+    lv_textarea_set_placeholder_text(ui_TextAreaPINConfig, "6 digits");
+    lv_textarea_set_one_line(ui_TextAreaPINConfig, true);
+    lv_obj_set_style_text_align(ui_TextAreaPINConfig, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_TextAreaPINConfig, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_ButtonCancelPIN = lv_btn_create(ui_PanelPINConfig);
+    lv_obj_set_width(ui_ButtonCancelPIN, 100);
+    lv_obj_set_height(ui_ButtonCancelPIN, 40);
+    lv_obj_set_x(ui_ButtonCancelPIN, 0);
+    lv_obj_set_y(ui_ButtonCancelPIN, 47);
+    lv_obj_set_align(ui_ButtonCancelPIN, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_ButtonCancelPIN, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
+    lv_obj_clear_flag(ui_ButtonCancelPIN, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_obj_set_style_bg_color(ui_ButtonCancelPIN, lv_color_hex(0xCFCFD7), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_ButtonCancelPIN, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_LabelCancelPIN = lv_label_create(ui_ButtonCancelPIN);
+    lv_obj_set_width(ui_LabelCancelPIN, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_LabelCancelPIN, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_LabelCancelPIN, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_LabelCancelPIN, "Cancel");
+    lv_obj_set_style_text_color(ui_LabelCancelPIN, lv_color_hex(0x424344), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui_LabelCancelPIN, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_LabelCancelPIN, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_KeyboardPINConfig = lv_keyboard_create(ui_ScreenStart);
+    lv_keyboard_set_mode(ui_KeyboardPINConfig, LV_KEYBOARD_MODE_NUMBER);
+    lv_obj_set_width(ui_KeyboardPINConfig, 320);
+    lv_obj_set_height(ui_KeyboardPINConfig, 170);
+    lv_obj_set_align(ui_KeyboardPINConfig, LV_ALIGN_BOTTOM_MID);
+
     lv_obj_add_event_cb(ui_ImageBitcoinSwitchOrange, ui_event_ImageBitcoinSwitchOrange, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_Image9, ui_event_Image9, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_Image10, ui_event_Image10, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_ButtonCancelPIN, ui_event_ButtonCancelPIN, LV_EVENT_ALL, NULL);
+    lv_keyboard_set_textarea(ui_KeyboardPINConfig, ui_TextAreaPINConfig);
 
 }

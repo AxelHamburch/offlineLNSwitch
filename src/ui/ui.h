@@ -26,6 +26,13 @@ void ui_event_Image9(lv_event_t * e);
 extern lv_obj_t * ui_Image9;
 void ui_event_Image10(lv_event_t * e);
 extern lv_obj_t * ui_Image10;
+extern lv_obj_t * ui_PanelPINConfig;
+extern lv_obj_t * ui_LabelEnterConfigPin;
+extern lv_obj_t * ui_TextAreaPINConfig;
+void ui_event_ButtonCancelPIN(lv_event_t * e);
+extern lv_obj_t * ui_ButtonCancelPIN;
+extern lv_obj_t * ui_LabelCancelPIN;
+extern lv_obj_t * ui_KeyboardPINConfig;
 // SCREEN: ui_ScreenPIN
 void ui_ScreenPIN_screen_init(void);
 extern lv_obj_t * ui_ScreenPIN;
@@ -190,8 +197,6 @@ LV_IMG_DECLARE(ui_img_659722341);    // assets\offlineBitcoinSwitch-gruen.png
 LV_IMG_DECLARE(ui_img_gear_wheel_100pix_gray_png);    // assets\gear wheel 100pix gray.png
 LV_IMG_DECLARE(ui_img_info_100pix_gray_png);    // assets\info 100pix gray.png
 LV_IMG_DECLARE(ui_img_166440904);    // assets\qr-code-slagschaduw-274x274-v2.png
-LV_IMG_DECLARE(ui_img_info_2_png);    // assets\info 2.png
-LV_IMG_DECLARE(ui_img_image3163_png);    // assets\image3163.png
 
 void ui_init(void);
 
