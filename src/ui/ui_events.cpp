@@ -155,7 +155,7 @@ int pinAttempts = 0;
 		}
 		else
 		{
-			lv_label_set_text(ui_LabelPINValue, "5x FAILED");
+			lv_label_set_text(ui_LabelPINValue, "6x FAILED");
 			toManyAttempts();
 			entered_pin = "";
 			pinAttempts = 0;

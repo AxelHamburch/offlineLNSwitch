@@ -103,7 +103,7 @@ void ui_ScreenStart_screen_init(void)
     lv_textarea_set_placeholder_text(ui_TextAreaPINConfig, "6 digits");
     lv_textarea_set_one_line(ui_TextAreaPINConfig, true);
     lv_obj_set_style_text_align(ui_TextAreaPINConfig, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_TextAreaPINConfig, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_TextAreaPINConfig, &lv_font_montserrat_24, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_ButtonCancelPIN = lv_btn_create(ui_PanelPINConfig);
     lv_obj_set_width(ui_ButtonCancelPIN, 100);

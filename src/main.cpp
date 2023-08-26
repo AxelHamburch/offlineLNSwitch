@@ -505,62 +505,57 @@ void setup()
     digitalWrite(gpioLEDg, statusGPIOLEDg);
     digitalWrite(gpioLEDb, statusGPIOLEDb);
 
-
+// Pin Eingabe 6 Zeichen
 		if (strlen(lv_textarea_get_text(ui_TextAreaPINConfig)) == 6)
 		{
+      // Prüfe den Pin
       if (checkPIN(lv_textarea_get_text(ui_TextAreaPINConfig)) == true)
 		  {
 			  lv_disp_load_scr(ui_ScreenConfig);
+        lv_obj_add_flag(ui_PanelPINConfig, LV_OBJ_FLAG_HIDDEN); 
+        lv_obj_add_flag(ui_KeyboardPINConfig, LV_OBJ_FLAG_HIDDEN);   
 			  lv_textarea_set_text(ui_TextAreaPINConfig, "");
 		  }
 		  else
 		  {
-			  //lv_obj_clear_flag(ui_PanelPINConfigWrong,LV_OBJ_FLAG_HIDDEN);
-
         lv_label_set_text(ui_LabelEnterConfigPin, "Wrong Config PIN");
 			  lv_textarea_set_text(ui_TextAreaPINConfig, "");
 		  }
 		}
-
-    if (strlen(lv_textarea_get_text(ui_TextAreaPINConfig)) != 0)
+    // Wenn mindestens ein Zeichen und Prüf-Taste
+    if (strlen(lv_textarea_get_text(ui_TextAreaPINConfig)) == 0)
     {
-      //lv_obj_add_flag(ui_PanelPINConfigWrong,LV_OBJ_FLAG_HIDDEN);
       lv_label_set_text(ui_LabelEnterConfigPin, "Enter Config PIN");
     }
 
 
-  // Thank You zurücksetzten
+  // Bezahlt, Funktion abarbeiten
   if (bThankYou) {
-    //std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-    //lv_disp_load_scr(ui_ScreenStart);
-    //lv_obj_add_flag(ui_ImageBitcoinSwitchOrange,LV_OBJ_FLAG_HIDDEN);
-    //lv_obj_clear_flag(ui_ImageBitcoinSwitchGreen,LV_OBJ_FLAG_HIDDEN);
+    if (itemtopay == 0) {
+     // do nothing
+    }
     if (itemtopay == 1) {
       int gpioOut1 = config_switchgpio1.toInt(); 
       Serial.printf("Serve product on GPIO: %d for %d ms\n", gpioOut1, config_switchtime1.toInt());
-      digitalWrite(gpioOut1, true);
+      statusGPIOOut1 = !statusGPIOOut1; // Toggle the value
+      digitalWrite(gpioOut1, statusGPIOOut1);
       delay(config_switchtime1.toInt());
-      digitalWrite(gpioOut1, false);
-      //lv_timer_t *timer = lv_timer_create(backToAbout, 3000, NULL);
-      //lv_obj_add_flag(ui_BarBierProgress,LV_OBJ_FLAG_HIDDEN);
-      //lv_timer_set_repeat_count(timer,1);
+      statusGPIOOut1 = !statusGPIOOut1; // Toggle the value
     }
     if (itemtopay == 2) {
       int gpioOut2 = config_switchgpio2.toInt(); 
       Serial.printf("Serve product on GPIO: %d for %d ms\n", gpioOut2, config_switchtime2.toInt());
-      digitalWrite(gpioOut2, true);
+      statusGPIOOut1 = !statusGPIOOut1; // Toggle the value
+      digitalWrite(gpioOut2, statusGPIOOut2);
       delay(config_switchtime2.toInt());
-      digitalWrite(gpioOut2, false);
-    } else {
+      statusGPIOOut2 = !statusGPIOOut2; // Toggle the value
     }
-    //std::this_thread::sleep_for(std::chrono::milliseconds(2000)); 
     lv_obj_add_flag(ui_ImageBitcoinSwitchGreen,LV_OBJ_FLAG_HIDDEN);
     lv_obj_clear_flag(ui_ImageBitcoinSwitchOrange,LV_OBJ_FLAG_HIDDEN);
     
     lv_label_set_text(ui_LabelPINValue, "ENTER PIN");
     Serial.println("Thank You zurückgesetzt");
     bThankYou = false;
-  } else {
   }
 
   // To Many Attempts zurücksetzten

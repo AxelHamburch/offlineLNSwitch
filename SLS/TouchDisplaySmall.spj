@@ -1591,7 +1591,7 @@
                   },
                   {
                     "nid": 750725574,
-                    "strtype": "_custom/action",
+                    "strtype": "_event/action",
                     "strval": "MODIFY FLAG",
                     "childs": [
                       {
@@ -1635,7 +1635,7 @@
                   },
                   {
                     "nid": -245954664,
-                    "strtype": "_custom/action",
+                    "strtype": "_event/action",
                     "strval": "MODIFY FLAG",
                     "childs": [
                       {
@@ -2637,7 +2637,7 @@
                           {
                             "nid": 1994799287,
                             "strtype": "_style/Text_Font",
-                            "strval": "montserrat_24",
+                            "strval": "montserrat_22",
                             "InheritedType": 3
                           }
                         ],
@@ -3304,7 +3304,7 @@
                   {
                     "disabled": false,
                     "nid": 1873992395,
-                    "strtype": "BUTTON/EventHandler",
+                    "strtype": "_event/EventHandler",
                     "strval": "CLICKED",
                     "childs": [
                       {
@@ -3327,7 +3327,7 @@
                       },
                       {
                         "nid": 621328441,
-                        "strtype": "_custom/action",
+                        "strtype": "_event/action",
                         "strval": "MODIFY FLAG",
                         "childs": [
                           {
@@ -3371,7 +3371,7 @@
                       },
                       {
                         "nid": 2022626516,
-                        "strtype": "_custom/action",
+                        "strtype": "_event/action",
                         "strval": "MODIFY FLAG",
                         "childs": [
                           {
@@ -3485,7 +3485,7 @@
               {
                 "nid": -727194955,
                 "strtype": "OBJECT/Hidden",
-                "strval": "False",
+                "strval": "True",
                 "InheritedType": 2
               },
               {
@@ -3775,7 +3775,7 @@
               {
                 "nid": -621480106,
                 "strtype": "OBJECT/Hidden",
-                "strval": "False",
+                "strval": "True",
                 "InheritedType": 2
               },
               {
@@ -22381,7 +22381,7 @@
               {
                 "nid": -1350680450,
                 "strtype": "LABEL/Text",
-                "strval": "Test function:",
+                "strval": "Toggle Switch:",
                 "InheritedType": 10
               },
               {
@@ -28199,8 +28199,7 @@
             "InheritedType": 4
           }
         ],
-        "saved_objtypeKey": "SCREEN",
-        "tree_closed": true
+        "saved_objtypeKey": "SCREEN"
       },
       {
         "guid": "GUID66700149-697001S6642222",
@@ -41032,9 +41031,9 @@
     "theme_dark": false,
     "theme_color1": 5,
     "theme_color2": 0,
-    "exportFolderPath": "C:\\007\\VSCode\\TestTouchDisplay\\SLS\\ProjektButton\\./main/ui",
-    "projectExportFolderPath": "C:\\007\\VSCode\\TestTouchDisplay\\SLS\\ProjektButton",
-    "backup_cnt": 369,
+    "exportFolderPath": "F:\\PlatformIO\\TestTouchDisplay\\SLS\\ProjektButton\\ProjektButton\\./main/ui",
+    "projectExportFolderPath": "F:\\PlatformIO\\TestTouchDisplay\\SLS\\ProjektButton\\ProjektButton",
+    "backup_cnt": 376,
     "autosave_cnt": 0,
     "lvgl_version": "8.3.6",
     "callfuncsexport": null,

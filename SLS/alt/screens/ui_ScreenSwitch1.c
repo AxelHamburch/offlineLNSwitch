@@ -49,7 +49,7 @@ void ui_ScreenSwitch1_screen_init(void)
     lv_obj_set_x(ui_LabelTestFunction1, -87);
     lv_obj_set_y(ui_LabelTestFunction1, 143);
     lv_obj_set_align(ui_LabelTestFunction1, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_LabelTestFunction1, "Toggle Switch:");
+    lv_label_set_text(ui_LabelTestFunction1, "Test function:");
     lv_obj_set_style_text_color(ui_LabelTestFunction1, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_LabelTestFunction1, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_decor(ui_LabelTestFunction1, LV_TEXT_DECOR_UNDERLINE, LV_PART_MAIN | LV_STATE_DEFAULT);
