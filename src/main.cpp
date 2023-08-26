@@ -60,6 +60,7 @@ String price;
 bool bThankYou = false;
 bool bToManyAttempts = false;
 int itemtopay = 0;
+bool bOneCycle = false;
 
 // defines for the config file
 #define DEVICE_CFG_HOST "lnbitshost"
@@ -71,13 +72,13 @@ int itemtopay = 0;
 #define DEVICE_SWITCH_PRICE_1 "switchprice1"
 #define DEVICE_SWITCH_TIME_1 "switchtime1"
 #define DEVICE_SWITCH_GPIO_1 "switchgpio1"
-/*
-#define DEVICE_SWITCH_NAME_2 "switchname2"
-#define DEVICE_SWITCH_PRICE_2 "switchprice2"
-#define DEVICE_SWITCH_TIME_2 "switchtime2"
-#define DEVICE_SWITCH_GPIO_2 "switchgpio2"
-*/
-;
+    /*
+    #define DEVICE_SWITCH_NAME_2 "switchname2"
+    #define DEVICE_SWITCH_PRICE_2 "switchprice2"
+    #define DEVICE_SWITCH_TIME_2 "switchtime2"
+    #define DEVICE_SWITCH_GPIO_2 "switchgpio2"
+    */
+    ;
 // create QR code object
 lv_obj_t *ui_QrcodeLnurl = NULL;
 
@@ -456,105 +457,114 @@ void thankYou()
   bThankYou = true;
 }
 
-  void toManyAttempts()
+void toManyAttempts()
+{
+  bToManyAttempts = true;
+}
+
+void setup()
+{
+  Serial.begin(115200);
+  delay(2000);
+  Serial.println("booting..");
+
+  LittleFS.begin(true);
+
+  smartdisplay_init();
+  ui_init();
+
+  /* MUSS NOCH GETESTET WERDEN
+      lv_color_t c = lv_color_hex(0x000000);
+      lv_color32_t rgb;
+      rgb.full = lv_color_to32(c);
+      smartdisplay_set_led_color(rgb);
+      smartdisplay_tft_set_backlight(BB_TFT_INTENSITY);
+  */
+  // set UI components from config
+  loadConfig();
+
+  // set config to display
+  lv_textarea_set_text(ui_TextAreaConfigHost, config_lnbitshost.c_str());
+  lv_textarea_set_text(ui_TextAreaConfigDeviceID, config_deviceid.c_str());
+  lv_textarea_set_text(ui_TextAreaConfigDeviceKey, config_devicekey.c_str());
+  lv_textarea_set_text(ui_TextAreaConfigCurrency, config_devicecurrency.c_str());
+  lv_textarea_set_text(ui_TextAreaConfigPin, config_configpin.c_str());
+  lv_textarea_set_text(ui_TextAreaSwitchName1, config_switchname1.c_str());
+  lv_textarea_set_text(ui_TextAreaSwitchPrice1, config_switchprice1.c_str());
+  lv_textarea_set_text(ui_TextAreaSwitchTime1, config_switchtime1.c_str());
+  lv_textarea_set_text(ui_TextAreaSwitchRelay1, config_switchgpio1.c_str());
+  /*
+  lv_textarea_set_text(ui_TextAreaSwitchName2, config_switchname1.c_str());
+  lv_textarea_set_text(ui_TextAreaSwitchTime2, config_switchprice1.c_str());
+  lv_textarea_set_text(ui_TextAreaSwitchTime2, config_switchtime1.c_str());
+  lv_textarea_set_text(ui_TextAreaSwitchRelay2, config_switchgpio1.c_str());
+  */
+
+  // set firmware version
+  lv_label_set_text(ui_LabelFWVersion, String(FIRMWARE_VERSION).c_str());
+
+  // set GPIOs
+  pinMode(gpioOut1, OUTPUT);
+  pinMode(gpioOut2, OUTPUT);
+  pinMode(gpioLEDr, OUTPUT);
+  pinMode(gpioLEDg, OUTPUT);
+  pinMode(gpioLEDb, OUTPUT);
+
+  // initialize the QR code
+  lv_color_t bg_color = lv_color_hex(0xFFFFFF);
+  lv_color_t fg_color = lv_color_hex(0x000000);
+  ui_QrcodeLnurl = lv_qrcode_create(ui_ScreenScan, 240, fg_color, bg_color);
+  lv_obj_center(ui_QrcodeLnurl);
+  lv_obj_set_pos(ui_QrcodeLnurl, 0, 0);
+  lv_obj_set_style_border_width(ui_QrcodeLnurl, 0, 0);
+  //  lv_obj_add_flag(ui_QrcodeLnurl, LV_OBJ_FLAG_HIDDEN);
+
+  // baseURLvend , secretvend , currencyvend
+  // https://lnbits.ereignishorizont.xyz/lnurldevice/api/v1/lnurl/walletid , secret , sat
+
+  // const JsonObject lnurlVTime = doc[2];
+  // const char *lnurlvendCharTime = lnurlVTime["value"];
+  // lnurlVendTime = String(lnurlvendCharTime).toInt();
+}
+
+void loop()
+{
+
+  lv_timer_handler();
+
+  digitalWrite(gpioOut1, statusGPIOOut1);
+  digitalWrite(gpioOut2, statusGPIOOut2);
+  digitalWrite(gpioLEDr, statusGPIOLEDr);
+  digitalWrite(gpioLEDg, statusGPIOLEDg);
+  digitalWrite(gpioLEDb, statusGPIOLEDb);
+
+  // Pin Eingabe 6 Zeichen
+  if (strlen(lv_textarea_get_text(ui_TextAreaPINConfig)) == 6)
   {
-    bToManyAttempts = true;
+    // Prüfe den Pin
+    if (checkPIN(lv_textarea_get_text(ui_TextAreaPINConfig)) == true)
+    {
+      lv_disp_load_scr(ui_ScreenConfig);
+      lv_obj_add_flag(ui_PanelPINConfig, LV_OBJ_FLAG_HIDDEN);
+      lv_obj_add_flag(ui_KeyboardPINConfig, LV_OBJ_FLAG_HIDDEN);
+      lv_textarea_set_text(ui_TextAreaPINConfig, "");
+    }
+    else
+    {
+      lv_label_set_text(ui_LabelEnterConfigPin, "Wrong Config PIN");
+      lv_textarea_set_text(ui_TextAreaPINConfig, "");
+    }
+  }
+  // Wenn mindestens ein Zeichen und Prüf-Taste
+  if (strlen(lv_textarea_get_text(ui_TextAreaPINConfig)) == 0)
+  {
+    lv_label_set_text(ui_LabelEnterConfigPin, "Enter Config PIN");
   }
 
-  void setup()
+  // Bezahlt, Funktion abarbeiten
+  if (bThankYou)
   {
-    Serial.begin(115200);
-    delay(2000);
-    Serial.println("booting..");
-
-    LittleFS.begin(true);
-
-    smartdisplay_init();
-    ui_init();
-
-    // set UI components from config
-    loadConfig();
-
-    // set config to display
-    lv_textarea_set_text(ui_TextAreaConfigHost, config_lnbitshost.c_str());
-    lv_textarea_set_text(ui_TextAreaConfigDeviceID, config_deviceid.c_str());
-    lv_textarea_set_text(ui_TextAreaConfigDeviceKey, config_devicekey.c_str());
-    lv_textarea_set_text(ui_TextAreaConfigCurrency, config_devicecurrency.c_str());
-    lv_textarea_set_text(ui_TextAreaConfigPin, config_configpin.c_str());
-    lv_textarea_set_text(ui_TextAreaSwitchName1, config_switchname1.c_str());
-    lv_textarea_set_text(ui_TextAreaSwitchPrice1, config_switchprice1.c_str());
-    lv_textarea_set_text(ui_TextAreaSwitchTime1, config_switchtime1.c_str());
-    lv_textarea_set_text(ui_TextAreaSwitchRelay1, config_switchgpio1.c_str());
-    /*
-    lv_textarea_set_text(ui_TextAreaSwitchName2, config_switchname1.c_str());
-    lv_textarea_set_text(ui_TextAreaSwitchTime2, config_switchprice1.c_str());
-    lv_textarea_set_text(ui_TextAreaSwitchTime2, config_switchtime1.c_str());
-    lv_textarea_set_text(ui_TextAreaSwitchRelay2, config_switchgpio1.c_str());
-    */
-
-    // set firmware version
-    lv_label_set_text(ui_LabelFWVersion, String(FIRMWARE_VERSION).c_str());
-
-    // set GPIOs
-    pinMode(gpioOut1, OUTPUT);
-    pinMode(gpioOut2, OUTPUT);
-    pinMode(gpioLEDr, OUTPUT);
-    pinMode(gpioLEDg, OUTPUT);
-    pinMode(gpioLEDb, OUTPUT);
-
-    // initialize the QR code
-    lv_color_t bg_color = lv_color_hex(0xFFFFFF);
-    lv_color_t fg_color = lv_color_hex(0x000000);
-    ui_QrcodeLnurl = lv_qrcode_create(ui_ScreenScan, 240, fg_color, bg_color);
-    lv_obj_center(ui_QrcodeLnurl);
-    lv_obj_set_pos(ui_QrcodeLnurl, 0, 0);
-    lv_obj_set_style_border_width(ui_QrcodeLnurl, 0, 0);
-    //  lv_obj_add_flag(ui_QrcodeLnurl, LV_OBJ_FLAG_HIDDEN);
-
-    // baseURLvend , secretvend , currencyvend
-    // https://lnbits.ereignishorizont.xyz/lnurldevice/api/v1/lnurl/walletid , secret , sat
-
-    // const JsonObject lnurlVTime = doc[2];
-    // const char *lnurlvendCharTime = lnurlVTime["value"];
-    // lnurlVendTime = String(lnurlvendCharTime).toInt();
-  }
-
-  void loop()
-  {
-
-    lv_timer_handler();
-
-    digitalWrite(gpioOut1, statusGPIOOut1);
-    digitalWrite(gpioOut2, statusGPIOOut2);
-    digitalWrite(gpioLEDr, statusGPIOLEDr);
-    digitalWrite(gpioLEDg, statusGPIOLEDg);
-    digitalWrite(gpioLEDb, statusGPIOLEDb);
-
-    // Pin Eingabe 6 Zeichen
-    if (strlen(lv_textarea_get_text(ui_TextAreaPINConfig)) == 6)
-    {
-      // Prüfe den Pin
-      if (checkPIN(lv_textarea_get_text(ui_TextAreaPINConfig)) == true)
-      {
-        lv_disp_load_scr(ui_ScreenConfig);
-        lv_obj_add_flag(ui_PanelPINConfig, LV_OBJ_FLAG_HIDDEN);
-        lv_obj_add_flag(ui_KeyboardPINConfig, LV_OBJ_FLAG_HIDDEN);
-        lv_textarea_set_text(ui_TextAreaPINConfig, "");
-      }
-      else
-      {
-        lv_label_set_text(ui_LabelEnterConfigPin, "Wrong Config PIN");
-        lv_textarea_set_text(ui_TextAreaPINConfig, "");
-      }
-    }
-    // Wenn mindestens ein Zeichen und Prüf-Taste
-    if (strlen(lv_textarea_get_text(ui_TextAreaPINConfig)) == 0)
-    {
-      lv_label_set_text(ui_LabelEnterConfigPin, "Enter Config PIN");
-    }
-
-    // Bezahlt, Funktion abarbeiten
-    if (bThankYou)
+    if (bOneCycle)
     {
       if (itemtopay == 0)
       {
@@ -572,6 +582,8 @@ void thankYou()
         digitalWrite(gpioOut1, statusGPIOOut1);
         delay(config_switchtime1.toInt());
         statusGPIOOut1 = !statusGPIOOut1; // Toggle the value
+        lv_obj_add_flag(ui_ImageBitcoinSwitchGreen, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_clear_flag(ui_ImageBitcoinSwitchOrange, LV_OBJ_FLAG_HIDDEN);
       }
       else if (itemtopay == 2)
       {
@@ -582,54 +594,60 @@ void thankYou()
         digitalWrite(gpioOut2, statusGPIOOut2);
         delay(config_switchtime2.toInt());
         statusGPIOOut2 = !statusGPIOOut2; // Toggle the value
+        lv_obj_add_flag(ui_ImageBitcoinSwitchGreen, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_clear_flag(ui_ImageBitcoinSwitchOrange, LV_OBJ_FLAG_HIDDEN);
       }
-      lv_obj_add_flag(ui_ImageBitcoinSwitchGreen, LV_OBJ_FLAG_HIDDEN);
-      lv_obj_clear_flag(ui_ImageBitcoinSwitchOrange, LV_OBJ_FLAG_HIDDEN);
       lv_label_set_text(ui_LabelPINValue, "ENTER PIN");
       Serial.println("Thank You zurückgesetzt");
       bThankYou = false;
-    }
-
-    // To Many Attempts zurücksetzten
-    if (bToManyAttempts)
-    {
-      std::this_thread::sleep_for(std::chrono::milliseconds(3000));
-      lv_disp_load_scr(ui_ScreenStart);
-      lv_label_set_text(ui_LabelPINValue, "ENTER PIN");
-      Serial.println("To Many Attempts zurückgesetzt");
-      bToManyAttempts = false;
+      bOneCycle = false;
     }
     else
     {
+      bOneCycle = true;
     }
-    /*
+  }
 
-      if ( bDisplayQRCode ) {
-        lv_obj_clear_flag(ui_QrcodeLnurl,LV_OBJ_FLAG_HIDDEN);
-      } else {
-        lv_obj_add_flag(ui_QrcodeLnurl,LV_OBJ_FLAG_HIDDEN);
-        //_ui_flag_modify(ui_QrcodeLnurl, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
-      }
-    */
+  // To Many Attempts zurücksetzten
+  if (bToManyAttempts)
+  {
+    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+    lv_disp_load_scr(ui_ScreenStart);
+    lv_label_set_text(ui_LabelPINValue, "ENTER PIN");
+    Serial.println("To Many Attempts zurückgesetzt");
+    bToManyAttempts = false;
+  }
+  else
+  {
+  }
+  /*
 
-    /*
-    if ((digitalRead(gpio21) == HIGH) != merker)
-    {
-      Serial.println("statusButton: " + String(statusButton));
-      merker = (digitalRead(21) == gpio21);
+    if ( bDisplayQRCode ) {
+      lv_obj_clear_flag(ui_QrcodeLnurl,LV_OBJ_FLAG_HIDDEN);
+    } else {
+      lv_obj_add_flag(ui_QrcodeLnurl,LV_OBJ_FLAG_HIDDEN);
+      //_ui_flag_modify(ui_QrcodeLnurl, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
     }
-    */
-    /*
-      auto r = (byte)(millis() / 75);
-      auto g = (byte)(millis() / 10);
-      auto b = (byte)(millis() / 150);
+  */
 
-      smartdisplay_set_led_color(lv_color32_t({.ch = {.blue = b, .green = g, .red = r}}));
-
-    auto r = (byte)0;   // Roter Farbkanal auf 0 setzen
-    auto g = (byte)0; // Grüner Farbkanal auf 0 setzen
-    auto b = (byte)0;   // Blauer Farbkanal auf 255 (volle Intensität) setzen
+  /*
+  if ((digitalRead(gpio21) == HIGH) != merker)
+  {
+    Serial.println("statusButton: " + String(statusButton));
+    merker = (digitalRead(21) == gpio21);
+  }
+  */
+  /*
+    auto r = (byte)(millis() / 75);
+    auto g = (byte)(millis() / 10);
+    auto b = (byte)(millis() / 150);
 
     smartdisplay_set_led_color(lv_color32_t({.ch = {.blue = b, .green = g, .red = r}}));
-    */
-  }
+
+  auto r = (byte)0;   // Roter Farbkanal auf 0 setzen
+  auto g = (byte)0; // Grüner Farbkanal auf 0 setzen
+  auto b = (byte)0;   // Blauer Farbkanal auf 255 (volle Intensität) setzen
+
+  smartdisplay_set_led_color(lv_color32_t({.ch = {.blue = b, .green = g, .red = r}}));
+  */
+}

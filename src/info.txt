@@ -1,3 +1,53 @@
+
+fuck wo it
+screen about
+style setting (main) Gg Color FFA900
+button main
+style setting (main) Gg Color 4D4D4E
+
+
+Beispiele:
+
+    lv_disp_load_scr(ui_ScreenConfig);	
+    lv_label_set_text(ui_LabelPINValue,"ENTER PIN");
+	lv_textarea_set_text(ui_TextAreaConfigPINRepeat,"");
+	lv_label_set_text(ui_LabelConfigPINMessage,"");
+	lv_obj_add_flag(ui_PanelConfigPIN,LV_OBJ_FLAG_HIDDEN);
+
+    const char *ssid = lv_textarea_get_text(ui_TextAreaConfigSSID);
+	const char *pwd = lv_textarea_get_text(ui_TextAreaWifiPassword);
+	const char *deviceid = lv_textarea_get_text(ui_TextAreaConfigDeviceID);
+	const char *cfgserver = lv_textarea_get_text(ui_TextAreaConfigHost);
+	connectBliksemBier(ssid,pwd,deviceid,cfgserver);
+
+    int32_t servoBack = lv_slider_get_value(ui_SliderConfigServoBack);
+	int32_t servoClosed = lv_slider_get_value(ui_SliderConfigServoClosed);
+	int32_t servoOpen = lv_slider_get_value(ui_SliderConfigServoOpen);
+	int32_t tapDuration = lv_slider_get_value(ui_SliderConfigTapDuration);
+	saveTuning(servoBack,servoClosed,servoOpen,tapDuration);
+
+
+void backToAbout(lv_timer_t * timer)
+{
+  notifyOrderFulfilled();
+  lv_disp_load_scr(ui_ScreenAbout);	  
+}
+
+    lv_timer_t *timer = lv_timer_create(backToAbout, 3000, NULL);
+    lv_obj_add_flag(ui_BarBierProgress,LV_OBJ_FLAG_HIDDEN);
+    lv_timer_set_repeat_count(timer,1);
+
+    void beerStart()
+{
+  int tapstep = tap_duration / 10;
+  lv_timer_t *timer = lv_timer_create(beerTimerProgress, tapstep, NULL);
+  lv_timer_set_repeat_count(timer,10);
+  lv_obj_add_flag(ui_ButtonBierStart,LV_OBJ_FLAG_HIDDEN);
+	lv_obj_clear_flag(ui_BarBierProgress,LV_OBJ_FLAG_HIDDEN);
+	beerOpen();    
+}
+
+
 Color 
 
 Mögliche Fehlermeldung von WoS:
