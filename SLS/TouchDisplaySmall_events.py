@@ -82,3 +82,7 @@ def AddQRCode(event_struct):
 def CheckSECRETPin(event_struct):
     return
 
+
+def ButtonPayNow0Click(event_struct):
+    return
+

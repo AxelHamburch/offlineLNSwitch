@@ -157,19 +157,6 @@ lv_obj_t * ui_LabelYES;
 void ui_event_ButtonNO(lv_event_t * e);
 lv_obj_t * ui_ButtonNO;
 lv_obj_t * ui_LabelNO;
-lv_obj_t * ui_PanelSECRET;
-lv_obj_t * ui_LabelSECRETpin;
-void ui_event_ButtonCheckSECRET(lv_event_t * e);
-lv_obj_t * ui_ButtonCheckSECRET;
-lv_obj_t * ui_LabelCheckSECRET;
-void ui_event_TextAreaSECRETpin(lv_event_t * e);
-lv_obj_t * ui_TextAreaSECRETpin;
-void ui_event_ButtonCheckSECRETCancel(lv_event_t * e);
-lv_obj_t * ui_ButtonCheckSECRETCancel;
-lv_obj_t * ui_LabelCheckSECRETCancel;
-lv_obj_t * ui_PanelWrongPin;
-lv_obj_t * ui_LabelWrongPin;
-lv_obj_t * ui_KeyboardCheckSECRET;
 
 // SCREEN: ui_ScreenPlayground
 void ui_ScreenPlayground_screen_init(void);
@@ -179,7 +166,7 @@ lv_obj_t * ui_LabelTopScreenPlayground;
 void ui_event_ButtonGotoScreenPlay1(lv_event_t * e);
 lv_obj_t * ui_ButtonGotoScreenPlay1;
 lv_obj_t * ui_LabelButtonGotoScreenPlay1;
-lv_obj_t * ui_Label1;
+lv_obj_t * ui_LabelRGBLED;
 void ui_event_ButtonLEDgreen(lv_event_t * e);
 lv_obj_t * ui_ButtonLEDgreen;
 lv_obj_t * ui_LabelButtonLEDgreen;
@@ -189,6 +176,10 @@ lv_obj_t * ui_LabelButtonLEDblue;
 void ui_event_ButtonLEDred(lv_event_t * e);
 lv_obj_t * ui_ButtonLEDred;
 lv_obj_t * ui_LabelButtonLEDred;
+lv_obj_t * ui_LabelTestDummy;
+lv_obj_t * ui_ImageTestButtonGreen;
+void ui_event_ImageTestButtonOrange(lv_event_t * e);
+lv_obj_t * ui_ImageTestButtonOrange;
 lv_obj_t * ui____initial_actions0;
 const lv_img_dsc_t * ui_imgset_1355287214[1] = {&ui_img_166440904};
 
@@ -515,7 +506,6 @@ void ui_event_ButtonCallPanelCancel(lv_event_t * e)
     if(event_code == LV_EVENT_CLICKED) {
         _ui_flag_modify(ui_PanelCancel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
         HideQRCode(e);
-        _ui_flag_modify(ui_PanelSECRET, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
     }
 }
 void ui_event_ButtonYES(lv_event_t * e)
@@ -535,32 +525,6 @@ void ui_event_ButtonNO(lv_event_t * e)
     if(event_code == LV_EVENT_CLICKED) {
         _ui_flag_modify(ui_PanelCancel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
         AddQRCode(e);
-    }
-}
-void ui_event_ButtonCheckSECRET(lv_event_t * e)
-{
-    lv_event_code_t event_code = lv_event_get_code(e);
-    lv_obj_t * target = lv_event_get_target(e);
-    if(event_code == LV_EVENT_CLICKED) {
-        CheckSECRETPin(e);
-    }
-}
-void ui_event_TextAreaSECRETpin(lv_event_t * e)
-{
-    lv_event_code_t event_code = lv_event_get_code(e);
-    lv_obj_t * target = lv_event_get_target(e);
-    if(event_code == LV_EVENT_CLICKED) {
-        _ui_flag_modify(ui_KeyboardCheckSECRET, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
-    }
-}
-void ui_event_ButtonCheckSECRETCancel(lv_event_t * e)
-{
-    lv_event_code_t event_code = lv_event_get_code(e);
-    lv_obj_t * target = lv_event_get_target(e);
-    if(event_code == LV_EVENT_CLICKED) {
-        _ui_flag_modify(ui_PanelSECRET, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
-        AddQRCode(e);
-        _ui_flag_modify(ui_KeyboardCheckSECRET, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
     }
 }
 void ui_event_ButtonGotoScreenPlay1(lv_event_t * e)
@@ -593,6 +557,14 @@ void ui_event_ButtonLEDred(lv_event_t * e)
     lv_obj_t * target = lv_event_get_target(e);
     if(event_code == LV_EVENT_CLICKED) {
         ButtonLEDredClicked(e);
+    }
+}
+void ui_event_ImageTestButtonOrange(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        ButtonPayNow0Click(e);
     }
 }
 

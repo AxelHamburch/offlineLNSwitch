@@ -159,19 +159,6 @@ extern lv_obj_t * ui_LabelYES;
 void ui_event_ButtonNO(lv_event_t * e);
 extern lv_obj_t * ui_ButtonNO;
 extern lv_obj_t * ui_LabelNO;
-extern lv_obj_t * ui_PanelSECRET;
-extern lv_obj_t * ui_LabelSECRETpin;
-void ui_event_ButtonCheckSECRET(lv_event_t * e);
-extern lv_obj_t * ui_ButtonCheckSECRET;
-extern lv_obj_t * ui_LabelCheckSECRET;
-void ui_event_TextAreaSECRETpin(lv_event_t * e);
-extern lv_obj_t * ui_TextAreaSECRETpin;
-void ui_event_ButtonCheckSECRETCancel(lv_event_t * e);
-extern lv_obj_t * ui_ButtonCheckSECRETCancel;
-extern lv_obj_t * ui_LabelCheckSECRETCancel;
-extern lv_obj_t * ui_PanelWrongPin;
-extern lv_obj_t * ui_LabelWrongPin;
-extern lv_obj_t * ui_KeyboardCheckSECRET;
 // SCREEN: ui_ScreenPlayground
 void ui_ScreenPlayground_screen_init(void);
 extern lv_obj_t * ui_ScreenPlayground;
@@ -180,7 +167,7 @@ extern lv_obj_t * ui_LabelTopScreenPlayground;
 void ui_event_ButtonGotoScreenPlay1(lv_event_t * e);
 extern lv_obj_t * ui_ButtonGotoScreenPlay1;
 extern lv_obj_t * ui_LabelButtonGotoScreenPlay1;
-extern lv_obj_t * ui_Label1;
+extern lv_obj_t * ui_LabelRGBLED;
 void ui_event_ButtonLEDgreen(lv_event_t * e);
 extern lv_obj_t * ui_ButtonLEDgreen;
 extern lv_obj_t * ui_LabelButtonLEDgreen;
@@ -190,6 +177,10 @@ extern lv_obj_t * ui_LabelButtonLEDblue;
 void ui_event_ButtonLEDred(lv_event_t * e);
 extern lv_obj_t * ui_ButtonLEDred;
 extern lv_obj_t * ui_LabelButtonLEDred;
+extern lv_obj_t * ui_LabelTestDummy;
+extern lv_obj_t * ui_ImageTestButtonGreen;
+void ui_event_ImageTestButtonOrange(lv_event_t * e);
+extern lv_obj_t * ui_ImageTestButtonOrange;
 extern lv_obj_t * ui____initial_actions0;
 
 LV_IMG_DECLARE(ui_img_1304959654);    // assets\offlineBitcoinSwitch-orange.png
@@ -197,6 +188,8 @@ LV_IMG_DECLARE(ui_img_659722341);    // assets\offlineBitcoinSwitch-gruen.png
 LV_IMG_DECLARE(ui_img_gear_wheel_100pix_gray_png);    // assets\gear wheel 100pix gray.png
 LV_IMG_DECLARE(ui_img_info_100pix_gray_png);    // assets\info 100pix gray.png
 LV_IMG_DECLARE(ui_img_166440904);    // assets\qr-code-slagschaduw-274x274-v2.png
+LV_IMG_DECLARE(ui_img_1668993521);    // assets\bgrün.png
+LV_IMG_DECLARE(ui_img_borange_png);    // assets\borange.png
 
 void ui_init(void);
 

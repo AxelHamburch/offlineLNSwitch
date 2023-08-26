@@ -1,5 +1,9 @@
 Color 
 
+Mögliche Fehlermeldung von WoS:
+Error: Failed to decode invoice, please try again => LNbitsHost invalide
+Error: lnurldevice xxxxxx not found on this server => DeviceID invalide
+Error: HMAC is invalide => DeviceKey invalide
 
 TestTouchDisplay TouchWork nach platformio.ini: board_build.partitions = huge_app.csv
 Checking size .pio\build\esp32dev\firmware.elf

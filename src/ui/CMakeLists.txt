@@ -11,6 +11,8 @@ SET(SOURCES screens/ui_ScreenStart.c
     images/ui_img_659722341.c
     images/ui_img_gear_wheel_100pix_gray_png.c
     images/ui_img_info_100pix_gray_png.c
-    images/ui_img_166440904.c)
+    images/ui_img_166440904.c
+    images/ui_img_1668993521.c
+    images/ui_img_borange_png.c)
 
 add_library(ui ${SOURCES})
