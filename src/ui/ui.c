@@ -160,6 +160,7 @@ lv_obj_t * ui_LabelNO;
 
 // SCREEN: ui_ScreenPlayground
 void ui_ScreenPlayground_screen_init(void);
+void ui_event_ScreenPlayground(lv_event_t * e);
 lv_obj_t * ui_ScreenPlayground;
 lv_obj_t * ui_TopScreenPlay;
 lv_obj_t * ui_LabelTopScreenPlayground;
@@ -525,6 +526,14 @@ void ui_event_ButtonNO(lv_event_t * e)
     if(event_code == LV_EVENT_CLICKED) {
         _ui_flag_modify(ui_PanelCancel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
         AddQRCode(e);
+    }
+}
+void ui_event_ScreenPlayground(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        ButtonPayNow0Click(e);
     }
 }
 void ui_event_ButtonGotoScreenPlay1(lv_event_t * e)

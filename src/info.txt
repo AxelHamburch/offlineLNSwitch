@@ -5,6 +5,15 @@ style setting (main) Gg Color FFA900
 button main
 style setting (main) Gg Color 4D4D4E
 
+hell grau: CFCFD7
+dunkelgrau: 424344
+
+## Short description
+Der offline⚡️Switch ist ein bitcoinSwitch mit einen ESP32-based smart display (made by Sunton). Er hat als Basis die offline Payment Funktionalität des bitcoinVend oder auch des LNPoS. Der offline⚡️Switch selbst muss nicht online sein, sondern nur der Zahlende. Der offline⚡️Switch kann auf dem Display einen QR-Code (LNURL) anzeigen lassen. Das Wallet des Nutzer scannt den QR-Code und verbindet sich online mit dem LNbits Server. Wurde die Invoice bezahlt, bekommt der Nutzer ein "Geheimnis" als vierstellige PIN angezeigt. Wird dieses PIN über das Touch Panel in den offline⚡️Switch eingegeben, dann ist die Bedingung für ihn erfüllt und der Switch wird geschaltet. Die Konfiguration kann außschließlich über das Display erfolgen, was die technischen Anforderungen erheblich reduziert. Als Grundlage für diese Smart Display Projekt konnte ich auf den BliksemBier von Pieter zurückgreifen..
+## Relay connection
+Der Anschluss eine Relais ist ziemlich einfach. Das mitgelieferte Kabel reicht aus. Die klassichen 5V Relais haben üblicherweise drei Anschlüsse. Versorgung (5V), Ground (GND) und Signal (Sig). Der ESP32 liefert zwar nur 3,3V, aber für die meinsten 5V Relais sollte das  reichen. Angeschlossen wird wie im Bild gezeigt 3,3V (rot), GND (schwarz) und das Signal IO21 (gelb). Die blaue Leitung für IO22 bleibt hier ungenutzt.
+
+
 
 Beispiele:
 

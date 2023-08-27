@@ -9,8 +9,6 @@ void ui_ScreenPlayground_screen_init(void)
 {
     ui_ScreenPlayground = lv_obj_create(NULL);
     lv_obj_clear_flag(ui_ScreenPlayground, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_set_style_bg_color(ui_ScreenPlayground, lv_color_hex(0x424344), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ui_ScreenPlayground, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_TopScreenPlay = lv_obj_create(ui_ScreenPlayground);
     lv_obj_set_width(ui_TopScreenPlay, lv_pct(100));
@@ -39,8 +37,6 @@ void ui_ScreenPlayground_screen_init(void)
     lv_obj_set_align(ui_ButtonGotoScreenPlay1, LV_ALIGN_CENTER);
     lv_obj_add_flag(ui_ButtonGotoScreenPlay1, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
     lv_obj_clear_flag(ui_ButtonGotoScreenPlay1, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_set_style_bg_color(ui_ButtonGotoScreenPlay1, lv_color_hex(0xCFCFD7), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ui_ButtonGotoScreenPlay1, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_ButtonGotoScreenPlay1, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_LabelButtonGotoScreenPlay1 = lv_label_create(ui_ButtonGotoScreenPlay1);
@@ -125,28 +121,25 @@ void ui_ScreenPlayground_screen_init(void)
     ui_LabelTestDummy = lv_label_create(ui_ScreenPlayground);
     lv_obj_set_width(ui_LabelTestDummy, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_LabelTestDummy, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(ui_LabelTestDummy, -71);
+    lv_obj_set_x(ui_LabelTestDummy, -43);
     lv_obj_set_y(ui_LabelTestDummy, -50);
     lv_obj_set_align(ui_LabelTestDummy, LV_ALIGN_CENTER);
     lv_label_set_text(ui_LabelTestDummy, "1 sat Test\nDummy:");
-    lv_obj_set_style_text_color(ui_LabelTestDummy, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_opa(ui_LabelTestDummy, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_LabelTestDummy, &lv_font_montserrat_18, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_ImageTestButtonGreen = lv_img_create(ui_ScreenPlayground);
-    lv_img_set_src(ui_ImageTestButtonGreen, &ui_img_1668993521);
-    lv_obj_set_width(ui_ImageTestButtonGreen, LV_SIZE_CONTENT);   /// 112
-    lv_obj_set_height(ui_ImageTestButtonGreen, LV_SIZE_CONTENT);    /// 112
+    lv_img_set_src(ui_ImageTestButtonGreen, &ui_img_buttontestgreen_png);
+    lv_obj_set_width(ui_ImageTestButtonGreen, LV_SIZE_CONTENT);   /// 72
+    lv_obj_set_height(ui_ImageTestButtonGreen, LV_SIZE_CONTENT);    /// 72
     lv_obj_set_x(ui_ImageTestButtonGreen, 40);
     lv_obj_set_y(ui_ImageTestButtonGreen, -50);
     lv_obj_set_align(ui_ImageTestButtonGreen, LV_ALIGN_CENTER);
-    lv_obj_add_flag(ui_ImageTestButtonGreen, LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
+    lv_obj_add_flag(ui_ImageTestButtonGreen, LV_OBJ_FLAG_HIDDEN | LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
     lv_obj_clear_flag(ui_ImageTestButtonGreen, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
 
     ui_ImageTestButtonOrange = lv_img_create(ui_ScreenPlayground);
-    lv_img_set_src(ui_ImageTestButtonOrange, &ui_img_borange_png);
-    lv_obj_set_width(ui_ImageTestButtonOrange, LV_SIZE_CONTENT);   /// 112
-    lv_obj_set_height(ui_ImageTestButtonOrange, LV_SIZE_CONTENT);    /// 112
+    lv_img_set_src(ui_ImageTestButtonOrange, &ui_img_buttontestorange_png);
+    lv_obj_set_width(ui_ImageTestButtonOrange, LV_SIZE_CONTENT);   /// 72
+    lv_obj_set_height(ui_ImageTestButtonOrange, LV_SIZE_CONTENT);    /// 72
     lv_obj_set_x(ui_ImageTestButtonOrange, 40);
     lv_obj_set_y(ui_ImageTestButtonOrange, -50);
     lv_obj_set_align(ui_ImageTestButtonOrange, LV_ALIGN_CENTER);
@@ -158,5 +151,6 @@ void ui_ScreenPlayground_screen_init(void)
     lv_obj_add_event_cb(ui_ButtonLEDblue, ui_event_ButtonLEDblue, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_ButtonLEDred, ui_event_ButtonLEDred, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_ImageTestButtonOrange, ui_event_ImageTestButtonOrange, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_ScreenPlayground, ui_event_ScreenPlayground, LV_EVENT_ALL, NULL);
 
 }

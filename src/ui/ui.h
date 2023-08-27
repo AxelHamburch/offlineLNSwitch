@@ -161,6 +161,7 @@ extern lv_obj_t * ui_ButtonNO;
 extern lv_obj_t * ui_LabelNO;
 // SCREEN: ui_ScreenPlayground
 void ui_ScreenPlayground_screen_init(void);
+void ui_event_ScreenPlayground(lv_event_t * e);
 extern lv_obj_t * ui_ScreenPlayground;
 extern lv_obj_t * ui_TopScreenPlay;
 extern lv_obj_t * ui_LabelTopScreenPlayground;
@@ -188,8 +189,8 @@ LV_IMG_DECLARE(ui_img_659722341);    // assets\offlineBitcoinSwitch-gruen.png
 LV_IMG_DECLARE(ui_img_gear_wheel_100pix_gray_png);    // assets\gear wheel 100pix gray.png
 LV_IMG_DECLARE(ui_img_info_100pix_gray_png);    // assets\info 100pix gray.png
 LV_IMG_DECLARE(ui_img_166440904);    // assets\qr-code-slagschaduw-274x274-v2.png
-LV_IMG_DECLARE(ui_img_1668993521);    // assets\bgrün.png
-LV_IMG_DECLARE(ui_img_borange_png);    // assets\borange.png
+LV_IMG_DECLARE(ui_img_buttontestgreen_png);    // assets\ButtonTestGreen.png
+LV_IMG_DECLARE(ui_img_buttontestorange_png);    // assets\ButtonTestOrange.png
 
 void ui_init(void);
 
