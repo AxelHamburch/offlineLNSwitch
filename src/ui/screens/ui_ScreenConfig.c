@@ -121,7 +121,7 @@ void ui_ScreenConfig_screen_init(void)
     ui_LabelConfigCurrency = lv_label_create(ui_ScreenConfig);
     lv_obj_set_width(ui_LabelConfigCurrency, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_LabelConfigCurrency, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(ui_LabelConfigCurrency, -104);
+    lv_obj_set_x(ui_LabelConfigCurrency, -105);
     lv_obj_set_y(ui_LabelConfigCurrency, -7);
     lv_obj_set_align(ui_LabelConfigCurrency, LV_ALIGN_CENTER);
     lv_label_set_text(ui_LabelConfigCurrency, "Currency:");
@@ -146,7 +146,7 @@ void ui_ScreenConfig_screen_init(void)
     ui_LabelConfigPin = lv_label_create(ui_ScreenConfig);
     lv_obj_set_width(ui_LabelConfigPin, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_LabelConfigPin, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(ui_LabelConfigPin, -100);
+    lv_obj_set_x(ui_LabelConfigPin, -105);
     lv_obj_set_y(ui_LabelConfigPin, 40);
     lv_obj_set_align(ui_LabelConfigPin, LV_ALIGN_CENTER);
     lv_label_set_text(ui_LabelConfigPin, "ConfigPIN:");

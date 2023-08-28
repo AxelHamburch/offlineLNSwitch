@@ -26,52 +26,52 @@ void ui_ScreenStart_screen_init(void)
     lv_obj_set_width(ui_LabelTopScreenStart, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_LabelTopScreenStart, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_LabelTopScreenStart, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_LabelTopScreenStart, "ScreenStart");
+    lv_label_set_text(ui_LabelTopScreenStart, "Welcome");
     lv_obj_set_style_text_color(ui_LabelTopScreenStart, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_LabelTopScreenStart, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_LabelTopScreenStart, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_ImageBitcoinSwitchOrange = lv_img_create(ui_ScreenStart);
-    lv_img_set_src(ui_ImageBitcoinSwitchOrange, &ui_img_1304959654);
+    lv_img_set_src(ui_ImageBitcoinSwitchOrange, &ui_img_buttonorange_png);
     lv_obj_set_width(ui_ImageBitcoinSwitchOrange, LV_SIZE_CONTENT);   /// 236
     lv_obj_set_height(ui_ImageBitcoinSwitchOrange, LV_SIZE_CONTENT);    /// 300
-    lv_obj_set_x(ui_ImageBitcoinSwitchOrange, 0);
-    lv_obj_set_y(ui_ImageBitcoinSwitchOrange, -5);
+    lv_obj_set_x(ui_ImageBitcoinSwitchOrange, 10);
+    lv_obj_set_y(ui_ImageBitcoinSwitchOrange, -15);
     lv_obj_set_align(ui_ImageBitcoinSwitchOrange, LV_ALIGN_CENTER);
     lv_obj_add_flag(ui_ImageBitcoinSwitchOrange, LV_OBJ_FLAG_CLICKABLE | LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
     lv_obj_clear_flag(ui_ImageBitcoinSwitchOrange, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
 
     ui_ImageBitcoinSwitchGreen = lv_img_create(ui_ScreenStart);
-    lv_img_set_src(ui_ImageBitcoinSwitchGreen, &ui_img_659722341);
+    lv_img_set_src(ui_ImageBitcoinSwitchGreen, &ui_img_buttongreen_png);
     lv_obj_set_width(ui_ImageBitcoinSwitchGreen, LV_SIZE_CONTENT);   /// 236
     lv_obj_set_height(ui_ImageBitcoinSwitchGreen, LV_SIZE_CONTENT);    /// 300
-    lv_obj_set_x(ui_ImageBitcoinSwitchGreen, 0);
-    lv_obj_set_y(ui_ImageBitcoinSwitchGreen, -5);
+    lv_obj_set_x(ui_ImageBitcoinSwitchGreen, 10);
+    lv_obj_set_y(ui_ImageBitcoinSwitchGreen, -15);
     lv_obj_set_align(ui_ImageBitcoinSwitchGreen, LV_ALIGN_CENTER);
     lv_obj_add_flag(ui_ImageBitcoinSwitchGreen, LV_OBJ_FLAG_HIDDEN | LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
     lv_obj_clear_flag(ui_ImageBitcoinSwitchGreen, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
 
-    ui_Image9 = lv_img_create(ui_ScreenStart);
-    lv_img_set_src(ui_Image9, &ui_img_gear_wheel_100pix_gray_png);
-    lv_obj_set_width(ui_Image9, LV_SIZE_CONTENT);   /// 100
-    lv_obj_set_height(ui_Image9, LV_SIZE_CONTENT);    /// 101
-    lv_obj_set_x(ui_Image9, -123);
-    lv_obj_set_y(ui_Image9, 205);
-    lv_obj_set_align(ui_Image9, LV_ALIGN_CENTER);
-    lv_obj_add_flag(ui_Image9, LV_OBJ_FLAG_CLICKABLE | LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
-    lv_obj_clear_flag(ui_Image9, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_img_set_zoom(ui_Image9, 121);
+    ui_ImageSettings = lv_img_create(ui_ScreenStart);
+    lv_img_set_src(ui_ImageSettings, &ui_img_gear_wheel_100pix_gray_png);
+    lv_obj_set_width(ui_ImageSettings, LV_SIZE_CONTENT);   /// 100
+    lv_obj_set_height(ui_ImageSettings, LV_SIZE_CONTENT);    /// 101
+    lv_obj_set_x(ui_ImageSettings, -123);
+    lv_obj_set_y(ui_ImageSettings, 205);
+    lv_obj_set_align(ui_ImageSettings, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_ImageSettings, LV_OBJ_FLAG_CLICKABLE | LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
+    lv_obj_clear_flag(ui_ImageSettings, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_img_set_zoom(ui_ImageSettings, 121);
 
-    ui_Image10 = lv_img_create(ui_ScreenStart);
-    lv_img_set_src(ui_Image10, &ui_img_info_100pix_gray_png);
-    lv_obj_set_width(ui_Image10, LV_SIZE_CONTENT);   /// 100
-    lv_obj_set_height(ui_Image10, LV_SIZE_CONTENT);    /// 100
-    lv_obj_set_x(ui_Image10, 123);
-    lv_obj_set_y(ui_Image10, 205);
-    lv_obj_set_align(ui_Image10, LV_ALIGN_CENTER);
-    lv_obj_add_flag(ui_Image10, LV_OBJ_FLAG_CLICKABLE | LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
-    lv_obj_clear_flag(ui_Image10, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_img_set_zoom(ui_Image10, 121);
+    ui_ImageInfo = lv_img_create(ui_ScreenStart);
+    lv_img_set_src(ui_ImageInfo, &ui_img_info_100pix_gray_png);
+    lv_obj_set_width(ui_ImageInfo, LV_SIZE_CONTENT);   /// 100
+    lv_obj_set_height(ui_ImageInfo, LV_SIZE_CONTENT);    /// 100
+    lv_obj_set_x(ui_ImageInfo, 123);
+    lv_obj_set_y(ui_ImageInfo, 205);
+    lv_obj_set_align(ui_ImageInfo, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_ImageInfo, LV_OBJ_FLAG_CLICKABLE | LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
+    lv_obj_clear_flag(ui_ImageInfo, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_img_set_zoom(ui_ImageInfo, 121);
 
     ui_PanelPINConfig = lv_obj_create(ui_ScreenStart);
     lv_obj_set_width(ui_PanelPINConfig, 279);
@@ -133,8 +133,8 @@ void ui_ScreenStart_screen_init(void)
     lv_obj_add_flag(ui_KeyboardPINConfig, LV_OBJ_FLAG_HIDDEN);     /// Flags
 
     lv_obj_add_event_cb(ui_ImageBitcoinSwitchOrange, ui_event_ImageBitcoinSwitchOrange, LV_EVENT_ALL, NULL);
-    lv_obj_add_event_cb(ui_Image9, ui_event_Image9, LV_EVENT_ALL, NULL);
-    lv_obj_add_event_cb(ui_Image10, ui_event_Image10, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_ImageSettings, ui_event_ImageSettings, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_ImageInfo, ui_event_ImageInfo, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_ButtonCancelPIN, ui_event_ButtonCancelPIN, LV_EVENT_ALL, NULL);
     lv_keyboard_set_textarea(ui_KeyboardPINConfig, ui_TextAreaPINConfig);
 

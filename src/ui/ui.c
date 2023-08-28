@@ -16,10 +16,10 @@ lv_obj_t * ui_LabelTopScreenStart;
 void ui_event_ImageBitcoinSwitchOrange(lv_event_t * e);
 lv_obj_t * ui_ImageBitcoinSwitchOrange;
 lv_obj_t * ui_ImageBitcoinSwitchGreen;
-void ui_event_Image9(lv_event_t * e);
-lv_obj_t * ui_Image9;
-void ui_event_Image10(lv_event_t * e);
-lv_obj_t * ui_Image10;
+void ui_event_ImageSettings(lv_event_t * e);
+lv_obj_t * ui_ImageSettings;
+void ui_event_ImageInfo(lv_event_t * e);
+lv_obj_t * ui_ImageInfo;
 lv_obj_t * ui_PanelPINConfig;
 lv_obj_t * ui_LabelEnterConfigPin;
 lv_obj_t * ui_TextAreaPINConfig;
@@ -177,7 +177,17 @@ lv_obj_t * ui_LabelButtonLEDblue;
 void ui_event_ButtonLEDred(lv_event_t * e);
 lv_obj_t * ui_ButtonLEDred;
 lv_obj_t * ui_LabelButtonLEDred;
-lv_obj_t * ui_LabelTestDummy;
+
+// SCREEN: ui_ScreenInfo
+void ui_ScreenInfo_screen_init(void);
+void ui_event_ScreenInfo(lv_event_t * e);
+lv_obj_t * ui_ScreenInfo;
+lv_obj_t * ui_TopScreenPlay1;
+lv_obj_t * ui_LabelTopScreenPlayground1;
+void ui_event_ButtonGotoScreenPlay2(lv_event_t * e);
+lv_obj_t * ui_ButtonGotoScreenPlay2;
+lv_obj_t * ui_LabelButtonGotoScreenPlay2;
+lv_obj_t * ui_LabelTestPayment;
 lv_obj_t * ui_ImageTestButtonGreen;
 void ui_event_ImageTestButtonOrange(lv_event_t * e);
 lv_obj_t * ui_ImageTestButtonOrange;
@@ -203,7 +213,7 @@ void ui_event_ImageBitcoinSwitchOrange(lv_event_t * e)
         ButtonPayNow1Click(e);
     }
 }
-void ui_event_Image9(lv_event_t * e)
+void ui_event_ImageSettings(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
@@ -212,12 +222,12 @@ void ui_event_Image9(lv_event_t * e)
         _ui_flag_modify(ui_KeyboardPINConfig, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
     }
 }
-void ui_event_Image10(lv_event_t * e)
+void ui_event_ImageInfo(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
     if(event_code == LV_EVENT_CLICKED) {
-        _ui_screen_change(&ui_ScreenPlayground, LV_SCR_LOAD_ANIM_NONE, 500, 0, &ui_ScreenPlayground_screen_init);
+        _ui_screen_change(&ui_ScreenInfo, LV_SCR_LOAD_ANIM_NONE, 500, 0, &ui_ScreenInfo_screen_init);
     }
 }
 void ui_event_ButtonCancelPIN(lv_event_t * e)
@@ -568,6 +578,22 @@ void ui_event_ButtonLEDred(lv_event_t * e)
         ButtonLEDredClicked(e);
     }
 }
+void ui_event_ScreenInfo(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        ButtonPayNow0Click(e);
+    }
+}
+void ui_event_ButtonGotoScreenPlay2(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        _ui_screen_change(&ui_ScreenStart, LV_SCR_LOAD_ANIM_NONE, 100, 100, &ui_ScreenStart_screen_init);
+    }
+}
 void ui_event_ImageTestButtonOrange(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
@@ -591,6 +617,7 @@ void ui_init(void)
     ui_ScreenSwitch1_screen_init();
     ui_ScreenScan_screen_init();
     ui_ScreenPlayground_screen_init();
+    ui_ScreenInfo_screen_init();
     ui____initial_actions0 = lv_obj_create(NULL);
     lv_disp_load_scr(ui_ScreenStart);
 }

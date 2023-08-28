@@ -26,7 +26,7 @@ void ui_ScreenScan_screen_init(void)
     lv_obj_set_width(ui_LabelTopScreenScan, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_LabelTopScreenScan, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_LabelTopScreenScan, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_LabelTopScreenScan, "ScreenScan");
+    lv_label_set_text(ui_LabelTopScreenScan, "Scan to pay");
     lv_obj_set_style_text_color(ui_LabelTopScreenScan, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_LabelTopScreenScan, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_LabelTopScreenScan, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);

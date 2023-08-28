@@ -26,7 +26,7 @@ void ui_ScreenSwitch1_screen_init(void)
     lv_obj_set_width(ui_LabelTopScreenSwitch2, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_LabelTopScreenSwitch2, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_LabelTopScreenSwitch2, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_LabelTopScreenSwitch2, "Set up switch 1");
+    lv_label_set_text(ui_LabelTopScreenSwitch2, "Set up switch");
     lv_obj_set_style_text_color(ui_LabelTopScreenSwitch2, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_LabelTopScreenSwitch2, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_LabelTopScreenSwitch2, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -34,10 +34,10 @@ void ui_ScreenSwitch1_screen_init(void)
     ui_LabelSwitch1 = lv_label_create(ui_ScreenSwitch1);
     lv_obj_set_width(ui_LabelSwitch1, LV_SIZE_CONTENT);   /// -95
     lv_obj_set_height(ui_LabelSwitch1, LV_SIZE_CONTENT);    /// 3
-    lv_obj_set_x(ui_LabelSwitch1, -104);
-    lv_obj_set_y(ui_LabelSwitch1, -158);
+    lv_obj_set_x(ui_LabelSwitch1, -105);
+    lv_obj_set_y(ui_LabelSwitch1, -164);
     lv_obj_set_align(ui_LabelSwitch1, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_LabelSwitch1, "Switch 1");
+    lv_label_set_text(ui_LabelSwitch1, "Switch");
     lv_obj_set_style_text_color(ui_LabelSwitch1, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_LabelSwitch1, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_decor(ui_LabelSwitch1, LV_TEXT_DECOR_UNDERLINE, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -77,7 +77,7 @@ void ui_ScreenSwitch1_screen_init(void)
     lv_obj_set_x(ui_LabelTestRelay1, -1);
     lv_obj_set_y(ui_LabelTestRelay1, 0);
     lv_obj_set_align(ui_LabelTestRelay1, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_LabelTestRelay1, "Switch 1");
+    lv_label_set_text(ui_LabelTestRelay1, "Switch");
     lv_obj_set_style_text_color(ui_LabelTestRelay1, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_LabelTestRelay1, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_LabelTestRelay1, &lv_font_montserrat_18, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -132,7 +132,7 @@ void ui_ScreenSwitch1_screen_init(void)
     ui_LabelSwitchTime1 = lv_label_create(ui_ScreenSwitch1);
     lv_obj_set_width(ui_LabelSwitchTime1, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_LabelSwitchTime1, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(ui_LabelSwitchTime1, -103);
+    lv_obj_set_x(ui_LabelSwitchTime1, -105);
     lv_obj_set_y(ui_LabelSwitchTime1, -46);
     lv_obj_set_align(ui_LabelSwitchTime1, LV_ALIGN_CENTER);
     lv_label_set_text(ui_LabelSwitchTime1, "Time:");
@@ -142,7 +142,7 @@ void ui_ScreenSwitch1_screen_init(void)
     ui_LabelSwitchRelay1 = lv_label_create(ui_ScreenSwitch1);
     lv_obj_set_width(ui_LabelSwitchRelay1, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_LabelSwitchRelay1, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(ui_LabelSwitchRelay1, -103);
+    lv_obj_set_x(ui_LabelSwitchRelay1, -105);
     lv_obj_set_y(ui_LabelSwitchRelay1, -7);
     lv_obj_set_align(ui_LabelSwitchRelay1, LV_ALIGN_CENTER);
     lv_label_set_text(ui_LabelSwitchRelay1, "GPIO:");

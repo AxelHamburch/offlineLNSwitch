@@ -46,7 +46,6 @@ String config_switchgpio2 = String(22);
 // LNURL, pay und QR-Code variables
 int randomPin;
 int amount = 0; // Preis x100, ohne Dezimalstellen
-int factor = 0;
 // String lnurlVendProdNames = "";
 // String lnurlVendProdAmounts = ""; // Preis mit zwei Dezimalstellen und Punkt als Trennzeichen
 // String lnurlVendProdPins = "";
@@ -61,6 +60,13 @@ bool bThankYou = false;
 bool bToManyAttempts = false;
 int itemtopay = 0;
 bool bOneCycle = false;
+time_t start_time;       // Timer übergeordnet bekannt geben
+time_t current_time;     // Timer übergeordnet bekannt geben
+int timer_duration = 1;  // Timerdauer in Sekunden
+time_t start_time2;      // Timer übergeordnet bekannt geben
+time_t current_time2;    // Timer übergeordnet bekannt geben
+int timer_duration2 = 1; // Timerdauer in Sekunden
+bool zeit1 = false;
 
 // defines for the config file
 #define DEVICE_CFG_HOST "lnbitshost"
@@ -72,13 +78,13 @@ bool bOneCycle = false;
 #define DEVICE_SWITCH_PRICE_1 "switchprice1"
 #define DEVICE_SWITCH_TIME_1 "switchtime1"
 #define DEVICE_SWITCH_GPIO_1 "switchgpio1"
-    /*
-    #define DEVICE_SWITCH_NAME_2 "switchname2"
-    #define DEVICE_SWITCH_PRICE_2 "switchprice2"
-    #define DEVICE_SWITCH_TIME_2 "switchtime2"
-    #define DEVICE_SWITCH_GPIO_2 "switchgpio2"
-    */
-    ;
+/*
+#define DEVICE_SWITCH_NAME_2 "switchname2"
+#define DEVICE_SWITCH_PRICE_2 "switchprice2"
+#define DEVICE_SWITCH_TIME_2 "switchtime2"
+#define DEVICE_SWITCH_GPIO_2 "switchgpio2"
+*/
+;
 // create QR code object
 lv_obj_t *ui_QrcodeLnurl = NULL;
 
@@ -385,39 +391,52 @@ void payNow(int item)
 {
   Serial.println("payNow()");
   itemtopay = item;
-
   if (config_lnbitshost != "")
   {
-
-    if (config_devicecurrency == "sat")
-    {
-      factor = 1;
-    }
-    else
-    {
-      factor = 100;
-    }
     if (itemtopay == 0)
     {
-      selection = "1satTestDummy";
+      selection = "Test payment";
       amount = 1;
-      price = 1;
+      if (config_devicecurrency == "sat")
+      {
+        price = 1;
+      }
+      else
+      {
+        price = 0.01;
+      }
       qrShowCode();
       return;
     }
     else if (itemtopay == 1)
     {
       selection = config_switchname1;
-      amount = config_switchprice1.toFloat() * factor;
-      price = config_switchprice1.toFloat();
+      if (config_devicecurrency == "sat")
+      {
+        amount = config_switchprice1.toFloat();
+        price = config_switchprice1.toInt();
+      }
+      else
+      {
+        amount = config_switchprice1.toFloat() * 100;
+        price = config_switchprice1.toFloat();
+      }
       qrShowCode();
       return;
     }
     else if (itemtopay == 2)
     {
       selection = config_switchname2;
-      amount = config_switchprice2.toFloat() * factor;
-      price = config_switchprice2.toFloat();
+      if (config_devicecurrency == "sat")
+      {
+        amount = config_switchprice2.toFloat();
+        price = config_switchprice2.toInt();
+      }
+      else
+      {
+        amount = config_switchprice2.toFloat() * 100;
+        price = config_switchprice2.toFloat();
+      }
       qrShowCode();
       return;
     }
@@ -443,17 +462,20 @@ void thankYou()
 
   if (itemtopay == 0)
   {
-    lv_disp_load_scr(ui_ScreenPlayground);
-    lv_obj_add_flag(ui_ImageTestButtonOrange, LV_OBJ_FLAG_HIDDEN);
-    lv_obj_clear_flag(ui_ImageTestButtonGreen, LV_OBJ_FLAG_HIDDEN);
+    lv_disp_load_scr(ui_ScreenInfo);
+    lv_obj_add_flag(ui_ImageTestButtonGreen, LV_OBJ_FLAG_HIDDEN);
+    lv_obj_clear_flag(ui_ImageTestButtonOrange, LV_OBJ_FLAG_HIDDEN);
   }
   else
   {
     lv_disp_load_scr(ui_ScreenStart);
-    lv_obj_add_flag(ui_ImageBitcoinSwitchOrange, LV_OBJ_FLAG_HIDDEN);
-    lv_obj_clear_flag(ui_ImageBitcoinSwitchGreen, LV_OBJ_FLAG_HIDDEN);
+    lv_obj_add_flag(ui_ImageBitcoinSwitchGreen, LV_OBJ_FLAG_HIDDEN);
+    lv_obj_clear_flag(ui_ImageBitcoinSwitchOrange, LV_OBJ_FLAG_HIDDEN);
   }
-
+  lv_timer_handler();
+  Serial.println("Setze Timer");
+  time(&start_time); // Aktuelle Zeit als Start Zeit setzten
+  Serial.println("start_time: " + start_time);
   bThankYou = true;
 }
 
@@ -555,6 +577,7 @@ void loop()
       lv_textarea_set_text(ui_TextAreaPINConfig, "");
     }
   }
+
   // Wenn mindestens ein Zeichen und Prüf-Taste
   if (strlen(lv_textarea_get_text(ui_TextAreaPINConfig)) == 0)
   {
@@ -564,47 +587,97 @@ void loop()
   // Bezahlt, Funktion abarbeiten
   if (bThankYou)
   {
-    if (bOneCycle)
+    time(&current_time);                                      // Aktuelle Zeit abrufen
+    if (difftime(current_time, start_time) >= timer_duration) // Abfrage ob die Zeit abgelaufen ist
     {
+      bool zeit1;
+      if (zeit1 == false)
+      {
+        Serial.println("Die Zeit 1 ist abgelaufen");
+        zeit1 = true;
+      }
+      if (bOneCycle)
+      {
+        time(&current_time2);
+        if (difftime(current_time2, start_time2) >= timer_duration2) // Abfrage ob die Zeit abgelaufen ist
+        {
+          Serial.println("Die Zeit2 ist abgelaufen");
+          Serial.println("Cycle durch, Start Update");
+          if (itemtopay == 0)
+          {
+            Serial.println("1 sat Test Dummy action");
+            delay(1000);
+            lv_obj_add_flag(ui_ImageTestButtonGreen, LV_OBJ_FLAG_HIDDEN);    // Button verstecken
+            lv_obj_clear_flag(ui_ImageTestButtonOrange, LV_OBJ_FLAG_HIDDEN); // Button sichtbar machen
+            Serial.println("Setzte Orange");
+          }
+          else if (itemtopay == 1)
+          {
+            // lv_disp_load_scr(ui_ScreenStart);
+            int gpioOut1 = config_switchgpio1.toInt();
+            Serial.printf("Serve product on GPIO: %d for %d ms\n", gpioOut1, config_switchtime1.toInt());
+            statusGPIOOut1 = !statusGPIOOut1; // Toggle the value
+            digitalWrite(gpioOut1, statusGPIOOut1);
+            delay(config_switchtime1.toInt());
+            statusGPIOOut1 = !statusGPIOOut1; // Toggle the value
+            lv_obj_add_flag(ui_ImageBitcoinSwitchGreen, LV_OBJ_FLAG_HIDDEN);
+            lv_obj_clear_flag(ui_ImageBitcoinSwitchOrange, LV_OBJ_FLAG_HIDDEN);
+          }
+          else if (itemtopay == 2)
+          {
+            lv_disp_load_scr(ui_ScreenStart);
+            int gpioOut2 = config_switchgpio2.toInt();
+            Serial.printf("Serve product on GPIO: %d for %d ms\n", gpioOut2, config_switchtime2.toInt());
+            statusGPIOOut1 = !statusGPIOOut1; // Toggle the value
+            digitalWrite(gpioOut2, statusGPIOOut2);
+            delay(config_switchtime2.toInt());
+            statusGPIOOut2 = !statusGPIOOut2; // Toggle the value
+            lv_obj_add_flag(ui_ImageBitcoinSwitchGreen, LV_OBJ_FLAG_HIDDEN);
+            lv_obj_clear_flag(ui_ImageBitcoinSwitchOrange, LV_OBJ_FLAG_HIDDEN);
+          }
+          lv_label_set_text(ui_LabelPINValue, "ENTER PIN");
+          Serial.println("Thank You zurückgesetzt");
+          bThankYou = false;
+          bOneCycle = false;
+          zeit1 = false;
+          return;
+        }
+        return;
+        /*
+        else
+        {
+          Serial.println("Die Zeit 2 noch nicht abgelaufen = grün");
+          delay(200);
+          return;
+        }
+        */
+      }
+
+      // Setzt Button aktiv
       if (itemtopay == 0)
       {
-        Serial.println("1 sat Test Dummy action");
-        delay(2000);
-        lv_obj_add_flag(ui_ImageTestButtonGreen, LV_OBJ_FLAG_HIDDEN);
-        lv_obj_clear_flag(ui_ImageTestButtonOrange, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_add_flag(ui_ImageTestButtonOrange, LV_OBJ_FLAG_HIDDEN);  // Button verstecken
+        lv_obj_clear_flag(ui_ImageTestButtonGreen, LV_OBJ_FLAG_HIDDEN); // Button sichtbar machen
+        Serial.println("Setzte Grün");
       }
-      else if (itemtopay == 1)
+      else
       {
-        // lv_disp_load_scr(ui_ScreenStart);
-        int gpioOut1 = config_switchgpio1.toInt();
-        Serial.printf("Serve product on GPIO: %d for %d ms\n", gpioOut1, config_switchtime1.toInt());
-        statusGPIOOut1 = !statusGPIOOut1; // Toggle the value
-        digitalWrite(gpioOut1, statusGPIOOut1);
-        delay(config_switchtime1.toInt());
-        statusGPIOOut1 = !statusGPIOOut1; // Toggle the value
-        lv_obj_add_flag(ui_ImageBitcoinSwitchGreen, LV_OBJ_FLAG_HIDDEN);
-        lv_obj_clear_flag(ui_ImageBitcoinSwitchOrange, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_add_flag(ui_ImageBitcoinSwitchOrange, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_clear_flag(ui_ImageBitcoinSwitchGreen, LV_OBJ_FLAG_HIDDEN);
       }
-      else if (itemtopay == 2)
-      {
-        lv_disp_load_scr(ui_ScreenStart);
-        int gpioOut2 = config_switchgpio2.toInt();
-        Serial.printf("Serve product on GPIO: %d for %d ms\n", gpioOut2, config_switchtime2.toInt());
-        statusGPIOOut1 = !statusGPIOOut1; // Toggle the value
-        digitalWrite(gpioOut2, statusGPIOOut2);
-        delay(config_switchtime2.toInt());
-        statusGPIOOut2 = !statusGPIOOut2; // Toggle the value
-        lv_obj_add_flag(ui_ImageBitcoinSwitchGreen, LV_OBJ_FLAG_HIDDEN);
-        lv_obj_clear_flag(ui_ImageBitcoinSwitchOrange, LV_OBJ_FLAG_HIDDEN);
-      }
-      lv_label_set_text(ui_LabelPINValue, "ENTER PIN");
-      Serial.println("Thank You zurückgesetzt");
-      bThankYou = false;
-      bOneCycle = false;
+      // Setzte beim ersten durch das Bit
+      bOneCycle = true;
+      lv_timer_handler();
+      Serial.println("Das Cycle Bit wird gesetzt");
+      time(&start_time2);
     }
     else
     {
-      bOneCycle = true;
+      // tue nix solange die Zeit nicht abgelaufen ist
+      Serial.println("Die Zeit 1 noch nicht abgelaufen = orange");
+      Serial.println("start_time: " + start_time);
+      Serial.println("current_time: " + current_time);
+      delay(200);
     }
   }
 
