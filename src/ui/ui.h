@@ -80,8 +80,7 @@ void ui_ScreenConfig_screen_init(void);
 extern lv_obj_t * ui_ScreenConfig;
 extern lv_obj_t * ui_TopScreenConfig;
 extern lv_obj_t * ui_LabelTopScreenConfig;
-extern lv_obj_t * ui_LabelFWText;
-extern lv_obj_t * ui_LabelFWVersion;
+extern lv_obj_t * ui_LabelGeneralSetup;
 void ui_event_TextAreaConfigHost(lv_event_t * e);
 extern lv_obj_t * ui_TextAreaConfigHost;
 extern lv_obj_t * ui_LabelConfigHost;
@@ -103,6 +102,9 @@ extern lv_obj_t * ui_LabelButtonConfigSave;
 void ui_event_ButtonGoSwitches(lv_event_t * e);
 extern lv_obj_t * ui_ButtonGoSwitches;
 extern lv_obj_t * ui_LabelButtonGoSwitches;
+void ui_event_ButtonGoPlayground(lv_event_t * e);
+extern lv_obj_t * ui_ButtonGoPlayground;
+extern lv_obj_t * ui_LabelButtonGoPlayground;
 void ui_event_KeyboardText(lv_event_t * e);
 extern lv_obj_t * ui_KeyboardText;
 void ui_event_KeyboardNumber(lv_event_t * e);
@@ -136,6 +138,8 @@ void ui_event_KeyboardSwitchText1(lv_event_t * e);
 extern lv_obj_t * ui_KeyboardSwitchText1;
 void ui_event_KeyboardSwitchNumber1(lv_event_t * e);
 extern lv_obj_t * ui_KeyboardSwitchNumber1;
+void ui_event_KeyboardSwitchText2(lv_event_t * e);
+extern lv_obj_t * ui_KeyboardSwitchText2;
 // SCREEN: ui_ScreenScan
 void ui_ScreenScan_screen_init(void);
 extern lv_obj_t * ui_ScreenScan;
@@ -180,17 +184,21 @@ extern lv_obj_t * ui_ButtonLEDred;
 extern lv_obj_t * ui_LabelButtonLEDred;
 // SCREEN: ui_ScreenInfo
 void ui_ScreenInfo_screen_init(void);
-void ui_event_ScreenInfo(lv_event_t * e);
 extern lv_obj_t * ui_ScreenInfo;
 extern lv_obj_t * ui_TopScreenPlay1;
 extern lv_obj_t * ui_LabelTopScreenPlayground1;
 void ui_event_ButtonGotoScreenPlay2(lv_event_t * e);
 extern lv_obj_t * ui_ButtonGotoScreenPlay2;
 extern lv_obj_t * ui_LabelButtonGotoScreenPlay2;
+extern lv_obj_t * ui_LabelInfo;
 extern lv_obj_t * ui_LabelTestPayment;
+extern lv_obj_t * ui_LabelMoreInfos;
 extern lv_obj_t * ui_ImageTestButtonGreen;
 void ui_event_ImageTestButtonOrange(lv_event_t * e);
 extern lv_obj_t * ui_ImageTestButtonOrange;
+extern lv_obj_t * ui_Image1;
+extern lv_obj_t * ui_LabelInfoFirmware;
+extern lv_obj_t * ui_LabelFWVersion;
 extern lv_obj_t * ui____initial_actions0;
 
 LV_IMG_DECLARE(ui_img_buttonorange_png);    // assets\ButtonOrange.png
@@ -200,6 +208,7 @@ LV_IMG_DECLARE(ui_img_info_100pix_gray_png);    // assets\info 100pix gray.png
 LV_IMG_DECLARE(ui_img_166440904);    // assets\qr-code-slagschaduw-274x274-v2.png
 LV_IMG_DECLARE(ui_img_buttontestgreen_png);    // assets\ButtonTestGreen.png
 LV_IMG_DECLARE(ui_img_buttontestorange_png);    // assets\ButtonTestOrange.png
+LV_IMG_DECLARE(ui_img_ereignishorizont_xyz_128_png);    // assets\ereignishorizont.xyz 128.png
 
 void ui_init(void);
 

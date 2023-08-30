@@ -9,7 +9,7 @@ void ui_ScreenPIN_screen_init(void)
 {
     ui_ScreenPIN = lv_obj_create(NULL);
     lv_obj_clear_flag(ui_ScreenPIN, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_set_style_bg_color(ui_ScreenPIN, lv_color_hex(0x424344), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(ui_ScreenPIN, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_ScreenPIN, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_TopScreenPIN = lv_obj_create(ui_ScreenPIN);
@@ -18,7 +18,7 @@ void ui_ScreenPIN_screen_init(void)
     lv_obj_set_align(ui_TopScreenPIN, LV_ALIGN_TOP_MID);
     lv_obj_clear_flag(ui_TopScreenPIN, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
     lv_obj_set_style_radius(ui_TopScreenPIN, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_color(ui_TopScreenPIN, lv_color_hex(0x828284), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(ui_TopScreenPIN, lv_color_hex(0xCFCFD7), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_TopScreenPIN, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_border_side(ui_TopScreenPIN, LV_BORDER_SIDE_NONE, LV_PART_MAIN | LV_STATE_DEFAULT);
 
@@ -27,9 +27,11 @@ void ui_ScreenPIN_screen_init(void)
     lv_obj_set_height(ui_LabelTopScreenPIN, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_LabelTopScreenPIN, LV_ALIGN_CENTER);
     lv_label_set_text(ui_LabelTopScreenPIN, "Enter SECRET PIN");
-    lv_obj_set_style_text_color(ui_LabelTopScreenPIN, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui_LabelTopScreenPIN, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_LabelTopScreenPIN, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_LabelTopScreenPIN, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_letter_space(ui_LabelTopScreenPIN, 3, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_line_space(ui_LabelTopScreenPIN, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_LabelTopScreenPIN, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_LabelPINValue = lv_label_create(ui_ScreenPIN);
     lv_obj_set_width(ui_LabelPINValue, LV_SIZE_CONTENT);   /// 1
@@ -38,7 +40,7 @@ void ui_ScreenPIN_screen_init(void)
     lv_obj_set_y(ui_LabelPINValue, 70);
     lv_obj_set_align(ui_LabelPINValue, LV_ALIGN_TOP_MID);
     lv_label_set_text(ui_LabelPINValue, "ENTER PIN");
-    lv_obj_set_style_text_color(ui_LabelPINValue, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui_LabelPINValue, lv_color_hex(0xCFCFD7), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_LabelPINValue, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_letter_space(ui_LabelPINValue, 10, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_line_space(ui_LabelPINValue, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -60,7 +62,7 @@ void ui_ScreenPIN_screen_init(void)
     lv_obj_set_height(ui_LabelButtonPin1, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_LabelButtonPin1, LV_ALIGN_CENTER);
     lv_label_set_text(ui_LabelButtonPin1, "1");
-    lv_obj_set_style_text_color(ui_LabelButtonPin1, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui_LabelButtonPin1, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_LabelButtonPin1, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_LabelButtonPin1, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
 
@@ -80,7 +82,7 @@ void ui_ScreenPIN_screen_init(void)
     lv_obj_set_height(ui_LabelButtonPin2, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_LabelButtonPin2, LV_ALIGN_CENTER);
     lv_label_set_text(ui_LabelButtonPin2, "2");
-    lv_obj_set_style_text_color(ui_LabelButtonPin2, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui_LabelButtonPin2, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_LabelButtonPin2, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_LabelButtonPin2, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
 
@@ -100,7 +102,7 @@ void ui_ScreenPIN_screen_init(void)
     lv_obj_set_height(ui_LabelButtonPin3, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_LabelButtonPin3, LV_ALIGN_CENTER);
     lv_label_set_text(ui_LabelButtonPin3, "3");
-    lv_obj_set_style_text_color(ui_LabelButtonPin3, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui_LabelButtonPin3, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_LabelButtonPin3, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_LabelButtonPin3, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
 
@@ -120,7 +122,7 @@ void ui_ScreenPIN_screen_init(void)
     lv_obj_set_height(ui_LabelButtonPin4, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_LabelButtonPin4, LV_ALIGN_CENTER);
     lv_label_set_text(ui_LabelButtonPin4, "4");
-    lv_obj_set_style_text_color(ui_LabelButtonPin4, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui_LabelButtonPin4, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_LabelButtonPin4, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_LabelButtonPin4, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
 
@@ -140,7 +142,7 @@ void ui_ScreenPIN_screen_init(void)
     lv_obj_set_height(ui_LabelButtonPin5, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_LabelButtonPin5, LV_ALIGN_CENTER);
     lv_label_set_text(ui_LabelButtonPin5, "5");
-    lv_obj_set_style_text_color(ui_LabelButtonPin5, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui_LabelButtonPin5, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_LabelButtonPin5, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_LabelButtonPin5, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
 
@@ -160,7 +162,7 @@ void ui_ScreenPIN_screen_init(void)
     lv_obj_set_height(ui_LabelButtonPin6, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_LabelButtonPin6, LV_ALIGN_CENTER);
     lv_label_set_text(ui_LabelButtonPin6, "6");
-    lv_obj_set_style_text_color(ui_LabelButtonPin6, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui_LabelButtonPin6, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_LabelButtonPin6, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_LabelButtonPin6, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
 
@@ -180,7 +182,7 @@ void ui_ScreenPIN_screen_init(void)
     lv_obj_set_height(ui_LabelButtonPin7, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_LabelButtonPin7, LV_ALIGN_CENTER);
     lv_label_set_text(ui_LabelButtonPin7, "7");
-    lv_obj_set_style_text_color(ui_LabelButtonPin7, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui_LabelButtonPin7, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_LabelButtonPin7, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_LabelButtonPin7, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
 
@@ -200,7 +202,7 @@ void ui_ScreenPIN_screen_init(void)
     lv_obj_set_height(ui_LabelButtonPin8, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_LabelButtonPin8, LV_ALIGN_CENTER);
     lv_label_set_text(ui_LabelButtonPin8, "8");
-    lv_obj_set_style_text_color(ui_LabelButtonPin8, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui_LabelButtonPin8, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_LabelButtonPin8, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_LabelButtonPin8, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
 
@@ -220,7 +222,7 @@ void ui_ScreenPIN_screen_init(void)
     lv_obj_set_height(ui_LabelButtonPin9, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_LabelButtonPin9, LV_ALIGN_CENTER);
     lv_label_set_text(ui_LabelButtonPin9, "9");
-    lv_obj_set_style_text_color(ui_LabelButtonPin9, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui_LabelButtonPin9, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_LabelButtonPin9, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_LabelButtonPin9, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
 
@@ -240,7 +242,7 @@ void ui_ScreenPIN_screen_init(void)
     lv_obj_set_height(ui_LabelButtonPin10, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_LabelButtonPin10, LV_ALIGN_CENTER);
     lv_label_set_text(ui_LabelButtonPin10, "0");
-    lv_obj_set_style_text_color(ui_LabelButtonPin10, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui_LabelButtonPin10, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_LabelButtonPin10, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_LabelButtonPin10, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
 
@@ -260,7 +262,7 @@ void ui_ScreenPIN_screen_init(void)
     lv_obj_set_height(ui_LabelButtonPin11, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_LabelButtonPin11, LV_ALIGN_CENTER);
     lv_label_set_text(ui_LabelButtonPin11, "C");
-    lv_obj_set_style_text_color(ui_LabelButtonPin11, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui_LabelButtonPin11, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_LabelButtonPin11, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_LabelButtonPin11, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
 
@@ -282,7 +284,7 @@ void ui_ScreenPIN_screen_init(void)
     lv_obj_set_y(ui_LabelButtonPin12, 0);
     lv_obj_set_align(ui_LabelButtonPin12, LV_ALIGN_CENTER);
     lv_label_set_text(ui_LabelButtonPin12, "OK");
-    lv_obj_set_style_text_color(ui_LabelButtonPin12, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui_LabelButtonPin12, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_LabelButtonPin12, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_LabelButtonPin12, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
 

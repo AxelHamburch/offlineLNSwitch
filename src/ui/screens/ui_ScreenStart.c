@@ -9,7 +9,7 @@ void ui_ScreenStart_screen_init(void)
 {
     ui_ScreenStart = lv_obj_create(NULL);
     lv_obj_clear_flag(ui_ScreenStart, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_set_style_bg_color(ui_ScreenStart, lv_color_hex(0x424344), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(ui_ScreenStart, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_ScreenStart, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_TopScreenStart = lv_obj_create(ui_ScreenStart);
@@ -18,18 +18,22 @@ void ui_ScreenStart_screen_init(void)
     lv_obj_set_align(ui_TopScreenStart, LV_ALIGN_TOP_MID);
     lv_obj_clear_flag(ui_TopScreenStart, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
     lv_obj_set_style_radius(ui_TopScreenStart, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_color(ui_TopScreenStart, lv_color_hex(0x828284), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(ui_TopScreenStart, lv_color_hex(0xCFCFD7), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_TopScreenStart, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_border_side(ui_TopScreenStart, LV_BORDER_SIDE_NONE, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui_TopScreenStart, lv_color_hex(0x808080), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui_TopScreenStart, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_LabelTopScreenStart = lv_label_create(ui_TopScreenStart);
     lv_obj_set_width(ui_LabelTopScreenStart, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_LabelTopScreenStart, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_LabelTopScreenStart, LV_ALIGN_CENTER);
     lv_label_set_text(ui_LabelTopScreenStart, "Welcome");
-    lv_obj_set_style_text_color(ui_LabelTopScreenStart, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui_LabelTopScreenStart, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_LabelTopScreenStart, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_LabelTopScreenStart, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_letter_space(ui_LabelTopScreenStart, 3, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_line_space(ui_LabelTopScreenStart, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_LabelTopScreenStart, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_ImageBitcoinSwitchOrange = lv_img_create(ui_ScreenStart);
     lv_img_set_src(ui_ImageBitcoinSwitchOrange, &ui_img_buttonorange_png);
@@ -76,12 +80,12 @@ void ui_ScreenStart_screen_init(void)
     ui_PanelPINConfig = lv_obj_create(ui_ScreenStart);
     lv_obj_set_width(ui_PanelPINConfig, 279);
     lv_obj_set_height(ui_PanelPINConfig, 164);
-    lv_obj_set_x(ui_PanelPINConfig, -2);
-    lv_obj_set_y(ui_PanelPINConfig, -8);
+    lv_obj_set_x(ui_PanelPINConfig, 0);
+    lv_obj_set_y(ui_PanelPINConfig, -40);
     lv_obj_set_align(ui_PanelPINConfig, LV_ALIGN_CENTER);
     lv_obj_add_flag(ui_PanelPINConfig, LV_OBJ_FLAG_HIDDEN);     /// Flags
     lv_obj_clear_flag(ui_PanelPINConfig, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_set_style_bg_color(ui_PanelPINConfig, lv_color_hex(0xFFBA00), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(ui_PanelPINConfig, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_PanelPINConfig, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_LabelEnterConfigPin = lv_label_create(ui_PanelPINConfig);
@@ -91,6 +95,8 @@ void ui_ScreenStart_screen_init(void)
     lv_obj_set_y(ui_LabelEnterConfigPin, -53);
     lv_obj_set_align(ui_LabelEnterConfigPin, LV_ALIGN_CENTER);
     lv_label_set_text(ui_LabelEnterConfigPin, "Enter Config PIN");
+    lv_obj_set_style_text_color(ui_LabelEnterConfigPin, lv_color_hex(0xCFCFD7), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui_LabelEnterConfigPin, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_LabelEnterConfigPin, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_TextAreaPINConfig = lv_textarea_create(ui_PanelPINConfig);
@@ -121,7 +127,7 @@ void ui_ScreenStart_screen_init(void)
     lv_obj_set_height(ui_LabelCancelPIN, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_LabelCancelPIN, LV_ALIGN_CENTER);
     lv_label_set_text(ui_LabelCancelPIN, "Cancel");
-    lv_obj_set_style_text_color(ui_LabelCancelPIN, lv_color_hex(0x424344), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui_LabelCancelPIN, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_LabelCancelPIN, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_LabelCancelPIN, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
 

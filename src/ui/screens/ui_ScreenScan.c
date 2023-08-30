@@ -9,7 +9,7 @@ void ui_ScreenScan_screen_init(void)
 {
     ui_ScreenScan = lv_obj_create(NULL);
     lv_obj_clear_flag(ui_ScreenScan, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_set_style_bg_color(ui_ScreenScan, lv_color_hex(0x424344), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(ui_ScreenScan, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_ScreenScan, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_TopScreenScan = lv_obj_create(ui_ScreenScan);
@@ -18,7 +18,7 @@ void ui_ScreenScan_screen_init(void)
     lv_obj_set_align(ui_TopScreenScan, LV_ALIGN_TOP_MID);
     lv_obj_clear_flag(ui_TopScreenScan, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
     lv_obj_set_style_radius(ui_TopScreenScan, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_color(ui_TopScreenScan, lv_color_hex(0x828284), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(ui_TopScreenScan, lv_color_hex(0xCFCFD7), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_TopScreenScan, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_border_side(ui_TopScreenScan, LV_BORDER_SIDE_NONE, LV_PART_MAIN | LV_STATE_DEFAULT);
 
@@ -27,9 +27,11 @@ void ui_ScreenScan_screen_init(void)
     lv_obj_set_height(ui_LabelTopScreenScan, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_LabelTopScreenScan, LV_ALIGN_CENTER);
     lv_label_set_text(ui_LabelTopScreenScan, "Scan to pay");
-    lv_obj_set_style_text_color(ui_LabelTopScreenScan, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui_LabelTopScreenScan, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_LabelTopScreenScan, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_LabelTopScreenScan, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_letter_space(ui_LabelTopScreenScan, 3, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_line_space(ui_LabelTopScreenScan, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_LabelTopScreenScan, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_ButtonGotoScreenPin2 = lv_btn_create(ui_ScreenScan);
     lv_obj_set_width(ui_ButtonGotoScreenPin2, 176);
@@ -50,7 +52,7 @@ void ui_ScreenScan_screen_init(void)
     lv_obj_set_height(ui_LabelButtonGotoScreenPin2, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_LabelButtonGotoScreenPin2, LV_ALIGN_CENTER);
     lv_label_set_text(ui_LabelButtonGotoScreenPin2, "Enter SECRET");
-    lv_obj_set_style_text_color(ui_LabelButtonGotoScreenPin2, lv_color_hex(0x2C2D2D), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui_LabelButtonGotoScreenPin2, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_LabelButtonGotoScreenPin2, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_LabelButtonGotoScreenPin2, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
 
@@ -71,7 +73,7 @@ void ui_ScreenScan_screen_init(void)
     lv_obj_set_height(ui_LabelButtonGotoScreenPin3, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_LabelButtonGotoScreenPin3, LV_ALIGN_CENTER);
     lv_label_set_text(ui_LabelButtonGotoScreenPin3, "Cancel");
-    lv_obj_set_style_text_color(ui_LabelButtonGotoScreenPin3, lv_color_hex(0x424344), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui_LabelButtonGotoScreenPin3, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_LabelButtonGotoScreenPin3, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_LabelButtonGotoScreenPin3, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
 
@@ -92,7 +94,7 @@ void ui_ScreenScan_screen_init(void)
     lv_obj_set_y(ui_LabelProduct, -173);
     lv_obj_set_align(ui_LabelProduct, LV_ALIGN_CENTER);
     lv_label_set_text(ui_LabelProduct, "-Product-");
-    lv_obj_set_style_text_color(ui_LabelProduct, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui_LabelProduct, lv_color_hex(0xCFCFD7), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_LabelProduct, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_LabelProduct, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
 
@@ -103,7 +105,7 @@ void ui_ScreenScan_screen_init(void)
     lv_obj_set_y(ui_LabelPriceAndCurrency, -149);
     lv_obj_set_align(ui_LabelPriceAndCurrency, LV_ALIGN_CENTER);
     lv_label_set_text(ui_LabelPriceAndCurrency, "-PriceAndCurrency-");
-    lv_obj_set_style_text_color(ui_LabelPriceAndCurrency, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui_LabelPriceAndCurrency, lv_color_hex(0xCFCFD7), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_LabelPriceAndCurrency, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_LabelPriceAndCurrency, &lv_font_montserrat_18, LV_PART_MAIN | LV_STATE_DEFAULT);
 
@@ -114,16 +116,18 @@ void ui_ScreenScan_screen_init(void)
     lv_obj_set_y(ui_Label2, 148);
     lv_obj_set_align(ui_Label2, LV_ALIGN_CENTER);
     lv_label_set_text(ui_Label2, "Scan, pay and check SECRET");
-    lv_obj_set_style_text_color(ui_Label2, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui_Label2, lv_color_hex(0xCFCFD7), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_Label2, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_PanelCancel = lv_obj_create(ui_ScreenScan);
     lv_obj_set_width(ui_PanelCancel, 301);
     lv_obj_set_height(ui_PanelCancel, 200);
+    lv_obj_set_x(ui_PanelCancel, 0);
+    lv_obj_set_y(ui_PanelCancel, -1);
     lv_obj_set_align(ui_PanelCancel, LV_ALIGN_CENTER);
     lv_obj_add_flag(ui_PanelCancel, LV_OBJ_FLAG_HIDDEN);     /// Flags
     lv_obj_clear_flag(ui_PanelCancel, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_set_style_bg_color(ui_PanelCancel, lv_color_hex(0xFFBA00), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(ui_PanelCancel, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_PanelCancel, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_LabelPanelCancel = lv_label_create(ui_PanelCancel);
@@ -133,6 +137,8 @@ void ui_ScreenScan_screen_init(void)
     lv_obj_set_y(ui_LabelPanelCancel, -36);
     lv_obj_set_align(ui_LabelPanelCancel, LV_ALIGN_CENTER);
     lv_label_set_text(ui_LabelPanelCancel, "Are you sure?\nIf you have already paid\nyou will lose the money?");
+    lv_obj_set_style_text_color(ui_LabelPanelCancel, lv_color_hex(0xCFCFD7), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui_LabelPanelCancel, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_align(ui_LabelPanelCancel, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_LabelPanelCancel, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
 
@@ -152,7 +158,7 @@ void ui_ScreenScan_screen_init(void)
     lv_obj_set_height(ui_LabelYES, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_LabelYES, LV_ALIGN_CENTER);
     lv_label_set_text(ui_LabelYES, "YES");
-    lv_obj_set_style_text_color(ui_LabelYES, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui_LabelYES, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_LabelYES, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_LabelYES, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
 
@@ -174,7 +180,7 @@ void ui_ScreenScan_screen_init(void)
     lv_obj_set_y(ui_LabelNO, 1);
     lv_obj_set_align(ui_LabelNO, LV_ALIGN_CENTER);
     lv_label_set_text(ui_LabelNO, "NO");
-    lv_obj_set_style_text_color(ui_LabelNO, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui_LabelNO, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_LabelNO, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_align(ui_LabelNO, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_LabelNO, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);

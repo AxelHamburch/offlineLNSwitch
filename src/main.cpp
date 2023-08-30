@@ -473,7 +473,7 @@ void thankYou()
     lv_obj_clear_flag(ui_ImageBitcoinSwitchOrange, LV_OBJ_FLAG_HIDDEN);
   }
   lv_timer_handler();
-  Serial.println("Setze Timer");
+  Serial.println("Delay to start");
   time(&start_time); // Aktuelle Zeit als Start Zeit setzten
   Serial.println("start_time: " + start_time);
   bThankYou = true;
@@ -593,7 +593,7 @@ void loop()
       bool zeit1;
       if (zeit1 == false)
       {
-        Serial.println("Die Zeit 1 ist abgelaufen");
+        // Serial.println("Die Zeit 1 ist abgelaufen");
         zeit1 = true;
       }
       if (bOneCycle)
@@ -601,15 +601,15 @@ void loop()
         time(&current_time2);
         if (difftime(current_time2, start_time2) >= timer_duration2) // Abfrage ob die Zeit abgelaufen ist
         {
-          Serial.println("Die Zeit2 ist abgelaufen");
-          Serial.println("Cycle durch, Start Update");
+          // Serial.println("Die Zeit2 ist abgelaufen");
+          // Serial.println("Cycle durch, Start Update");
+          Serial.println("Start Switch");
           if (itemtopay == 0)
           {
-            Serial.println("1 sat Test Dummy action");
+            // Serial.println("1 sat Test Dummy action");
             delay(1000);
             lv_obj_add_flag(ui_ImageTestButtonGreen, LV_OBJ_FLAG_HIDDEN);    // Button verstecken
             lv_obj_clear_flag(ui_ImageTestButtonOrange, LV_OBJ_FLAG_HIDDEN); // Button sichtbar machen
-            Serial.println("Setzte Orange");
           }
           else if (itemtopay == 1)
           {
@@ -636,7 +636,8 @@ void loop()
             lv_obj_clear_flag(ui_ImageBitcoinSwitchOrange, LV_OBJ_FLAG_HIDDEN);
           }
           lv_label_set_text(ui_LabelPINValue, "ENTER PIN");
-          Serial.println("Thank You zurückgesetzt");
+          Serial.println("Button orange");
+          Serial.println("Payment finished");
           bThankYou = false;
           bOneCycle = false;
           zeit1 = false;
@@ -658,7 +659,6 @@ void loop()
       {
         lv_obj_add_flag(ui_ImageTestButtonOrange, LV_OBJ_FLAG_HIDDEN);  // Button verstecken
         lv_obj_clear_flag(ui_ImageTestButtonGreen, LV_OBJ_FLAG_HIDDEN); // Button sichtbar machen
-        Serial.println("Setzte Grün");
       }
       else
       {
@@ -668,7 +668,7 @@ void loop()
       // Setzte beim ersten durch das Bit
       bOneCycle = true;
       lv_timer_handler();
-      Serial.println("Das Cycle Bit wird gesetzt");
+      Serial.println("Button green");
       time(&start_time2);
     }
     else

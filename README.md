@@ -2,7 +2,7 @@
 
 <!--- ![offline⚡️Switch](./images/main.jpg)--->
 
-<img src="./images/main.jpg" width="700"> 
+<img src="./images/main.jpg" width="700">
 
 ## Short description
 
@@ -10,8 +10,8 @@ The offline⚡️Switch is a bitcoinSwitch with an ESP32-based smart display (ma
 
 ## Requirements
 
-- Sunton 3.5" 320*480 Smart Display ESP32-3248S035 (with R for Resistive or C for Capacitive Touch Screen (C = recommended))
-- 5V Relay (High-Level-Triggered)
+- Sunton 3.5" 320\*480 Smart Display ESP32-3248S035 (with R for Resistive or C for Capacitive (recommended) Touch Screen [e.g.](https://de.aliexpress.com/item/1005004632953455.html)
+- 5V Relay (High-Level-Triggered) [e.g](https://www.az-delivery.de/products/relais-modul)
 
 ## Relay connection
 
@@ -71,7 +71,7 @@ After flashing the firmware and starting the Satoffee for the first time it will
 
 ## Aknowledgement
 
-This project use bits from 
+This project use bits from
 [BliksemBier](https://github.com/pieterjm/BliksemBier) from Pieter and
 [bitcoinVend](https://github.com/arcbtc/bitcoinVend) from Ben Arc
 

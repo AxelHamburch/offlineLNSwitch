@@ -76,8 +76,7 @@ void ui_ScreenConfig_screen_init(void);
 lv_obj_t * ui_ScreenConfig;
 lv_obj_t * ui_TopScreenConfig;
 lv_obj_t * ui_LabelTopScreenConfig;
-lv_obj_t * ui_LabelFWText;
-lv_obj_t * ui_LabelFWVersion;
+lv_obj_t * ui_LabelGeneralSetup;
 void ui_event_TextAreaConfigHost(lv_event_t * e);
 lv_obj_t * ui_TextAreaConfigHost;
 lv_obj_t * ui_LabelConfigHost;
@@ -99,6 +98,9 @@ lv_obj_t * ui_LabelButtonConfigSave;
 void ui_event_ButtonGoSwitches(lv_event_t * e);
 lv_obj_t * ui_ButtonGoSwitches;
 lv_obj_t * ui_LabelButtonGoSwitches;
+void ui_event_ButtonGoPlayground(lv_event_t * e);
+lv_obj_t * ui_ButtonGoPlayground;
+lv_obj_t * ui_LabelButtonGoPlayground;
 void ui_event_KeyboardText(lv_event_t * e);
 lv_obj_t * ui_KeyboardText;
 void ui_event_KeyboardNumber(lv_event_t * e);
@@ -133,6 +135,8 @@ void ui_event_KeyboardSwitchText1(lv_event_t * e);
 lv_obj_t * ui_KeyboardSwitchText1;
 void ui_event_KeyboardSwitchNumber1(lv_event_t * e);
 lv_obj_t * ui_KeyboardSwitchNumber1;
+void ui_event_KeyboardSwitchText2(lv_event_t * e);
+lv_obj_t * ui_KeyboardSwitchText2;
 
 // SCREEN: ui_ScreenScan
 void ui_ScreenScan_screen_init(void);
@@ -180,18 +184,23 @@ lv_obj_t * ui_LabelButtonLEDred;
 
 // SCREEN: ui_ScreenInfo
 void ui_ScreenInfo_screen_init(void);
-void ui_event_ScreenInfo(lv_event_t * e);
 lv_obj_t * ui_ScreenInfo;
 lv_obj_t * ui_TopScreenPlay1;
 lv_obj_t * ui_LabelTopScreenPlayground1;
 void ui_event_ButtonGotoScreenPlay2(lv_event_t * e);
 lv_obj_t * ui_ButtonGotoScreenPlay2;
 lv_obj_t * ui_LabelButtonGotoScreenPlay2;
+lv_obj_t * ui_LabelInfo;
 lv_obj_t * ui_LabelTestPayment;
+lv_obj_t * ui_LabelMoreInfos;
 lv_obj_t * ui_ImageTestButtonGreen;
 void ui_event_ImageTestButtonOrange(lv_event_t * e);
 lv_obj_t * ui_ImageTestButtonOrange;
+lv_obj_t * ui_Image1;
+lv_obj_t * ui_LabelInfoFirmware;
+lv_obj_t * ui_LabelFWVersion;
 lv_obj_t * ui____initial_actions0;
+const lv_img_dsc_t * ui_imgset_ereignishorizont_xyz_[1] = {&ui_img_ereignishorizont_xyz_128_png};
 const lv_img_dsc_t * ui_imgset_1355287214[1] = {&ui_img_166440904};
 
 ///////////////////// TEST LVGL SETTINGS ////////////////////
@@ -406,6 +415,16 @@ void ui_event_ButtonGoSwitches(lv_event_t * e)
         _ui_screen_change(&ui_ScreenSwitch1, LV_SCR_LOAD_ANIM_NONE, 5, 0, &ui_ScreenSwitch1_screen_init);
     }
 }
+void ui_event_ButtonGoPlayground(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        _ui_flag_modify(ui_KeyboardText, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
+        _ui_flag_modify(ui_KeyboardNumber, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
+        _ui_screen_change(&ui_ScreenPlayground, LV_SCR_LOAD_ANIM_NONE, 5, 0, &ui_ScreenPlayground_screen_init);
+    }
+}
 void ui_event_KeyboardText(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
@@ -502,6 +521,14 @@ void ui_event_KeyboardSwitchNumber1(lv_event_t * e)
         _ui_flag_modify(ui_KeyboardSwitchNumber1, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
     }
 }
+void ui_event_KeyboardSwitchText2(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_READY) {
+        _ui_flag_modify(ui_KeyboardSwitchText2, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
+    }
+}
 void ui_event_ButtonGotoScreenPin2(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
@@ -551,7 +578,7 @@ void ui_event_ButtonGotoScreenPlay1(lv_event_t * e)
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
     if(event_code == LV_EVENT_CLICKED) {
-        _ui_screen_change(&ui_ScreenStart, LV_SCR_LOAD_ANIM_NONE, 100, 100, &ui_ScreenStart_screen_init);
+        _ui_screen_change(&ui_ScreenConfig, LV_SCR_LOAD_ANIM_NONE, 100, 100, &ui_ScreenConfig_screen_init);
     }
 }
 void ui_event_ButtonLEDgreen(lv_event_t * e)
@@ -576,14 +603,6 @@ void ui_event_ButtonLEDred(lv_event_t * e)
     lv_obj_t * target = lv_event_get_target(e);
     if(event_code == LV_EVENT_CLICKED) {
         ButtonLEDredClicked(e);
-    }
-}
-void ui_event_ScreenInfo(lv_event_t * e)
-{
-    lv_event_code_t event_code = lv_event_get_code(e);
-    lv_obj_t * target = lv_event_get_target(e);
-    if(event_code == LV_EVENT_CLICKED) {
-        ButtonPayNow0Click(e);
     }
 }
 void ui_event_ButtonGotoScreenPlay2(lv_event_t * e)
