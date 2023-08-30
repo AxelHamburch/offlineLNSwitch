@@ -13,19 +13,20 @@ void ui_ScreenStart_screen_init(void);
 lv_obj_t * ui_ScreenStart;
 lv_obj_t * ui_TopScreenStart;
 lv_obj_t * ui_LabelTopScreenStart;
-void ui_event_ButtonGotoScreenPin(lv_event_t * e);
-lv_obj_t * ui_ButtonGotoScreenPin;
-lv_obj_t * ui_LabelButtonGotoScreenPin;
-void ui_event_ButtonGotoScreenPinDirekt(lv_event_t * e);
-lv_obj_t * ui_ButtonGotoScreenPinDirekt;
-lv_obj_t * ui_LabelButtonGotoScreenPinDirekt;
-void ui_event_ButtonGotoScreenPlayground(lv_event_t * e);
-lv_obj_t * ui_ButtonGotoScreenPlayground;
-lv_obj_t * ui_LabelButtonGotoScreenPlayground;
-void ui_event_ButtonPayNow(lv_event_t * e);
-lv_obj_t * ui_ButtonPayNow;
-lv_obj_t * ui_LabelButtonPayNowClick;
-lv_obj_t * ui_Image2;
+void ui_event_ImageBitcoinSwitchOrange(lv_event_t * e);
+lv_obj_t * ui_ImageBitcoinSwitchOrange;
+lv_obj_t * ui_ImageBitcoinSwitchGreen;
+void ui_event_ImageSettings(lv_event_t * e);
+lv_obj_t * ui_ImageSettings;
+void ui_event_ImageInfo(lv_event_t * e);
+lv_obj_t * ui_ImageInfo;
+lv_obj_t * ui_PanelPINConfig;
+lv_obj_t * ui_LabelEnterConfigPin;
+lv_obj_t * ui_TextAreaPINConfig;
+void ui_event_ButtonCancelPIN(lv_event_t * e);
+lv_obj_t * ui_ButtonCancelPIN;
+lv_obj_t * ui_LabelCancelPIN;
+lv_obj_t * ui_KeyboardPINConfig;
 
 // SCREEN: ui_ScreenPIN
 void ui_ScreenPIN_screen_init(void);
@@ -75,8 +76,7 @@ void ui_ScreenConfig_screen_init(void);
 lv_obj_t * ui_ScreenConfig;
 lv_obj_t * ui_TopScreenConfig;
 lv_obj_t * ui_LabelTopScreenConfig;
-lv_obj_t * ui_LabelFWText;
-lv_obj_t * ui_LabelFWVersion;
+lv_obj_t * ui_LabelGeneralSetup;
 void ui_event_TextAreaConfigHost(lv_event_t * e);
 lv_obj_t * ui_TextAreaConfigHost;
 lv_obj_t * ui_LabelConfigHost;
@@ -98,6 +98,9 @@ lv_obj_t * ui_LabelButtonConfigSave;
 void ui_event_ButtonGoSwitches(lv_event_t * e);
 lv_obj_t * ui_ButtonGoSwitches;
 lv_obj_t * ui_LabelButtonGoSwitches;
+void ui_event_ButtonGoPlayground(lv_event_t * e);
+lv_obj_t * ui_ButtonGoPlayground;
+lv_obj_t * ui_LabelButtonGoPlayground;
 void ui_event_KeyboardText(lv_event_t * e);
 lv_obj_t * ui_KeyboardText;
 void ui_event_KeyboardNumber(lv_event_t * e);
@@ -132,6 +135,8 @@ void ui_event_KeyboardSwitchText1(lv_event_t * e);
 lv_obj_t * ui_KeyboardSwitchText1;
 void ui_event_KeyboardSwitchNumber1(lv_event_t * e);
 lv_obj_t * ui_KeyboardSwitchNumber1;
+void ui_event_KeyboardSwitchText2(lv_event_t * e);
+lv_obj_t * ui_KeyboardSwitchText2;
 
 // SCREEN: ui_ScreenScan
 void ui_ScreenScan_screen_init(void);
@@ -156,24 +161,17 @@ lv_obj_t * ui_LabelYES;
 void ui_event_ButtonNO(lv_event_t * e);
 lv_obj_t * ui_ButtonNO;
 lv_obj_t * ui_LabelNO;
-lv_obj_t * ui_PanelSECRET;
-lv_obj_t * ui_LabelSECRETpin;
-void ui_event_ButtonCheckSECRET(lv_event_t * e);
-lv_obj_t * ui_ButtonCheckSECRET;
-lv_obj_t * ui_LabelCheckSECRET;
-void ui_event_TextAreaSECRETpin(lv_event_t * e);
-lv_obj_t * ui_TextAreaSECRETpin;
-lv_obj_t * ui_KeyboardCheckSECRET;
 
 // SCREEN: ui_ScreenPlayground
 void ui_ScreenPlayground_screen_init(void);
+void ui_event_ScreenPlayground(lv_event_t * e);
 lv_obj_t * ui_ScreenPlayground;
 lv_obj_t * ui_TopScreenPlay;
 lv_obj_t * ui_LabelTopScreenPlayground;
 void ui_event_ButtonGotoScreenPlay1(lv_event_t * e);
 lv_obj_t * ui_ButtonGotoScreenPlay1;
 lv_obj_t * ui_LabelButtonGotoScreenPlay1;
-lv_obj_t * ui_Label1;
+lv_obj_t * ui_LabelRGBLED;
 void ui_event_ButtonLEDgreen(lv_event_t * e);
 lv_obj_t * ui_ButtonLEDgreen;
 lv_obj_t * ui_LabelButtonLEDgreen;
@@ -183,9 +181,27 @@ lv_obj_t * ui_LabelButtonLEDblue;
 void ui_event_ButtonLEDred(lv_event_t * e);
 lv_obj_t * ui_ButtonLEDred;
 lv_obj_t * ui_LabelButtonLEDred;
+
+// SCREEN: ui_ScreenInfo
+void ui_ScreenInfo_screen_init(void);
+lv_obj_t * ui_ScreenInfo;
+lv_obj_t * ui_TopScreenPlay1;
+lv_obj_t * ui_LabelTopScreenPlayground1;
+void ui_event_ButtonGotoScreenPlay2(lv_event_t * e);
+lv_obj_t * ui_ButtonGotoScreenPlay2;
+lv_obj_t * ui_LabelButtonGotoScreenPlay2;
+lv_obj_t * ui_LabelInfo;
+lv_obj_t * ui_LabelTestPayment;
+lv_obj_t * ui_LabelMoreInfos;
+lv_obj_t * ui_ImageTestButtonGreen;
+void ui_event_ImageTestButtonOrange(lv_event_t * e);
+lv_obj_t * ui_ImageTestButtonOrange;
+lv_obj_t * ui_Image1;
+lv_obj_t * ui_LabelInfoFirmware;
+lv_obj_t * ui_LabelFWVersion;
 lv_obj_t * ui____initial_actions0;
+const lv_img_dsc_t * ui_imgset_ereignishorizont_xyz_[1] = {&ui_img_ereignishorizont_xyz_128_png};
 const lv_img_dsc_t * ui_imgset_1355287214[1] = {&ui_img_166440904};
-const lv_img_dsc_t * ui_imgset_bsapp[1] = {&ui_img_bsapp256_png};
 
 ///////////////////// TEST LVGL SETTINGS ////////////////////
 #if LV_COLOR_DEPTH != 16
@@ -198,36 +214,38 @@ const lv_img_dsc_t * ui_imgset_bsapp[1] = {&ui_img_bsapp256_png};
 ///////////////////// ANIMATIONS ////////////////////
 
 ///////////////////// FUNCTIONS ////////////////////
-void ui_event_ButtonGotoScreenPin(lv_event_t * e)
-{
-    lv_event_code_t event_code = lv_event_get_code(e);
-    lv_obj_t * target = lv_event_get_target(e);
-    if(event_code == LV_EVENT_CLICKED) {
-        _ui_screen_change(&ui_ScreenPIN, LV_SCR_LOAD_ANIM_NONE, 20, 2, &ui_ScreenPIN_screen_init);
-    }
-}
-void ui_event_ButtonGotoScreenPinDirekt(lv_event_t * e)
-{
-    lv_event_code_t event_code = lv_event_get_code(e);
-    lv_obj_t * target = lv_event_get_target(e);
-    if(event_code == LV_EVENT_CLICKED) {
-        _ui_screen_change(&ui_ScreenConfig, LV_SCR_LOAD_ANIM_NONE, 1, 100, &ui_ScreenConfig_screen_init);
-    }
-}
-void ui_event_ButtonGotoScreenPlayground(lv_event_t * e)
-{
-    lv_event_code_t event_code = lv_event_get_code(e);
-    lv_obj_t * target = lv_event_get_target(e);
-    if(event_code == LV_EVENT_CLICKED) {
-        _ui_screen_change(&ui_ScreenPlayground, LV_SCR_LOAD_ANIM_NONE, 100, 100, &ui_ScreenPlayground_screen_init);
-    }
-}
-void ui_event_ButtonPayNow(lv_event_t * e)
+void ui_event_ImageBitcoinSwitchOrange(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
     if(event_code == LV_EVENT_CLICKED) {
         ButtonPayNow1Click(e);
+    }
+}
+void ui_event_ImageSettings(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        _ui_flag_modify(ui_PanelPINConfig, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
+        _ui_flag_modify(ui_KeyboardPINConfig, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
+    }
+}
+void ui_event_ImageInfo(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        _ui_screen_change(&ui_ScreenInfo, LV_SCR_LOAD_ANIM_NONE, 500, 0, &ui_ScreenInfo_screen_init);
+    }
+}
+void ui_event_ButtonCancelPIN(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        _ui_flag_modify(ui_KeyboardPINConfig, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
+        _ui_flag_modify(ui_PanelPINConfig, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
     }
 }
 void ui_event_ButtonPin1(lv_event_t * e)
@@ -397,6 +415,16 @@ void ui_event_ButtonGoSwitches(lv_event_t * e)
         _ui_screen_change(&ui_ScreenSwitch1, LV_SCR_LOAD_ANIM_NONE, 5, 0, &ui_ScreenSwitch1_screen_init);
     }
 }
+void ui_event_ButtonGoPlayground(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        _ui_flag_modify(ui_KeyboardText, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
+        _ui_flag_modify(ui_KeyboardNumber, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
+        _ui_screen_change(&ui_ScreenPlayground, LV_SCR_LOAD_ANIM_NONE, 5, 0, &ui_ScreenPlayground_screen_init);
+    }
+}
 void ui_event_KeyboardText(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
@@ -493,14 +521,20 @@ void ui_event_KeyboardSwitchNumber1(lv_event_t * e)
         _ui_flag_modify(ui_KeyboardSwitchNumber1, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
     }
 }
+void ui_event_KeyboardSwitchText2(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_READY) {
+        _ui_flag_modify(ui_KeyboardSwitchText2, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
+    }
+}
 void ui_event_ButtonGotoScreenPin2(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
     if(event_code == LV_EVENT_CLICKED) {
-        _ui_flag_modify(ui_PanelSECRET, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
-        HideQRCode(e);
-        _ui_flag_modify(ui_PanelCancel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
+        _ui_screen_change(&ui_ScreenPIN, LV_SCR_LOAD_ANIM_NONE, 500, 0, &ui_ScreenPIN_screen_init);
     }
 }
 void ui_event_ButtonCallPanelCancel(lv_event_t * e)
@@ -510,7 +544,6 @@ void ui_event_ButtonCallPanelCancel(lv_event_t * e)
     if(event_code == LV_EVENT_CLICKED) {
         _ui_flag_modify(ui_PanelCancel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
         HideQRCode(e);
-        _ui_flag_modify(ui_PanelSECRET, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
     }
 }
 void ui_event_ButtonYES(lv_event_t * e)
@@ -532,22 +565,12 @@ void ui_event_ButtonNO(lv_event_t * e)
         AddQRCode(e);
     }
 }
-void ui_event_ButtonCheckSECRET(lv_event_t * e)
+void ui_event_ScreenPlayground(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
     if(event_code == LV_EVENT_CLICKED) {
-        _ui_flag_modify(ui_KeyboardCheckSECRET, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
-        AddQRCode(e);
-        _ui_flag_modify(ui_PanelSECRET, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
-    }
-}
-void ui_event_TextAreaSECRETpin(lv_event_t * e)
-{
-    lv_event_code_t event_code = lv_event_get_code(e);
-    lv_obj_t * target = lv_event_get_target(e);
-    if(event_code == LV_EVENT_CLICKED) {
-        _ui_flag_modify(ui_KeyboardCheckSECRET, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
+        ButtonPayNow0Click(e);
     }
 }
 void ui_event_ButtonGotoScreenPlay1(lv_event_t * e)
@@ -555,7 +578,7 @@ void ui_event_ButtonGotoScreenPlay1(lv_event_t * e)
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
     if(event_code == LV_EVENT_CLICKED) {
-        _ui_screen_change(&ui_ScreenStart, LV_SCR_LOAD_ANIM_NONE, 100, 100, &ui_ScreenStart_screen_init);
+        _ui_screen_change(&ui_ScreenConfig, LV_SCR_LOAD_ANIM_NONE, 100, 100, &ui_ScreenConfig_screen_init);
     }
 }
 void ui_event_ButtonLEDgreen(lv_event_t * e)
@@ -582,6 +605,22 @@ void ui_event_ButtonLEDred(lv_event_t * e)
         ButtonLEDredClicked(e);
     }
 }
+void ui_event_ButtonGotoScreenPlay2(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        _ui_screen_change(&ui_ScreenStart, LV_SCR_LOAD_ANIM_NONE, 100, 100, &ui_ScreenStart_screen_init);
+    }
+}
+void ui_event_ImageTestButtonOrange(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        ButtonPayNow0Click(e);
+    }
+}
 
 ///////////////////// SCREENS ////////////////////
 
@@ -597,6 +636,7 @@ void ui_init(void)
     ui_ScreenSwitch1_screen_init();
     ui_ScreenScan_screen_init();
     ui_ScreenPlayground_screen_init();
+    ui_ScreenInfo_screen_init();
     ui____initial_actions0 = lv_obj_create(NULL);
     lv_disp_load_scr(ui_ScreenStart);
 }

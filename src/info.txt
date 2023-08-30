@@ -1,0 +1,150 @@
+
+
+
+Einer Funktion zusätzliche Informationen übergeben kann man als über Parameter machen aber auch über einen Zeiger der auf eine
+Datenstruktur zeigt machen. Diese Struktur wird oft als "benutzerdefiniertes Datenobjekt" bezeichnet.  Diese Struktur wird oft als
+"benutzerdefiniertes Datenobjekt" bezeichnet. Es ist einfach eine Möglichkeit, zusätzliche Informationen an eine Funktion zu übergeben,
+ohne die Funktionssignatur zu ändern.
+
+
+fuck wo it
+screen about
+style setting (main) Gg Color FFA900
+button main
+style setting (main) Gg Color 4D4D4E
+
+hell grau: CFCFD7
+dunkelgrau: 424344
+
+## Short description
+Der offline⚡️Switch ist ein bitcoinSwitch mit einen ESP32-based smart display (made by Sunton). Er hat als Basis die offline Payment Funktionalität des bitcoinVend oder auch des LNPoS. Der offline⚡️Switch selbst muss nicht online sein, sondern nur der Zahlende. Der offline⚡️Switch kann auf dem Display einen QR-Code (LNURL) anzeigen lassen. Das Wallet des Nutzer scannt den QR-Code und verbindet sich online mit dem LNbits Server. Wurde die Invoice bezahlt, bekommt der Nutzer ein "Geheimnis" als vierstellige PIN angezeigt. Wird dieses PIN über das Touch Panel in den offline⚡️Switch eingegeben, dann ist die Bedingung für ihn erfüllt und der Switch wird geschaltet. Die Konfiguration kann außschließlich über das Display erfolgen, was die technischen Anforderungen erheblich reduziert. Als Grundlage für diese Smart Display Projekt konnte ich auf den BliksemBier von Pieter zurückgreifen..
+## Relay connection
+Der Anschluss eine Relais ist ziemlich einfach. Das mitgelieferte Kabel reicht aus. Die klassichen 5V Relais haben üblicherweise drei Anschlüsse. Versorgung (5V), Ground (GND) und Signal (Sig). Der ESP32 liefert zwar nur 3,3V, aber für die meinsten 5V Relais sollte das  reichen. Angeschlossen wird wie im Bild gezeigt 3,3V (rot), GND (schwarz) und das Signal IO21 (gelb). Die blaue Leitung für IO22 bleibt hier ungenutzt.
+
+## Timer Aufgabe Bild verstecken
+
+#include <lvgl.h>
+
+lv_task_t* my_task;  // die Task
+lv_obj_t* my_image; // das Bild
+
+// Aufgabenfunktion, die bei einem Ereignis aufgerufen wird
+void my_task_handler(lv_task_t* task) {
+    // Zeige das Bild an
+    lv_obj_set_hidden(my_image, false);
+
+    // Erstelle eine Timer-Aufgabe, um das Bild nach einer Sekunde wieder zu verstecken
+    // Das innere ist die Timer-Aufgabe und nach der Klammer kommen die Bedingungen 1000 ms, dann wird die Task ausgeführt
+    lv_task_create([](lv_task_t* task) {
+        lv_obj_set_hidden(my_image, true);
+        lv_task_del(task); // Lösche die Timer-Aufgabe nach dem Ausführen
+    }, 1000, LV_TASK_PRIO_LOWEST, nullptr);
+}
+
+void setup() {
+    // LVGL-Initialisierung hier durchführen
+    
+    // Erstelle ein Bildobjekt
+    my_image = lv_img_create(lv_scr_act(), nullptr);
+    lv_img_set_src(my_image, &my_image_data); // my_image_data ist dein Bild-Array
+    
+    // Erstelle die lv_task mit der my_task_handler-Funktion
+    my_task = lv_task_create(my_task_handler, LV_TASK_DELAY_UNLIMITED, LV_TASK_PRIO_MID, nullptr);
+}
+
+void loop() {
+    // Rufe die lv_task_handler auf, um bereite Aufgaben auszuführen
+    lv_task_handler();
+    
+    // Hier können andere Dinge in der loop ausgeführt werden
+}
+
+
+
+
+Beispiele:
+
+    lv_disp_load_scr(ui_ScreenConfig);	
+    lv_label_set_text(ui_LabelPINValue,"ENTER PIN");
+	lv_textarea_set_text(ui_TextAreaConfigPINRepeat,"");
+	lv_label_set_text(ui_LabelConfigPINMessage,"");
+	lv_obj_add_flag(ui_PanelConfigPIN,LV_OBJ_FLAG_HIDDEN);
+
+    const char *ssid = lv_textarea_get_text(ui_TextAreaConfigSSID);
+	const char *pwd = lv_textarea_get_text(ui_TextAreaWifiPassword);
+	const char *deviceid = lv_textarea_get_text(ui_TextAreaConfigDeviceID);
+	const char *cfgserver = lv_textarea_get_text(ui_TextAreaConfigHost);
+	connectBliksemBier(ssid,pwd,deviceid,cfgserver);
+
+    int32_t servoBack = lv_slider_get_value(ui_SliderConfigServoBack);
+	int32_t servoClosed = lv_slider_get_value(ui_SliderConfigServoClosed);
+	int32_t servoOpen = lv_slider_get_value(ui_SliderConfigServoOpen);
+	int32_t tapDuration = lv_slider_get_value(ui_SliderConfigTapDuration);
+	saveTuning(servoBack,servoClosed,servoOpen,tapDuration);
+
+
+void backToAbout(lv_timer_t * timer)
+{
+  notifyOrderFulfilled();
+  lv_disp_load_scr(ui_ScreenAbout);	  
+}
+
+    lv_timer_t *timer = lv_timer_create(backToAbout, 3000, NULL);
+    lv_obj_add_flag(ui_BarBierProgress,LV_OBJ_FLAG_HIDDEN);
+    lv_timer_set_repeat_count(timer,1);
+
+    void beerStart()
+{
+  int tapstep = tap_duration / 10;
+  lv_timer_t *timer = lv_timer_create(beerTimerProgress, tapstep, NULL);
+  lv_timer_set_repeat_count(timer,10);
+  lv_obj_add_flag(ui_ButtonBierStart,LV_OBJ_FLAG_HIDDEN);
+	lv_obj_clear_flag(ui_BarBierProgress,LV_OBJ_FLAG_HIDDEN);
+	beerOpen();    
+}
+
+
+Color 
+
+Mögliche Fehlermeldung von WoS:
+Error: Failed to decode invoice, please try again => LNbitsHost invalide
+Error: lnurldevice xxxxxx not found on this server => DeviceID invalide
+Error: HMAC is invalide => DeviceKey invalide
+
+TestTouchDisplay TouchWork nach platformio.ini: board_build.partitions = huge_app.csv
+Checking size .pio\build\esp32dev\firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [===       ]  26.8% (used 87776 bytes from 327680 bytes)
+Flash: [====      ]  42.6% (used 1340717 bytes from 3145728 bytes)
+Configuring upload protocol...
+
+
+TestTouchDisplay Main
+Checking size .pio\build\esp32dev\firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [==        ]  24.6% (used 80680 bytes from 327680 bytes)
+Flash: [========  ]  76.1% (used 996829 bytes from 1310720 bytes)
+
+TestTouchDisplay TouchWork
+Retrieving maximum program size .pio\build\esp32dev\firmware.elf
+Checking size .pio\build\esp32dev\firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [===       ]  26.8% (used 87776 bytes from 327680 bytes)
+Error: The program size (1340717 bytes) is greater than maximum allowed (1310720 bytes)
+Flash: [====*** [checkprogsize] Explicit exit, status 1
+======]  102.3% (used 1340717 bytes from 1310720 bytes)
+=================================================== [FAILED] Took 8.31 seconds =
+
+
+BlisemBier
+
+Retrieving maximum program size .pio\build\ESP32_3248S035R\firmware.elf
+Checking size .pio\build\ESP32_3248S035R\firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [===       ]  31.9% (used 104664 bytes from 327680 bytes)
+Flash: [======    ]  59.1% (used 1859617 bytes from 3145728 bytes)
+Configuring upload protocol...
+
+Compressed 1865360 bytes to 939162...
+Wrote 1865360 bytes (939162 compressed) at 0x00010000 in 24.4 seconds (effective 612.5 kbit/s)...
+Hash of data verified.
