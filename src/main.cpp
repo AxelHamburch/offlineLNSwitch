@@ -38,10 +38,14 @@ String config_switchname1 = "";
 String config_switchprice1 = "";
 String config_switchtime1 = "";
 String config_switchgpio1 = String(21);
+String config_statusGPIOOut1 = "0";
+String config_welcome1 = "";
+String config_welcome2 = "";
 String config_switchname2 = "";
 String config_switchprice2 = "";
 String config_switchtime2 = "";
 String config_switchgpio2 = String(22);
+String config_statusGPIOOut2 = "0";
 
 // LNURL, pay und QR-Code variables
 int randomPin;
@@ -78,11 +82,13 @@ bool zeit1 = false;
 #define DEVICE_SWITCH_PRICE_1 "switchprice1"
 #define DEVICE_SWITCH_TIME_1 "switchtime1"
 #define DEVICE_SWITCH_GPIO_1 "switchgpio1"
+#define DEVICE_SWITCH_STATUS_1 "switchstatus1"
 /*
 #define DEVICE_SWITCH_NAME_2 "switchname2"
 #define DEVICE_SWITCH_PRICE_2 "switchprice2"
 #define DEVICE_SWITCH_TIME_2 "switchtime2"
 #define DEVICE_SWITCH_GPIO_2 "switchgpio2"
+#define DEVICE_SWITCH_STATUS_2 "switchstatus2"
 */
 ;
 // create QR code object
@@ -203,6 +209,10 @@ void loadConfig()
         {
           config_switchgpio1 = String(value);
         }
+        else if (name == DEVICE_SWITCH_STATUS_1)
+        {
+          config_statusGPIOOut1 = String(value);
+        }
         /*
         else if (name == DEVICE_SWITCH_NAME_2)
         {
@@ -238,11 +248,13 @@ void editConfig(const char *lnbitshost, const char *deviceid, const char *device
   config_switchprice1 = String(switchprice1);
   config_switchtime1 = String(switchtime1);
   config_switchgpio1 = String(switchgpio1);
+  config_statusGPIOOut1 = String(statusGPIOOut1);
   /*
   config_switchname2 = String(switchname2);
   config_switchprice2 = String(switchprice2);
   config_switchtime2 = String(switchtime2);
   config_switchgpio2 = String(switchgpio2);
+  config_statusGPIOOut2 = String(statusGPIOOut2);
   */
   saveConfig();
 }
@@ -277,6 +289,8 @@ void saveConfig()
   doc[7]["value"] = config_switchtime1;
   doc[8]["name"] = DEVICE_SWITCH_GPIO_1;
   doc[8]["value"] = config_switchgpio1;
+  doc[9]["name"] = DEVICE_SWITCH_STATUS_1;
+  doc[9]["value"] = config_statusGPIOOut1;
   /*
   doc[9]["name"] = DEVICE_SWITCH_NAME_2;
   doc[9]["value"] = config_switchname2;
@@ -505,7 +519,7 @@ void setup()
   // set UI components from config
   loadConfig();
 
-  // set config to display
+  // set config to display and status
   lv_textarea_set_text(ui_TextAreaConfigHost, config_lnbitshost.c_str());
   lv_textarea_set_text(ui_TextAreaConfigDeviceID, config_deviceid.c_str());
   lv_textarea_set_text(ui_TextAreaConfigDeviceKey, config_devicekey.c_str());
@@ -515,6 +529,7 @@ void setup()
   lv_textarea_set_text(ui_TextAreaSwitchPrice1, config_switchprice1.c_str());
   lv_textarea_set_text(ui_TextAreaSwitchTime1, config_switchtime1.c_str());
   lv_textarea_set_text(ui_TextAreaSwitchRelay1, config_switchgpio1.c_str());
+  statusGPIOOut1 = (config_statusGPIOOut1 == "0") ? false : true;
   /*
   lv_textarea_set_text(ui_TextAreaSwitchName2, config_switchname1.c_str());
   lv_textarea_set_text(ui_TextAreaSwitchTime2, config_switchprice1.c_str());
@@ -628,7 +643,7 @@ void loop()
             lv_disp_load_scr(ui_ScreenStart);
             int gpioOut2 = config_switchgpio2.toInt();
             Serial.printf("Serve product on GPIO: %d for %d ms\n", gpioOut2, config_switchtime2.toInt());
-            statusGPIOOut1 = !statusGPIOOut1; // Toggle the value
+            statusGPIOOut2 = !statusGPIOOut2; // Toggle the value
             digitalWrite(gpioOut2, statusGPIOOut2);
             delay(config_switchtime2.toInt());
             statusGPIOOut2 = !statusGPIOOut2; // Toggle the value

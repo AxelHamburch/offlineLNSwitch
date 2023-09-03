@@ -2,9 +2,10 @@ SET(SOURCES screens/ui_ScreenStart.c
     screens/ui_ScreenPIN.c
     screens/ui_ScreenConfig.c
     screens/ui_ScreenSwitch1.c
+    screens/ui_ScreenWelcome.c
     screens/ui_ScreenScan.c
-    screens/ui_ScreenPlayground.c
     screens/ui_ScreenInfo.c
+    screens/ui_ScreenPlayground.c
     ui.c
     components/ui_comp_hook.c
     ui_helpers.c

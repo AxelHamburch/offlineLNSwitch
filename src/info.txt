@@ -1,5 +1,9 @@
 
-
+Fehlermeldung:
+booting..
+loadConfig
+[Error] (2.441, +2441)   lv_mem_realloc: couldn't allocate memory       (in lv_mem.c line #211)
+[Error] (2.442, +1)      lv_mem_buf_get: Asserted at expression: buf != NULL (Out of memory, can't allocate a new buffer (increase your LV_MEM_SIZE/heap size))         (in lv_mem.c line #312)
 
 Einer Funktion zusätzliche Informationen übergeben kann man als über Parameter machen aber auch über einen Zeiger der auf eine
 Datenstruktur zeigt machen. Diese Struktur wird oft als "benutzerdefiniertes Datenobjekt" bezeichnet.  Diese Struktur wird oft als
