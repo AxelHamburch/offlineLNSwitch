@@ -228,32 +228,6 @@ lv_obj_set_style_text_color(ui_LabelButtonGoWelcome, lv_color_hex(0x0D3E6E), LV_
 lv_obj_set_style_text_opa(ui_LabelButtonGoWelcome, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_text_font(ui_LabelButtonGoWelcome, &lv_font_montserrat_20, LV_PART_MAIN| LV_STATE_DEFAULT);
 
-ui_ButtonGoPlayground = lv_btn_create(ui_ScreenConfig);
-lv_obj_set_width( ui_ButtonGoPlayground, 100);
-lv_obj_set_height( ui_ButtonGoPlayground, 22);
-lv_obj_set_x( ui_ButtonGoPlayground, 98 );
-lv_obj_set_y( ui_ButtonGoPlayground, -169 );
-lv_obj_set_align( ui_ButtonGoPlayground, LV_ALIGN_CENTER );
-lv_obj_add_flag( ui_ButtonGoPlayground, LV_OBJ_FLAG_SCROLL_ON_FOCUS );   /// Flags
-lv_obj_clear_flag( ui_ButtonGoPlayground, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
-lv_obj_set_style_bg_color(ui_ButtonGoPlayground, lv_color_hex(0xCFCFD7), LV_PART_MAIN | LV_STATE_DEFAULT );
-lv_obj_set_style_bg_opa(ui_ButtonGoPlayground, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_color(ui_ButtonGoPlayground, lv_color_hex(0x131212), LV_PART_MAIN | LV_STATE_DEFAULT );
-lv_obj_set_style_text_opa(ui_ButtonGoPlayground, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_bg_color(ui_ButtonGoPlayground, lv_color_hex(0x939393), LV_PART_MAIN | LV_STATE_PRESSED );
-lv_obj_set_style_bg_opa(ui_ButtonGoPlayground, 255, LV_PART_MAIN| LV_STATE_PRESSED);
-
-ui_LabelButtonGoPlayground = lv_label_create(ui_ButtonGoPlayground);
-lv_obj_set_width( ui_LabelButtonGoPlayground, LV_SIZE_CONTENT);  /// 1
-lv_obj_set_height( ui_LabelButtonGoPlayground, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_LabelButtonGoPlayground, 1 );
-lv_obj_set_y( ui_LabelButtonGoPlayground, 1 );
-lv_obj_set_align( ui_LabelButtonGoPlayground, LV_ALIGN_CENTER );
-lv_label_set_text(ui_LabelButtonGoPlayground,"Playground");
-lv_obj_set_style_text_color(ui_LabelButtonGoPlayground, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT );
-lv_obj_set_style_text_opa(ui_LabelButtonGoPlayground, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_font(ui_LabelButtonGoPlayground, &lv_font_montserrat_14, LV_PART_MAIN| LV_STATE_DEFAULT);
-
 ui_LabelConfigMoreOptions = lv_label_create(ui_ScreenConfig);
 lv_obj_set_width( ui_LabelConfigMoreOptions, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_LabelConfigMoreOptions, LV_SIZE_CONTENT);   /// 1
@@ -285,7 +259,6 @@ lv_obj_add_event_cb(ui_TextAreaConfigPin, ui_event_TextAreaConfigPin, LV_EVENT_A
 lv_obj_add_event_cb(ui_ButtonConfigSave, ui_event_ButtonConfigSave, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_ButtonGoSwitches, ui_event_ButtonGoSwitches, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_ButtonGoWelcome, ui_event_ButtonGoWelcome, LV_EVENT_ALL, NULL);
-lv_obj_add_event_cb(ui_ButtonGoPlayground, ui_event_ButtonGoPlayground, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_KeyboardText, ui_event_KeyboardText, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_KeyboardNumber, ui_event_KeyboardNumber, LV_EVENT_ALL, NULL);
 

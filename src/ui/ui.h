@@ -105,9 +105,6 @@ extern lv_obj_t *ui_LabelButtonGoSwitches;
 void ui_event_ButtonGoWelcome( lv_event_t * e);
 extern lv_obj_t *ui_ButtonGoWelcome;
 extern lv_obj_t *ui_LabelButtonGoWelcome;
-void ui_event_ButtonGoPlayground( lv_event_t * e);
-extern lv_obj_t *ui_ButtonGoPlayground;
-extern lv_obj_t *ui_LabelButtonGoPlayground;
 extern lv_obj_t *ui_LabelConfigMoreOptions;
 void ui_event_KeyboardText( lv_event_t * e);
 extern lv_obj_t *ui_KeyboardText;
@@ -199,25 +196,6 @@ extern lv_obj_t *ui_ImageTestButtonOrange;
 extern lv_obj_t *ui_Image1;
 extern lv_obj_t *ui_LabelInfoFirmware;
 extern lv_obj_t *ui_LabelFWVersion;
-// SCREEN: ui_ScreenPlayground
-void ui_ScreenPlayground_screen_init(void);
-void ui_event_ScreenPlayground( lv_event_t * e);
-extern lv_obj_t *ui_ScreenPlayground;
-extern lv_obj_t *ui_TopScreenPlay;
-extern lv_obj_t *ui_LabelTopScreenPlayground;
-void ui_event_ButtonGotoScreenPlay1( lv_event_t * e);
-extern lv_obj_t *ui_ButtonGotoScreenPlay1;
-extern lv_obj_t *ui_LabelButtonGotoScreenPlay1;
-extern lv_obj_t *ui_LabelRGBLED;
-void ui_event_ButtonLEDgreen( lv_event_t * e);
-extern lv_obj_t *ui_ButtonLEDgreen;
-extern lv_obj_t *ui_LabelButtonLEDgreen;
-void ui_event_ButtonLEDblue( lv_event_t * e);
-extern lv_obj_t *ui_ButtonLEDblue;
-extern lv_obj_t *ui_LabelButtonLEDblue;
-void ui_event_ButtonLEDred( lv_event_t * e);
-extern lv_obj_t *ui_ButtonLEDred;
-extern lv_obj_t *ui_LabelButtonLEDred;
 extern lv_obj_t *ui____initial_actions0;
 
 LV_IMG_DECLARE( ui_img_buttonorange_png);   // assets\ButtonOrange.png

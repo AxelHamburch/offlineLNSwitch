@@ -41,6 +41,8 @@ String config_switchgpio1 = String(21);
 String config_statusGPIOOut1 = "0";
 String config_welcome1 = "";
 String config_welcome2 = "";
+
+//..
 String config_switchname2 = "";
 String config_switchprice2 = "";
 String config_switchtime2 = "";
@@ -83,6 +85,9 @@ bool zeit1 = false;
 #define DEVICE_SWITCH_TIME_1 "switchtime1"
 #define DEVICE_SWITCH_GPIO_1 "switchgpio1"
 #define DEVICE_SWITCH_STATUS_1 "switchstatus1"
+
+#define DEVICE_WELCOME_1 "welcome1"
+#define DEVICE_WELCOME_2 "welcome2"
 /*
 #define DEVICE_SWITCH_NAME_2 "switchname2"
 #define DEVICE_SWITCH_PRICE_2 "switchprice2"
@@ -213,30 +218,40 @@ void loadConfig()
         {
           config_statusGPIOOut1 = String(value);
         }
+
+        else if (name == DEVICE_WELCOME_1)
+        {
+          config_welcome1 = String(value);
+        }
+        else if (name == DEVICE_WELCOME_2)
+        {
+          config_welcome2 = String(value);
+        }
+
         /*
-        else if (name == DEVICE_SWITCH_NAME_2)
-        {
-          config_switchname2 = String(value);
-        }
-        else if (name == DEVICE_SWITCH_PRICE_2)
-        {
-          config_switchprice2 = String(value);
-        }
-        else if (name == DEVICE_SWITCH_TIME_2)
-        {
-          config_switchtime2 = String(value);
-        }
-        else if (name == DEVICE_SWITCH_GPIO_2)
-        {
-          config_switchgpio2 = String(value);
-        }
-        */
+           else if (name == DEVICE_SWITCH_NAME_2)
+           {
+             config_switchname2 = String(value);
+           }
+           else if (name == DEVICE_SWITCH_PRICE_2)
+           {
+             config_switchprice2 = String(value);
+           }
+           else if (name == DEVICE_SWITCH_TIME_2)
+           {
+             config_switchtime2 = String(value);
+           }
+           else if (name == DEVICE_SWITCH_GPIO_2)
+           {
+             config_switchgpio2 = String(value);
+           }
+           */
       }
     }
   }
 }
 
-void editConfig(const char *lnbitshost, const char *deviceid, const char *devicekey, const char *devicecurrency, const char *configpin, const char *switchname1, const char *switchprice1, const char *switchtime1, const char *switchgpio1)
+void editConfig(const char *lnbitshost, const char *deviceid, const char *devicekey, const char *devicecurrency, const char *configpin, const char *switchname1, const char *switchprice1, const char *switchtime1, const char *switchgpio1, const char *welcome1, const char *welcome2)
 {
   Serial.println("editConfig");
   config_lnbitshost = String(lnbitshost);
@@ -249,6 +264,8 @@ void editConfig(const char *lnbitshost, const char *deviceid, const char *device
   config_switchtime1 = String(switchtime1);
   config_switchgpio1 = String(switchgpio1);
   config_statusGPIOOut1 = String(statusGPIOOut1);
+  config_welcome1 = String(welcome1);
+  config_welcome2 = String(welcome2);
   /*
   config_switchname2 = String(switchname2);
   config_switchprice2 = String(switchprice2);
@@ -291,6 +308,10 @@ void saveConfig()
   doc[8]["value"] = config_switchgpio1;
   doc[9]["name"] = DEVICE_SWITCH_STATUS_1;
   doc[9]["value"] = config_statusGPIOOut1;
+  doc[10]["name"] = DEVICE_WELCOME_1;
+  doc[10]["value"] = config_welcome1;
+  doc[11]["name"] = DEVICE_WELCOME_2;
+  doc[11]["value"] = config_welcome2;
   /*
   doc[9]["name"] = DEVICE_SWITCH_NAME_2;
   doc[9]["value"] = config_switchname2;
@@ -530,6 +551,8 @@ void setup()
   lv_textarea_set_text(ui_TextAreaSwitchTime1, config_switchtime1.c_str());
   lv_textarea_set_text(ui_TextAreaSwitchRelay1, config_switchgpio1.c_str());
   statusGPIOOut1 = (config_statusGPIOOut1 == "0") ? false : true;
+  lv_textarea_set_text(ui_TextAreaWelcome1, config_welcome1.c_str());
+  lv_textarea_set_text(ui_TextAreaWelcome2, config_welcome2.c_str());
   /*
   lv_textarea_set_text(ui_TextAreaSwitchName2, config_switchname1.c_str());
   lv_textarea_set_text(ui_TextAreaSwitchTime2, config_switchprice1.c_str());

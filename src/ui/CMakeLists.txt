@@ -5,10 +5,10 @@ SET(SOURCES screens/ui_ScreenStart.c
     screens/ui_ScreenWelcome.c
     screens/ui_ScreenScan.c
     screens/ui_ScreenInfo.c
-    screens/ui_ScreenPlayground.c
     ui.c
     components/ui_comp_hook.c
     ui_helpers.c
+    ui_events.c
     images/ui_img_buttonorange_png.c
     images/ui_img_buttongreen_png.c
     images/ui_img_gear_wheel_100pix_gray_png.c
