@@ -713,8 +713,8 @@ void loop()
     {
       // tue nix solange die Zeit nicht abgelaufen ist
       Serial.println("Die Zeit 1 noch nicht abgelaufen = orange");
-      Serial.println("start_time: " + start_time);
-      Serial.println("current_time: " + current_time);
+      //Serial.println("start_time: " + start_time);
+      //Serial.println("current_time: " + current_time);
       delay(200);
     }
   }

@@ -19,13 +19,16 @@ void ui_ScreenStart_screen_init(void);
 extern lv_obj_t *ui_ScreenStart;
 extern lv_obj_t *ui_TopScreenStart;
 extern lv_obj_t *ui_LabelTopScreenStart;
+extern lv_obj_t *ui_ImageBitcoinSwitchGreen;
 void ui_event_ImageBitcoinSwitchOrange( lv_event_t * e);
 extern lv_obj_t *ui_ImageBitcoinSwitchOrange;
-extern lv_obj_t *ui_ImageBitcoinSwitchGreen;
+extern lv_obj_t *ui_ImageOfflineLNSwitch;
 void ui_event_ImageSettings( lv_event_t * e);
 extern lv_obj_t *ui_ImageSettings;
 void ui_event_ImageInfo( lv_event_t * e);
 extern lv_obj_t *ui_ImageInfo;
+extern lv_obj_t *ui_LabelWelcomeText1;
+extern lv_obj_t *ui_LabelWelcomeText2;
 extern lv_obj_t *ui_PanelPINConfig;
 extern lv_obj_t *ui_LabelEnterConfigPin;
 extern lv_obj_t *ui_TextAreaPINConfig;
@@ -198,8 +201,9 @@ extern lv_obj_t *ui_LabelInfoFirmware;
 extern lv_obj_t *ui_LabelFWVersion;
 extern lv_obj_t *ui____initial_actions0;
 
-LV_IMG_DECLARE( ui_img_buttonorange_png);   // assets\ButtonOrange.png
-LV_IMG_DECLARE( ui_img_buttongreen_png);   // assets\ButtonGreen.png
+LV_IMG_DECLARE( ui_img_buttongreen136_png);   // assets\ButtonGreen136.png
+LV_IMG_DECLARE( ui_img_buttonorange136_png);   // assets\ButtonOrange136.png
+LV_IMG_DECLARE( ui_img_offlinelnswitch_png);   // assets\offlineLNSwitch.png
 LV_IMG_DECLARE( ui_img_gear_wheel_100pix_gray_png);   // assets\gear wheel 100pix gray.png
 LV_IMG_DECLARE( ui_img_info_100pix_gray_png);   // assets\info 100pix gray.png
 LV_IMG_DECLARE( ui_img_166440904);   // assets\qr-code-slagschaduw-274x274-v2.png

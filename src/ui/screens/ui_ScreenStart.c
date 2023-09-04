@@ -35,25 +35,35 @@ lv_obj_set_style_text_letter_space(ui_LabelTopScreenStart, 3, LV_PART_MAIN| LV_S
 lv_obj_set_style_text_line_space(ui_LabelTopScreenStart, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_text_font(ui_LabelTopScreenStart, &lv_font_montserrat_22, LV_PART_MAIN| LV_STATE_DEFAULT);
 
+ui_ImageBitcoinSwitchGreen = lv_img_create(ui_ScreenStart);
+lv_img_set_src(ui_ImageBitcoinSwitchGreen, &ui_img_buttongreen136_png);
+lv_obj_set_width( ui_ImageBitcoinSwitchGreen, LV_SIZE_CONTENT);  /// 236
+lv_obj_set_height( ui_ImageBitcoinSwitchGreen, LV_SIZE_CONTENT);   /// 300
+lv_obj_set_x( ui_ImageBitcoinSwitchGreen, 0 );
+lv_obj_set_y( ui_ImageBitcoinSwitchGreen, -8 );
+lv_obj_set_align( ui_ImageBitcoinSwitchGreen, LV_ALIGN_CENTER );
+lv_obj_add_flag( ui_ImageBitcoinSwitchGreen, LV_OBJ_FLAG_HIDDEN | LV_OBJ_FLAG_ADV_HITTEST );   /// Flags
+lv_obj_clear_flag( ui_ImageBitcoinSwitchGreen, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+
 ui_ImageBitcoinSwitchOrange = lv_img_create(ui_ScreenStart);
-lv_img_set_src(ui_ImageBitcoinSwitchOrange, &ui_img_buttonorange_png);
-lv_obj_set_width( ui_ImageBitcoinSwitchOrange, LV_SIZE_CONTENT);  /// 236
-lv_obj_set_height( ui_ImageBitcoinSwitchOrange, LV_SIZE_CONTENT);   /// 300
-lv_obj_set_x( ui_ImageBitcoinSwitchOrange, 10 );
-lv_obj_set_y( ui_ImageBitcoinSwitchOrange, -15 );
+lv_img_set_src(ui_ImageBitcoinSwitchOrange, &ui_img_buttonorange136_png);
+lv_obj_set_width( ui_ImageBitcoinSwitchOrange, LV_SIZE_CONTENT);  /// 136
+lv_obj_set_height( ui_ImageBitcoinSwitchOrange, LV_SIZE_CONTENT);   /// 136
+lv_obj_set_x( ui_ImageBitcoinSwitchOrange, 0 );
+lv_obj_set_y( ui_ImageBitcoinSwitchOrange, -8 );
 lv_obj_set_align( ui_ImageBitcoinSwitchOrange, LV_ALIGN_CENTER );
 lv_obj_add_flag( ui_ImageBitcoinSwitchOrange, LV_OBJ_FLAG_CLICKABLE | LV_OBJ_FLAG_ADV_HITTEST );   /// Flags
 lv_obj_clear_flag( ui_ImageBitcoinSwitchOrange, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 
-ui_ImageBitcoinSwitchGreen = lv_img_create(ui_ScreenStart);
-lv_img_set_src(ui_ImageBitcoinSwitchGreen, &ui_img_buttongreen_png);
-lv_obj_set_width( ui_ImageBitcoinSwitchGreen, LV_SIZE_CONTENT);  /// 236
-lv_obj_set_height( ui_ImageBitcoinSwitchGreen, LV_SIZE_CONTENT);   /// 300
-lv_obj_set_x( ui_ImageBitcoinSwitchGreen, 10 );
-lv_obj_set_y( ui_ImageBitcoinSwitchGreen, -15 );
-lv_obj_set_align( ui_ImageBitcoinSwitchGreen, LV_ALIGN_CENTER );
-lv_obj_add_flag( ui_ImageBitcoinSwitchGreen, LV_OBJ_FLAG_HIDDEN | LV_OBJ_FLAG_ADV_HITTEST );   /// Flags
-lv_obj_clear_flag( ui_ImageBitcoinSwitchGreen, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+ui_ImageOfflineLNSwitch = lv_img_create(ui_ScreenStart);
+lv_img_set_src(ui_ImageOfflineLNSwitch, &ui_img_offlinelnswitch_png);
+lv_obj_set_width( ui_ImageOfflineLNSwitch, LV_SIZE_CONTENT);  /// 255
+lv_obj_set_height( ui_ImageOfflineLNSwitch, LV_SIZE_CONTENT);   /// 281
+lv_obj_set_x( ui_ImageOfflineLNSwitch, 10 );
+lv_obj_set_y( ui_ImageOfflineLNSwitch, -13 );
+lv_obj_set_align( ui_ImageOfflineLNSwitch, LV_ALIGN_CENTER );
+lv_obj_add_flag( ui_ImageOfflineLNSwitch, LV_OBJ_FLAG_ADV_HITTEST );   /// Flags
+lv_obj_clear_flag( ui_ImageOfflineLNSwitch, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 
 ui_ImageSettings = lv_img_create(ui_ScreenStart);
 lv_img_set_src(ui_ImageSettings, &ui_img_gear_wheel_100pix_gray_png);
@@ -76,6 +86,36 @@ lv_obj_set_align( ui_ImageInfo, LV_ALIGN_CENTER );
 lv_obj_add_flag( ui_ImageInfo, LV_OBJ_FLAG_CLICKABLE | LV_OBJ_FLAG_ADV_HITTEST );   /// Flags
 lv_obj_clear_flag( ui_ImageInfo, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 lv_img_set_zoom(ui_ImageInfo,121);
+
+ui_LabelWelcomeText1 = lv_label_create(ui_ScreenStart);
+lv_obj_set_width( ui_LabelWelcomeText1, LV_SIZE_CONTENT);  /// 1
+lv_obj_set_height( ui_LabelWelcomeText1, LV_SIZE_CONTENT);   /// 1
+lv_obj_set_x( ui_LabelWelcomeText1, 2 );
+lv_obj_set_y( ui_LabelWelcomeText1, -159 );
+lv_obj_set_align( ui_LabelWelcomeText1, LV_ALIGN_CENTER );
+lv_label_set_text(ui_LabelWelcomeText1,"Drueck hier");
+lv_obj_add_flag( ui_LabelWelcomeText1, LV_OBJ_FLAG_HIDDEN );   /// Flags
+lv_obj_set_style_text_color(ui_LabelWelcomeText1, lv_color_hex(0xEEA814), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_text_opa(ui_LabelWelcomeText1, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_letter_space(ui_LabelWelcomeText1, 2, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_line_space(ui_LabelWelcomeText1, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_align(ui_LabelWelcomeText1, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_LabelWelcomeText1, &lv_font_montserrat_38, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_LabelWelcomeText2 = lv_label_create(ui_ScreenStart);
+lv_obj_set_width( ui_LabelWelcomeText2, LV_SIZE_CONTENT);  /// 1
+lv_obj_set_height( ui_LabelWelcomeText2, LV_SIZE_CONTENT);   /// 1
+lv_obj_set_x( ui_LabelWelcomeText2, 6 );
+lv_obj_set_y( ui_LabelWelcomeText2, 147 );
+lv_obj_set_align( ui_LabelWelcomeText2, LV_ALIGN_CENTER );
+lv_label_set_text(ui_LabelWelcomeText2,"Pommes Majo");
+lv_obj_add_flag( ui_LabelWelcomeText2, LV_OBJ_FLAG_HIDDEN );   /// Flags
+lv_obj_set_style_text_color(ui_LabelWelcomeText2, lv_color_hex(0xEEA814), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_text_opa(ui_LabelWelcomeText2, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_letter_space(ui_LabelWelcomeText2, 2, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_line_space(ui_LabelWelcomeText2, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_align(ui_LabelWelcomeText2, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_LabelWelcomeText2, &lv_font_montserrat_38, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_PanelPINConfig = lv_obj_create(ui_ScreenStart);
 lv_obj_set_width( ui_PanelPINConfig, 279);

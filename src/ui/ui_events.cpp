@@ -188,6 +188,7 @@ void ButtonTestRelay2Clicked(lv_event_t *e)
 	toggleGPIO(gpio);
 }
 
+/* NOT IN USE
 void ButtonLEDredClicked(lv_event_t *e)
 {
 	const char *gpio = "LEDred";
@@ -205,8 +206,9 @@ void ButtonLEDblueClicked(lv_event_t *e)
 	const char *gpio = "LEDblue";
 	toggleGPIO(gpio);
 }
+*/
 
-void ButtonPayNow0Click(lv_event_t *e)
+	void ButtonPayNow0Click(lv_event_t *e)
 {
 	payNow(0);
 }

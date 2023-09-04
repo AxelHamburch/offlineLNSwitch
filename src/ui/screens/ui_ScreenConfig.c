@@ -184,7 +184,7 @@ ui_ButtonGoSwitches = lv_btn_create(ui_ScreenConfig);
 lv_obj_set_width( ui_ButtonGoSwitches, 120);
 lv_obj_set_height( ui_ButtonGoSwitches, 41);
 lv_obj_set_x( ui_ButtonGoSwitches, -69 );
-lv_obj_set_y( ui_ButtonGoSwitches, 206 );
+lv_obj_set_y( ui_ButtonGoSwitches, 207 );
 lv_obj_set_align( ui_ButtonGoSwitches, LV_ALIGN_CENTER );
 lv_obj_add_flag( ui_ButtonGoSwitches, LV_OBJ_FLAG_SCROLL_ON_FOCUS );   /// Flags
 lv_obj_clear_flag( ui_ButtonGoSwitches, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
