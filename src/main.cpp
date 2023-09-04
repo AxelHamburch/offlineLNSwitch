@@ -107,6 +107,7 @@ void toggleGPIO(const char *gpio)
     statusGPIOOut1 = !statusGPIOOut1; // Toggle the value
     Serial.printf(" toggle GPIO %d to %d\n", gpioOut1, statusGPIOOut1);
   }
+  /* NOT IN USE
   else if (strcmp(gpio, "Relay2") == 0)
   {
     statusGPIOOut2 = !statusGPIOOut2; // Toggle the value
@@ -127,6 +128,7 @@ void toggleGPIO(const char *gpio)
     statusGPIOLEDb = !statusGPIOLEDb; // Toggle the value
     Serial.printf(" toggle GPIO %d to %d\n", gpioLEDb, statusGPIOLEDb);
   }
+  */
 }
 
 bool checkPIN(const char *pin)
@@ -713,8 +715,8 @@ void loop()
     {
       // tue nix solange die Zeit nicht abgelaufen ist
       Serial.println("Die Zeit 1 noch nicht abgelaufen = orange");
-      //Serial.println("start_time: " + start_time);
-      //Serial.println("current_time: " + current_time);
+      // Serial.println("start_time: " + start_time);
+      // Serial.println("current_time: " + current_time);
       delay(200);
     }
   }

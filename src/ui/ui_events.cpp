@@ -208,7 +208,7 @@ void ButtonLEDblueClicked(lv_event_t *e)
 }
 */
 
-	void ButtonPayNow0Click(lv_event_t *e)
+void ButtonPayNow0Click(lv_event_t *e)
 {
 	payNow(0);
 }
@@ -218,10 +218,12 @@ void ButtonPayNow1Click(lv_event_t *e)
 	payNow(1);
 }
 
+/* NOT IN USE
 void ButtonPayNow2Click(lv_event_t *e)
 {
 	payNow(2);
 }
+*/
 
 void HideQRCode(lv_event_t *e)
 {
