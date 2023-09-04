@@ -685,7 +685,7 @@
                 "strtype": "OBJECT/Position",
                 "intarray": [
                   0,
-                  -8
+                  -7
                 ],
                 "InheritedType": 7
               },
@@ -707,14 +707,13 @@
               },
               {
                 "nid": -99862655,
-                "flags": 1048576,
                 "strtype": "OBJECT/Flags",
                 "InheritedType": 1
               },
               {
                 "nid": 1808659006,
                 "strtype": "OBJECT/Hidden",
-                "strval": "False",
+                "strval": "True",
                 "InheritedType": 2
               },
               {
@@ -980,7 +979,7 @@
                 "strtype": "OBJECT/Position",
                 "intarray": [
                   0,
-                  -8
+                  -7
                 ],
                 "InheritedType": 7
               },
@@ -1229,6 +1228,71 @@
                 "strtype": "IMAGE/Style_main",
                 "strval": "lv.PART.MAIN, Rectangle, Image",
                 "InheritedType": 11
+              },
+              {
+                "disabled": false,
+                "nid": -165171331,
+                "strtype": "IMAGE/EventHandler",
+                "strval": "CLICKED",
+                "childs": [
+                  {
+                    "nid": 2144001749,
+                    "strtype": "_custom/name",
+                    "strval": "Event2",
+                    "InheritedType": 10
+                  },
+                  {
+                    "nid": 874279469,
+                    "strtype": "_custom/condition_C",
+                    "strval": "",
+                    "InheritedType": 10
+                  },
+                  {
+                    "nid": -496889237,
+                    "strtype": "_custom/condition_P",
+                    "strval": "",
+                    "InheritedType": 10
+                  },
+                  {
+                    "nid": -408354435,
+                    "strtype": "_custom/action",
+                    "strval": "CALL FUNCTION",
+                    "childs": [
+                      {
+                        "nid": -1317585317,
+                        "strtype": "CALL FUNCTION/Name",
+                        "strval": "CALL FUNCTION",
+                        "InheritedType": 10
+                      },
+                      {
+                        "nid": -1846763060,
+                        "strtype": "CALL FUNCTION/Call",
+                        "strval": "<{Function_name}>( event_struct )",
+                        "InheritedType": 10
+                      },
+                      {
+                        "nid": 774956076,
+                        "strtype": "CALL FUNCTION/CallC",
+                        "strval": "<{Function_name}>( e );",
+                        "InheritedType": 10
+                      },
+                      {
+                        "nid": 818243957,
+                        "strtype": "CALL FUNCTION/Function_name",
+                        "strval": "ButtonPayNow1Click",
+                        "InheritedType": 10
+                      },
+                      {
+                        "nid": 1550723310,
+                        "strtype": "CALL FUNCTION/Dont_export_function",
+                        "strval": "False",
+                        "InheritedType": 2
+                      }
+                    ],
+                    "InheritedType": 10
+                  }
+                ],
+                "InheritedType": 4
               }
             ],
             "saved_objtypeKey": "IMAGE"
@@ -4942,7 +5006,6 @@
           },
           {
             "nid": -2066798203,
-            "flags": 1048576,
             "strtype": "OBJECT/Flags",
             "InheritedType": 1
           },
@@ -43283,7 +43346,7 @@
     "theme_color2": 0,
     "exportFolderPath": "F:\\VSCode\\TestTouchDisplay\\SLS\\ProjektButton\\./main/ui",
     "projectExportFolderPath": "F:\\VSCode\\TestTouchDisplay\\SLS\\ProjektButton",
-    "backup_cnt": 649,
+    "backup_cnt": 659,
     "autosave_cnt": 0,
     "lvgl_version": "8.3.6",
     "callfuncsexport": null,
