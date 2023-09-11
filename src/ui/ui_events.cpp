@@ -22,15 +22,16 @@ void ButtonConfigSaveAndExitClicked(lv_event_t *e)
 	const char *switchprice1 = lv_textarea_get_text(ui_TextAreaSwitchPrice1);
 	const char *switchtime1 = lv_textarea_get_text(ui_TextAreaSwitchTime1);
 	const char *switchgpio1 = lv_textarea_get_text(ui_TextAreaSwitchRelay1);
+	/*
 	const char *welcome1 = lv_textarea_get_text(ui_TextAreaWelcome1);
 	const char *welcome2 = lv_textarea_get_text(ui_TextAreaWelcome2);
-	/*
+	
 	const char *switchname2 = lv_textarea_get_text(ui_TextAreaSwitchName2);
 	const char *switchprice2 = lv_textarea_get_text(ui_TextAreaSwitchPrice2);
 	const char *switchtime2 = lv_textarea_get_text(ui_TextAreaSwitchTime2);
 	const char *switchgpio2 = lv_textarea_get_text(ui_TextAreaSwitchRelay2);
 	*/
-	editConfig(lnbitshost, deviceid, devicekey, devicecurrency, configpin, switchname1, switchprice1, switchtime1, switchgpio1, welcome1, welcome2);
+	editConfig(lnbitshost, deviceid, devicekey, devicecurrency, configpin, switchname1, switchprice1, switchtime1, switchgpio1);
 }
 
 void addToPIN(int digit)

@@ -23,10 +23,13 @@ int gpioLEDr = 4;
 int gpioLEDg = 16;
 int gpioLEDb = 17;
 bool statusGPIOOut1 = false;
+/*
 bool statusGPIOOut2 = false;
+*/
 bool statusGPIOLEDr = true; // Ground switching
 bool statusGPIOLEDg = true; // Ground switching
 bool statusGPIOLEDb = true; // Ground switching
+
 
 // config variables
 String config_lnbitshost = "";
@@ -39,15 +42,17 @@ String config_switchprice1 = "";
 String config_switchtime1 = "";
 String config_switchgpio1 = String(21);
 String config_statusGPIOOut1 = "0";
+
+/*
 String config_welcome1 = "";
 String config_welcome2 = "";
 
-//..
 String config_switchname2 = "";
 String config_switchprice2 = "";
 String config_switchtime2 = "";
 String config_switchgpio2 = String(22);
 String config_statusGPIOOut2 = "0";
+*/
 
 // LNURL, pay und QR-Code variables
 int randomPin;
@@ -86,9 +91,10 @@ bool zeit1 = false;
 #define DEVICE_SWITCH_GPIO_1 "switchgpio1"
 #define DEVICE_SWITCH_STATUS_1 "switchstatus1"
 
+/*
 #define DEVICE_WELCOME_1 "welcome1"
 #define DEVICE_WELCOME_2 "welcome2"
-/*
+
 #define DEVICE_SWITCH_NAME_2 "switchname2"
 #define DEVICE_SWITCH_PRICE_2 "switchprice2"
 #define DEVICE_SWITCH_TIME_2 "switchtime2"
@@ -221,6 +227,7 @@ void loadConfig()
           config_statusGPIOOut1 = String(value);
         }
 
+        /*
         else if (name == DEVICE_WELCOME_1)
         {
           config_welcome1 = String(value);
@@ -230,7 +237,7 @@ void loadConfig()
           config_welcome2 = String(value);
         }
 
-        /*
+        
            else if (name == DEVICE_SWITCH_NAME_2)
            {
              config_switchname2 = String(value);
@@ -253,7 +260,7 @@ void loadConfig()
   }
 }
 
-void editConfig(const char *lnbitshost, const char *deviceid, const char *devicekey, const char *devicecurrency, const char *configpin, const char *switchname1, const char *switchprice1, const char *switchtime1, const char *switchgpio1, const char *welcome1, const char *welcome2)
+void editConfig(const char *lnbitshost, const char *deviceid, const char *devicekey, const char *devicecurrency, const char *configpin, const char *switchname1, const char *switchprice1, const char *switchtime1, const char *switchgpio1)
 {
   Serial.println("editConfig");
   config_lnbitshost = String(lnbitshost);
@@ -266,9 +273,11 @@ void editConfig(const char *lnbitshost, const char *deviceid, const char *device
   config_switchtime1 = String(switchtime1);
   config_switchgpio1 = String(switchgpio1);
   config_statusGPIOOut1 = String(statusGPIOOut1);
+
+  /*
   config_welcome1 = String(welcome1);
   config_welcome2 = String(welcome2);
-  /*
+  
   config_switchname2 = String(switchname2);
   config_switchprice2 = String(switchprice2);
   config_switchtime2 = String(switchtime2);
@@ -310,11 +319,13 @@ void saveConfig()
   doc[8]["value"] = config_switchgpio1;
   doc[9]["name"] = DEVICE_SWITCH_STATUS_1;
   doc[9]["value"] = config_statusGPIOOut1;
+
+  /*
   doc[10]["name"] = DEVICE_WELCOME_1;
   doc[10]["value"] = config_welcome1;
   doc[11]["name"] = DEVICE_WELCOME_2;
   doc[11]["value"] = config_welcome2;
-  /*
+  
   doc[9]["name"] = DEVICE_SWITCH_NAME_2;
   doc[9]["value"] = config_switchname2;
   doc[10]["name"] = DEVICE_SWITCH_PRICE_2;
@@ -461,6 +472,7 @@ void payNow(int item)
       qrShowCode();
       return;
     }
+    /*
     else if (itemtopay == 2)
     {
       selection = config_switchname2;
@@ -477,6 +489,7 @@ void payNow(int item)
       qrShowCode();
       return;
     }
+    */
   }
   else
   {
@@ -553,9 +566,11 @@ void setup()
   lv_textarea_set_text(ui_TextAreaSwitchTime1, config_switchtime1.c_str());
   lv_textarea_set_text(ui_TextAreaSwitchRelay1, config_switchgpio1.c_str());
   statusGPIOOut1 = (config_statusGPIOOut1 == "0") ? false : true;
+
+  /*
   lv_textarea_set_text(ui_TextAreaWelcome1, config_welcome1.c_str());
   lv_textarea_set_text(ui_TextAreaWelcome2, config_welcome2.c_str());
-  /*
+  
   lv_textarea_set_text(ui_TextAreaSwitchName2, config_switchname1.c_str());
   lv_textarea_set_text(ui_TextAreaSwitchTime2, config_switchprice1.c_str());
   lv_textarea_set_text(ui_TextAreaSwitchTime2, config_switchtime1.c_str());
@@ -567,10 +582,13 @@ void setup()
 
   // set GPIOs
   pinMode(gpioOut1, OUTPUT);
+  /*
   pinMode(gpioOut2, OUTPUT);
+  */
   pinMode(gpioLEDr, OUTPUT);
   pinMode(gpioLEDg, OUTPUT);
   pinMode(gpioLEDb, OUTPUT);
+  
 
   // initialize the QR code
   lv_color_t bg_color = lv_color_hex(0xFFFFFF);
@@ -595,10 +613,13 @@ void loop()
   lv_timer_handler();
 
   digitalWrite(gpioOut1, statusGPIOOut1);
+  /*
   digitalWrite(gpioOut2, statusGPIOOut2);
+  */
   digitalWrite(gpioLEDr, statusGPIOLEDr);
   digitalWrite(gpioLEDg, statusGPIOLEDg);
   digitalWrite(gpioLEDb, statusGPIOLEDb);
+  
 
   // Pin Eingabe 6 Zeichen
   if (strlen(lv_textarea_get_text(ui_TextAreaPINConfig)) == 6)
@@ -663,6 +684,7 @@ void loop()
             lv_obj_add_flag(ui_ImageBitcoinSwitchGreen, LV_OBJ_FLAG_HIDDEN);
             lv_obj_clear_flag(ui_ImageBitcoinSwitchOrange, LV_OBJ_FLAG_HIDDEN);
           }
+          /*
           else if (itemtopay == 2)
           {
             lv_disp_load_scr(ui_ScreenStart);
@@ -675,6 +697,7 @@ void loop()
             lv_obj_add_flag(ui_ImageBitcoinSwitchGreen, LV_OBJ_FLAG_HIDDEN);
             lv_obj_clear_flag(ui_ImageBitcoinSwitchOrange, LV_OBJ_FLAG_HIDDEN);
           }
+          */
           lv_label_set_text(ui_LabelPINValue, "ENTER PIN");
           Serial.println("Button orange");
           Serial.println("Payment finished");

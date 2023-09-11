@@ -2,7 +2,6 @@ SET(SOURCES screens/ui_ScreenStart.c
     screens/ui_ScreenPIN.c
     screens/ui_ScreenConfig.c
     screens/ui_ScreenSwitch1.c
-    screens/ui_ScreenWelcome.c
     screens/ui_ScreenScan.c
     screens/ui_ScreenInfo.c
     ui.c
