@@ -23,7 +23,7 @@ The connection of a relay is quite simple. The supplied cable is sufficient. The
 
 ### Web installer (recommended)
 
-Go to the [web installer](https://satoffee.danielpcostas.dev/) and follow instructions. This is the easiest way to flash firmware and load config.
+Go to the [web installer](https://ereignishorizont.xyz/installer/offlineLNSwitch/index.html) and follow instructions. This is the easiest way to flash firmware and load config.
 
 #### Web installer troubleshooting
 
