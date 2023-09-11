@@ -5,6 +5,15 @@ loadConfig
 [Error] (2.441, +2441)   lv_mem_realloc: couldn't allocate memory       (in lv_mem.c line #211)
 [Error] (2.442, +1)      lv_mem_buf_get: Asserted at expression: buf != NULL (Out of memory, can't allocate a new buffer (increase your LV_MEM_SIZE/heap size))         (in lv_mem.c line #312)
 
+..
+xor_encrypt(.)
+LNURL link: https://lnbits.ereignishorizont.xyz/lnurldevice/api/v1/lnurl/DZqRv/?p=AQgkO9TuIqzh3AWnOiHQBcJaucq_K14h
+lnurl1dp68gurn8ghj7mrwvf5hguewv4ex26t8de5hx6r0wf5h5mmwwsh8s7t69akxuatjd3jx2anfvdjj7ctsdyhhvvf0d3h82unv9az95u2jwchn7upag9gkw66089282jt30f5rxs2hde8kjjz3gf355ct4vdc47je3x35qtpqfc4
+Selection: 0. Test payment
+[Error] (44.691, +44691)         lv_mem_realloc: couldn't allocate memory       (in lv_mem.c line #211)
+[Error] (44.691, +0)     lv_mem_buf_get: Asserted at expression: buf != NULL (Out of memory, can't allocate a new buffer (increase your LV_MEM_SIZE/heap size))   (in lv_mem.c line #312)
+
+
 Einer Funktion zusätzliche Informationen übergeben kann man als über Parameter machen aber auch über einen Zeiger der auf eine
 Datenstruktur zeigt machen. Diese Struktur wird oft als "benutzerdefiniertes Datenobjekt" bezeichnet.  Diese Struktur wird oft als
 "benutzerdefiniertes Datenobjekt" bezeichnet. Es ist einfach eine Möglichkeit, zusätzliche Informationen an eine Funktion zu übergeben,
