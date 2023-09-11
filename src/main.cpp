@@ -23,10 +23,13 @@ int gpioLEDr = 4;
 int gpioLEDg = 16;
 int gpioLEDb = 17;
 bool statusGPIOOut1 = false;
+/*
 bool statusGPIOOut2 = false;
+*/
 bool statusGPIOLEDr = true; // Ground switching
 bool statusGPIOLEDg = true; // Ground switching
 bool statusGPIOLEDb = true; // Ground switching
+
 
 // config variables
 String config_lnbitshost = "";
@@ -38,10 +41,18 @@ String config_switchname1 = "";
 String config_switchprice1 = "";
 String config_switchtime1 = "";
 String config_switchgpio1 = String(21);
+String config_statusGPIOOut1 = "0";
+
+/*
+String config_welcome1 = "";
+String config_welcome2 = "";
+
 String config_switchname2 = "";
 String config_switchprice2 = "";
 String config_switchtime2 = "";
 String config_switchgpio2 = String(22);
+String config_statusGPIOOut2 = "0";
+*/
 
 // LNURL, pay und QR-Code variables
 int randomPin;
@@ -78,11 +89,17 @@ bool zeit1 = false;
 #define DEVICE_SWITCH_PRICE_1 "switchprice1"
 #define DEVICE_SWITCH_TIME_1 "switchtime1"
 #define DEVICE_SWITCH_GPIO_1 "switchgpio1"
+#define DEVICE_SWITCH_STATUS_1 "switchstatus1"
+
 /*
+#define DEVICE_WELCOME_1 "welcome1"
+#define DEVICE_WELCOME_2 "welcome2"
+
 #define DEVICE_SWITCH_NAME_2 "switchname2"
 #define DEVICE_SWITCH_PRICE_2 "switchprice2"
 #define DEVICE_SWITCH_TIME_2 "switchtime2"
 #define DEVICE_SWITCH_GPIO_2 "switchgpio2"
+#define DEVICE_SWITCH_STATUS_2 "switchstatus2"
 */
 ;
 // create QR code object
@@ -96,6 +113,7 @@ void toggleGPIO(const char *gpio)
     statusGPIOOut1 = !statusGPIOOut1; // Toggle the value
     Serial.printf(" toggle GPIO %d to %d\n", gpioOut1, statusGPIOOut1);
   }
+  /* NOT IN USE
   else if (strcmp(gpio, "Relay2") == 0)
   {
     statusGPIOOut2 = !statusGPIOOut2; // Toggle the value
@@ -116,6 +134,7 @@ void toggleGPIO(const char *gpio)
     statusGPIOLEDb = !statusGPIOLEDb; // Toggle the value
     Serial.printf(" toggle GPIO %d to %d\n", gpioLEDb, statusGPIOLEDb);
   }
+  */
 }
 
 bool checkPIN(const char *pin)
@@ -203,24 +222,39 @@ void loadConfig()
         {
           config_switchgpio1 = String(value);
         }
+        else if (name == DEVICE_SWITCH_STATUS_1)
+        {
+          config_statusGPIOOut1 = String(value);
+        }
+
         /*
-        else if (name == DEVICE_SWITCH_NAME_2)
+        else if (name == DEVICE_WELCOME_1)
         {
-          config_switchname2 = String(value);
+          config_welcome1 = String(value);
         }
-        else if (name == DEVICE_SWITCH_PRICE_2)
+        else if (name == DEVICE_WELCOME_2)
         {
-          config_switchprice2 = String(value);
+          config_welcome2 = String(value);
         }
-        else if (name == DEVICE_SWITCH_TIME_2)
-        {
-          config_switchtime2 = String(value);
-        }
-        else if (name == DEVICE_SWITCH_GPIO_2)
-        {
-          config_switchgpio2 = String(value);
-        }
-        */
+
+        
+           else if (name == DEVICE_SWITCH_NAME_2)
+           {
+             config_switchname2 = String(value);
+           }
+           else if (name == DEVICE_SWITCH_PRICE_2)
+           {
+             config_switchprice2 = String(value);
+           }
+           else if (name == DEVICE_SWITCH_TIME_2)
+           {
+             config_switchtime2 = String(value);
+           }
+           else if (name == DEVICE_SWITCH_GPIO_2)
+           {
+             config_switchgpio2 = String(value);
+           }
+           */
       }
     }
   }
@@ -238,11 +272,17 @@ void editConfig(const char *lnbitshost, const char *deviceid, const char *device
   config_switchprice1 = String(switchprice1);
   config_switchtime1 = String(switchtime1);
   config_switchgpio1 = String(switchgpio1);
+  config_statusGPIOOut1 = String(statusGPIOOut1);
+
   /*
+  config_welcome1 = String(welcome1);
+  config_welcome2 = String(welcome2);
+  
   config_switchname2 = String(switchname2);
   config_switchprice2 = String(switchprice2);
   config_switchtime2 = String(switchtime2);
   config_switchgpio2 = String(switchgpio2);
+  config_statusGPIOOut2 = String(statusGPIOOut2);
   */
   saveConfig();
 }
@@ -277,7 +317,15 @@ void saveConfig()
   doc[7]["value"] = config_switchtime1;
   doc[8]["name"] = DEVICE_SWITCH_GPIO_1;
   doc[8]["value"] = config_switchgpio1;
+  doc[9]["name"] = DEVICE_SWITCH_STATUS_1;
+  doc[9]["value"] = config_statusGPIOOut1;
+
   /*
+  doc[10]["name"] = DEVICE_WELCOME_1;
+  doc[10]["value"] = config_welcome1;
+  doc[11]["name"] = DEVICE_WELCOME_2;
+  doc[11]["value"] = config_welcome2;
+  
   doc[9]["name"] = DEVICE_SWITCH_NAME_2;
   doc[9]["value"] = config_switchname2;
   doc[10]["name"] = DEVICE_SWITCH_PRICE_2;
@@ -424,6 +472,7 @@ void payNow(int item)
       qrShowCode();
       return;
     }
+    /*
     else if (itemtopay == 2)
     {
       selection = config_switchname2;
@@ -440,6 +489,7 @@ void payNow(int item)
       qrShowCode();
       return;
     }
+    */
   }
   else
   {
@@ -505,7 +555,7 @@ void setup()
   // set UI components from config
   loadConfig();
 
-  // set config to display
+  // set config to display and status
   lv_textarea_set_text(ui_TextAreaConfigHost, config_lnbitshost.c_str());
   lv_textarea_set_text(ui_TextAreaConfigDeviceID, config_deviceid.c_str());
   lv_textarea_set_text(ui_TextAreaConfigDeviceKey, config_devicekey.c_str());
@@ -515,7 +565,12 @@ void setup()
   lv_textarea_set_text(ui_TextAreaSwitchPrice1, config_switchprice1.c_str());
   lv_textarea_set_text(ui_TextAreaSwitchTime1, config_switchtime1.c_str());
   lv_textarea_set_text(ui_TextAreaSwitchRelay1, config_switchgpio1.c_str());
+  statusGPIOOut1 = (config_statusGPIOOut1 == "0") ? false : true;
+
   /*
+  lv_textarea_set_text(ui_TextAreaWelcome1, config_welcome1.c_str());
+  lv_textarea_set_text(ui_TextAreaWelcome2, config_welcome2.c_str());
+  
   lv_textarea_set_text(ui_TextAreaSwitchName2, config_switchname1.c_str());
   lv_textarea_set_text(ui_TextAreaSwitchTime2, config_switchprice1.c_str());
   lv_textarea_set_text(ui_TextAreaSwitchTime2, config_switchtime1.c_str());
@@ -527,10 +582,13 @@ void setup()
 
   // set GPIOs
   pinMode(gpioOut1, OUTPUT);
+  /*
   pinMode(gpioOut2, OUTPUT);
+  */
   pinMode(gpioLEDr, OUTPUT);
   pinMode(gpioLEDg, OUTPUT);
   pinMode(gpioLEDb, OUTPUT);
+  
 
   // initialize the QR code
   lv_color_t bg_color = lv_color_hex(0xFFFFFF);
@@ -555,10 +613,13 @@ void loop()
   lv_timer_handler();
 
   digitalWrite(gpioOut1, statusGPIOOut1);
+  /*
   digitalWrite(gpioOut2, statusGPIOOut2);
+  */
   digitalWrite(gpioLEDr, statusGPIOLEDr);
   digitalWrite(gpioLEDg, statusGPIOLEDg);
   digitalWrite(gpioLEDb, statusGPIOLEDb);
+  
 
   // Pin Eingabe 6 Zeichen
   if (strlen(lv_textarea_get_text(ui_TextAreaPINConfig)) == 6)
@@ -623,18 +684,20 @@ void loop()
             lv_obj_add_flag(ui_ImageBitcoinSwitchGreen, LV_OBJ_FLAG_HIDDEN);
             lv_obj_clear_flag(ui_ImageBitcoinSwitchOrange, LV_OBJ_FLAG_HIDDEN);
           }
+          /*
           else if (itemtopay == 2)
           {
             lv_disp_load_scr(ui_ScreenStart);
             int gpioOut2 = config_switchgpio2.toInt();
             Serial.printf("Serve product on GPIO: %d for %d ms\n", gpioOut2, config_switchtime2.toInt());
-            statusGPIOOut1 = !statusGPIOOut1; // Toggle the value
+            statusGPIOOut2 = !statusGPIOOut2; // Toggle the value
             digitalWrite(gpioOut2, statusGPIOOut2);
             delay(config_switchtime2.toInt());
             statusGPIOOut2 = !statusGPIOOut2; // Toggle the value
             lv_obj_add_flag(ui_ImageBitcoinSwitchGreen, LV_OBJ_FLAG_HIDDEN);
             lv_obj_clear_flag(ui_ImageBitcoinSwitchOrange, LV_OBJ_FLAG_HIDDEN);
           }
+          */
           lv_label_set_text(ui_LabelPINValue, "ENTER PIN");
           Serial.println("Button orange");
           Serial.println("Payment finished");
@@ -675,8 +738,8 @@ void loop()
     {
       // tue nix solange die Zeit nicht abgelaufen ist
       Serial.println("Die Zeit 1 noch nicht abgelaufen = orange");
-      Serial.println("start_time: " + start_time);
-      Serial.println("current_time: " + current_time);
+      // Serial.println("start_time: " + start_time);
+      // Serial.println("current_time: " + current_time);
       delay(200);
     }
   }

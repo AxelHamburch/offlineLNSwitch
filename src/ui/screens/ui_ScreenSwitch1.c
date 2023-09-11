@@ -12,26 +12,26 @@ void ui_ScreenSwitch1_screen_init(void)
     lv_obj_set_style_bg_color(ui_ScreenSwitch1, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_ScreenSwitch1, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_TopScreenConfig1 = lv_obj_create(ui_ScreenSwitch1);
-    lv_obj_set_width(ui_TopScreenConfig1, lv_pct(100));
-    lv_obj_set_height(ui_TopScreenConfig1, lv_pct(10));
-    lv_obj_set_align(ui_TopScreenConfig1, LV_ALIGN_TOP_MID);
-    lv_obj_clear_flag(ui_TopScreenConfig1, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_set_style_radius(ui_TopScreenConfig1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_color(ui_TopScreenConfig1, lv_color_hex(0xCFCFD7), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ui_TopScreenConfig1, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_border_side(ui_TopScreenConfig1, LV_BORDER_SIDE_NONE, LV_PART_MAIN | LV_STATE_DEFAULT);
+    ui_TopScreenConfigSwitch1 = lv_obj_create(ui_ScreenSwitch1);
+    lv_obj_set_width(ui_TopScreenConfigSwitch1, lv_pct(100));
+    lv_obj_set_height(ui_TopScreenConfigSwitch1, lv_pct(10));
+    lv_obj_set_align(ui_TopScreenConfigSwitch1, LV_ALIGN_TOP_MID);
+    lv_obj_clear_flag(ui_TopScreenConfigSwitch1, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_obj_set_style_radius(ui_TopScreenConfigSwitch1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(ui_TopScreenConfigSwitch1, lv_color_hex(0xCFCFD7), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_TopScreenConfigSwitch1, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_side(ui_TopScreenConfigSwitch1, LV_BORDER_SIDE_NONE, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_LabelTopScreenSwitch2 = lv_label_create(ui_TopScreenConfig1);
-    lv_obj_set_width(ui_LabelTopScreenSwitch2, LV_SIZE_CONTENT);   /// 1
-    lv_obj_set_height(ui_LabelTopScreenSwitch2, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_align(ui_LabelTopScreenSwitch2, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_LabelTopScreenSwitch2, "Set up switch");
-    lv_obj_set_style_text_color(ui_LabelTopScreenSwitch2, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_opa(ui_LabelTopScreenSwitch2, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_letter_space(ui_LabelTopScreenSwitch2, 3, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_line_space(ui_LabelTopScreenSwitch2, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_LabelTopScreenSwitch2, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
+    ui_LabelTopScreenSwitch1 = lv_label_create(ui_TopScreenConfigSwitch1);
+    lv_obj_set_width(ui_LabelTopScreenSwitch1, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_LabelTopScreenSwitch1, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_LabelTopScreenSwitch1, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_LabelTopScreenSwitch1, "Set up switch");
+    lv_obj_set_style_text_color(ui_LabelTopScreenSwitch1, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui_LabelTopScreenSwitch1, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_letter_space(ui_LabelTopScreenSwitch1, 3, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_line_space(ui_LabelTopScreenSwitch1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_LabelTopScreenSwitch1, &lv_font_montserrat_22, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_LabelSwitch1 = lv_label_create(ui_ScreenSwitch1);
     lv_obj_set_width(ui_LabelSwitch1, LV_SIZE_CONTENT);   /// -95
@@ -48,41 +48,13 @@ void ui_ScreenSwitch1_screen_init(void)
     ui_LabelTestFunction1 = lv_label_create(ui_ScreenSwitch1);
     lv_obj_set_width(ui_LabelTestFunction1, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_LabelTestFunction1, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(ui_LabelTestFunction1, -69);
-    lv_obj_set_y(ui_LabelTestFunction1, 143);
+    lv_obj_set_x(ui_LabelTestFunction1, -44);
+    lv_obj_set_y(ui_LabelTestFunction1, 75);
     lv_obj_set_align(ui_LabelTestFunction1, LV_ALIGN_CENTER);
     lv_label_set_text(ui_LabelTestFunction1, "Toggle Switch:");
     lv_obj_set_style_text_color(ui_LabelTestFunction1, lv_color_hex(0xCFCFD7), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_LabelTestFunction1, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_decor(ui_LabelTestFunction1, LV_TEXT_DECOR_UNDERLINE, LV_PART_MAIN | LV_STATE_DEFAULT);
-
-    ui_ButtonTestRelay1 = lv_btn_create(ui_ScreenSwitch1);
-    lv_obj_set_width(ui_ButtonTestRelay1, 116);
-    lv_obj_set_height(ui_ButtonTestRelay1, 43);
-    lv_obj_set_x(ui_ButtonTestRelay1, 60);
-    lv_obj_set_y(ui_ButtonTestRelay1, 143);
-    lv_obj_set_align(ui_ButtonTestRelay1, LV_ALIGN_CENTER);
-    lv_obj_add_flag(ui_ButtonTestRelay1, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
-    lv_obj_clear_flag(ui_ButtonTestRelay1, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_set_style_bg_color(ui_ButtonTestRelay1, lv_color_hex(0xCFCFD7), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ui_ButtonTestRelay1, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_color(ui_ButtonTestRelay1, lv_color_hex(0xF5FD00), LV_PART_MAIN | LV_STATE_PRESSED);
-    lv_obj_set_style_bg_opa(ui_ButtonTestRelay1, 255, LV_PART_MAIN | LV_STATE_PRESSED);
-    lv_obj_set_style_shadow_color(ui_ButtonTestRelay1, lv_color_hex(0xF9F14B), LV_PART_MAIN | LV_STATE_PRESSED);
-    lv_obj_set_style_shadow_opa(ui_ButtonTestRelay1, 255, LV_PART_MAIN | LV_STATE_PRESSED);
-    lv_obj_set_style_shadow_width(ui_ButtonTestRelay1, 20, LV_PART_MAIN | LV_STATE_PRESSED);
-    lv_obj_set_style_shadow_spread(ui_ButtonTestRelay1, 5, LV_PART_MAIN | LV_STATE_PRESSED);
-
-    ui_LabelTestRelay1 = lv_label_create(ui_ButtonTestRelay1);
-    lv_obj_set_width(ui_LabelTestRelay1, LV_SIZE_CONTENT);   /// 1
-    lv_obj_set_height(ui_LabelTestRelay1, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(ui_LabelTestRelay1, -1);
-    lv_obj_set_y(ui_LabelTestRelay1, 0);
-    lv_obj_set_align(ui_LabelTestRelay1, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_LabelTestRelay1, "Switch");
-    lv_obj_set_style_text_color(ui_LabelTestRelay1, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_opa(ui_LabelTestRelay1, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_LabelTestRelay1, &lv_font_montserrat_18, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_TextAreaSwitchName1 = lv_textarea_create(ui_ScreenSwitch1);
     lv_obj_set_width(ui_TextAreaSwitchName1, 200);
@@ -190,6 +162,13 @@ void ui_ScreenSwitch1_screen_init(void)
     lv_obj_set_style_text_opa(ui_LabelButtonGoConfig, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_LabelButtonGoConfig, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
 
+    ui_SwitchToggle1 = lv_switch_create(ui_ScreenSwitch1);
+    lv_obj_set_width(ui_SwitchToggle1, 50);
+    lv_obj_set_height(ui_SwitchToggle1, 25);
+    lv_obj_set_x(ui_SwitchToggle1, 44);
+    lv_obj_set_y(ui_SwitchToggle1, 75);
+    lv_obj_set_align(ui_SwitchToggle1, LV_ALIGN_CENTER);
+
     ui_KeyboardSwitchText1 = lv_keyboard_create(ui_ScreenSwitch1);
     lv_obj_set_width(ui_KeyboardSwitchText1, 320);
     lv_obj_set_height(ui_KeyboardSwitchText1, 170);
@@ -203,20 +182,13 @@ void ui_ScreenSwitch1_screen_init(void)
     lv_obj_set_align(ui_KeyboardSwitchNumber1, LV_ALIGN_BOTTOM_MID);
     lv_obj_add_flag(ui_KeyboardSwitchNumber1, LV_OBJ_FLAG_HIDDEN);     /// Flags
 
-    ui_KeyboardSwitchText2 = lv_keyboard_create(ui_ScreenSwitch1);
-    lv_obj_set_width(ui_KeyboardSwitchText2, 320);
-    lv_obj_set_height(ui_KeyboardSwitchText2, 170);
-    lv_obj_set_align(ui_KeyboardSwitchText2, LV_ALIGN_BOTTOM_MID);
-    lv_obj_add_flag(ui_KeyboardSwitchText2, LV_OBJ_FLAG_HIDDEN);     /// Flags
-
-    lv_obj_add_event_cb(ui_ButtonTestRelay1, ui_event_ButtonTestRelay1, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_TextAreaSwitchName1, ui_event_TextAreaSwitchName1, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_TextAreaSwitchPrice1, ui_event_TextAreaSwitchPrice1, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_TextAreaSwitchTime1, ui_event_TextAreaSwitchTime1, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_TextAreaSwitchRelay1, ui_event_TextAreaSwitchRelay1, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_ButtonGoConfig, ui_event_ButtonGoConfig, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_SwitchToggle1, ui_event_SwitchToggle1, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_KeyboardSwitchText1, ui_event_KeyboardSwitchText1, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_KeyboardSwitchNumber1, ui_event_KeyboardSwitchNumber1, LV_EVENT_ALL, NULL);
-    lv_obj_add_event_cb(ui_KeyboardSwitchText2, ui_event_KeyboardSwitchText2, LV_EVENT_ALL, NULL);
 
 }

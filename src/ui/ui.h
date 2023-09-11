@@ -19,13 +19,16 @@ void ui_ScreenStart_screen_init(void);
 extern lv_obj_t * ui_ScreenStart;
 extern lv_obj_t * ui_TopScreenStart;
 extern lv_obj_t * ui_LabelTopScreenStart;
+extern lv_obj_t * ui_ImageBitcoinSwitchGreen;
 void ui_event_ImageBitcoinSwitchOrange(lv_event_t * e);
 extern lv_obj_t * ui_ImageBitcoinSwitchOrange;
-extern lv_obj_t * ui_ImageBitcoinSwitchGreen;
+extern lv_obj_t * ui_ImageOfflineLNSwitch;
 void ui_event_ImageSettings(lv_event_t * e);
 extern lv_obj_t * ui_ImageSettings;
 void ui_event_ImageInfo(lv_event_t * e);
 extern lv_obj_t * ui_ImageInfo;
+extern lv_obj_t * ui_LabelWelcomeText1;
+extern lv_obj_t * ui_LabelWelcomeText2;
 extern lv_obj_t * ui_PanelPINConfig;
 extern lv_obj_t * ui_LabelEnterConfigPin;
 extern lv_obj_t * ui_TextAreaPINConfig;
@@ -102,9 +105,7 @@ extern lv_obj_t * ui_LabelButtonConfigSave;
 void ui_event_ButtonGoSwitches(lv_event_t * e);
 extern lv_obj_t * ui_ButtonGoSwitches;
 extern lv_obj_t * ui_LabelButtonGoSwitches;
-void ui_event_ButtonGoPlayground(lv_event_t * e);
-extern lv_obj_t * ui_ButtonGoPlayground;
-extern lv_obj_t * ui_LabelButtonGoPlayground;
+extern lv_obj_t * ui_LabelConfigMoreOptions;
 void ui_event_KeyboardText(lv_event_t * e);
 extern lv_obj_t * ui_KeyboardText;
 void ui_event_KeyboardNumber(lv_event_t * e);
@@ -112,13 +113,10 @@ extern lv_obj_t * ui_KeyboardNumber;
 // SCREEN: ui_ScreenSwitch1
 void ui_ScreenSwitch1_screen_init(void);
 extern lv_obj_t * ui_ScreenSwitch1;
-extern lv_obj_t * ui_TopScreenConfig1;
-extern lv_obj_t * ui_LabelTopScreenSwitch2;
+extern lv_obj_t * ui_TopScreenConfigSwitch1;
+extern lv_obj_t * ui_LabelTopScreenSwitch1;
 extern lv_obj_t * ui_LabelSwitch1;
 extern lv_obj_t * ui_LabelTestFunction1;
-void ui_event_ButtonTestRelay1(lv_event_t * e);
-extern lv_obj_t * ui_ButtonTestRelay1;
-extern lv_obj_t * ui_LabelTestRelay1;
 void ui_event_TextAreaSwitchName1(lv_event_t * e);
 extern lv_obj_t * ui_TextAreaSwitchName1;
 extern lv_obj_t * ui_LabelSwitchName1;
@@ -134,12 +132,12 @@ extern lv_obj_t * ui_TextAreaSwitchRelay1;
 void ui_event_ButtonGoConfig(lv_event_t * e);
 extern lv_obj_t * ui_ButtonGoConfig;
 extern lv_obj_t * ui_LabelButtonGoConfig;
+void ui_event_SwitchToggle1(lv_event_t * e);
+extern lv_obj_t * ui_SwitchToggle1;
 void ui_event_KeyboardSwitchText1(lv_event_t * e);
 extern lv_obj_t * ui_KeyboardSwitchText1;
 void ui_event_KeyboardSwitchNumber1(lv_event_t * e);
 extern lv_obj_t * ui_KeyboardSwitchNumber1;
-void ui_event_KeyboardSwitchText2(lv_event_t * e);
-extern lv_obj_t * ui_KeyboardSwitchText2;
 // SCREEN: ui_ScreenScan
 void ui_ScreenScan_screen_init(void);
 extern lv_obj_t * ui_ScreenScan;
@@ -163,25 +161,6 @@ extern lv_obj_t * ui_LabelYES;
 void ui_event_ButtonNO(lv_event_t * e);
 extern lv_obj_t * ui_ButtonNO;
 extern lv_obj_t * ui_LabelNO;
-// SCREEN: ui_ScreenPlayground
-void ui_ScreenPlayground_screen_init(void);
-void ui_event_ScreenPlayground(lv_event_t * e);
-extern lv_obj_t * ui_ScreenPlayground;
-extern lv_obj_t * ui_TopScreenPlay;
-extern lv_obj_t * ui_LabelTopScreenPlayground;
-void ui_event_ButtonGotoScreenPlay1(lv_event_t * e);
-extern lv_obj_t * ui_ButtonGotoScreenPlay1;
-extern lv_obj_t * ui_LabelButtonGotoScreenPlay1;
-extern lv_obj_t * ui_LabelRGBLED;
-void ui_event_ButtonLEDgreen(lv_event_t * e);
-extern lv_obj_t * ui_ButtonLEDgreen;
-extern lv_obj_t * ui_LabelButtonLEDgreen;
-void ui_event_ButtonLEDblue(lv_event_t * e);
-extern lv_obj_t * ui_ButtonLEDblue;
-extern lv_obj_t * ui_LabelButtonLEDblue;
-void ui_event_ButtonLEDred(lv_event_t * e);
-extern lv_obj_t * ui_ButtonLEDred;
-extern lv_obj_t * ui_LabelButtonLEDred;
 // SCREEN: ui_ScreenInfo
 void ui_ScreenInfo_screen_init(void);
 extern lv_obj_t * ui_ScreenInfo;
@@ -201,8 +180,9 @@ extern lv_obj_t * ui_LabelInfoFirmware;
 extern lv_obj_t * ui_LabelFWVersion;
 extern lv_obj_t * ui____initial_actions0;
 
-LV_IMG_DECLARE(ui_img_buttonorange_png);    // assets\ButtonOrange.png
-LV_IMG_DECLARE(ui_img_buttongreen_png);    // assets\ButtonGreen.png
+LV_IMG_DECLARE(ui_img_buttongreen136_png);    // assets\ButtonGreen136.png
+LV_IMG_DECLARE(ui_img_buttonorange136_png);    // assets\ButtonOrange136.png
+LV_IMG_DECLARE(ui_img_offlinelnswitch_png);    // assets\offlineLNSwitch.png
 LV_IMG_DECLARE(ui_img_gear_wheel_100pix_gray_png);    // assets\gear wheel 100pix gray.png
 LV_IMG_DECLARE(ui_img_info_100pix_gray_png);    // assets\info 100pix gray.png
 LV_IMG_DECLARE(ui_img_166440904);    // assets\qr-code-slagschaduw-274x274-v2.png

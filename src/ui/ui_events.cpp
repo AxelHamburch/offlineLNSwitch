@@ -23,6 +23,9 @@ void ButtonConfigSaveAndExitClicked(lv_event_t *e)
 	const char *switchtime1 = lv_textarea_get_text(ui_TextAreaSwitchTime1);
 	const char *switchgpio1 = lv_textarea_get_text(ui_TextAreaSwitchRelay1);
 	/*
+	const char *welcome1 = lv_textarea_get_text(ui_TextAreaWelcome1);
+	const char *welcome2 = lv_textarea_get_text(ui_TextAreaWelcome2);
+	
 	const char *switchname2 = lv_textarea_get_text(ui_TextAreaSwitchName2);
 	const char *switchprice2 = lv_textarea_get_text(ui_TextAreaSwitchPrice2);
 	const char *switchtime2 = lv_textarea_get_text(ui_TextAreaSwitchTime2);
@@ -186,6 +189,7 @@ void ButtonTestRelay2Clicked(lv_event_t *e)
 	toggleGPIO(gpio);
 }
 
+/* NOT IN USE
 void ButtonLEDredClicked(lv_event_t *e)
 {
 	const char *gpio = "LEDred";
@@ -203,6 +207,7 @@ void ButtonLEDblueClicked(lv_event_t *e)
 	const char *gpio = "LEDblue";
 	toggleGPIO(gpio);
 }
+*/
 
 void ButtonPayNow0Click(lv_event_t *e)
 {
@@ -214,10 +219,12 @@ void ButtonPayNow1Click(lv_event_t *e)
 	payNow(1);
 }
 
+/* NOT IN USE
 void ButtonPayNow2Click(lv_event_t *e)
 {
 	payNow(2);
 }
+*/
 
 void HideQRCode(lv_event_t *e)
 {

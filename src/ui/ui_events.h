@@ -28,9 +28,6 @@ void ButtonTestRelay1Clicked(lv_event_t * e);
 void HideQRCode(lv_event_t * e);
 void AddQRCode(lv_event_t * e);
 void ButtonPayNow0Click(lv_event_t * e);
-void ButtonLEDgreenClicked(lv_event_t * e);
-void ButtonLEDblueClicked(lv_event_t * e);
-void ButtonLEDredClicked(lv_event_t * e);
 
 #ifdef __cplusplus
 } /*extern "C"*/
