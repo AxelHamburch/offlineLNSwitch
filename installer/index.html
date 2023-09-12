@@ -10,22 +10,22 @@
     </title>
 
     <!-- Primary Meta Tags -->
-    <meta name="title" content="LNPoS - free and open source" />
-    <meta name="description" content="LNPoS - free and open source" />
+    <meta name="title" content="offlineLNSwitch - free and open source" />
+    <meta name="description" content="offlineLNSwitch - free and open source" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://github.com/michael34435/lnpos" />
-    <meta property="og:title" content="LNPoS - free and open source" />
-    <meta property="og:description" content="LNPoS - free and open source" />
+    <meta property="og:url" content="https://github.com/AxelHamburch/offlineLNSwitch" />
+    <meta property="og:title" content="offlineLNSwitch - free and open source" />
+    <meta property="og:description" content="offlineLNSwitch - free and open source" />
     <meta property="og:image" content="https://imgur.com/CEzWXp6" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://github.com/michael34435/lnpos" />
-    <meta property="twitter:title" content="LNPoS - free and open source" />
+    <meta property="twitter:url" content="https://github.com/AxelHamburch/offlineLNSwitch" />
+    <meta property="twitter:title" content="offlineLNSwitch - free and open source" />
     <meta property="twitter:description"
-        content="LNPoS - free and open source" />
+        content="offlineLNSwitch - free and open source" />
     <meta property="twitter:image" content="https://imgur.com/CEzWXp6" />
 
     <!--====== Favicon Icon ======-->
@@ -69,7 +69,7 @@
                         </div>
 
                         <div class="navbar-btn d-none d-sm-inline-block">
-                            <a href="https://github.com/michael34435/lnpos" rel="nofollow noopener"
+                            <a href="https://github.com/AxelHamburch/offlineLNSwitch" rel="nofollow noopener"
                                 class="ud-main-btn ud-white-btn">
                                 Github
                             </a>
@@ -110,14 +110,14 @@
                                 End ====== -->
                                 <div class="col-5">
                                     <select id="binVersionOption" onchange="updateBinVersion(this)" class="ud-main-btn ud-white-btn">
-                                        <option value="807187c">807187/c Update</option>
-                                        <option value="805566c">805466/c Start</option>
+                                        <option value="807347c">807347c StartVersion</option>
+                                        <option value="805566c">805466c PreVersion</option>
                                     </select>
 
                                 </div>
                                 <div class="col-2">
                                     <esp-web-install-button id="espInstallButton"
-                                        manifest="./firmware/esp32/807187c/manifest.json">
+                                        manifest="./firmware/esp32/807347c/manifest.json">
                                         <button slot="activate" class="ud-main-btn ud-white-btn" data-toggle="tooltip"
                                             data-placement="bottom" title="Flasn">Flash</button>
                                     </esp-web-install-button>
@@ -286,55 +286,100 @@
                         <h2>Features</h2>
 
                         <div class="ud-info-meta">
-                            <p>
-                            <br><h4>Latest update <img src="assets/update.ico"> 230817:</h4><h5> Update binary v0.3 with commit <a href="https://github.com/michael34435/lnpos/commits?author=michael34435">2eb3580</a> => See details: <a href="https://github.com/lnbits/lnpos/pull/14">PR #14</a></h5></br> 
-
-
-
-                            <br><h4>English <img src="assets/englisch.ico"></h4></br> 
+                            <p><br>
                             
-A special LNPoS version based on the unfortunately not working version 0.2 and fixing some bugs concerning the access point mode. With this version (0.3) the reading of the QR code should work better, especially for iPhones that had their problems with it and now the LNPoS can also handle satoshis as currency directly. </br>  </br> 
 
-Password for WiFi Access Point: <b>ToTheMoon1</b> </br> 
-Standard "Settings Password" is: <b>878787</b> </br> 
-New "Fiat decimal places" standard is: <b>2</b> (for e.g. 1,00 Euro or set 0 for e.g. 1 sat) </br>  </br> 
+       
+ <h4 id="how-do-i-set-up-the-offline-ln-switch">How do I set up the offline LN switch?</h4><br>
+<p>The setup is relatively simple. It is done in three steps.</p><br>
+<ol>
+<li>1. flash the firmware on the ESP32</li>
+<li>2. create and set up a LNbits wallet</li>
+<li>3. configure the offline LN Switch via the touch display</li>
+</ol><br>
+<p>First note: There are two different versions of the Sunton 3.5" 320*480 Smart Display (ESP32-3248S035). Once with “Resistive Touch Screen” (pressure sensitive, foil like screen coating) and then with a “Capacitive Touch Screen” (glass display, reacts to conductivity). You can feel the difference, or see it on the back. See the pictures in the attachment. I would recommend the capacitive version. It is a bit more expensive, but also less sensitive. When selecting the firmware version, look for the “r” for resistive or “c” for capacitive after the version number.</p>
+<ol><br>
+<li><b>1. flash firmware to the ESP32</b></li><br>
+</ol>
+<ul>
+<li>- Open this web page with the webinstaller</li>
+<li>- Connect the EPS32 via USB cable to the computer</li>
+<li>- Press the button <code>Flash</code> (if necessary select another version before)</li>
+<li>- In the connection window select the ‘COM-Interface’ for the ESP32 and press 'Connect</li>
+<li>- In the Device Dashboard `INSTALL OFFLINELNSWITCH</li>
+<li>- <code>Erase device</code> at first upload then NEXT</li>
+<li>- Check the selected version and press INSTALL</li>
+<li>- Preparing installation… Erasing… Installing. Wrapping up… Installation complete!</li>
+<li>- That’s it, the ESP32 is now written with the firmware.</li>
+<li>- If you have problems "Refresh" the browser first and reconnect the ESP32 if necessary.</li>
+</ul><br>
+<p>Note: Under ‘Flash / Device Dashboard’ there is the menu item ‘LOGS &amp; CONSOLE’. You can use this for diagnostics. Press Reset once to restart the ESP32. Some functions and processes are displayed there.</p>
+<br>
+<img src="assets/WebInstaller01.jpg" width="800"></p></br>
+<img src="assets/WebInstaller02.jpg" width="800"></p></br>
+<img src="assets/WebInstaller03.jpg" width="800"></p></br>
+
+<ol start="2"><br>
+<li><b>2. create and set up a LNbits Wallet</b></li><br>
+</ol>
+<ul>
+<li>- You can get a free demo wallet for example at <a href="https://legend.lnbits.com/">https://legend.lnbits.com/</a></li>
+<li>- Choose a name and click <code>ADD A NEW WALLET</code>.</li>
+<li>- Now save the wallet link as a favorite in your browser, or better yet, additionally copy and save it.</li>
+<li>- Click on <code>Extensions</code> and search for “LNURDevice” and click on <code>ENABLE</code>.</li>
+<li>- Now you find the extension <code>LNURLDevice</code> on the left side, select it</li>
+<li>- Click on <code>NEW LNURLDEVICE INSTANCE</code>.</li>
+<li>- Give it a title, select the wallet, your fiat currency, leave <code>PoS</code> as it is, set Profit margin to 0 and press <code>CREATE LNURLDEVICE</code>.</li>
+<li>- Now you see in the line under LNURLdevice, to the right of the title, the <code>id</code> and the <code>key</code>.</li>
+<li>- With the <code>LNbits Host</code> (here <a href="http://legend.lnbits.com">legend.lnbits.com</a>) and the chosen <code>currency</code> (e.g. EUR), these are the four data you need right away</li>
+</ul><br>
+<img src="assets/LNbits01.png" width="800"></p></br>
+<img src="assets/LNbits02.png" width="800"></p></br>
+<img src="assets/LNbits03.png" width="800"></p></br>
+<img src="assets/LNbits04.png" width="800"></p></br>
+<img src="assets/LNbits05.png" width="800"></p></br>
+
+<ol start="3"><br>
+<li><b>3. configure the offline LN switch via the touch display</b></li><br>
+</ol>
+<ul>
+<li>- Connect your offline LN switch to the power supply.</li>
+<li>- At the bottom left you will now see a cogwheel symbol. Select it. The default PIN is '123456</li>
+<li>- Here you will find the data you have to enter again</li>
+<li>- <code>LNbits Host</code> = e.g. <a href="http://legend.lnbits.com">legend.lnbits.com</a></li>
+<li>- <code>id</code> = e.g. 7vDYV</li>
+<li>- <code>key</code> = e.g. 3v9i65KL36yhtw2xCNwD8k</li>
+<li>- <code>Currency</code> = e.g. 0.21 (Attention: dot as decimal separator)</li>
+<li>- You can also set a personal <code>ConfigPIN</code> here</li>
+<li>- Under <code>Switch</code> you will find further settings</li>
+<li>- <code>Name</code>= Product name</li>
+<li>- <code>Price</code> = Price of the product</li>
+<li>- <code>Time</code> = Time in ms the relay should switch. E.G. 3000</li>
+<li>- <code>GPIO</code>= Output which should be controlled. Default <code>21</code></li>
+<li>- <code>Toggle Switch</code> = Control the relay manually / Invert the signal.</li>
+<li>- Return to the Config menu with the button <code>Config</code>.</li>
+<li>- Check the settings and select <code>Save+Exit</code>.</li>
+</ul><br>
+<img src="assets/HowTo01.jpg" width="800"></p></br></br>
+
+<p><b>The offlineLNSwitch is now ready</b></p><br>
+
+<img src="assets/HowTo02.jpg" width="800"></p></br>
+<img src="assets/HowTo03.jpg" width="800"></p></br></br>
+
+<p><b>Some additions</b></p><br>
+
+<img src="assets/1.png" width="300">
+<img src="assets/2.png" width="300">
+<img src="assets/3.png" width="300"></p></br></br>
 
 
-<u>New feature for the online LNPoS function:</u> </br> 
-If you leave the "Fiat" field blank in the configuration, then before creating the Invoice, you will get the option to choose between <b>USD, EUR</b> and <b>sat</b> each time.</br>  </br> 
 
-The configuration of version 0.3 is done via the access point (AP), just like with Versoni 0.1. You must connect once via wifi on the device and can then set an AP, with which the LNPoS then connects. If the LNPoS has then dialed into the wifi, you can find the IP in the network and then dial into the device via the IP of the device. All further configurations can then be made via the IP. However, remember that the LNPoS can either provide an access point (launch AP mode) or dial into the wifi itself. Either you can reach the LNPoS directly via the wifi or via the IP of the device in the network in which it has logged itself in. However the configuration button of the web installer has no function for version 0.3, everything works through the above mentioned confiruration options. </br>  </br> 
- 
-Here are three versions to choose from. The 0.1 and 0.2 are the same as on the <a href="https://lnbits.github.io/lnpos/installer/">official</a> site. The version 0.3 is the modified version. There are two versions of the TTGO T-Display ESP32 board. With a 4 MB or 16 MB Flash. The version 0.1 and 0.2 work for both versions. The version 0.3 needs a little bigger memory and so it can be that it doesn't work with some ESP32 models. Just try it out. </br>  </br> 
-
-Thanks to Michael and if you have any questions:</br>
-
-Github: <a href="https://github.com/michael34435/lnpos">michael34435/lnpos</a> / Twitter: <a href="https://twitter.com/michael34435">michael34435</a></br> 
-
-                            <br><h4>Deutsch <img src="assets/deutsch.ico"></h4>
-
-</br> 
-
-Eine spezielle LNPoS-Version, die auf der leider nicht funktionierenden Version 0.2 basiert und einige Fehler bezüglich des Access Point-Modus behebt. Mit dieser Version (0.3) sollte das Lesen des QR-Codes besser funktionieren, insbesondere für iPhones, die damit ihre Probleme hatten und jetzt kann der LNPoS auch mit Satoshis als Währung direkt umgehen. </br>  </br> 
-
-Passwort für WiFi Access Point: <b>ToTheMoon1</b> </br> 
-Standard "Settings Password" ist: <b>878787</b> </br> 
-Neu "Fiat decimal places" Standard ist: <b>2</b>  (für z.B. 1,00 Euro oder setze 0 für z.b. 1 sat) </br>  </br> 
-
-<u>Neues Feature für die online LNPoS Funktion:</u> </br> 
-Wenn man das Feld "Fiat" in der Konfiguration frei lässt, dann bekommt man vor der Erstellung der Invoice, jedesmal die Möglichkeit, zwischen <b>USD, EUR</b> und <b>sat</b> zu wählen.</br>  </br> 
-
-Die Konfiguration der Version 0.3 erfolgt über den Access Point (AP), genau wie bei Versoni 0.1. Sie müssen sich einmalig über WLAN mit dem Gerät verbinden und können dann einen AP einstellen, mit dem sich der LNPoS dann verbindet. Wenn sich der LNPoS dann ins WLAN eingewählt hat, kann man die IP im Netzwerk finden und sich dann über die IP des Gerätes einwählen. Alle weiteren Konfigurationen können dann über die IP vorgenommen werden. Bedenken Sie jedoch, dass der LNPoS entweder einen Zugangspunkt bereitstellen kann (AP-Modus starten) oder sich selbst in das WLAN einwählen kann. Entweder erreichen Sie den LNPoS direkt über das WLAN oder über die IP des Gerätes in dem Netzwerk, in dem es sich eingeloggt hat. Der Konfigurationsbutton des Web-Installers hat in der Version 0.3 allerdings keine Funktion, alles funktioniert über die oben genannten Konfigurationsmöglichkeiten.</br>  </br> 
-
-Hier sind drei Versionen zur Auswahl. Die 0.1 und 0.2 sind die gleichen wie auf der <a href="https://lnbits.github.io/lnpos/installer/">official</a> Seite. Die Version 0.3 ist die modifizierte Version. Es gibt zwei Versionen des TTGO T-Display ESP32 Boards. Mit einem 4 MB oder 16 MB Flash. Die Versionen 0.1 und 0.2 funktionieren für beide Versionen. Die Version 0.3 benötigt einen etwas größeren Speicher und kann daher bei einigen ESP32-Modellen nicht funktionieren. Probieren Sie es einfach aus. </br>  </br> 
-
-Danke an Michael und falls Sie Fragen haben:</br> 
-
-Github: <a href="https://github.com/michael34435/lnpos">michael34435/lnpos</a> / Twitter: <a href="https://twitter.com/michael34435">michael34435</a></br> </br> 
+                        </br> 
 
 <h4>Need some help? <img src="assets/manual.ico"></h4><br>
 
-<h5>Have a look at <a href="https://ereignishorizont.xyz/lnpos/en">ereignishorizont.xyz/lnpos</a></h5>
+<h5>Have a look at <a href="https://ereignishorizont.xyz/bitcoinswitch/">ereignishorizont.xyz/bitcoinswitch</a></h5>
 
                             <br><h4>Telegram Groups</h4>
                             <p> <a href="https://t.me/makerbits">MakerBits</a></p>
@@ -343,15 +388,16 @@ Github: <a href="https://github.com/michael34435/lnpos">michael34435/lnpos</a> /
                             Twitter: <a href="https://twitter.com/AxelHamburch">AxelHamburch</a> Website: <a href="https://ereignishorizont.xyz/">ereignishorizont.xyz</a>
                             <br>
 <br><h4>Thanks a lot</h4>
-                            <p>to <a href="https://twitter.com/arcbtc">Ben Arc</a> and all those who helped with this great <a
-                                    href="https://github.com/lnbits/lnpos">LNPoS</a>.</p>
+                            <p>to <a href="https://twitter.com/arcbtc">Ben Arc</a> for the bitcoinVend <a
+                                    href="https://github.com/arcbtc/bitcoinVend">bitcoinVend</a></p>
+                                    <p>and to <a href="https://github.com/pieterjm">Pieter</a> for the <a href="https://github.com/pieterjm/BliksemBier"> BliksemBier</a>.</p>
                         <br><br></p>
 
 
 <br><br>
 
 
-<p align="center"><b>Created with love 🧡 Block 805466 / 805467</b></p>
+<p align="center"><b>Created with love 🧡 Block 805466 / 807363</b></p>
 <p align="center"><b>– Lightning ⚡ (er)leben –</b></p>
                         </div>
 
