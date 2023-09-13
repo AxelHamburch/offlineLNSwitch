@@ -108,16 +108,17 @@
                                     </a>
                                 </div>
                                 End ====== -->
-                                <div class="col-5">
+                                <div class="col-6">
                                     <select id="binVersionOption" onchange="updateBinVersion(this)" class="ud-main-btn ud-white-btn">
-                                        <option value="807347c">807347c StartVersion</option>
-                                        <option value="805566c">805466c PreVersion</option>
+                                        <option value="807451c">807451c - Nobium</option>
+                                        <option value="807347c">807347c - StartVersion</option>
+                                        <option value="805566c">805466c - PreVersion</option>
                                     </select>
 
                                 </div>
                                 <div class="col-2">
                                     <esp-web-install-button id="espInstallButton"
-                                        manifest="./firmware/esp32/807347c/manifest.json">
+                                        manifest="./firmware/esp32/807451c/manifest.json">
                                         <button slot="activate" class="ud-main-btn ud-white-btn" data-toggle="tooltip"
                                             data-placement="bottom" title="Flasn">Flash</button>
                                     </esp-web-install-button>
@@ -271,7 +272,7 @@
                 <img src="assets/images/hero/dotted-shape.svg" alt="shape" class="shape shape-1" />
                 <img src="assets/images/hero/dotted-shape.svg" alt="shape" class="shape shape-2" />
 
-		</p></br>
+		</p>
 
             </div>
         </div>
@@ -280,47 +281,51 @@
     </section>
     <!-- ====== Hero End ====== -->
 
+
+
     <!-- ====== Features Start ====== -->
     <section id="features" class="ud-features">
         <div class="container">
+
                         <h2>Features</h2>
 
                         <div class="ud-info-meta">
                             <p><br>
-                            
+
+         
 
        
  <h4 id="how-do-i-set-up-the-offline-ln-switch">How do I set up the offline LN switch?</h4><br>
 <p>The setup is relatively simple. It is done in three steps.</p><br>
 <ol>
-<li>1. flash the firmware on the ESP32</li>
-<li>2. create and set up a LNbits wallet</li>
-<li>3. configure the offline LN Switch via the touch display</li>
+<li>1. Flash the firmware on the ESP32</li>
+<li>2. Create and set up a LNbits wallet</li>
+<li>3. Configure the offline LN Switch via the touch display</li>
 </ol><br>
 <p>First note: There are two different versions of the Sunton 3.5" 320*480 Smart Display (ESP32-3248S035). Once with “Resistive Touch Screen” (pressure sensitive, foil like screen coating) and then with a “Capacitive Touch Screen” (glass display, reacts to conductivity). You can feel the difference, or see it on the back. See the pictures in the attachment. I would recommend the capacitive version. It is a bit more expensive, but also less sensitive. When selecting the firmware version, look for the “r” for resistive or “c” for capacitive after the version number.</p>
 <ol><br>
-<li><b>1. flash firmware to the ESP32</b></li><br>
+<li><b>1. Flash firmware to the ESP32</b></li><br>
 </ol>
 <ul>
 <li>- Open this web page with the webinstaller</li>
 <li>- Connect the EPS32 via USB cable to the computer</li>
 <li>- Press the button <code>Flash</code> (if necessary select another version before)</li>
-<li>- In the connection window select the ‘COM-Interface’ for the ESP32 and press 'Connect</li>
-<li>- In the Device Dashboard `INSTALL OFFLINELNSWITCH</li>
+<li>- In the connection window select the ‘COM-Interface’ for the ESP32 and press <code>Connect</code></li>
+<li>- In the Device Dashboard <code>INSTALL OFFLINELNSWITCH</code></li>
 <li>- <code>Erase device</code> at first upload then NEXT</li>
 <li>- Check the selected version and press INSTALL</li>
 <li>- Preparing installation… Erasing… Installing. Wrapping up… Installation complete!</li>
 <li>- That’s it, the ESP32 is now written with the firmware.</li>
 <li>- If you have problems "Refresh" the browser first and reconnect the ESP32 if necessary.</li>
 </ul><br>
-<p>Note: Under ‘Flash / Device Dashboard’ there is the menu item ‘LOGS &amp; CONSOLE’. You can use this for diagnostics. Press Reset once to restart the ESP32. Some functions and processes are displayed there.</p>
+<p><b>Note:</b> Under <code>Flash / Device Dashboard</code> there is the menu item <code>LOGS &amp; CONSOLE</code>. You can use this for diagnostics. Press Reset once to restart the ESP32. Some functions and processes are displayed there.</p>
 <br>
 <img src="assets/WebInstaller01.jpg" width="800"></p></br>
 <img src="assets/WebInstaller02.jpg" width="800"></p></br>
 <img src="assets/WebInstaller03.jpg" width="800"></p></br>
 
 <ol start="2"><br>
-<li><b>2. create and set up a LNbits Wallet</b></li><br>
+<li><b>2. Create and set up a LNbits Wallet</b></li><br>
 </ol>
 <ul>
 <li>- You can get a free demo wallet for example at <a href="https://legend.lnbits.com/">https://legend.lnbits.com/</a></li>
@@ -340,18 +345,18 @@
 <img src="assets/LNbits05.png" width="800"></p></br>
 
 <ol start="3"><br>
-<li><b>3. configure the offline LN switch via the touch display</b></li><br>
+<li><b>3. Configure the offline LN switch via the touch display</b></li><br>
 </ol>
 <ul>
 <li>- Connect your offline LN switch to the power supply.</li>
-<li>- At the bottom left you will now see a cogwheel symbol. Select it. The default PIN is '123456</li>
+<li>- At the bottom left you will now see a cogwheel symbol. Select it. The default PIN is <code>123456</code></li>
 <li>- Here you will find the data you have to enter again</li>
 <li>- <code>LNbits Host</code> = e.g. <a href="http://legend.lnbits.com">legend.lnbits.com</a></li>
 <li>- <code>id</code> = e.g. 7vDYV</li>
 <li>- <code>key</code> = e.g. 3v9i65KL36yhtw2xCNwD8k</li>
 <li>- <code>Currency</code> = e.g. 0.21 (Attention: dot as decimal separator)</li>
 <li>- You can also set a personal <code>ConfigPIN</code> here</li>
-<li>- Under <code>Switch</code> you will find further settings</li>
+<li>- Under <code>Switch</code> you will find further settings:</li>
 <li>- <code>Name</code>= Product name</li>
 <li>- <code>Price</code> = Price of the product</li>
 <li>- <code>Time</code> = Time in ms the relay should switch. E.G. 3000</li>
@@ -375,23 +380,32 @@
 
 
 
-                        </br> 
 
-<h4>Need some help? <img src="assets/manual.ico"></h4><br>
+                        
 
-<h5>Have a look at <a href="https://ereignishorizont.xyz/bitcoinswitch/">ereignishorizont.xyz/bitcoinswitch</a></h5>
+<br><h4>Need some help? <img src="assets/manual.ico"></h4>
+
+Have a look at <a href="https://ereignishorizont.xyz/bitcoinswitch/">ereignishorizont.xyz/bitcoinswitch</a>
 
                             <br><h4>Telegram Groups</h4>
-                            <p> <a href="https://t.me/makerbits">MakerBits</a></p>
-                            <p> <a href="https://t.me/lnbits">LNbits</a></p>
+                            <p> <a href="https://t.me/makerbits">MakerBits</a>
+                            <p></p><a href="https://t.me/lnbits">LNbits</a></p>
+                            <p> <a href="https://t.me/+wZ0sp6hnePUxNTU6">bitcoinSwitchDACH </a> (german speaking)</p>
                             <br><h4>Contact</h4>
                             Twitter: <a href="https://twitter.com/AxelHamburch">AxelHamburch</a> Website: <a href="https://ereignishorizont.xyz/">ereignishorizont.xyz</a>
                             <br>
+
+
 <br><h4>Thanks a lot</h4>
                             <p>to <a href="https://twitter.com/arcbtc">Ben Arc</a> for the bitcoinVend <a
                                     href="https://github.com/arcbtc/bitcoinVend">bitcoinVend</a></p>
                                     <p>and to <a href="https://github.com/pieterjm">Pieter</a> for the <a href="https://github.com/pieterjm/BliksemBier"> BliksemBier</a>.</p>
-                        <br><br></p>
+                        <br></p>
+
+                <h4>Version History <img src="assets/update.ico"></h4>
+                <b>807451 Nobium:</b> Refactoring and revision after first test </br> 
+                <b>807347 StartVersion:</b> First test version </br> 
+                <b>805466 PreVersion:</b> Development version </br> </br>    
 
 
 <br><br>

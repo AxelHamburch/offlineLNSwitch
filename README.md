@@ -19,55 +19,14 @@ The connection of a relay is quite simple. The supplied cable is sufficient. The
 
 <img src="./images/relay.jpg" width="400">
 
-## Flash firmware
+## How do I set up the offline⚡️Switch?
 
-### Web installer (recommended)
+1. Flash the firmware on the ESP32
+2. Create and set up a LNbits wallet
+3. Configure the offline⚡️Switch via the touch display
 
-Go to the [web installer](https://ereignishorizont.xyz/installer/offlineLNSwitch/index.html) and follow instructions. This is the easiest way to flash firmware and load config.
-
-#### Web installer troubleshooting
-
-- It works with chrome, chromium, brave.
-- Build errors > If during firmware flash upload stops, it's recommended to enter the board in boot mode. Unplug cable, hold right bottom button and then plug cable. Try again programming.
-
-### Manual flashing
-
-- Install [Arduino IDE](https://www.arduino.cc/en/software)
-- Install ESP32 boards, using [boards manager](https://github.com/espressif/arduino-esp32/releases/download/2.0.9/esp32-2.0.9.zip)
-- Download this repo
-- Download and install the libraries into your Arduino install "libraries" folder (see table below)
-- Open [satoffee.ino](./satoffee/satoffee.ino) file in the Arduino IDE
-- Select the correct ESP32 board from tools > board. Please refer to [T-Display-S3](https://github.com/Xinyuan-LilyGO/T-Display-S3) to set the correct settings of the ESP32. The only difference is on `Partition Scheme`, please select `16M Flash (3MB APP/9.9MB FATFS)`
-- Compile and upload to device
-
-| Used library     | Version | Link                                                              |
-| :--------------- | :------ | :---------------------------------------------------------------- |
-| WiFi             | 2.0.0   | Included in ESP32 boards manager                                  |
-| WiFiClientSecure | 2.0.0   | Included in ESP32 boards manager                                  |
-| FS               | 2.0.0   | Included in ESP32 boards manager                                  |
-| FFat             | 2.0.0   | Included in ESP32 boards manager                                  |
-| SPI              | 2.0.0   | Included in ESP32 boards manager                                  |
-| SPIFFS           | 2.0.0   | Included in ESP32 boards manager                                  |
-| WebSockets       | 2.3.6   | [link](https://github.com/Links2004/arduinoWebSockets/tree/2.3.6) |
-| OneButton        | 2.0.4   | [link](https://github.com/mathertel/OneButton/tree/2.0.4)         |
-| ArduinoJson      | 6.19.0  | [link](https://github.com/bblanchon/ArduinoJson/tree/v6.19.0)     |
-| QRCode           | 0.0.1   | [link](https://github.com/ricmoo/QRCode/tree/v0.0.1)              |
-| TFT_eSPI         | 2.5.0   | [link](./libraries/TFT_eSPI.zip)                                  |
-
-## Configuration
-
-After flashing the firmware and starting the Satoffee for the first time it will enter on `serial config mode` automatically, please go to the [web installer](https://satoffee.danielpcostas.dev/) and follow step 2 for loading config values
-
-### Buttons
-
-#### Left button
-
-- One click → test screen mode (will loop all screens, keep clicking).
-- Hold 5 seconds → enter serial config mode.
-
-#### Right button
-
-- One click → show help (will loop help screens)
+For more information see the [web installer](https://ereignishorizont.xyz/installer/offlineLNSwitch/index.html).
+This is the easiest way to flash the firmware and describes the configuration.
 
 ## Aknowledgement
 

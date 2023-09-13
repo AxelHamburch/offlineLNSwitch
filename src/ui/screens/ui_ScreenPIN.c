@@ -42,9 +42,9 @@ lv_obj_set_align( ui_LabelPINValue, LV_ALIGN_TOP_MID );
 lv_label_set_text(ui_LabelPINValue,"ENTER PIN");
 lv_obj_set_style_text_color(ui_LabelPINValue, lv_color_hex(0xCFCFD7), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_LabelPINValue, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_letter_space(ui_LabelPINValue, 10, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_letter_space(ui_LabelPINValue, 8, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_text_line_space(ui_LabelPINValue, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_font(ui_LabelPINValue, &lv_font_montserrat_20, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_LabelPINValue, &lv_font_montserrat_22, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_ButtonPin1 = lv_btn_create(ui_ScreenPIN);
 lv_obj_set_width( ui_ButtonPin1, 80);

@@ -22,8 +22,6 @@ void ui_event_ImageSettings( lv_event_t * e);
 lv_obj_t *ui_ImageSettings;
 void ui_event_ImageInfo( lv_event_t * e);
 lv_obj_t *ui_ImageInfo;
-lv_obj_t *ui_LabelWelcomeText1;
-lv_obj_t *ui_LabelWelcomeText2;
 lv_obj_t *ui_PanelPINConfig;
 lv_obj_t *ui_LabelEnterConfigPin;
 lv_obj_t *ui_TextAreaPINConfig;
@@ -171,9 +169,9 @@ void ui_ScreenInfo_screen_init(void);
 lv_obj_t *ui_ScreenInfo;
 lv_obj_t *ui_TopScreenPlay1;
 lv_obj_t *ui_LabelTopScreenPlayground1;
-void ui_event_ButtonGotoScreenPlay2( lv_event_t * e);
-lv_obj_t *ui_ButtonGotoScreenPlay2;
-lv_obj_t *ui_LabelButtonGotoScreenPlay2;
+void ui_event_ButtonGotoScreenStart( lv_event_t * e);
+lv_obj_t *ui_ButtonGotoScreenStart;
+lv_obj_t *ui_LabelButtonGotoScreenStart;
 lv_obj_t *ui_LabelInfo;
 lv_obj_t *ui_LabelTestPayment;
 lv_obj_t *ui_LabelMoreInfos;
@@ -453,7 +451,7 @@ if ( event_code == LV_EVENT_CLICKED) {
       AddQRCode( e );
 }
 }
-void ui_event_ButtonGotoScreenPlay2( lv_event_t * e) {
+void ui_event_ButtonGotoScreenStart( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
 if ( event_code == LV_EVENT_CLICKED) {
       _ui_screen_change( &ui_ScreenStart, LV_SCR_LOAD_ANIM_NONE, 100, 100, &ui_ScreenStart_screen_init);

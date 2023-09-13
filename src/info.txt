@@ -1,3 +1,12 @@
+NEW UPDATE PROCEDURE
+
+- Edit Firmware Version in platformio.ini
+- Compile and make ne folder with new firmware.bin and edit manifest.json
+- Edit selection box and start version
+- Edit Version History
+- Transfere new Folder and index.html
+- Make test installation and check functions and version number
+
 
 Fehlermeldung:
 booting..

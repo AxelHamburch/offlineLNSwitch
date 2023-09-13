@@ -157,9 +157,9 @@ lv_obj_set_style_text_color(ui_LabelConfigPin, lv_color_hex(0xCFCFD7), LV_PART_M
 lv_obj_set_style_text_opa(ui_LabelConfigPin, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_ButtonConfigSave = lv_btn_create(ui_ScreenConfig);
-lv_obj_set_width( ui_ButtonConfigSave, 120);
+lv_obj_set_width( ui_ButtonConfigSave, 123);
 lv_obj_set_height( ui_ButtonConfigSave, 41);
-lv_obj_set_x( ui_ButtonConfigSave, 86 );
+lv_obj_set_x( ui_ButtonConfigSave, 85 );
 lv_obj_set_y( ui_ButtonConfigSave, 91 );
 lv_obj_set_align( ui_ButtonConfigSave, LV_ALIGN_CENTER );
 lv_obj_add_flag( ui_ButtonConfigSave, LV_OBJ_FLAG_SCROLL_ON_FOCUS );   /// Flags
@@ -178,7 +178,7 @@ lv_obj_set_align( ui_LabelButtonConfigSave, LV_ALIGN_CENTER );
 lv_label_set_text(ui_LabelButtonConfigSave,"Save+Exit");
 lv_obj_set_style_text_color(ui_LabelButtonConfigSave, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_LabelButtonConfigSave, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_font(ui_LabelButtonConfigSave, &lv_font_montserrat_20, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_LabelButtonConfigSave, &lv_font_montserrat_22, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_ButtonGoSwitches = lv_btn_create(ui_ScreenConfig);
 lv_obj_set_width( ui_ButtonGoSwitches, 120);
@@ -202,7 +202,7 @@ lv_obj_set_align( ui_LabelButtonGoSwitches, LV_ALIGN_CENTER );
 lv_label_set_text(ui_LabelButtonGoSwitches,"Switch");
 lv_obj_set_style_text_color(ui_LabelButtonGoSwitches, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_LabelButtonGoSwitches, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_font(ui_LabelButtonGoSwitches, &lv_font_montserrat_20, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_LabelButtonGoSwitches, &lv_font_montserrat_22, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_LabelConfigMoreOptions = lv_label_create(ui_ScreenConfig);
 lv_obj_set_width( ui_LabelConfigMoreOptions, LV_SIZE_CONTENT);  /// 1

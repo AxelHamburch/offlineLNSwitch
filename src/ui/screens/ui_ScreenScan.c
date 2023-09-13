@@ -45,7 +45,6 @@ lv_obj_set_style_bg_color(ui_ButtonGotoScreenPin2, lv_color_hex(0xCFCFD7), LV_PA
 lv_obj_set_style_bg_opa(ui_ButtonGotoScreenPin2, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_text_color(ui_ButtonGotoScreenPin2, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_ButtonGotoScreenPin2, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_font(ui_ButtonGotoScreenPin2, &lv_font_montserrat_20, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_LabelButtonGotoScreenPin2 = lv_label_create(ui_ButtonGotoScreenPin2);
 lv_obj_set_width( ui_LabelButtonGotoScreenPin2, LV_SIZE_CONTENT);  /// 1
@@ -66,7 +65,6 @@ lv_obj_add_flag( ui_ButtonCallPanelCancel, LV_OBJ_FLAG_SCROLL_ON_FOCUS );   /// 
 lv_obj_clear_flag( ui_ButtonCallPanelCancel, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 lv_obj_set_style_bg_color(ui_ButtonCallPanelCancel, lv_color_hex(0xCFCFD7), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_bg_opa(ui_ButtonCallPanelCancel, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_font(ui_ButtonCallPanelCancel, &lv_font_montserrat_20, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_LabelButtonGotoScreenPin3 = lv_label_create(ui_ButtonCallPanelCancel);
 lv_obj_set_width( ui_LabelButtonGotoScreenPin3, LV_SIZE_CONTENT);  /// 1
@@ -75,7 +73,7 @@ lv_obj_set_align( ui_LabelButtonGotoScreenPin3, LV_ALIGN_CENTER );
 lv_label_set_text(ui_LabelButtonGotoScreenPin3,"Cancel");
 lv_obj_set_style_text_color(ui_LabelButtonGotoScreenPin3, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_LabelButtonGotoScreenPin3, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_font(ui_LabelButtonGotoScreenPin3, &lv_font_montserrat_20, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_LabelButtonGotoScreenPin3, &lv_font_montserrat_18, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_ImageScanQRCodeBorder = lv_img_create(ui_ScreenScan);
 lv_img_set_src(ui_ImageScanQRCodeBorder, &ui_img_166440904);
@@ -96,7 +94,7 @@ lv_obj_set_align( ui_LabelProduct, LV_ALIGN_CENTER );
 lv_label_set_text(ui_LabelProduct,"-Product-");
 lv_obj_set_style_text_color(ui_LabelProduct, lv_color_hex(0xCFCFD7), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_LabelProduct, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_font(ui_LabelProduct, &lv_font_montserrat_20, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_LabelProduct, &lv_font_montserrat_22, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_LabelPriceAndCurrency = lv_label_create(ui_ScreenScan);
 lv_obj_set_width( ui_LabelPriceAndCurrency, LV_SIZE_CONTENT);  /// 1
@@ -160,7 +158,7 @@ lv_obj_set_align( ui_LabelYES, LV_ALIGN_CENTER );
 lv_label_set_text(ui_LabelYES,"YES");
 lv_obj_set_style_text_color(ui_LabelYES, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_LabelYES, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_font(ui_LabelYES, &lv_font_montserrat_20, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_LabelYES, &lv_font_montserrat_18, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_ButtonNO = lv_btn_create(ui_PanelCancel);
 lv_obj_set_width( ui_ButtonNO, 161);
@@ -183,7 +181,7 @@ lv_label_set_text(ui_LabelNO,"NO");
 lv_obj_set_style_text_color(ui_LabelNO, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_LabelNO, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_text_align(ui_LabelNO, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_font(ui_LabelNO, &lv_font_montserrat_20, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_LabelNO, &lv_font_montserrat_22, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 lv_obj_add_event_cb(ui_ButtonGotoScreenPin2, ui_event_ButtonGotoScreenPin2, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_ButtonCallPanelCancel, ui_event_ButtonCallPanelCancel, LV_EVENT_ALL, NULL);

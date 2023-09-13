@@ -62,7 +62,7 @@ lv_obj_set_height( ui_TextAreaSwitchName1, LV_SIZE_CONTENT);   /// 39
 lv_obj_set_x( ui_TextAreaSwitchName1, 48 );
 lv_obj_set_y( ui_TextAreaSwitchName1, -130 );
 lv_obj_set_align( ui_TextAreaSwitchName1, LV_ALIGN_CENTER );
-lv_textarea_set_placeholder_text(ui_TextAreaSwitchName1,"Your choise");
+lv_textarea_set_placeholder_text(ui_TextAreaSwitchName1,"Your choice");
 lv_textarea_set_one_line(ui_TextAreaSwitchName1,true);
 
 
@@ -168,7 +168,7 @@ lv_obj_set_align( ui_LabelButtonGoConfig, LV_ALIGN_CENTER );
 lv_label_set_text(ui_LabelButtonGoConfig,"Config");
 lv_obj_set_style_text_color(ui_LabelButtonGoConfig, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_LabelButtonGoConfig, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_font(ui_LabelButtonGoConfig, &lv_font_montserrat_20, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_LabelButtonGoConfig, &lv_font_montserrat_22, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_SwitchToggle1 = lv_switch_create(ui_ScreenSwitch1);
 lv_obj_set_width( ui_SwitchToggle1, 50);

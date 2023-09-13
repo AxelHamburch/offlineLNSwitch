@@ -33,26 +33,25 @@ lv_obj_set_style_text_letter_space(ui_LabelTopScreenPlayground1, 2, LV_PART_MAIN
 lv_obj_set_style_text_line_space(ui_LabelTopScreenPlayground1, 23, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_text_font(ui_LabelTopScreenPlayground1, &lv_font_montserrat_22, LV_PART_MAIN| LV_STATE_DEFAULT);
 
-ui_ButtonGotoScreenPlay2 = lv_btn_create(ui_ScreenInfo);
-lv_obj_set_width( ui_ButtonGotoScreenPlay2, 120);
-lv_obj_set_height( ui_ButtonGotoScreenPlay2, 41);
-lv_obj_set_x( ui_ButtonGotoScreenPlay2, -70 );
-lv_obj_set_y( ui_ButtonGotoScreenPlay2, 207 );
-lv_obj_set_align( ui_ButtonGotoScreenPlay2, LV_ALIGN_CENTER );
-lv_obj_add_flag( ui_ButtonGotoScreenPlay2, LV_OBJ_FLAG_SCROLL_ON_FOCUS );   /// Flags
-lv_obj_clear_flag( ui_ButtonGotoScreenPlay2, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
-lv_obj_set_style_bg_color(ui_ButtonGotoScreenPlay2, lv_color_hex(0xCFCFD7), LV_PART_MAIN | LV_STATE_DEFAULT );
-lv_obj_set_style_bg_opa(ui_ButtonGotoScreenPlay2, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_font(ui_ButtonGotoScreenPlay2, &lv_font_montserrat_20, LV_PART_MAIN| LV_STATE_DEFAULT);
+ui_ButtonGotoScreenStart = lv_btn_create(ui_ScreenInfo);
+lv_obj_set_width( ui_ButtonGotoScreenStart, 120);
+lv_obj_set_height( ui_ButtonGotoScreenStart, 41);
+lv_obj_set_x( ui_ButtonGotoScreenStart, -70 );
+lv_obj_set_y( ui_ButtonGotoScreenStart, 207 );
+lv_obj_set_align( ui_ButtonGotoScreenStart, LV_ALIGN_CENTER );
+lv_obj_add_flag( ui_ButtonGotoScreenStart, LV_OBJ_FLAG_SCROLL_ON_FOCUS );   /// Flags
+lv_obj_clear_flag( ui_ButtonGotoScreenStart, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+lv_obj_set_style_bg_color(ui_ButtonGotoScreenStart, lv_color_hex(0xCFCFD7), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_ButtonGotoScreenStart, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 
-ui_LabelButtonGotoScreenPlay2 = lv_label_create(ui_ButtonGotoScreenPlay2);
-lv_obj_set_width( ui_LabelButtonGotoScreenPlay2, LV_SIZE_CONTENT);  /// 1
-lv_obj_set_height( ui_LabelButtonGotoScreenPlay2, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_align( ui_LabelButtonGotoScreenPlay2, LV_ALIGN_CENTER );
-lv_label_set_text(ui_LabelButtonGotoScreenPlay2,"Back");
-lv_obj_set_style_text_color(ui_LabelButtonGotoScreenPlay2, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT );
-lv_obj_set_style_text_opa(ui_LabelButtonGotoScreenPlay2, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_font(ui_LabelButtonGotoScreenPlay2, &lv_font_montserrat_22, LV_PART_MAIN| LV_STATE_DEFAULT);
+ui_LabelButtonGotoScreenStart = lv_label_create(ui_ButtonGotoScreenStart);
+lv_obj_set_width( ui_LabelButtonGotoScreenStart, LV_SIZE_CONTENT);  /// 1
+lv_obj_set_height( ui_LabelButtonGotoScreenStart, LV_SIZE_CONTENT);   /// 1
+lv_obj_set_align( ui_LabelButtonGotoScreenStart, LV_ALIGN_CENTER );
+lv_label_set_text(ui_LabelButtonGotoScreenStart,"Back");
+lv_obj_set_style_text_color(ui_LabelButtonGotoScreenStart, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_text_opa(ui_LabelButtonGotoScreenStart, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_LabelButtonGotoScreenStart, &lv_font_montserrat_22, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_LabelInfo = lv_label_create(ui_ScreenInfo);
 lv_obj_set_width( ui_LabelInfo, LV_SIZE_CONTENT);  /// 1
@@ -64,7 +63,7 @@ lv_label_set_text(ui_LabelInfo,"The offline Lightning Switch\nis a bitcoinSwitch
 lv_label_set_recolor(ui_LabelInfo,"true");
 lv_obj_set_style_text_color(ui_LabelInfo, lv_color_hex(0xCFCFD7), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_LabelInfo, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_font(ui_LabelInfo, &lv_font_montserrat_20, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_LabelInfo, &lv_font_montserrat_18, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_LabelTestPayment = lv_label_create(ui_ScreenInfo);
 lv_obj_set_width( ui_LabelTestPayment, LV_SIZE_CONTENT);  /// 1
@@ -140,9 +139,9 @@ lv_obj_set_align( ui_LabelFWVersion, LV_ALIGN_CENTER );
 lv_label_set_text(ui_LabelFWVersion,"-fw-");
 lv_obj_set_style_text_color(ui_LabelFWVersion, lv_color_hex(0xCFCFD7), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_LabelFWVersion, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_font(ui_LabelFWVersion, &lv_font_montserrat_20, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_LabelFWVersion, &lv_font_montserrat_18, LV_PART_MAIN| LV_STATE_DEFAULT);
 
-lv_obj_add_event_cb(ui_ButtonGotoScreenPlay2, ui_event_ButtonGotoScreenPlay2, LV_EVENT_ALL, NULL);
+lv_obj_add_event_cb(ui_ButtonGotoScreenStart, ui_event_ButtonGotoScreenStart, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_ImageTestButtonOrange, ui_event_ImageTestButtonOrange, LV_EVENT_ALL, NULL);
 
 }
