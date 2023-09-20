@@ -4,9 +4,11 @@
 
 <img src="./doc/main.jpg" width="700">
 
+<!--- ![offline⚡️Switch]  --->
+
 #### Demo Video: <video width="360" height="740" controls autoplay>
 
-<source src="installer/assets/DemoVideo.mp4" type=video/mp4>
+<source src="https://ereignishorizont.xyz/vids/offlineLNSwitch-DemoVideo.mp4" type=video/mp4>
 </video>
 
 ## Short description
