@@ -6,8 +6,7 @@
 
 <!--- ![offline⚡️Switch]  --->
 
-#### Demo Video: <video width="360" height="740" controls autoplay>
-
+<video width="360" height="740" controls>
 <source src="https://ereignishorizont.xyz/vids/offlineLNSwitch-DemoVideo.mp4" type=video/mp4>
 </video>
 
