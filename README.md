@@ -4,6 +4,11 @@
 
 <img src="./doc/main.jpg" width="700">
 
+#### Demo Video: <video width="360" height="740" controls autoplay>
+
+<source src="installer/assets/DemoVideo.mp4" type=video/mp4>
+</video>
+
 ## Short description
 
 The offline⚡️Switch is a bitcoinSwitch with an ESP32-based smart display (made by Sunton). It is based on the offline payment functionality of bitcoinVend or LNPoS. The offline⚡️Switch itself does not need to be online, only the payer. The offline⚡️Switch can display a QR code (LNURL) on the display. The user's wallet scans the QR code and connects online to the LNbits server. If the Invoice has been paid, the user is shown a "secret" as a four-digit PIN. If this PIN is entered via the touch panel into the offline⚡️Switch, then the condition is fulfilled for him and the switch is switched. The configuration can be done exclusively via the display, which considerably reduces the technical requirements. As a basis for this smart display project I could use the BliksemBier from Pieter.
