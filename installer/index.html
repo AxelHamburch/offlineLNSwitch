@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-        offline⚡Switch | Build on Lightning⚡with LNbits
+        web installer | offline⚡Switch
     </title>
 
     <!-- Primary Meta Tags -->
@@ -110,6 +110,7 @@
                                 End ====== -->
                                 <div class="col-6">
                                     <select id="binVersionOption" onchange="updateBinVersion(this)" class="ud-main-btn ud-white-btn">
+                                        
                                         <option value="807451c">807451c - Nobium</option>
                                         <option value="807347c">807347c - StartVersion</option>
                                         <option value="805566c">805466c - PreVersion</option>
@@ -268,13 +269,13 @@
 
             <div class="ud-hero-image wow fadeInUp" data-wow-delay=".25s">
 
-                <img src="assets/Hauptbild.png" width="700" alt="tdisplay-image" />
+                <img src="assets/main.jpg" width="700" alt="tdisplay-image" />
                 <img src="assets/images/hero/dotted-shape.svg" alt="shape" class="shape shape-1" />
                 <img src="assets/images/hero/dotted-shape.svg" alt="shape" class="shape shape-2" />
 
-		</p>
+                </p>
 
-            </div>
+	        </div>
         </div>
         </div>
         </div>
@@ -287,15 +288,22 @@
     <section id="features" class="ud-features">
         <div class="container">
 
-                        <h2>Features</h2>
+                        <h2>Features</h2><br>
+                        <h4> offline⚡Switch | Build on Lightning⚡with LNbits    </h4>    
 
                         <div class="ud-info-meta">
-                            <p><br>
+                  <br>    
+                  
+                  <!-- ====== width="360" height="740"  "578" height="1024" 
+                Demo Video:<br>
+                
+                <video width="289" height="512" controls autoplay>
+		        <source src="assets/DemoVideo.mp4" type=video/mp4>
+		        </video><br>
+                ====== -->
 
-         
-
-       
- <h4 id="how-do-i-set-up-the-offline-ln-switch">How do I set up the offline⚡️Switch?</h4><br>
+<p></p>
+<h4 id="how-do-i-set-up-the-offline-ln-switch">How to set up the offline⚡️Switch?</h4><br>
 <p>The setup is relatively simple. It is done in three steps.</p><br>
 <ol>
 <li>1. Flash the firmware on the ESP32</li>
@@ -304,8 +312,8 @@
 </ol><br>
 <p>First note: There are two different versions of the Sunton 3.5" 320*480 Smart Display (ESP32-3248S035). Once with “Resistive Touch Screen” (pressure sensitive, foil like screen coating) and then with a “Capacitive Touch Screen” (glass display, reacts to conductivity). You can feel the difference, or see it on the back. See the pictures in the attachment. I would recommend the capacitive version. It is a bit more expensive, but also less sensitive. When selecting the firmware version, look for the “r” for resistive or “c” for capacitive after the version number.</p>
 <ol><br>
-<li><b>1. Flash firmware to the ESP32</b></li><br>
-</ol>
+<li><b>Flash firmware to the ESP32</b></li><br>
+</ol></h4>
 <ul>
 <li>- Open this web page with the webinstaller</li>
 <li>- Connect the EPS32 via USB cable to the computer</li>
@@ -321,72 +329,31 @@
 <p><b>Note:</b> Under <code>Flash / Device Dashboard</code> there is the menu item <code>LOGS &amp; CONSOLE</code>. You can use this for diagnostics. Press Reset once to restart the ESP32. Some functions and processes are displayed there.</p>
 <br>
 <img src="assets/WebInstaller01.jpg" width="800"></p></br>
-<img src="assets/WebInstaller02.jpg" width="800"></p></br>
-<img src="assets/WebInstaller03.jpg" width="800"></p></br>
+<img src="assets/WebInstaller01.2.jpg" width="800"></p></br>
+<img src="assets/WebInstaller01.3.jpg" width="800"></p></br>
+<img src="assets/WebInstaller01.4.jpg" width="800"></p></br>
+<img src="assets/WebInstaller02.jpg" width="800"></p></br></br>
 
-<ol start="2"><br>
-<li><b>2. Create and set up a LNbits Wallet</b></li><br>
-</ol>
-<ul>
-<li>- You can get a free demo wallet for example at <a href="https://legend.lnbits.com/">https://legend.lnbits.com/</a></li>
-<li>- Choose a name and click <code>ADD A NEW WALLET</code>.</li>
-<li>- Now save the wallet link as a favorite in your browser, or better yet, additionally copy and save it.</li>
-<li>- Click on <code>Extensions</code> and search for “LNURDevice” and click on <code>ENABLE</code>.</li>
-<li>- Now you find the extension <code>LNURLDevice</code> on the left side, select it</li>
-<li>- Click on <code>NEW LNURLDEVICE INSTANCE</code>.</li>
-<li>- Give it a title, select the wallet, your fiat currency, leave <code>PoS</code> as it is, set Profit margin to 0 and press <code>CREATE LNURLDEVICE</code>.</li>
-<li>- Now you see in the line under LNURLdevice, to the right of the title, the <code>id</code> and the <code>key</code>.</li>
-<li>- With the <code>LNbits Host</code> (here <a href="http://legend.lnbits.com">legend.lnbits.com</a>) and the chosen <code>currency</code> (e.g. EUR), these are the four data you need right away</li>
-</ul><br>
-<img src="assets/LNbits01.png" width="800"></p></br>
-<img src="assets/LNbits02.png" width="800"></p></br>
-<img src="assets/LNbits03.png" width="800"></p></br>
-<img src="assets/LNbits04.png" width="800"></p></br>
-<img src="assets/LNbits05.png" width="800"></p></br>
+<h5><b>For more <a href="https://ereignishorizont.xyz/offlinelnswitch/en/#2_The_software">help</a> on installation and further information see <a href="https://ereignishorizont.xyz/offlinelnswitch/en/">ereignishorizont.xyz/offlinelnswitch</a>.</b></h5></br>
+    There are also the points <b>"Create and set up a LNbits wallet"</b> and <b>"Configure the offline LN Switch via the touch display"</b> further described.
 
-<ol start="3"><br>
-<li><b>3. Configure the offline LN switch via the touch display</b></li><br>
-</ol>
-<ul>
-<li>- Connect your offline LN switch to the power supply.</li>
-<li>- At the bottom left you will now see a cogwheel symbol. Select it. The default PIN is <code>123456</code></li>
-<li>- Here you will find the data you have to enter again</li>
-<li>- <code>LNbits Host</code> = e.g. <a href="http://legend.lnbits.com">legend.lnbits.com</a></li>
-<li>- <code>id</code> = e.g. 7vDYV</li>
-<li>- <code>key</code> = e.g. 3v9i65KL36yhtw2xCNwD8k</li>
-<li>- <code>Currency</code> = e.g. 0.21 (Attention: dot as decimal separator)</li>
-<li>- You can also set a personal <code>ConfigPIN</code> here</li>
-<li>- Under <code>Switch</code> you will find further settings:</li>
-<li>- <code>Name</code>= Product name</li>
-<li>- <code>Price</code> = Price of the product</li>
-<li>- <code>Time</code> = Time in ms the relay should switch. E.G. 3000</li>
-<li>- <code>GPIO</code>= Output which should be controlled. Default <code>21</code></li>
-<li>- <code>Toggle Switch</code> = Control the relay manually / Invert the signal.</li>
-<li>- Return to the Config menu with the button <code>Config</code>.</li>
-<li>- Check the settings and select <code>Save+Exit</code>.</li>
-</ul><br>
-<img src="assets/HowTo01.jpg" width="800"></p></br></br>
 
-<p><b>The offlineLNSwitch is now ready</b></p><br>
+</br>
 
-<img src="assets/HowTo02.jpg" width="800"></p></br>
-<img src="assets/HowTo03.jpg" width="800"></p></br></br>
+<br><p><b>Appendix</b></p><br>
 
-<p><b>Some additions</b></p><br>
-
-<img src="assets/1.png" width="300">
-<img src="assets/2.png" width="300">
-<img src="assets/3.png" width="300"></p></br></br>
+<img src="assets/1.jpg" width="300">
+<img src="assets/2.jpg" width="300">
+<img src="assets/3.jpg" width="300"></p></br>
 
 
 
 
-                        
+                 
 
 <br><h4>Need some help? <img src="assets/manual.ico"></h4>
 
-Have a look at <a href="https://ereignishorizont.xyz/bitcoinswitch/">ereignishorizont.xyz/bitcoinswitch</a><br>
-(An extra page for the offline⚡️Switch will follow later)<br>
+Have a look at <a href="https://ereignishorizont.xyz/offlinelnswitch/en/">ereignishorizont.xyz/offlinelnswitch</a><br>
 
                             <br><h4>Telegram Groups</h4>
                             <p> <a href="https://t.me/makerbits">MakerBits</a>
@@ -412,7 +379,7 @@ Have a look at <a href="https://ereignishorizont.xyz/bitcoinswitch/">ereignishor
 <br><br>
 
 
-<p align="center"><b>Created with love 🧡 Block 805466 / 807462</b></p>
+<p align="center"><b>Created with love 🧡 Block 805466 / 808569</b></p>
 <p align="center"><b>– Lightning ⚡ (er)leben –</b></p>
                         </div>
 
