@@ -1,8 +1,8 @@
 # offline⚡️Switch
 
-<!--- ![offline⚡️Switch](./images/main.jpg)--->
+<!--- ![offline⚡️Switch](./doc/main.jpg)--->
 
-<img src="./images/main.jpg" width="700">
+<img src="./doc/main.jpg" width="700">
 
 ## Short description
 
@@ -17,7 +17,7 @@ The offline⚡️Switch is a bitcoinSwitch with an ESP32-based smart display (ma
 
 The connection of a relay is quite simple. The supplied cable is sufficient. The classic 5V relays usually have three connections. Supply (5V), Ground (GND) and Signal (Sig). The ESP32 delivers only 3.3V, but for most 5V relays this should be enough. Connect `3,3V` (red), `GND` (black) and the signal `IO21` (yellow) as shown in the picture. The blue line for IO22 remains unused here.
 
-<img src="./images/relay.jpg" width="400">
+<img src="./doc/relay.jpg" width="400">
 
 ## How do I set up the offline⚡️Switch?
 
@@ -25,8 +25,15 @@ The connection of a relay is quite simple. The supplied cable is sufficient. The
 2. Create and set up a LNbits wallet
 3. Configure the offline⚡️Switch via the touch display
 
-For more information see the [web installer](https://ereignishorizont.xyz/installer/offlineLNSwitch/index.html).
-This is the easiest way to flash the firmware and describes the configuration.
+For a detailed description see my website: [ereignishorizont.xyz/offlinelnswitch](https://ereignishorizont.xyz/offlinelnswitch/en/)
+
+Direct access to the web installer can be found here: [web installer](https://ereignishorizont.xyz/installer/offlineLNSwitch/index.html)
+
+## License
+
+This is FOSS according to MIT license. For those who want to clone and edit it themselves, here is some information:
+
+As development environment (**I**ntegrated **D**evelopment **E**nvironment) I would recommend [PlatformIO](https://platformio.org/platformio-ide) on [VSCode](https://code.visualstudio.com/). As a graphical user interface [LVGL](https://lvgl.io/) (**L**ight and **V**ersatile Embedded **G**raphics **L**ibrary) was used and mostly created by the application [SquareLine Studio](https://squareline.io/).
 
 ## Aknowledgement
 
