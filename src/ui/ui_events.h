@@ -11,6 +11,7 @@ extern "C" {
 #endif
 
 void ButtonPayNow1Click(lv_event_t * e);
+void ChangeScreenTriggerTimer(lv_event_t * e);
 void ButtonPinOneClicked(lv_event_t * e);
 void ButtonPinTwoClicked(lv_event_t * e);
 void ButtonPinThreeClicked(lv_event_t * e);

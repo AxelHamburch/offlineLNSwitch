@@ -136,8 +136,9 @@ lv_obj_set_x( ui_TextAreaSwitchRelay1, 48 );
 lv_obj_set_y( ui_TextAreaSwitchRelay1, -6 );
 lv_obj_set_align( ui_TextAreaSwitchRelay1, LV_ALIGN_CENTER );
 lv_textarea_set_max_length(ui_TextAreaSwitchRelay1,6);
-lv_textarea_set_placeholder_text(ui_TextAreaSwitchRelay1,"21 (or 22)");
+lv_textarea_set_placeholder_text(ui_TextAreaSwitchRelay1,"21 (Currently fixed)");
 lv_textarea_set_one_line(ui_TextAreaSwitchRelay1,true);
+lv_obj_clear_flag( ui_TextAreaSwitchRelay1, LV_OBJ_FLAG_CLICKABLE );    /// Flags
 lv_obj_set_style_text_color(ui_TextAreaSwitchRelay1, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_TextAreaSwitchRelay1, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_text_font(ui_TextAreaSwitchRelay1, &lv_font_montserrat_14, LV_PART_MAIN| LV_STATE_DEFAULT);

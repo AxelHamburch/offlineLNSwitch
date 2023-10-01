@@ -19,17 +19,11 @@
 // general variables
 int gpioOut1 = 21;
 int gpioOut2 = 22;
+int gpioIn1 = 35;
 int gpioLEDr = 4;
 int gpioLEDg = 16;
 int gpioLEDb = 17;
 bool statusGPIOOut1 = false;
-/*
-bool statusGPIOOut2 = false;
-*/
-bool statusGPIOLEDr = true; // Ground switching
-bool statusGPIOLEDg = true; // Ground switching
-bool statusGPIOLEDb = true; // Ground switching
-
 
 // config variables
 String config_lnbitshost = "";
@@ -43,26 +37,9 @@ String config_switchtime1 = "";
 String config_switchgpio1 = String(21);
 String config_statusGPIOOut1 = "0";
 
-/*
-String config_welcome1 = "";
-String config_welcome2 = "";
-
-String config_switchname2 = "";
-String config_switchprice2 = "";
-String config_switchtime2 = "";
-String config_switchgpio2 = String(22);
-String config_statusGPIOOut2 = "0";
-*/
-
 // LNURL, pay und QR-Code variables
 int randomPin;
 int amount = 0; // Preis x100, ohne Dezimalstellen
-// String lnurlVendProdNames = "";
-// String lnurlVendProdAmounts = ""; // Preis mit zwei Dezimalstellen und Punkt als Trennzeichen
-// String lnurlVendProdPins = "";
-// String baseURLvend;
-// String secretvend;
-// String currencyvend;
 String preparedURL;
 String qrData;
 String selection;
@@ -91,16 +68,6 @@ bool zeit1 = false;
 #define DEVICE_SWITCH_GPIO_1 "switchgpio1"
 #define DEVICE_SWITCH_STATUS_1 "switchstatus1"
 
-/*
-#define DEVICE_WELCOME_1 "welcome1"
-#define DEVICE_WELCOME_2 "welcome2"
-
-#define DEVICE_SWITCH_NAME_2 "switchname2"
-#define DEVICE_SWITCH_PRICE_2 "switchprice2"
-#define DEVICE_SWITCH_TIME_2 "switchtime2"
-#define DEVICE_SWITCH_GPIO_2 "switchgpio2"
-#define DEVICE_SWITCH_STATUS_2 "switchstatus2"
-*/
 ;
 // create QR code object
 lv_obj_t *ui_QrcodeLnurl = NULL;
@@ -113,28 +80,6 @@ void toggleGPIO(const char *gpio)
     statusGPIOOut1 = !statusGPIOOut1; // Toggle the value
     Serial.printf(" toggle GPIO %d to %d\n", gpioOut1, statusGPIOOut1);
   }
-  /* NOT IN USE
-  else if (strcmp(gpio, "Relay2") == 0)
-  {
-    statusGPIOOut2 = !statusGPIOOut2; // Toggle the value
-    Serial.printf(" toggle GPIO %d to %d\n", gpioOut2, statusGPIOOut2);
-  }
-  else if (strcmp(gpio, "LEDred") == 0)
-  {
-    statusGPIOLEDr = !statusGPIOLEDr; // Toggle the value
-    Serial.printf(" toggle GPIO %d to %d\n", gpioLEDr, statusGPIOLEDr);
-  }
-  else if (strcmp(gpio, "LEDgreen") == 0)
-  {
-    statusGPIOLEDg = !statusGPIOLEDg; // Toggle the value
-    Serial.printf(" toggle GPIO %d to %d\n", gpioLEDg, statusGPIOLEDg);
-  }
-  else if (strcmp(gpio, "LEDblue") == 0)
-  {
-    statusGPIOLEDb = !statusGPIOLEDb; // Toggle the value
-    Serial.printf(" toggle GPIO %d to %d\n", gpioLEDb, statusGPIOLEDb);
-  }
-  */
 }
 
 bool checkPIN(const char *pin)
@@ -226,35 +171,6 @@ void loadConfig()
         {
           config_statusGPIOOut1 = String(value);
         }
-
-        /*
-        else if (name == DEVICE_WELCOME_1)
-        {
-          config_welcome1 = String(value);
-        }
-        else if (name == DEVICE_WELCOME_2)
-        {
-          config_welcome2 = String(value);
-        }
-
-        
-           else if (name == DEVICE_SWITCH_NAME_2)
-           {
-             config_switchname2 = String(value);
-           }
-           else if (name == DEVICE_SWITCH_PRICE_2)
-           {
-             config_switchprice2 = String(value);
-           }
-           else if (name == DEVICE_SWITCH_TIME_2)
-           {
-             config_switchtime2 = String(value);
-           }
-           else if (name == DEVICE_SWITCH_GPIO_2)
-           {
-             config_switchgpio2 = String(value);
-           }
-           */
       }
     }
   }
@@ -273,17 +189,6 @@ void editConfig(const char *lnbitshost, const char *deviceid, const char *device
   config_switchtime1 = String(switchtime1);
   config_switchgpio1 = String(switchgpio1);
   config_statusGPIOOut1 = String(statusGPIOOut1);
-
-  /*
-  config_welcome1 = String(welcome1);
-  config_welcome2 = String(welcome2);
-  
-  config_switchname2 = String(switchname2);
-  config_switchprice2 = String(switchprice2);
-  config_switchtime2 = String(switchtime2);
-  config_switchgpio2 = String(switchgpio2);
-  config_statusGPIOOut2 = String(statusGPIOOut2);
-  */
   saveConfig();
 }
 
@@ -319,22 +224,6 @@ void saveConfig()
   doc[8]["value"] = config_switchgpio1;
   doc[9]["name"] = DEVICE_SWITCH_STATUS_1;
   doc[9]["value"] = config_statusGPIOOut1;
-
-  /*
-  doc[10]["name"] = DEVICE_WELCOME_1;
-  doc[10]["value"] = config_welcome1;
-  doc[11]["name"] = DEVICE_WELCOME_2;
-  doc[11]["value"] = config_welcome2;
-  
-  doc[9]["name"] = DEVICE_SWITCH_NAME_2;
-  doc[9]["value"] = config_switchname2;
-  doc[10]["name"] = DEVICE_SWITCH_PRICE_2;
-  doc[10]["value"] = config_switchprice2;
-  doc[11]["name"] = DEVICE_SWITCH_TIME_2;
-  doc[11]["value"] = config_switchtime2;
-  doc[12]["name"] = DEVICE_SWITCH_GPIO_2;
-  doc[12]["value"] = config_switchgpio2;
-  */
 
   String output = "";
   serializeJson(doc, output);
@@ -472,24 +361,6 @@ void payNow(int item)
       qrShowCode();
       return;
     }
-    /*
-    else if (itemtopay == 2)
-    {
-      selection = config_switchname2;
-      if (config_devicecurrency == "sat")
-      {
-        amount = config_switchprice2.toFloat();
-        price = config_switchprice2.toInt();
-      }
-      else
-      {
-        amount = config_switchprice2.toFloat() * 100;
-        price = config_switchprice2.toFloat();
-      }
-      qrShowCode();
-      return;
-    }
-    */
   }
   else
   {
@@ -505,6 +376,14 @@ void hideQRCode()
 void addQRCode()
 {
   lv_obj_clear_flag(ui_QrcodeLnurl, LV_OBJ_FLAG_HIDDEN);
+}
+
+void triggerTimer()
+{
+  Serial.println("Trigger external timer relay");
+  digitalWrite(gpioOut2, true);
+  delay(300);
+  digitalWrite(gpioOut2, false);
 }
 
 void thankYou()
@@ -545,13 +424,6 @@ void setup()
   smartdisplay_init();
   ui_init();
 
-  /* MUSS NOCH GETESTET WERDEN
-      lv_color_t c = lv_color_hex(0x000000);
-      lv_color32_t rgb;
-      rgb.full = lv_color_to32(c);
-      smartdisplay_set_led_color(rgb);
-      smartdisplay_tft_set_backlight(BB_TFT_INTENSITY);
-  */
   // set UI components from config
   loadConfig();
 
@@ -567,28 +439,20 @@ void setup()
   lv_textarea_set_text(ui_TextAreaSwitchRelay1, config_switchgpio1.c_str());
   statusGPIOOut1 = (config_statusGPIOOut1 == "0") ? false : true;
 
-  /*
-  lv_textarea_set_text(ui_TextAreaWelcome1, config_welcome1.c_str());
-  lv_textarea_set_text(ui_TextAreaWelcome2, config_welcome2.c_str());
-  
-  lv_textarea_set_text(ui_TextAreaSwitchName2, config_switchname1.c_str());
-  lv_textarea_set_text(ui_TextAreaSwitchTime2, config_switchprice1.c_str());
-  lv_textarea_set_text(ui_TextAreaSwitchTime2, config_switchtime1.c_str());
-  lv_textarea_set_text(ui_TextAreaSwitchRelay2, config_switchgpio1.c_str());
-  */
-
   // set firmware version
   lv_label_set_text(ui_LabelFWVersion, String(FIRMWARE_VERSION).c_str());
 
   // set GPIOs
   pinMode(gpioOut1, OUTPUT);
-  /*
   pinMode(gpioOut2, OUTPUT);
-  */
+  pinMode(gpioIn1, INPUT_PULLUP);
   pinMode(gpioLEDr, OUTPUT);
   pinMode(gpioLEDg, OUTPUT);
   pinMode(gpioLEDb, OUTPUT);
-  
+  // LED GPIOs off = true
+  digitalWrite(gpioLEDr, true);
+  digitalWrite(gpioLEDg, true);
+  digitalWrite(gpioLEDb, true);
 
   // initialize the QR code
   lv_color_t bg_color = lv_color_hex(0xFFFFFF);
@@ -597,14 +461,6 @@ void setup()
   lv_obj_center(ui_QrcodeLnurl);
   lv_obj_set_pos(ui_QrcodeLnurl, 0, 0);
   lv_obj_set_style_border_width(ui_QrcodeLnurl, 0, 0);
-  //  lv_obj_add_flag(ui_QrcodeLnurl, LV_OBJ_FLAG_HIDDEN);
-
-  // baseURLvend , secretvend , currencyvend
-  // https://lnbits.ereignishorizont.xyz/lnurldevice/api/v1/lnurl/walletid , secret , sat
-
-  // const JsonObject lnurlVTime = doc[2];
-  // const char *lnurlvendCharTime = lnurlVTime["value"];
-  // lnurlVendTime = String(lnurlvendCharTime).toInt();
 }
 
 void loop()
@@ -613,18 +469,11 @@ void loop()
   lv_timer_handler();
 
   digitalWrite(gpioOut1, statusGPIOOut1);
-  /*
-  digitalWrite(gpioOut2, statusGPIOOut2);
-  */
-  digitalWrite(gpioLEDr, statusGPIOLEDr);
-  digitalWrite(gpioLEDg, statusGPIOLEDg);
-  digitalWrite(gpioLEDb, statusGPIOLEDb);
-  
 
-  // Pin Eingabe 6 Zeichen
+  // Enter PIN 6 digits
   if (strlen(lv_textarea_get_text(ui_TextAreaPINConfig)) == 6)
   {
-    // Prüfe den Pin
+    // Check PIN
     if (checkPIN(lv_textarea_get_text(ui_TextAreaPINConfig)) == true)
     {
       lv_disp_load_scr(ui_ScreenConfig);
@@ -639,42 +488,38 @@ void loop()
     }
   }
 
-  // Wenn mindestens ein Zeichen und Prüf-Taste
+  // At least one characters and check button
   if (strlen(lv_textarea_get_text(ui_TextAreaPINConfig)) == 0)
   {
     lv_label_set_text(ui_LabelEnterConfigPin, "Enter Config PIN");
   }
 
-  // Bezahlt, Funktion abarbeiten
+  // Paid, process function
   if (bThankYou)
   {
-    time(&current_time);                                      // Aktuelle Zeit abrufen
-    if (difftime(current_time, start_time) >= timer_duration) // Abfrage ob die Zeit abgelaufen ist
+    time(&current_time);                                      // Get current time
+    if (difftime(current_time, start_time) >= timer_duration) // Query whether the time has expired
     {
       bool zeit1;
       if (zeit1 == false)
       {
-        // Serial.println("Die Zeit 1 ist abgelaufen");
+        // Serial.println("Time 1 has expired");
         zeit1 = true;
       }
       if (bOneCycle)
       {
         time(&current_time2);
-        if (difftime(current_time2, start_time2) >= timer_duration2) // Abfrage ob die Zeit abgelaufen ist
+        if (difftime(current_time2, start_time2) >= timer_duration2) // Query whether the time has expired
         {
-          // Serial.println("Die Zeit2 ist abgelaufen");
-          // Serial.println("Cycle durch, Start Update");
           Serial.println("Start Switch");
           if (itemtopay == 0)
           {
-            // Serial.println("1 sat Test Dummy action");
             delay(1000);
-            lv_obj_add_flag(ui_ImageTestButtonGreen, LV_OBJ_FLAG_HIDDEN);    // Button verstecken
-            lv_obj_clear_flag(ui_ImageTestButtonOrange, LV_OBJ_FLAG_HIDDEN); // Button sichtbar machen
+            lv_obj_add_flag(ui_ImageTestButtonGreen, LV_OBJ_FLAG_HIDDEN);    // Hide button
+            lv_obj_clear_flag(ui_ImageTestButtonOrange, LV_OBJ_FLAG_HIDDEN); // Make button visible
           }
           else if (itemtopay == 1)
           {
-            // lv_disp_load_scr(ui_ScreenStart);
             int gpioOut1 = config_switchgpio1.toInt();
             Serial.printf("Serve product on GPIO: %d for %d ms\n", gpioOut1, config_switchtime1.toInt());
             statusGPIOOut1 = !statusGPIOOut1; // Toggle the value
@@ -684,20 +529,6 @@ void loop()
             lv_obj_add_flag(ui_ImageBitcoinSwitchGreen, LV_OBJ_FLAG_HIDDEN);
             lv_obj_clear_flag(ui_ImageBitcoinSwitchOrange, LV_OBJ_FLAG_HIDDEN);
           }
-          /*
-          else if (itemtopay == 2)
-          {
-            lv_disp_load_scr(ui_ScreenStart);
-            int gpioOut2 = config_switchgpio2.toInt();
-            Serial.printf("Serve product on GPIO: %d for %d ms\n", gpioOut2, config_switchtime2.toInt());
-            statusGPIOOut2 = !statusGPIOOut2; // Toggle the value
-            digitalWrite(gpioOut2, statusGPIOOut2);
-            delay(config_switchtime2.toInt());
-            statusGPIOOut2 = !statusGPIOOut2; // Toggle the value
-            lv_obj_add_flag(ui_ImageBitcoinSwitchGreen, LV_OBJ_FLAG_HIDDEN);
-            lv_obj_clear_flag(ui_ImageBitcoinSwitchOrange, LV_OBJ_FLAG_HIDDEN);
-          }
-          */
           lv_label_set_text(ui_LabelPINValue, "ENTER PIN");
           Serial.println("Button orange");
           Serial.println("Payment finished");
@@ -707,28 +538,20 @@ void loop()
           return;
         }
         return;
-        /*
-        else
-        {
-          Serial.println("Die Zeit 2 noch nicht abgelaufen = grün");
-          delay(200);
-          return;
-        }
-        */
       }
 
       // Setzt Button aktiv
       if (itemtopay == 0)
       {
-        lv_obj_add_flag(ui_ImageTestButtonOrange, LV_OBJ_FLAG_HIDDEN);  // Button verstecken
-        lv_obj_clear_flag(ui_ImageTestButtonGreen, LV_OBJ_FLAG_HIDDEN); // Button sichtbar machen
+        lv_obj_add_flag(ui_ImageTestButtonOrange, LV_OBJ_FLAG_HIDDEN);  // Hide button
+        lv_obj_clear_flag(ui_ImageTestButtonGreen, LV_OBJ_FLAG_HIDDEN); // Make button visible
       }
       else
       {
         lv_obj_add_flag(ui_ImageBitcoinSwitchOrange, LV_OBJ_FLAG_HIDDEN);
         lv_obj_clear_flag(ui_ImageBitcoinSwitchGreen, LV_OBJ_FLAG_HIDDEN);
       }
-      // Setzte beim ersten durch das Bit
+      // Set at the first by the bit
       bOneCycle = true;
       lv_timer_handler();
       Serial.println("Button green");
@@ -736,15 +559,13 @@ void loop()
     }
     else
     {
-      // tue nix solange die Zeit nicht abgelaufen ist
+      // do nothing until the time has expired
       Serial.println("Die Zeit 1 noch nicht abgelaufen = orange");
-      // Serial.println("start_time: " + start_time);
-      // Serial.println("current_time: " + current_time);
       delay(200);
     }
   }
 
-  // To Many Attempts zurücksetzten
+  // To Many Attempts reset
   if (bToManyAttempts)
   {
     std::this_thread::sleep_for(std::chrono::milliseconds(3000));
@@ -756,34 +577,4 @@ void loop()
   else
   {
   }
-  /*
-
-    if ( bDisplayQRCode ) {
-      lv_obj_clear_flag(ui_QrcodeLnurl,LV_OBJ_FLAG_HIDDEN);
-    } else {
-      lv_obj_add_flag(ui_QrcodeLnurl,LV_OBJ_FLAG_HIDDEN);
-      //_ui_flag_modify(ui_QrcodeLnurl, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
-    }
-  */
-
-  /*
-  if ((digitalRead(gpio21) == HIGH) != merker)
-  {
-    Serial.println("statusButton: " + String(statusButton));
-    merker = (digitalRead(21) == gpio21);
-  }
-  */
-  /*
-    auto r = (byte)(millis() / 75);
-    auto g = (byte)(millis() / 10);
-    auto b = (byte)(millis() / 150);
-
-    smartdisplay_set_led_color(lv_color32_t({.ch = {.blue = b, .green = g, .red = r}}));
-
-  auto r = (byte)0;   // Roter Farbkanal auf 0 setzen
-  auto g = (byte)0; // Grüner Farbkanal auf 0 setzen
-  auto b = (byte)0;   // Blauer Farbkanal auf 255 (volle Intensität) setzen
-
-  smartdisplay_set_led_color(lv_color32_t({.ch = {.blue = b, .green = g, .red = r}}));
-  */
 }

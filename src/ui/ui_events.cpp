@@ -22,15 +22,6 @@ void ButtonConfigSaveAndExitClicked(lv_event_t *e)
 	const char *switchprice1 = lv_textarea_get_text(ui_TextAreaSwitchPrice1);
 	const char *switchtime1 = lv_textarea_get_text(ui_TextAreaSwitchTime1);
 	const char *switchgpio1 = lv_textarea_get_text(ui_TextAreaSwitchRelay1);
-	/*
-	const char *welcome1 = lv_textarea_get_text(ui_TextAreaWelcome1);
-	const char *welcome2 = lv_textarea_get_text(ui_TextAreaWelcome2);
-	
-	const char *switchname2 = lv_textarea_get_text(ui_TextAreaSwitchName2);
-	const char *switchprice2 = lv_textarea_get_text(ui_TextAreaSwitchPrice2);
-	const char *switchtime2 = lv_textarea_get_text(ui_TextAreaSwitchTime2);
-	const char *switchgpio2 = lv_textarea_get_text(ui_TextAreaSwitchRelay2);
-	*/
 	editConfig(lnbitshost, deviceid, devicekey, devicecurrency, configpin, switchname1, switchprice1, switchtime1, switchgpio1);
 }
 
@@ -42,23 +33,6 @@ void addToPIN(int digit)
 		lv_label_set_text(ui_LabelPINValue, entered_pin.c_str());
 	}
 }
-
-/*
-void addToPIN(int digit)
-{
-	if (entered_pin.length() < 6)
-	{
-		entered_pin += digit;
-
-		String hidePIN = "";
-		for (int i = 0; (i < entered_pin.length()); i++)
-		{
-			hidePIN += "*";
-		}
-		lv_label_set_text(ui_LabelPINValue, hidePIN.c_str());
-	}
-}
-*/
 
 void ButtonPinOneClicked(lv_event_t *e)
 {
@@ -159,24 +133,6 @@ void ButtonPinOKClicked(lv_event_t *e)
 	}
 }
 
-/*
-void ButtonPinOKClicked(lv_event_t * e)
-{
-	// Your code here
-	if (checkPIN(entered_pin.c_str()) == true)
-	{
-		lv_disp_load_scr(ui_ScreenConfig);
-		lv_label_set_text(ui_LabelPINValue, "ENTER PIN");
-		entered_pin = "";
-	}
-	else
-	{
-		lv_label_set_text(ui_LabelPINValue, "PIN INCORRECT");
-		entered_pin = "";
-	}
-}
-*/
-
 void ButtonTestRelay1Clicked(lv_event_t *e)
 {
 	const char *gpio = "Relay1";
@@ -189,26 +145,6 @@ void ButtonTestRelay2Clicked(lv_event_t *e)
 	toggleGPIO(gpio);
 }
 
-/* NOT IN USE
-void ButtonLEDredClicked(lv_event_t *e)
-{
-	const char *gpio = "LEDred";
-	toggleGPIO(gpio);
-}
-
-void ButtonLEDgreenClicked(lv_event_t *e)
-{
-	const char *gpio = "LEDgreen";
-	toggleGPIO(gpio);
-}
-
-void ButtonLEDblueClicked(lv_event_t *e)
-{
-	const char *gpio = "LEDblue";
-	toggleGPIO(gpio);
-}
-*/
-
 void ButtonPayNow0Click(lv_event_t *e)
 {
 	payNow(0);
@@ -219,13 +155,6 @@ void ButtonPayNow1Click(lv_event_t *e)
 	payNow(1);
 }
 
-/* NOT IN USE
-void ButtonPayNow2Click(lv_event_t *e)
-{
-	payNow(2);
-}
-*/
-
 void HideQRCode(lv_event_t *e)
 {
 	hideQRCode();
@@ -234,4 +163,9 @@ void HideQRCode(lv_event_t *e)
 void AddQRCode(lv_event_t *e)
 {
 	addQRCode();
+}
+
+void ChangeScreenTriggerTimer(lv_event_t *e)
+{
+	triggerTimer();
 }

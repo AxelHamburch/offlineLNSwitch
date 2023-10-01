@@ -86,3 +86,7 @@ def CheckSECRETPin(event_struct):
 def ButtonPayNow0Click(event_struct):
     return
 
+
+def ChangeScreenTriggerTimer(event_struct):
+    return
+

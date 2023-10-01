@@ -14,6 +14,7 @@ extern "C"
     void payNow(int item);
     void hideQRCode();
     void addQRCode();
+    void triggerTimer();
     void thankYou();
     void toManyAttempts();
     bool checkSECRETPin(const char *SECRETpin);

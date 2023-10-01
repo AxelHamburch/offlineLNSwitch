@@ -29,6 +29,7 @@ void ui_event_ButtonCancelPIN( lv_event_t * e);
 lv_obj_t *ui_ButtonCancelPIN;
 lv_obj_t *ui_LabelCancelPIN;
 lv_obj_t *ui_KeyboardPINConfig;
+lv_obj_t *ui_Image2;
 
 
 // SCREEN: ui_ScreenPIN
@@ -202,6 +203,7 @@ void ui_event_ImageBitcoinSwitchOrange( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
 if ( event_code == LV_EVENT_CLICKED) {
       ButtonPayNow1Click( e );
+      ChangeScreenTriggerTimer( e );
 }
 }
 void ui_event_ImageSettings( lv_event_t * e) {
@@ -209,12 +211,14 @@ void ui_event_ImageSettings( lv_event_t * e) {
 if ( event_code == LV_EVENT_CLICKED) {
       _ui_flag_modify( ui_PanelPINConfig, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
       _ui_flag_modify( ui_KeyboardPINConfig, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
+      ChangeScreenTriggerTimer( e );
 }
 }
 void ui_event_ImageInfo( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
 if ( event_code == LV_EVENT_CLICKED) {
       _ui_screen_change( &ui_ScreenInfo, LV_SCR_LOAD_ANIM_NONE, 500, 0, &ui_ScreenInfo_screen_init);
+      ChangeScreenTriggerTimer( e );
 }
 }
 void ui_event_ButtonCancelPIN( lv_event_t * e) {
@@ -288,12 +292,14 @@ void ui_event_ButtonPin11( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
 if ( event_code == LV_EVENT_CLICKED) {
       ButtonPinCancelClicked( e );
+      ChangeScreenTriggerTimer( e );
 }
 }
 void ui_event_ButtonPin12( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
 if ( event_code == LV_EVENT_CLICKED) {
       ButtonPinOKClicked( e );
+      ChangeScreenTriggerTimer( e );
 }
 }
 void ui_event_TextAreaConfigHost( lv_event_t * e) {
@@ -343,6 +349,7 @@ if ( event_code == LV_EVENT_CLICKED) {
       _ui_flag_modify( ui_KeyboardText, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
       _ui_flag_modify( ui_KeyboardNumber, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
       _ui_screen_change( &ui_ScreenStart, LV_SCR_LOAD_ANIM_NONE, 1, 100, &ui_ScreenStart_screen_init);
+      ChangeScreenTriggerTimer( e );
 }
 }
 void ui_event_ButtonGoSwitches( lv_event_t * e) {
@@ -351,6 +358,7 @@ if ( event_code == LV_EVENT_CLICKED) {
       _ui_flag_modify( ui_KeyboardText, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
       _ui_flag_modify( ui_KeyboardNumber, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
       _ui_screen_change( &ui_ScreenSwitch1, LV_SCR_LOAD_ANIM_NONE, 5, 0, &ui_ScreenSwitch1_screen_init);
+      ChangeScreenTriggerTimer( e );
 }
 }
 void ui_event_KeyboardText( lv_event_t * e) {
@@ -403,6 +411,7 @@ if ( event_code == LV_EVENT_CLICKED) {
       _ui_screen_change( &ui_ScreenConfig, LV_SCR_LOAD_ANIM_NONE, 1, 100, &ui_ScreenConfig_screen_init);
       _ui_flag_modify( ui_KeyboardSwitchText1, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
       _ui_flag_modify( ui_KeyboardSwitchNumber1, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
+      ChangeScreenTriggerTimer( e );
 }
 }
 void ui_event_SwitchToggle1( lv_event_t * e) {
@@ -427,6 +436,7 @@ void ui_event_ButtonGotoScreenPin2( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
 if ( event_code == LV_EVENT_CLICKED) {
       _ui_screen_change( &ui_ScreenPIN, LV_SCR_LOAD_ANIM_NONE, 500, 0, &ui_ScreenPIN_screen_init);
+      ChangeScreenTriggerTimer( e );
 }
 }
 void ui_event_ButtonCallPanelCancel( lv_event_t * e) {
@@ -434,6 +444,7 @@ void ui_event_ButtonCallPanelCancel( lv_event_t * e) {
 if ( event_code == LV_EVENT_CLICKED) {
       _ui_flag_modify( ui_PanelCancel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
       HideQRCode( e );
+      ChangeScreenTriggerTimer( e );
 }
 }
 void ui_event_ButtonYES( lv_event_t * e) {
@@ -455,12 +466,14 @@ void ui_event_ButtonGotoScreenStart( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
 if ( event_code == LV_EVENT_CLICKED) {
       _ui_screen_change( &ui_ScreenStart, LV_SCR_LOAD_ANIM_NONE, 100, 100, &ui_ScreenStart_screen_init);
+      ChangeScreenTriggerTimer( e );
 }
 }
 void ui_event_ImageTestButtonOrange( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
 if ( event_code == LV_EVENT_CLICKED) {
       ButtonPayNow0Click( e );
+      ChangeScreenTriggerTimer( e );
 }
 }
 

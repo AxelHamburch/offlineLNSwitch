@@ -29,6 +29,7 @@ lv_obj_set_width( ui_LabelTopScreenStart, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_LabelTopScreenStart, LV_SIZE_CONTENT);   /// 1
 lv_obj_set_align( ui_LabelTopScreenStart, LV_ALIGN_CENTER );
 lv_label_set_text(ui_LabelTopScreenStart,"Welcome");
+lv_obj_add_flag( ui_LabelTopScreenStart, LV_OBJ_FLAG_HIDDEN );   /// Flags
 lv_obj_set_style_text_color(ui_LabelTopScreenStart, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_LabelTopScreenStart, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_text_letter_space(ui_LabelTopScreenStart, 3, LV_PART_MAIN| LV_STATE_DEFAULT);
@@ -149,6 +150,17 @@ lv_obj_set_width( ui_KeyboardPINConfig, 320);
 lv_obj_set_height( ui_KeyboardPINConfig, 170);
 lv_obj_set_align( ui_KeyboardPINConfig, LV_ALIGN_BOTTOM_MID );
 lv_obj_add_flag( ui_KeyboardPINConfig, LV_OBJ_FLAG_HIDDEN );   /// Flags
+
+ui_Image2 = lv_img_create(ui_ScreenStart);
+lv_img_set_src(ui_Image2, &ui_img_chronicle_278_dasblau_png);
+lv_obj_set_width( ui_Image2, LV_SIZE_CONTENT);  /// 278
+lv_obj_set_height( ui_Image2, LV_SIZE_CONTENT);   /// 48
+lv_obj_set_x( ui_Image2, 0 );
+lv_obj_set_y( ui_Image2, -214 );
+lv_obj_set_align( ui_Image2, LV_ALIGN_CENTER );
+lv_obj_add_flag( ui_Image2, LV_OBJ_FLAG_ADV_HITTEST );   /// Flags
+lv_obj_clear_flag( ui_Image2, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+lv_img_set_zoom(ui_Image2,200);
 
 lv_obj_add_event_cb(ui_ImageBitcoinSwitchOrange, ui_event_ImageBitcoinSwitchOrange, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_ImageSettings, ui_event_ImageSettings, LV_EVENT_ALL, NULL);
