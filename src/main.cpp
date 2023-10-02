@@ -514,9 +514,8 @@ void loop()
       Serial.println("Button edge detected - disable task deep spleep");
       t1.disable(); // disable deep sleep task
     }
-    }
-    lastButtonState = buttonState; // store state
-  
+  }
+  lastButtonState = buttonState; // store state
 
   // Enter PIN 6 digits
   if (strlen(lv_textarea_get_text(ui_TextAreaPINConfig)) == 6)
@@ -622,10 +621,4 @@ void loop()
     Serial.println("To Many Attempts zurückgesetzt");
     bToManyAttempts = false;
   }
-  else
-  {
-  }
-
-  // doAction();
-  // startDeepSleep();
 }
