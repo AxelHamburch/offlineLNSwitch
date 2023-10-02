@@ -18,11 +18,10 @@
 #include <chrono>
 
 // Test DeepSleep und Task Scheduler
-int TIME_TO_SLEEP = 5;
 Scheduler scheduler;
-int delayDeepSleep = 10000; // ms
-bool buttonState = LOW;     // current state
-bool lastButtonState = LOW; // pre state
+int delayDeepSleep = 300000; // ms (5 minutes)
+bool buttonState = LOW;      // current state
+bool lastButtonState = LOW;  // pre state
 
 // general variables
 int gpioOut1 = 21;
@@ -426,16 +425,19 @@ Task t1(delayDeepSleep, TASK_FOREVER, &startDeepSleep);
 
 void triggerTimer()
 {
-  if (digitalRead(gpioIn1) == HIGH)
+  if (digitalRead(gpioIn1) == LOW)
   {
-    Serial.println("Change pages: Trigger GPIO22 and task for deep sleep in " + String(delayDeepSleep) + " ms.");
+    Serial.println("Change pages: Trigger output GPIO 22 for time relay");
     digitalWrite(gpioOut2, true);
     delay(300);
     digitalWrite(gpioOut2, false);
+  }
+  else
+  {
+    Serial.println("Change pages: Reset task for deep sleep in " + String(delayDeepSleep) + " ms.");
     t1.setInterval(delayDeepSleep);
   }
 }
-
 void setup()
 {
   Serial.begin(115200);
@@ -497,7 +499,6 @@ void loop()
   scheduler.execute();
 
   digitalWrite(gpioOut1, statusGPIOOut1);
-  // digitalWrite(gpioOut2, digitalRead(gpioIn1));
 
   // Edge detection of external button for deep sleep task
   // External pull down resistor (10KOhm) required, if GPIO 35 ist wired
@@ -506,12 +507,12 @@ void loop()
   {
     if (digitalRead(gpioIn1) == HIGH)
     {
-      Serial.println("Button edge detected - acivate task deep spleep");
+      Serial.println("Button switching edge detected - acivate task deep sleep");
       t1.enableDelayed(); // activate deep sleep task
     }
     else
     {
-      Serial.println("Button edge detected - disable task deep spleep");
+      Serial.println("Button switching edge detected - disable task deep sleep");
       t1.disable(); // disable deep sleep task
     }
   }
