@@ -10,11 +10,19 @@
 #include <ArduinoJson.h>
 #include <Bitcoin.h>
 #include <Hash.h>
+#include <TaskScheduler.h>
 
 // Verzögerung
 #include <iostream>
 #include <thread>
 #include <chrono>
+
+// Test DeepSleep und Task Scheduler
+int TIME_TO_SLEEP = 5;
+Scheduler scheduler;
+int delayDeepSleep = 10000; // ms
+bool buttonState = LOW;     // current state
+bool lastButtonState = LOW; // pre state
 
 // general variables
 int gpioOut1 = 21;
@@ -378,14 +386,6 @@ void addQRCode()
   lv_obj_clear_flag(ui_QrcodeLnurl, LV_OBJ_FLAG_HIDDEN);
 }
 
-void triggerTimer()
-{
-  Serial.println("Trigger external timer relay");
-  digitalWrite(gpioOut2, true);
-  delay(300);
-  digitalWrite(gpioOut2, false);
-}
-
 void thankYou()
 {
 
@@ -413,6 +413,27 @@ void toManyAttempts()
   bToManyAttempts = true;
 }
 
+void startDeepSleep()
+{
+  Serial.println("Going to sleep...");
+  Serial.flush();
+  esp_sleep_enable_timer_wakeup(TIME_TO_SLEEP * 1000000);
+  esp_deep_sleep_start();
+}
+
+// Task for start a delayed deep sleep
+Task t1(delayDeepSleep, TASK_FOREVER, &startDeepSleep);
+
+void triggerTimer()
+{
+  Serial.println("Trigger external timer relay");
+  digitalWrite(gpioOut2, true);
+  delay(300);
+  digitalWrite(gpioOut2, false);
+  Serial.println("Restart delay befor deep sleep in ms: " + String(delayDeepSleep));
+  t1.setInterval(delayDeepSleep);
+}
+
 void setup()
 {
   Serial.begin(115200);
@@ -420,6 +441,9 @@ void setup()
   Serial.println("booting..");
 
   LittleFS.begin(true);
+
+  // Task scheduler, activation depends on button state
+  scheduler.addTask(t1);
 
   smartdisplay_init();
   ui_init();
@@ -465,10 +489,31 @@ void setup()
 
 void loop()
 {
-
   lv_timer_handler();
 
+  scheduler.execute();
+
   digitalWrite(gpioOut1, statusGPIOOut1);
+  digitalWrite(gpioOut2, digitalRead(gpioIn1));
+  
+  /*
+    // Edge detection of external button for deep sleep task
+    buttonState = digitalRead(gpioIn1);
+    if ((buttonState == HIGH && lastButtonState == LOW) || (buttonState == LOW && lastButtonState == HIGH)) // rising edge OR falling edge
+    {
+      if (digitalRead(gpioIn1) == HIGH)
+      {
+        Serial.println("Button edge detected - disable task deep spleep");
+        t1.disable(); // disable deep sleep task
+      }
+      else
+      {
+        Serial.println("Button edge detected - acivate task deep spleep");
+        t1.enableDelayed(); // activate deep sleep task
+      }
+    }
+    lastButtonState = buttonState; // store state
+  */
 
   // Enter PIN 6 digits
   if (strlen(lv_textarea_get_text(ui_TextAreaPINConfig)) == 6)
@@ -577,4 +622,7 @@ void loop()
   else
   {
   }
+
+  // doAction();
+  // startDeepSleep();
 }
