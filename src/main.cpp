@@ -21,7 +21,9 @@
 Scheduler scheduler;
 int delayDeepSleep = 300000; // ms (5 minutes)
 bool buttonState = LOW;      // current state
-bool lastButtonState = LOW;  // pre state
+bool lastButtonState = LOW;  // last state
+int energyMode = 0;          // current mode
+int lastEnergyMode = 0;      // last mode
 
 // general variables
 int gpioOut1 = 21;
@@ -43,6 +45,7 @@ String config_switchprice1 = "";
 String config_switchtime1 = "";
 String config_switchgpio1 = String(21);
 String config_statusGPIOOut1 = "0";
+String config_energymode = "0";
 
 // LNURL, pay und QR-Code variables
 int randomPin;
@@ -74,6 +77,7 @@ bool zeit1 = false;
 #define DEVICE_SWITCH_TIME_1 "switchtime1"
 #define DEVICE_SWITCH_GPIO_1 "switchgpio1"
 #define DEVICE_SWITCH_STATUS_1 "switchstatus1"
+#define DEVICE_ENERGY_MODE "energymode"
 
 ;
 // create QR code object
@@ -178,12 +182,16 @@ void loadConfig()
         {
           config_statusGPIOOut1 = String(value);
         }
+        else if (name == DEVICE_ENERGY_MODE)
+        {
+          config_energymode = String(value);
+        }
       }
     }
   }
 }
 
-void editConfig(const char *lnbitshost, const char *deviceid, const char *devicekey, const char *devicecurrency, const char *configpin, const char *switchname1, const char *switchprice1, const char *switchtime1, const char *switchgpio1)
+void editConfig(const char *lnbitshost, const char *deviceid, const char *devicekey, const char *devicecurrency, const char *configpin, const char *switchname1, const char *switchprice1, const char *switchtime1, const char *switchgpio1, const char *energymode)
 {
   Serial.println("editConfig");
   config_lnbitshost = String(lnbitshost);
@@ -196,6 +204,7 @@ void editConfig(const char *lnbitshost, const char *deviceid, const char *device
   config_switchtime1 = String(switchtime1);
   config_switchgpio1 = String(switchgpio1);
   config_statusGPIOOut1 = String(statusGPIOOut1);
+  config_energymode = String(energymode);
   saveConfig();
 }
 
@@ -231,6 +240,8 @@ void saveConfig()
   doc[8]["value"] = config_switchgpio1;
   doc[9]["name"] = DEVICE_SWITCH_STATUS_1;
   doc[9]["value"] = config_statusGPIOOut1;
+  doc[10]["name"] = DEVICE_ENERGY_MODE;
+  doc[10]["value"] = config_energymode;
 
   String output = "";
   serializeJson(doc, output);
@@ -416,7 +427,7 @@ void startDeepSleep()
 {
   Serial.println("Going to sleep...");
   Serial.flush();
-  esp_sleep_enable_ext0_wakeup(GPIO_NUM_35, LOW);
+  esp_sleep_enable_ext0_wakeup(GPIO_NUM_35, HIGH);
   esp_deep_sleep_start();
 }
 
@@ -425,18 +436,19 @@ Task t1(delayDeepSleep, TASK_FOREVER, &startDeepSleep);
 
 void triggerTimer()
 {
-  if (digitalRead(gpioIn1) == LOW)
+  if (energyMode == 1)
+  {
+    Serial.println("Change pages: Reset task for deep sleep to " + String(delayDeepSleep) + " ms.");
+    t1.setInterval(delayDeepSleep);
+  }
+  else if (energyMode == 2)
   {
     Serial.println("Change pages: Trigger output GPIO 22 for time relay");
     digitalWrite(gpioOut2, true);
     delay(300);
     digitalWrite(gpioOut2, false);
   }
-  else
-  {
-    Serial.println("Change pages: Reset task for deep sleep in " + String(delayDeepSleep) + " ms.");
-    t1.setInterval(delayDeepSleep);
-  }
+  return;
 }
 void setup()
 {
@@ -446,15 +458,24 @@ void setup()
 
   LittleFS.begin(true);
 
-  // Task scheduler
-  scheduler.addTask(t1);
-  t1.disable(); // standard disabled. Activation depends on button state (HIGH)
-
   smartdisplay_init();
   ui_init();
 
   // set UI components from config
   loadConfig();
+
+  // Task scheduler
+  scheduler.addTask(t1);
+  if (config_energymode.toInt() == 1)
+  {
+    Serial.println("Energy Mode: 1 => Enable deep sleep task");
+    t1.enableDelayed(); // activate deep sleep task
+  }
+  else
+  {
+    Serial.println("Energy Mode: 0 or 2 => Disable deep sleep task");
+    t1.disable(); // disable deep sleep task
+  }
 
   // set config to display and status
   lv_textarea_set_text(ui_TextAreaConfigHost, config_lnbitshost.c_str());
@@ -467,6 +488,7 @@ void setup()
   lv_textarea_set_text(ui_TextAreaSwitchTime1, config_switchtime1.c_str());
   lv_textarea_set_text(ui_TextAreaSwitchRelay1, config_switchgpio1.c_str());
   statusGPIOOut1 = (config_statusGPIOOut1 == "0") ? false : true;
+  lv_textarea_set_text(ui_TextAreaEnergyMode, config_energymode.c_str());
 
   // set firmware version
   lv_label_set_text(ui_LabelFWVersion, String(FIRMWARE_VERSION).c_str());
@@ -500,19 +522,27 @@ void loop()
 
   digitalWrite(gpioOut1, statusGPIOOut1);
 
+  // Check Energy Mode
+  energyMode = config_energymode.toInt();
+  if (energyMode != lastEnergyMode != 0) // change of energy mode
+  {
+    Serial.println("Energy mode: " + String(energyMode));
+  }
+  lastEnergyMode = energyMode; // store energy mode
+
   // Edge detection of external button for deep sleep task
   // External pull down resistor (10KOhm) required, if GPIO 35 ist wired
   buttonState = digitalRead(gpioIn1);
-  if ((buttonState == HIGH && lastButtonState == LOW) || (buttonState == LOW && lastButtonState == HIGH)) // rising edge OR falling edge
+  if ((energyMode == 1) && (buttonState == HIGH && lastButtonState == LOW) || (buttonState == LOW && lastButtonState == HIGH)) // rising edge OR falling edge
   {
-    if (digitalRead(gpioIn1) == HIGH)
+    if (digitalRead(gpioIn1) == LOW)
     {
-      Serial.println("Button switching edge detected - acivate task deep sleep");
+      Serial.println("Button edge detected - acivate task deep sleep");
       t1.enableDelayed(); // activate deep sleep task
     }
     else
     {
-      Serial.println("Button switching edge detected - disable task deep sleep");
+      Serial.println("Button edge detected - disable task deep sleep");
       t1.disable(); // disable deep sleep task
     }
   }

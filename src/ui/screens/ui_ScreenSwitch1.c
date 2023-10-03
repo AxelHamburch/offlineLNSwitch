@@ -26,7 +26,7 @@ ui_LabelTopScreenSwitch1 = lv_label_create(ui_TopScreenConfigSwitch1);
 lv_obj_set_width( ui_LabelTopScreenSwitch1, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_LabelTopScreenSwitch1, LV_SIZE_CONTENT);   /// 1
 lv_obj_set_align( ui_LabelTopScreenSwitch1, LV_ALIGN_CENTER );
-lv_label_set_text(ui_LabelTopScreenSwitch1,"Set up switch");
+lv_label_set_text(ui_LabelTopScreenSwitch1,"Set up options");
 lv_obj_set_style_text_color(ui_LabelTopScreenSwitch1, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_LabelTopScreenSwitch1, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_text_letter_space(ui_LabelTopScreenSwitch1, 3, LV_PART_MAIN| LV_STATE_DEFAULT);
@@ -36,10 +36,10 @@ lv_obj_set_style_text_font(ui_LabelTopScreenSwitch1, &lv_font_montserrat_22, LV_
 ui_LabelSwitch1 = lv_label_create(ui_ScreenSwitch1);
 lv_obj_set_width( ui_LabelSwitch1, LV_SIZE_CONTENT);  /// -95
 lv_obj_set_height( ui_LabelSwitch1, LV_SIZE_CONTENT);   /// 3
-lv_obj_set_x( ui_LabelSwitch1, -103 );
+lv_obj_set_x( ui_LabelSwitch1, 0 );
 lv_obj_set_y( ui_LabelSwitch1, -170 );
 lv_obj_set_align( ui_LabelSwitch1, LV_ALIGN_CENTER );
-lv_label_set_text(ui_LabelSwitch1,"Switch");
+lv_label_set_text(ui_LabelSwitch1,"Switch and Energy Mode");
 lv_obj_set_style_text_color(ui_LabelSwitch1, lv_color_hex(0xCFCFD7), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_LabelSwitch1, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_text_decor(ui_LabelSwitch1, LV_TEXT_DECOR_UNDERLINE, LV_PART_MAIN| LV_STATE_DEFAULT);
@@ -48,8 +48,8 @@ lv_obj_set_style_text_font(ui_LabelSwitch1, &lv_font_montserrat_18, LV_PART_MAIN
 ui_LabelTestFunction1 = lv_label_create(ui_ScreenSwitch1);
 lv_obj_set_width( ui_LabelTestFunction1, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_LabelTestFunction1, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_LabelTestFunction1, -44 );
-lv_obj_set_y( ui_LabelTestFunction1, 75 );
+lv_obj_set_x( ui_LabelTestFunction1, -35 );
+lv_obj_set_y( ui_LabelTestFunction1, 146 );
 lv_obj_set_align( ui_LabelTestFunction1, LV_ALIGN_CENTER );
 lv_label_set_text(ui_LabelTestFunction1,"Toggle Switch:");
 lv_obj_set_style_text_color(ui_LabelTestFunction1, lv_color_hex(0xCFCFD7), LV_PART_MAIN | LV_STATE_DEFAULT );
@@ -147,6 +147,39 @@ lv_obj_set_style_bg_opa(ui_TextAreaSwitchRelay1, 255, LV_PART_MAIN| LV_STATE_DEF
 
 
 
+ui_LabelEnergyMode = lv_label_create(ui_ScreenSwitch1);
+lv_obj_set_width( ui_LabelEnergyMode, LV_SIZE_CONTENT);  /// 1
+lv_obj_set_height( ui_LabelEnergyMode, LV_SIZE_CONTENT);   /// 1
+lv_obj_set_x( ui_LabelEnergyMode, -105 );
+lv_obj_set_y( ui_LabelEnergyMode, 33 );
+lv_obj_set_align( ui_LabelEnergyMode, LV_ALIGN_CENTER );
+lv_label_set_text(ui_LabelEnergyMode,"Energy\nMode:");
+lv_obj_set_style_text_color(ui_LabelEnergyMode, lv_color_hex(0xCFCFD7), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_text_opa(ui_LabelEnergyMode, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_align(ui_LabelEnergyMode, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_TextAreaEnergyMode = lv_textarea_create(ui_ScreenSwitch1);
+lv_obj_set_width( ui_TextAreaEnergyMode, 200);
+lv_obj_set_height( ui_TextAreaEnergyMode, LV_SIZE_CONTENT);   /// 39
+lv_obj_set_x( ui_TextAreaEnergyMode, 48 );
+lv_obj_set_y( ui_TextAreaEnergyMode, 34 );
+lv_obj_set_align( ui_TextAreaEnergyMode, LV_ALIGN_CENTER );
+lv_textarea_set_max_length(ui_TextAreaEnergyMode,1);
+lv_textarea_set_placeholder_text(ui_TextAreaEnergyMode,"0 (standard), 1 or 2");
+lv_textarea_set_one_line(ui_TextAreaEnergyMode,true);
+
+
+
+ui_LabelEnergyModeExplain = lv_label_create(ui_ScreenSwitch1);
+lv_obj_set_width( ui_LabelEnergyModeExplain, LV_SIZE_CONTENT);  /// 1
+lv_obj_set_height( ui_LabelEnergyModeExplain, LV_SIZE_CONTENT);   /// 1
+lv_obj_set_x( ui_LabelEnergyModeExplain, 51 );
+lv_obj_set_y( ui_LabelEnergyModeExplain, 88 );
+lv_obj_set_align( ui_LabelEnergyModeExplain, LV_ALIGN_CENTER );
+lv_label_set_text(ui_LabelEnergyModeExplain,"0 = energy saving off\n1 = software deep sleep\n2 = external hardware relay \nNote: Read documentation");
+lv_obj_set_style_text_color(ui_LabelEnergyModeExplain, lv_color_hex(0xCFCFD7), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_text_opa(ui_LabelEnergyModeExplain, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+
 ui_ButtonGoConfig = lv_btn_create(ui_ScreenSwitch1);
 lv_obj_set_width( ui_ButtonGoConfig, 120);
 lv_obj_set_height( ui_ButtonGoConfig, 41);
@@ -174,8 +207,8 @@ lv_obj_set_style_text_font(ui_LabelButtonGoConfig, &lv_font_montserrat_22, LV_PA
 ui_SwitchToggle1 = lv_switch_create(ui_ScreenSwitch1);
 lv_obj_set_width( ui_SwitchToggle1, 50);
 lv_obj_set_height( ui_SwitchToggle1, 25);
-lv_obj_set_x( ui_SwitchToggle1, 44 );
-lv_obj_set_y( ui_SwitchToggle1, 75 );
+lv_obj_set_x( ui_SwitchToggle1, 61 );
+lv_obj_set_y( ui_SwitchToggle1, 147 );
 lv_obj_set_align( ui_SwitchToggle1, LV_ALIGN_CENTER );
 
 
@@ -196,6 +229,7 @@ lv_obj_add_event_cb(ui_TextAreaSwitchName1, ui_event_TextAreaSwitchName1, LV_EVE
 lv_obj_add_event_cb(ui_TextAreaSwitchPrice1, ui_event_TextAreaSwitchPrice1, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_TextAreaSwitchTime1, ui_event_TextAreaSwitchTime1, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_TextAreaSwitchRelay1, ui_event_TextAreaSwitchRelay1, LV_EVENT_ALL, NULL);
+lv_obj_add_event_cb(ui_TextAreaEnergyMode, ui_event_TextAreaEnergyMode, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_ButtonGoConfig, ui_event_ButtonGoConfig, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_SwitchToggle1, ui_event_SwitchToggle1, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_KeyboardSwitchText1, ui_event_KeyboardSwitchText1, LV_EVENT_ALL, NULL);

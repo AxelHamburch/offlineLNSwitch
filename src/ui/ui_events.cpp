@@ -22,7 +22,8 @@ void ButtonConfigSaveAndExitClicked(lv_event_t *e)
 	const char *switchprice1 = lv_textarea_get_text(ui_TextAreaSwitchPrice1);
 	const char *switchtime1 = lv_textarea_get_text(ui_TextAreaSwitchTime1);
 	const char *switchgpio1 = lv_textarea_get_text(ui_TextAreaSwitchRelay1);
-	editConfig(lnbitshost, deviceid, devicekey, devicecurrency, configpin, switchname1, switchprice1, switchtime1, switchgpio1);
+	const char *energymode = lv_textarea_get_text(ui_TextAreaEnergyMode);
+	editConfig(lnbitshost, deviceid, devicekey, devicecurrency, configpin, switchname1, switchprice1, switchtime1, switchgpio1, energymode);
 }
 
 void addToPIN(int digit)

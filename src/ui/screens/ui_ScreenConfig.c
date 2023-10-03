@@ -36,7 +36,7 @@ lv_obj_set_style_text_font(ui_LabelTopScreenConfig, &lv_font_montserrat_22, LV_P
 ui_LabelGeneralSetup = lv_label_create(ui_ScreenConfig);
 lv_obj_set_width( ui_LabelGeneralSetup, LV_SIZE_CONTENT);  /// -95
 lv_obj_set_height( ui_LabelGeneralSetup, LV_SIZE_CONTENT);   /// 3
-lv_obj_set_x( ui_LabelGeneralSetup, -83 );
+lv_obj_set_x( ui_LabelGeneralSetup, 0 );
 lv_obj_set_y( ui_LabelGeneralSetup, -170 );
 lv_obj_set_align( ui_LabelGeneralSetup, LV_ALIGN_CENTER );
 lv_label_set_text(ui_LabelGeneralSetup,"General Setup");
@@ -199,7 +199,7 @@ ui_LabelButtonGoSwitches = lv_label_create(ui_ButtonGoSwitches);
 lv_obj_set_width( ui_LabelButtonGoSwitches, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_LabelButtonGoSwitches, LV_SIZE_CONTENT);   /// 1
 lv_obj_set_align( ui_LabelButtonGoSwitches, LV_ALIGN_CENTER );
-lv_label_set_text(ui_LabelButtonGoSwitches,"Switch");
+lv_label_set_text(ui_LabelButtonGoSwitches,"Options");
 lv_obj_set_style_text_color(ui_LabelButtonGoSwitches, lv_color_hex(0x0D3E6E), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_LabelButtonGoSwitches, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_text_font(ui_LabelButtonGoSwitches, &lv_font_montserrat_22, LV_PART_MAIN| LV_STATE_DEFAULT);
@@ -208,11 +208,12 @@ ui_LabelConfigMoreOptions = lv_label_create(ui_ScreenConfig);
 lv_obj_set_width( ui_LabelConfigMoreOptions, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_LabelConfigMoreOptions, LV_SIZE_CONTENT);   /// 1
 lv_obj_set_x( ui_LabelConfigMoreOptions, -71 );
-lv_obj_set_y( ui_LabelConfigMoreOptions, 170 );
+lv_obj_set_y( ui_LabelConfigMoreOptions, 166 );
 lv_obj_set_align( ui_LabelConfigMoreOptions, LV_ALIGN_CENTER );
-lv_label_set_text(ui_LabelConfigMoreOptions,"More options");
+lv_label_set_text(ui_LabelConfigMoreOptions,"Switch and\nEnergy Mode");
 lv_obj_set_style_text_color(ui_LabelConfigMoreOptions, lv_color_hex(0xCFCFD7), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_text_opa(ui_LabelConfigMoreOptions, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_align(ui_LabelConfigMoreOptions, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_KeyboardText = lv_keyboard_create(ui_ScreenConfig);
 lv_obj_set_width( ui_KeyboardText, 320);

@@ -129,6 +129,10 @@ lv_obj_t *ui_LabelSwitchTime1;
 lv_obj_t *ui_LabelSwitchRelay1;
 void ui_event_TextAreaSwitchRelay1( lv_event_t * e);
 lv_obj_t *ui_TextAreaSwitchRelay1;
+lv_obj_t *ui_LabelEnergyMode;
+void ui_event_TextAreaEnergyMode( lv_event_t * e);
+lv_obj_t *ui_TextAreaEnergyMode;
+lv_obj_t *ui_LabelEnergyModeExplain;
 void ui_event_ButtonGoConfig( lv_event_t * e);
 lv_obj_t *ui_ButtonGoConfig;
 lv_obj_t *ui_LabelButtonGoConfig;
@@ -403,6 +407,14 @@ if ( event_code == LV_EVENT_CLICKED) {
       _ui_flag_modify( ui_KeyboardSwitchText1, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
       _ui_flag_modify( ui_KeyboardSwitchNumber1, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
       _ui_keyboard_set_target(ui_KeyboardSwitchNumber1,  ui_TextAreaSwitchRelay1);
+}
+}
+void ui_event_TextAreaEnergyMode( lv_event_t * e) {
+    lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
+if ( event_code == LV_EVENT_CLICKED) {
+      _ui_flag_modify( ui_KeyboardSwitchNumber1, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
+      _ui_keyboard_set_target(ui_KeyboardSwitchNumber1,  ui_TextAreaEnergyMode);
+      _ui_flag_modify( ui_KeyboardSwitchText1, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
 }
 }
 void ui_event_ButtonGoConfig( lv_event_t * e) {
