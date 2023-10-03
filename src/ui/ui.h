@@ -19,6 +19,7 @@ void ui_ScreenStart_screen_init(void);
 extern lv_obj_t *ui_ScreenStart;
 extern lv_obj_t *ui_TopScreenStart;
 extern lv_obj_t *ui_LabelTopScreenStart;
+extern lv_obj_t *ui_ImageTheChronicle;
 extern lv_obj_t *ui_ImageBitcoinSwitchGreen;
 void ui_event_ImageBitcoinSwitchOrange( lv_event_t * e);
 extern lv_obj_t *ui_ImageBitcoinSwitchOrange;
@@ -34,7 +35,6 @@ void ui_event_ButtonCancelPIN( lv_event_t * e);
 extern lv_obj_t *ui_ButtonCancelPIN;
 extern lv_obj_t *ui_LabelCancelPIN;
 extern lv_obj_t *ui_KeyboardPINConfig;
-extern lv_obj_t *ui_Image2;
 // SCREEN: ui_ScreenPIN
 void ui_ScreenPIN_screen_init(void);
 extern lv_obj_t *ui_ScreenPIN;
@@ -183,12 +183,12 @@ extern lv_obj_t *ui_LabelInfoFirmware;
 extern lv_obj_t *ui_LabelFWVersion;
 extern lv_obj_t *ui____initial_actions0;
 
+LV_IMG_DECLARE( ui_img_chronicle_278_dasblau_png);   // assets\chronicle 278 dasblau.png
 LV_IMG_DECLARE( ui_img_buttongreen136_png);   // assets\ButtonGreen136.png
 LV_IMG_DECLARE( ui_img_buttonorange136_png);   // assets\ButtonOrange136.png
 LV_IMG_DECLARE( ui_img_offlinelnswitch_png);   // assets\offlineLNSwitch.png
 LV_IMG_DECLARE( ui_img_gear_wheel_100pix_gray_png);   // assets\gear wheel 100pix gray.png
 LV_IMG_DECLARE( ui_img_info_100pix_gray_png);   // assets\info 100pix gray.png
-LV_IMG_DECLARE( ui_img_chronicle_278_dasblau_png);   // assets\chronicle 278 dasblau.png
 LV_IMG_DECLARE( ui_img_166440904);   // assets\qr-code-slagschaduw-274x274-v2.png
 LV_IMG_DECLARE( ui_img_buttontestgreen_png);   // assets\ButtonTestGreen.png
 LV_IMG_DECLARE( ui_img_buttontestorange_png);   // assets\ButtonTestOrange.png

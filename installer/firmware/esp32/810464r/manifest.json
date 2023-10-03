@@ -1,6 +1,6 @@
 {
   "name": "offlineLNSwitch",
-  "version": "810337r_TheChr",
+  "version": "810464r",
   "funding_url": "https://github.com/AxelHamburch/offlineLNSwitch",
   "new_install_prompt_erase": true,
   "builds": [

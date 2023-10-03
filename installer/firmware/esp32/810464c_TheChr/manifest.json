@@ -1,6 +1,6 @@
 {
   "name": "offlineLNSwitch",
-  "version": "810337c_TheChr",
+  "version": "810464c_TheChr",
   "funding_url": "https://github.com/AxelHamburch/bitcoinSwitch",
   "new_install_prompt_erase": true,
   "builds": [

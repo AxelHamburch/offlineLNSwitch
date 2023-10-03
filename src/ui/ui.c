@@ -14,6 +14,7 @@ void ui_ScreenStart_screen_init(void);
 lv_obj_t *ui_ScreenStart;
 lv_obj_t *ui_TopScreenStart;
 lv_obj_t *ui_LabelTopScreenStart;
+lv_obj_t *ui_ImageTheChronicle;
 lv_obj_t *ui_ImageBitcoinSwitchGreen;
 void ui_event_ImageBitcoinSwitchOrange( lv_event_t * e);
 lv_obj_t *ui_ImageBitcoinSwitchOrange;
@@ -29,7 +30,6 @@ void ui_event_ButtonCancelPIN( lv_event_t * e);
 lv_obj_t *ui_ButtonCancelPIN;
 lv_obj_t *ui_LabelCancelPIN;
 lv_obj_t *ui_KeyboardPINConfig;
-lv_obj_t *ui_Image2;
 
 
 // SCREEN: ui_ScreenPIN
