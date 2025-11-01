@@ -1,6 +1,9 @@
 // INFO
 // baseURLvend , secretvend , currencyvend
+// Old, before LNbits V1.0:
 // https://lnbits.ereignishorizont.xyz/lnurldevice/api/v1/lnurl/walletid , secret , sat
+// New, since LNbits V1.0:
+// https://lnbits.ereignishorizont.xyz/lnpos/api/v1/lnurl/walletid , secret , sat
 
 #include <Arduino.h>
 #include <esp32_smartdisplay.h>
@@ -314,7 +317,7 @@ void makeLNURL()
   byte payload[51]; // 51 bytes is max one can get with xor-encryption
 
   size_t payload_len = xor_encrypt(payload, sizeof(payload), (uint8_t *)config_devicekey.c_str(), config_devicekey.length(), nonce, sizeof(nonce), randomPin, amount);
-  preparedURL = "https://" + config_lnbitshost + "/lnurldevice/api/v1/lnurl/" + config_deviceid + "/?p=";
+  preparedURL = "https://" + config_lnbitshost + "/lnpos/api/v1/lnurl/" + config_deviceid + "/?p=";
   preparedURL += toBase64(payload, payload_len, BASE64_URLSAFE | BASE64_NOPADDING);
 
   Serial.println("LNURL link: " + preparedURL);
