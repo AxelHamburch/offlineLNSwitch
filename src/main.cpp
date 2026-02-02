@@ -273,17 +273,17 @@ void deriveKeyAndIV(const char *secret, unsigned char *salt, unsigned char *outp
   {
     mbedtls_md5_context md5_ctx;
     mbedtls_md5_init(&md5_ctx);
-    mbedtls_md5_starts(&md5_ctx);
+    mbedtls_md5_starts_ret(&md5_ctx);
 
     if (round > 0)
     {
-      mbedtls_md5_update(&md5_ctx, md5Output, 16);
+      mbedtls_md5_update_ret(&md5_ctx, md5Output, 16);
     }
 
-    mbedtls_md5_update(&md5_ctx, (const unsigned char *)secret, secretLen);
-    mbedtls_md5_update(&md5_ctx, salt, 8);
+    mbedtls_md5_update_ret(&md5_ctx, (const unsigned char *)secret, secretLen);
+    mbedtls_md5_update_ret(&md5_ctx, salt, 8);
 
-    mbedtls_md5_finish(&md5_ctx, md5Output);
+    mbedtls_md5_finish_ret(&md5_ctx, md5Output);
     mbedtls_md5_free(&md5_ctx);
 
     memcpy(outputBuffer + outputIndex, md5Output, 16);
