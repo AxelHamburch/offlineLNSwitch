@@ -1,6 +1,6 @@
 // INFO
 // baseURLvend , secretvend , currencyvend
-// https://lnbits.ereignishorizont.xyz/lnurldevice/api/v1/lnurl/walletid , secret , sat
+// https://lnbits.ereignishorizont.xyz/lnpos/api/v2/lnurl/walletid , secret , sat
 
 #include <Arduino.h>
 #include <esp32_smartdisplay.h>
@@ -11,6 +11,9 @@
 #include <Bitcoin.h>
 #include <Hash.h>
 #include <TaskScheduler.h>
+#include "mbedtls/aes.h"
+#include "mbedtls/md.h"
+#include "mbedtls/md5.h"
 
 // Verzögerung
 #include <iostream>
@@ -254,51 +257,221 @@ void saveConfig()
   file.close();
 }
 
-int xor_encrypt(uint8_t *output, size_t outlen, uint8_t *key, size_t keylen, uint8_t *nonce, size_t nonce_len, uint64_t rpin, uint64_t amount_in_cents)
+// MD5 transform function (complete implementation with all 4 rounds)
+void md5_transform(uint32_t state[4], const uint8_t block[64]) {
+    #define MD5_F(x, y, z) (((x) & (y)) | ((~x) & (z)))
+    #define MD5_G(x, y, z) (((x) & (z)) | ((y) & (~z)))
+    #define MD5_H(x, y, z) ((x) ^ (y) ^ (z))
+    #define MD5_I(x, y, z) ((y) ^ ((x) | (~z)))
+    #define MD5_ROTLEFT(x, n) (((x) << (n)) | ((x) >> (32-(n))))
+    #define MD5_FF(a, b, c, d, x, s, ac) { (a) += MD5_F((b), (c), (d)) + (x) + (ac); (a) = MD5_ROTLEFT((a), (s)); (a) += (b); }
+    #define MD5_GG(a, b, c, d, x, s, ac) { (a) += MD5_G((b), (c), (d)) + (x) + (ac); (a) = MD5_ROTLEFT((a), (s)); (a) += (b); }
+    #define MD5_HH(a, b, c, d, x, s, ac) { (a) += MD5_H((b), (c), (d)) + (x) + (ac); (a) = MD5_ROTLEFT((a), (s)); (a) += (b); }
+    #define MD5_II(a, b, c, d, x, s, ac) { (a) += MD5_I((b), (c), (d)) + (x) + (ac); (a) = MD5_ROTLEFT((a), (s)); (a) += (b); }
+    
+    uint32_t a = state[0], b = state[1], c = state[2], d = state[3];
+    uint32_t x[16];
+    
+    for (int i = 0; i < 16; i++) {
+        x[i] = block[i*4] | (block[i*4+1] << 8) | (block[i*4+2] << 16) | (block[i*4+3] << 24);
+    }
+    
+    // Round 1
+    MD5_FF(a, b, c, d, x[0], 7, 0xd76aa478); MD5_FF(d, a, b, c, x[1], 12, 0xe8c7b756);
+    MD5_FF(c, d, a, b, x[2], 17, 0x242070db); MD5_FF(b, c, d, a, x[3], 22, 0xc1bdceee);
+    MD5_FF(a, b, c, d, x[4], 7, 0xf57c0faf); MD5_FF(d, a, b, c, x[5], 12, 0x4787c62a);
+    MD5_FF(c, d, a, b, x[6], 17, 0xa8304613); MD5_FF(b, c, d, a, x[7], 22, 0xfd469501);
+    MD5_FF(a, b, c, d, x[8], 7, 0x698098d8); MD5_FF(d, a, b, c, x[9], 12, 0x8b44f7af);
+    MD5_FF(c, d, a, b, x[10], 17, 0xffff5bb1); MD5_FF(b, c, d, a, x[11], 22, 0x895cd7be);
+    MD5_FF(a, b, c, d, x[12], 7, 0x6b901122); MD5_FF(d, a, b, c, x[13], 12, 0xfd987193);
+    MD5_FF(c, d, a, b, x[14], 17, 0xa679438e); MD5_FF(b, c, d, a, x[15], 22, 0x49b40821);
+    
+    // Round 2
+    MD5_GG(a, b, c, d, x[1], 5, 0xf61e2562); MD5_GG(d, a, b, c, x[6], 9, 0xc040b340);
+    MD5_GG(c, d, a, b, x[11], 14, 0x265e5a51); MD5_GG(b, c, d, a, x[0], 20, 0xe9b6c7aa);
+    MD5_GG(a, b, c, d, x[5], 5, 0xd62f105d); MD5_GG(d, a, b, c, x[10], 9, 0x02441453);
+    MD5_GG(c, d, a, b, x[15], 14, 0xd8a1e681); MD5_GG(b, c, d, a, x[4], 20, 0xe7d3fbc8);
+    MD5_GG(a, b, c, d, x[9], 5, 0x21e1cde6); MD5_GG(d, a, b, c, x[14], 9, 0xc33707d6);
+    MD5_GG(c, d, a, b, x[3], 14, 0xf4d50d87); MD5_GG(b, c, d, a, x[8], 20, 0x455a14ed);
+    MD5_GG(a, b, c, d, x[13], 5, 0xa9e3e905); MD5_GG(d, a, b, c, x[2], 9, 0xfcefa3f8);
+    MD5_GG(c, d, a, b, x[7], 14, 0x676f02d9); MD5_GG(b, c, d, a, x[12], 20, 0x8d2a4c8a);
+    
+    // Round 3
+    MD5_HH(a, b, c, d, x[5], 4, 0xfffa3942); MD5_HH(d, a, b, c, x[8], 11, 0x8771f681);
+    MD5_HH(c, d, a, b, x[11], 16, 0x6d9d6122); MD5_HH(b, c, d, a, x[14], 23, 0xfde5380c);
+    MD5_HH(a, b, c, d, x[1], 4, 0xa4beea44); MD5_HH(d, a, b, c, x[4], 11, 0x4bdecfa9);
+    MD5_HH(c, d, a, b, x[7], 16, 0xf6bb4b60); MD5_HH(b, c, d, a, x[10], 23, 0xbebfbc70);
+    MD5_HH(a, b, c, d, x[13], 4, 0x289b7ec6); MD5_HH(d, a, b, c, x[0], 11, 0xeaa127fa);
+    MD5_HH(c, d, a, b, x[3], 16, 0xd4ef3085); MD5_HH(b, c, d, a, x[6], 23, 0x04881d05);
+    MD5_HH(a, b, c, d, x[9], 4, 0xd9d4d039); MD5_HH(d, a, b, c, x[12], 11, 0xe6db99e5);
+    MD5_HH(c, d, a, b, x[15], 16, 0x1fa27cf8); MD5_HH(b, c, d, a, x[2], 23, 0xc4ac5665);
+    
+    // Round 4
+    MD5_II(a, b, c, d, x[0], 6, 0xf4292244); MD5_II(d, a, b, c, x[7], 10, 0x432aff97);
+    MD5_II(c, d, a, b, x[14], 15, 0xab9423a7); MD5_II(b, c, d, a, x[5], 21, 0xfc93a039);
+    MD5_II(a, b, c, d, x[12], 6, 0x655b59c3); MD5_II(d, a, b, c, x[3], 10, 0x8f0ccc92);
+    MD5_II(c, d, a, b, x[10], 15, 0xffeff47d); MD5_II(b, c, d, a, x[1], 21, 0x85845dd1);
+    MD5_II(a, b, c, d, x[8], 6, 0x6fa87e4f); MD5_II(d, a, b, c, x[15], 10, 0xfe2ce6e0);
+    MD5_II(c, d, a, b, x[6], 15, 0xa3014314); MD5_II(b, c, d, a, x[13], 21, 0x4e0811a1);
+    MD5_II(a, b, c, d, x[4], 6, 0xf7537e82); MD5_II(d, a, b, c, x[11], 10, 0xbd3af235);
+    MD5_II(c, d, a, b, x[2], 15, 0x2ad7d2bb); MD5_II(b, c, d, a, x[9], 21, 0xeb86d391);
+    
+    state[0] += a; state[1] += b; state[2] += c; state[3] += d;
+    
+    #undef MD5_F
+    #undef MD5_G
+    #undef MD5_H
+    #undef MD5_I
+    #undef MD5_ROTLEFT
+    #undef MD5_FF
+    #undef MD5_GG
+    #undef MD5_HH
+    #undef MD5_II
+}
+
+// OpenSSL-compatible key derivation (like Python crypto-js/AES)
+// Derives 32-byte key + 16-byte IV from password and salt using MD5
+// Using simple MD5 implementation since ESP32 mbedtls MD5 is problematic
+
+void md5_transform(uint32_t state[4], const uint8_t block[64]);
+
+void simple_md5(const uint8_t *data, size_t len, uint8_t output[16]) {
+    uint32_t state[4] = {0x67452301, 0xefcdab89, 0x98badcfe, 0x10325476};
+    uint8_t buffer[64];
+    size_t i;
+    uint64_t total_bits = len * 8;  // Store original length in bits
+    
+    // Process full 64-byte blocks
+    while (len >= 64) {
+        md5_transform(state, data);
+        data += 64;
+        len -= 64;
+    }
+    
+    // Handle remaining bytes and padding
+    memcpy(buffer, data, len);
+    buffer[len++] = 0x80;
+    
+    if (len > 56) {
+        memset(buffer + len, 0, 64 - len);
+        md5_transform(state, buffer);
+        len = 0;
+    }
+    
+    memset(buffer + len, 0, 56 - len);
+    // Append length in bits (little-endian)
+    for (i = 0; i < 8; i++) {
+        buffer[56 + i] = total_bits >> (i * 8);
+    }
+    md5_transform(state, buffer);
+    
+    // Output
+    for (i = 0; i < 4; i++) {
+        output[i*4] = state[i];
+        output[i*4+1] = state[i] >> 8;
+        output[i*4+2] = state[i] >> 16;
+        output[i*4+3] = state[i] >> 24;
+    }
+}
+
+void deriveKeyAndIV(const char *secret, unsigned char *salt, unsigned char *outputBuffer)
 {
-  Serial.println("xor_encrypt(.)");
-  // check we have space for all the data:
-  // <variant_byte><len|nonce><len|payload:{rpin}{amount}><hmac>
-  if (outlen < 2 + nonce_len + 1 + lenVarInt(rpin) + 1 + lenVarInt(amount_in_cents) + 8)
+  size_t secretLen = strlen(secret);
+  unsigned char md5Output[16];
+  unsigned char data[256];
+  
+  // Build data: key + salt
+  memcpy(data, secret, secretLen);
+  memcpy(data + secretLen, salt, 8);
+  size_t dataLen = secretLen + 8;
+  
+  size_t outputIndex = 0;
+  unsigned char prevHash[16];
+  bool firstRound = true;
+  
+  for (int round = 0; round < 3; round++)
   {
+    if (firstRound) {
+      simple_md5(data, dataLen, md5Output);
+      firstRound = false;
+    } else {
+      // MD5(prevHash + data)
+      unsigned char combined[256];
+      memcpy(combined, prevHash, 16);
+      memcpy(combined + 16, data, dataLen);
+      simple_md5(combined, 16 + dataLen, md5Output);
+    }
+    
+    memcpy(outputBuffer + outputIndex, md5Output, 16);
+    memcpy(prevHash, md5Output, 16);
+    outputIndex += 16;
+  }
+}
+
+// AES-256-CBC encryption compatible with lnbits AESCipher
+size_t aes_encrypt(uint8_t *output, size_t outlen, const char *key, int pin, int amount_cents)
+{
+  Serial.println("aes_encrypt()");
+
+  // Build payload string: "PIN:AMOUNT_IN_CENTS"
+  String payload = String(pin) + ":" + String(amount_cents);
+  Serial.println("Payload: " + payload);
+
+  // Generate 8-byte random salt (OpenSSL format)
+  unsigned char salt[8];
+  for (int i = 0; i < 8; i++)
+  {
+    salt[i] = random(256);
+  }
+
+  // Derive key and IV using OpenSSL EVP_BytesToKey compatible method
+  unsigned char keyIV[48];
+  deriveKeyAndIV(key, salt, keyIV);
+
+  unsigned char derived_key[32];
+  unsigned char iv[16];
+  memcpy(derived_key, keyIV, 32);      // First 32 bytes = key
+  memcpy(iv, keyIV + 32, 16);          // Last 16 bytes = IV
+
+  // PKCS7 padding
+  size_t payloadLen = payload.length();
+  int padding = 16 - (payloadLen % 16);
+  size_t paddedLen = payloadLen + padding;
+
+  // Check output buffer size: "Salted__" (8) + salt (8) + ciphertext
+  if (outlen < 16 + paddedLen)
+  {
+    Serial.println("Buffer too small!");
     return 0;
   }
-  int cur = 0;
-  output[cur] = 1; // variant: XOR encryption
-  cur++;
-  // nonce_len | nonce
-  output[cur] = nonce_len;
-  cur++;
-  memcpy(output + cur, nonce, nonce_len);
-  cur += nonce_len;
-  // payload, unxored first - <rpin><currency byte><amount>
-  int payload_len = lenVarInt(rpin) + 1 + lenVarInt(amount_in_cents);
-  output[cur] = (uint8_t)payload_len;
-  cur++;
-  uint8_t *payload = output + cur;                                 // pointer to the start of the payload
-  cur += writeVarInt(rpin, output + cur, outlen - cur);            // rpin code
-  cur += writeVarInt(amount_in_cents, output + cur, outlen - cur); // amount
-  cur++;
-  // xor it with round key
-  uint8_t hmacresult[32];
-  SHA256 h;
-  h.beginHMAC(key, keylen);
-  h.write((uint8_t *)"Round secret:", 13);
-  h.write(nonce, nonce_len);
-  h.endHMAC(hmacresult);
-  for (int i = 0; i < payload_len; i++)
+
+  // Create padded plaintext
+  unsigned char *paddedPayload = (unsigned char *)malloc(paddedLen);
+  memcpy(paddedPayload, payload.c_str(), payloadLen);
+  for (int i = 0; i < padding; i++)
   {
-    payload[i] = payload[i] ^ hmacresult[i];
+    paddedPayload[payloadLen + i] = (unsigned char)padding;
   }
-  // add hmac to authenticate
-  h.beginHMAC(key, keylen);
-  h.write((uint8_t *)"Data:", 5);
-  h.write(output, cur);
-  h.endHMAC(hmacresult);
-  memcpy(output + cur, hmacresult, 8);
-  cur += 8;
-  // return number of bytes written to the output
-  return cur;
+
+  // Encrypt with AES-256-CBC
+  mbedtls_aes_context aes;
+  mbedtls_aes_init(&aes);
+  mbedtls_aes_setkey_enc(&aes, derived_key, 256);
+  
+  unsigned char iv_copy[16];
+  memcpy(iv_copy, iv, 16);
+  mbedtls_aes_crypt_cbc(&aes, MBEDTLS_AES_ENCRYPT, paddedLen, iv_copy, paddedPayload, output + 16);
+  mbedtls_aes_free(&aes);
+
+  // Build output: "Salted__" + salt + ciphertext
+  memcpy(output, "Salted__", 8);
+  memcpy(output + 8, salt, 8);
+
+  free(paddedPayload);
+
+  size_t totalLen = 16 + paddedLen;
+  Serial.println("Encrypted length: " + String(totalLen));
+  return totalLen;
 }
 
 void makeLNURL()
@@ -306,16 +479,17 @@ void makeLNURL()
   Serial.println("makeLNURL()");
   randomPin = random(1000, 9999);
   Serial.println("randomPin: " + String(randomPin));
-  byte nonce[8];
-  for (int i = 0; i < 8; i++)
-  {
-    nonce[i] = random(256);
-  }
-  byte payload[51]; // 51 bytes is max one can get with xor-encryption
 
-  size_t payload_len = xor_encrypt(payload, sizeof(payload), (uint8_t *)config_devicekey.c_str(), config_devicekey.length(), nonce, sizeof(nonce), randomPin, amount);
-  preparedURL = "https://" + config_lnbitshost + "/lnurldevice/api/v1/lnurl/" + config_deviceid + "/?p=";
-  preparedURL += toBase64(payload, payload_len, BASE64_URLSAFE | BASE64_NOPADDING);
+  byte payload[128]; // AES encrypted payload needs more space
+
+  size_t payload_len = aes_encrypt(payload, sizeof(payload), config_devicekey.c_str(), randomPin, amount);
+  
+  String base64_payload = toBase64(payload, payload_len, BASE64_URLSAFE);
+  Serial.println("Base64 payload length: " + String(base64_payload.length()));
+  Serial.println("Base64 payload: " + base64_payload);
+  
+  preparedURL = "https://" + config_lnbitshost + "/lnpos/api/v2/lnurl/" + config_deviceid + "?p=";
+  preparedURL += base64_payload;
 
   Serial.println("LNURL link: " + preparedURL);
   char Buf[200];
