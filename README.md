@@ -25,7 +25,7 @@ The connection of a relay is quite simple. The supplied cable is sufficient. The
 2. Create and set up a LNbits wallet
 3. Configure the offline⚡️Switch via the touch display (PIN: 123456)
 
-For a detailed description see my website: [ereignishorizont.xyz/offlinelnswitch](https://ereignishorizont.xyz/offlinelnswitch/en/)
+For a detailed description see my website: [https://ereignishorizont.xyz/en/offlinelnswitch_en/](https://ereignishorizont.xyz/en/offlinelnswitch_en/)
 
 Direct access to the web installer can be found here: [web installer](https://ereignishorizont.xyz/installer/offlineLNSwitch/index.html)
 
