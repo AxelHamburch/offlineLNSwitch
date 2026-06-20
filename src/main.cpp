@@ -1,6 +1,6 @@
 // INFO
 // baseURLvend , secretvend , currencyvend
-// https://lnbits.ereignishorizont.xyz/lnurldevice/api/v1/lnurl/walletid , secret , sat
+// https://lnbits.ereignishorizont.xyz/lnpos/api/v1/lnurl/walletid , secret , sat
 
 #include <Arduino.h>
 #include <esp32_smartdisplay.h>
@@ -11,6 +11,8 @@
 #include <Bitcoin.h>
 #include <Hash.h>
 #include <TaskScheduler.h>
+#include "mbedtls/aes.h"
+#include "mbedtls/md5.h"
 
 // Verzögerung
 #include <iostream>
@@ -254,51 +256,110 @@ void saveConfig()
   file.close();
 }
 
-int xor_encrypt(uint8_t *output, size_t outlen, uint8_t *key, size_t keylen, uint8_t *nonce, size_t nonce_len, uint64_t rpin, uint64_t amount_in_cents)
+// OpenSSL EVP_BytesToKey compatible key derivation
+// Derives 32-byte key + 16-byte IV from password and salt using MD5
+void deriveKeyAndIV(const char *secret, unsigned char *salt, unsigned char *outputBuffer)
 {
-  Serial.println("xor_encrypt(.)");
-  // check we have space for all the data:
-  // <variant_byte><len|nonce><len|payload:{rpin}{amount}><hmac>
-  if (outlen < 2 + nonce_len + 1 + lenVarInt(rpin) + 1 + lenVarInt(amount_in_cents) + 8)
+  size_t secretLen = strlen(secret);
+  unsigned char md5Output[16];
+  size_t outputIndex = 0;
+
+  // We need 48 bytes total: 32 for key + 16 for IV
+  // Round 1: MD5(password + salt) -> bytes 0-15
+  // Round 2: MD5(round1 + password + salt) -> bytes 16-31
+  // Round 3: MD5(round2 + password + salt) -> bytes 32-47
+
+  for (int round = 0; round < 3; round++)
+  {
+    mbedtls_md5_context md5_ctx;
+    mbedtls_md5_init(&md5_ctx);
+    mbedtls_md5_starts(&md5_ctx);
+
+    if (round > 0)
+    {
+      mbedtls_md5_update(&md5_ctx, md5Output, 16);
+    }
+
+    mbedtls_md5_update(&md5_ctx, (const unsigned char *)secret, secretLen);
+    mbedtls_md5_update(&md5_ctx, salt, 8);
+
+    mbedtls_md5_finish(&md5_ctx, md5Output);
+    mbedtls_md5_free(&md5_ctx);
+
+    memcpy(outputBuffer + outputIndex, md5Output, 16);
+    outputIndex += 16;
+  }
+}
+
+// AES-256-CBC encryption
+void aes256CbcEncrypt(unsigned char *key, unsigned char *iv, size_t length, const char *plainText, unsigned char *outputBuffer)
+{
+  mbedtls_aes_context aes;
+  mbedtls_aes_init(&aes);
+  mbedtls_aes_setkey_enc(&aes, key, 256);
+  mbedtls_aes_crypt_cbc(&aes, MBEDTLS_AES_ENCRYPT, length, iv, (const unsigned char *)plainText, outputBuffer);
+  mbedtls_aes_free(&aes);
+}
+
+// Main encryption function for lnpos
+// Returns: "Salted__" (8 bytes) + salt (8 bytes) + ciphertext
+size_t lnposEncrypt(uint8_t *output, size_t outlen, const char *secret, int pin, int amount)
+{
+  Serial.println("lnposEncrypt()");
+
+  // Build payload string: "PIN:AMOUNT"
+  String payload = String(pin) + ":" + String(amount);
+  Serial.println("Payload: " + payload);
+
+  // Generate 8-byte random salt
+  unsigned char salt[8];
+  for (int i = 0; i < 8; i++)
+  {
+    salt[i] = random(256);
+  }
+
+  // Derive key and IV
+  unsigned char keyIV[48];
+  deriveKeyAndIV(secret, salt, keyIV);
+
+  unsigned char key[32];
+  unsigned char iv[16];
+  memcpy(key, keyIV, 32);
+  memcpy(iv, keyIV + 32, 16);
+
+  // PKCS7 padding
+  size_t payloadLen = payload.length();
+  int padding = 16 - (payloadLen % 16);
+  size_t paddedLen = payloadLen + padding;
+
+  // Check output buffer size
+  if (outlen < 16 + paddedLen)
   {
     return 0;
   }
-  int cur = 0;
-  output[cur] = 1; // variant: XOR encryption
-  cur++;
-  // nonce_len | nonce
-  output[cur] = nonce_len;
-  cur++;
-  memcpy(output + cur, nonce, nonce_len);
-  cur += nonce_len;
-  // payload, unxored first - <rpin><currency byte><amount>
-  int payload_len = lenVarInt(rpin) + 1 + lenVarInt(amount_in_cents);
-  output[cur] = (uint8_t)payload_len;
-  cur++;
-  uint8_t *payload = output + cur;                                 // pointer to the start of the payload
-  cur += writeVarInt(rpin, output + cur, outlen - cur);            // rpin code
-  cur += writeVarInt(amount_in_cents, output + cur, outlen - cur); // amount
-  cur++;
-  // xor it with round key
-  uint8_t hmacresult[32];
-  SHA256 h;
-  h.beginHMAC(key, keylen);
-  h.write((uint8_t *)"Round secret:", 13);
-  h.write(nonce, nonce_len);
-  h.endHMAC(hmacresult);
-  for (int i = 0; i < payload_len; i++)
+
+  // Create padded plaintext
+  char *paddedPayload = (char *)malloc(paddedLen + 1);
+  strcpy(paddedPayload, payload.c_str());
+  for (int i = 0; i < padding; i++)
   {
-    payload[i] = payload[i] ^ hmacresult[i];
+    paddedPayload[payloadLen + i] = (char)padding;
   }
-  // add hmac to authenticate
-  h.beginHMAC(key, keylen);
-  h.write((uint8_t *)"Data:", 5);
-  h.write(output, cur);
-  h.endHMAC(hmacresult);
-  memcpy(output + cur, hmacresult, 8);
-  cur += 8;
-  // return number of bytes written to the output
-  return cur;
+  paddedPayload[paddedLen] = '\0';
+
+  // Encrypt
+  unsigned char *ciphertext = (unsigned char *)malloc(paddedLen);
+  aes256CbcEncrypt(key, iv, paddedLen, paddedPayload, ciphertext);
+
+  // Build output: "Salted__" + salt + ciphertext
+  memcpy(output, "Salted__", 8);
+  memcpy(output + 8, salt, 8);
+  memcpy(output + 16, ciphertext, paddedLen);
+
+  free(paddedPayload);
+  free(ciphertext);
+
+  return 16 + paddedLen;
 }
 
 void makeLNURL()
@@ -306,20 +367,16 @@ void makeLNURL()
   Serial.println("makeLNURL()");
   randomPin = random(1000, 9999);
   Serial.println("randomPin: " + String(randomPin));
-  byte nonce[8];
-  for (int i = 0; i < 8; i++)
-  {
-    nonce[i] = random(256);
-  }
-  byte payload[51]; // 51 bytes is max one can get with xor-encryption
 
-  size_t payload_len = xor_encrypt(payload, sizeof(payload), (uint8_t *)config_devicekey.c_str(), config_devicekey.length(), nonce, sizeof(nonce), randomPin, amount);
-  preparedURL = "https://" + config_lnbitshost + "/lnurldevice/api/v1/lnurl/" + config_deviceid + "/?p=";
-  preparedURL += toBase64(payload, payload_len, BASE64_URLSAFE | BASE64_NOPADDING);
+  byte payload[128]; // AES encrypted payload can be larger
+  size_t payload_len = lnposEncrypt(payload, sizeof(payload), config_devicekey.c_str(), randomPin, amount);
+
+  preparedURL = "https://" + config_lnbitshost + "/lnpos/api/v1/lnurl/" + config_deviceid + "?p=";
+  preparedURL += toBase64(payload, payload_len, BASE64_URLSAFE);
 
   Serial.println("LNURL link: " + preparedURL);
-  char Buf[200];
-  preparedURL.toCharArray(Buf, 200);
+  char Buf[300];
+  preparedURL.toCharArray(Buf, 300);
   char *url = Buf;
   byte *data = (byte *)calloc(strlen(url) * 2, sizeof(byte));
   size_t len = 0;
@@ -328,6 +385,8 @@ void makeLNURL()
   bech32_encode(charLnurl, "lnurl", data, len);
   qrData = charLnurl;
   Serial.println(qrData);
+  free(data);
+  free(charLnurl);
 }
 
 void qrShowCode()
